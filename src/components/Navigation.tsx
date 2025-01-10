@@ -30,7 +30,7 @@ const Navigation = () => {
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/80 backdrop-blur-md shadow-sm py-4"
-          : "bg-transparent py-6"
+          : "bg-gradient-to-b from-black/50 to-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -48,7 +48,11 @@ const Navigation = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-gray-600 hover:text-terracotta-500 transition-colors"
+                className={`${
+                  isScrolled
+                    ? "text-gray-600 hover:text-terracotta-500"
+                    : "text-white hover:text-terracotta-300"
+                } transition-colors font-medium`}
               >
                 {link.name}
               </Link>
@@ -63,7 +67,9 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-600 hover:text-terracotta-500 transition-colors"
+            className={`md:hidden transition-colors ${
+              isScrolled ? "text-gray-600" : "text-white"
+            } hover:text-terracotta-500`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
