@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useInView } from "react-intersection-observer";
 
 const About = () => {
@@ -9,6 +10,11 @@ const About = () => {
   });
 
   const { ref: valuesRef, inView: valuesInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const { ref: teamRef, inView: teamInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -33,6 +39,30 @@ const About = () => {
       title: "Sustainability",
       description:
         "Promoting long-term economic growth that benefits future generations.",
+    },
+  ];
+
+  const teamMembers = [
+    {
+      name: "Sarah Chen",
+      role: "Executive Director",
+      bio: "With over 15 years of experience in international development, Sarah leads our mission to empower entrepreneurs across Central Asia.",
+      image: "/photo-1581092795360-fd1ca04f0952",
+      initials: "SC",
+    },
+    {
+      name: "Azamat Kulov",
+      role: "Regional Director",
+      bio: "Born and raised in Bishkek, Azamat brings deep local knowledge and a passion for community development to our programs.",
+      image: "/photo-1581091226825-a6a2a5aee158",
+      initials: "AK",
+    },
+    {
+      name: "Dr. Maria Santos",
+      role: "Program Director",
+      bio: "An expert in microfinance and sustainable development, Maria designs and oversees our entrepreneurship training programs.",
+      image: "/photo-1605810230434-7631ac76ec81",
+      initials: "MS",
     },
   ];
 
@@ -127,6 +157,44 @@ const About = () => {
                     {value.title}
                   </h3>
                   <p className="text-gray-600">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section
+          ref={teamRef}
+          className={`transition-all duration-700 ${
+            teamInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h2 className="text-3xl font-semibold text-sage-500 mb-8 text-center">
+            Our Team
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <Card
+                key={index}
+                className="border-sage-200 hover:border-sage-300 transition-colors"
+              >
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <Avatar className="w-24 h-24 mb-4">
+                    <AvatarImage
+                      src={member.image}
+                      alt={member.name}
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="bg-sage-200 text-sage-700">
+                      {member.initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-semibold text-sage-500 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-sage-400 mb-3">{member.role}</p>
+                  <p className="text-gray-600 leading-relaxed">{member.bio}</p>
                 </CardContent>
               </Card>
             ))}
