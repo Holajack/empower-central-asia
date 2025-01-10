@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import DonateButton from "./DonateButton";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,12 +57,7 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button
-              variant="default"
-              className="bg-terracotta-500 hover:bg-terracotta-400 text-white"
-            >
-              Donate Now
-            </Button>
+            <DonateButton className="bg-terracotta-500 hover:bg-terracotta-400 text-white" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,12 +85,7 @@ const Navigation = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button
-                variant="default"
-                className="bg-terracotta-500 hover:bg-terracotta-400 text-white w-full"
-              >
-                Donate Now
-              </Button>
+              <DonateButton className="bg-terracotta-500 hover:bg-terracotta-400 text-white w-full" />
             </div>
           </div>
         )}

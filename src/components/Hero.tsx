@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import DonateButton from "./DonateButton";
 
 const Hero = () => {
   return (
@@ -25,12 +26,10 @@ const Hero = () => {
           Explore our range of programs designed to create sustainable impact in Central Asia.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
-          <Button
+          <DonateButton
             size="lg"
             className="bg-terracotta-500 hover:bg-terracotta-400 text-white min-w-[200px]"
-          >
-            Donate Now
-          </Button>
+          />
           <Button
             variant="outline"
             size="lg"
