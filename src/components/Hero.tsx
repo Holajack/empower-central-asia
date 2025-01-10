@@ -8,7 +8,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1482938289607-e9573fc25ebb')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -19,13 +19,10 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms]">
-          Empowering Entrepreneurs,
-          <br />
-          Transforming Communities
+          Empowering Through Action
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-          Equipping individuals with business and financial skills to foster
-          sustainable growth across Central Asia.
+          Explore our range of programs designed to create sustainable impact in Central Asia.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
           <Button
