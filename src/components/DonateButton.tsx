@@ -56,8 +56,8 @@ const DonateButton = ({
           <iframe 
             src="https://donorbox.org/embed/financial-mentorship-program?language=en-us" 
             name="donorbox" 
-            allowPaymentRequest 
-            seamless 
+            allow="payment"
+            seamless="seamless"
             frameBorder="0" 
             scrolling="no" 
             height="900px" 
@@ -67,7 +67,6 @@ const DonateButton = ({
               minWidth: '250px', 
               maxHeight: 'none !important' 
             }}
-            allow="payment"
           />
         </div>
       </DialogContent>
