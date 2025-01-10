@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-semibold mb-4 text-terracotta-500">
-              CentralImpact
+              Businesses Beyond Borders
             </h3>
             <p className="text-gray-600 mb-4">
               Empowering entrepreneurs and transforming communities across Central
@@ -56,8 +56,8 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-gray-800">Contact Us</h4>
             <address className="not-italic">
               <p className="text-gray-600 mb-2">
-                <a href="mailto:info@centralimpact.org" className="hover:text-terracotta-500">
-                  info@centralimpact.org
+                <a href="mailto:info@businessesbeyondborders.org" className="hover:text-terracotta-500">
+                  info@businessesbeyondborders.org
                 </a>
               </p>
               <p className="text-gray-600 mb-4">
@@ -110,7 +110,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
-          <p>&copy; {new Date().getFullYear()} CentralImpact. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Businesses Beyond Borders. All rights reserved.</p>
         </div>
       </div>
     </footer>
