@@ -57,7 +57,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="mailto:donations@businessesbeyondborders.com" 
+                  href="mailto:donations@businessesbeyondborders.com?subject=Inquiry%20about%20Businesses%20Beyond%20Borders&body=Hello%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%20Businesses%20Beyond%20Borders.%0A%0ABest%20regards%2C%0A" 
                   className="text-gray-600 hover:text-terracotta-500 transition-colors"
                 >
                   donations@businessesbeyondborders.com
