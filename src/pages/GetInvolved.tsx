@@ -26,7 +26,6 @@ const GetInvolved = () => {
   ];
 
   const handleDonateClick = (amount: number) => {
-    // This would typically integrate with a payment processor
     toast({
       title: "Thank you for your interest!",
       description: `Donation processing for $${amount} will be implemented soon.`,
@@ -41,7 +40,7 @@ const GetInvolved = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in">
+    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in mt-20">
       {/* Hero Section */}
       <section className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-sand-500">Join Our Mission</h1>
