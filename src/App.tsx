@@ -4,6 +4,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import ProgramsAndImpact from "./pages/ProgramsAndImpact";
 import SuccessStories from "./pages/SuccessStories";
+import GetInvolved from "./pages/GetInvolved";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/programs" element={<ProgramsAndImpact />} />
         <Route path="/stories" element={<SuccessStories />} />
+        <Route path="/get-involved" element={<GetInvolved />} />
       </Routes>
     </Router>
   );
