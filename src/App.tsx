@@ -35,6 +35,7 @@ function App() {
             <Route path="/stories" element={<SuccessStories />} />
             <Route path="/get-involved" element={<GetInvolved />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Index />} /> {/* Add catch-all route */}
           </Routes>
         </main>
         <Footer />
