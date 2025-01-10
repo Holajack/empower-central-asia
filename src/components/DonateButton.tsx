@@ -57,7 +57,7 @@ const DonateButton = ({
             src="https://donorbox.org/embed/financial-mentorship-program?language=en-us" 
             name="donorbox" 
             allow="payment"
-            seamless="seamless"
+            seamless={true}
             frameBorder="0" 
             scrolling="no" 
             height="900px" 
