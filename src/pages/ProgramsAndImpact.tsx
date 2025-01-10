@@ -20,27 +20,63 @@ const ProgramsAndImpact = () => {
   const programs = [
     {
       title: "Business Training Workshops",
-      description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
+      description: "Comprehensive workshops covering essential business fundamentals, from planning to execution. Our practical sessions are led by experienced entrepreneurs and industry experts.",
       icon: BookOpen,
-      details: "12-week intensive program with hands-on learning",
+      details: [
+        "Business planning, marketing strategies, and operational management",
+        "Guest lectures from successful local entrepreneurs",
+        "90% of participants launch businesses within one year",
+        "Hands-on practical sessions and real-world case studies"
+      ],
+      cta: {
+        text: "Join Next Workshop",
+        link: "/programs/business-training"
+      }
     },
     {
-      title: "Leadership Mentorship",
-      description: "One-on-one mentoring with experienced business leaders to develop management skills.",
-      icon: Users2,
-      details: "6-month mentorship program with local and international mentors",
-    },
-    {
-      title: "Innovation Incubator",
-      description: "Support for early-stage entrepreneurs to develop and launch their business ideas.",
-      icon: Lightbulb,
-      details: "3-month incubation period with seed funding opportunities",
-    },
-    {
-      title: "Financial Literacy Program",
-      description: "Essential financial education covering budgeting, savings, and investment principles.",
+      title: "Financial Literacy Classes",
+      description: "Essential financial education designed specifically for entrepreneurs, focusing on sustainable business growth and personal financial management.",
       icon: Target,
-      details: "8-week course with practical exercises and real-world applications",
+      details: [
+        "Micro-financing opportunities and management",
+        "Strategic budgeting and saving techniques",
+        "Investment principles for small businesses",
+        "Digital financial tools and technologies"
+      ],
+      cta: {
+        text: "Register for Classes",
+        link: "/programs/financial-literacy"
+      }
+    },
+    {
+      title: "Leadership & Mentorship Sessions",
+      description: "One-on-one mentoring and group coaching sessions with experienced business leaders, designed to develop strong management and leadership skills.",
+      icon: Users2,
+      details: [
+        "Personalized mentor matching program",
+        "Monthly group leadership workshops",
+        "Access to regional business networks",
+        "Ongoing support and guidance"
+      ],
+      cta: {
+        text: "Find a Mentor",
+        link: "/programs/mentorship"
+      }
+    },
+    {
+      title: "Community Collaboration Projects",
+      description: "Initiative-driven projects that bring entrepreneurs together to create sustainable impact in local communities through shared resources and knowledge.",
+      icon: Lightbulb,
+      details: [
+        "Cross-sector partnership opportunities",
+        "Resource sharing networks",
+        "Joint community development projects",
+        "Technology and innovation collaborations"
+      ],
+      cta: {
+        text: "Collaborate With Us",
+        link: "/programs/collaborate"
+      }
     },
   ];
 
@@ -68,6 +104,14 @@ const ProgramsAndImpact = () => {
 
       {/* Programs Section */}
       <div className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto mb-12 text-center">
+          <p className="text-lg text-gray-600">
+            Our programs are designed to empower local entrepreneurs with practical skills, 
+            knowledge, and resources. Through our community-driven approach, we focus on 
+            building sustainable businesses that create lasting impact in Central Asia.
+          </p>
+        </div>
+
         <div
           ref={programsRef}
           className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 ${
@@ -75,7 +119,10 @@ const ProgramsAndImpact = () => {
           }`}
         >
           {programs.map((program, index) => (
-            <Card key={index} className="border-sage-200 hover:shadow-lg transition-all duration-300">
+            <Card 
+              key={index} 
+              className="border-sage-200 hover:shadow-lg transition-all duration-300"
+            >
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-sage-100 rounded-lg">
@@ -90,7 +137,23 @@ const ProgramsAndImpact = () => {
                 <CardDescription className="text-gray-600 mb-4">
                   {program.description}
                 </CardDescription>
-                <p className="text-sm text-sage-400">{program.details}</p>
+                <ul className="space-y-2 mb-6">
+                  {program.details.map((detail, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 mt-1.5 rounded-full bg-sage-400" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+                <Link to={program.cta.link}>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-sage-300 text-sage-600 hover:bg-sage-50"
+                  >
+                    {program.cta.text}
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
