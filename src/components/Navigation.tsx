@@ -39,7 +39,7 @@ const Navigation = () => {
             to="/"
             className="text-2xl font-semibold text-terracotta-500 transition-colors hover:text-terracotta-400"
           >
-            CentralImpact
+            Businesses Beyond Borders
           </Link>
 
           {/* Desktop Navigation */}

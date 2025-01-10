@@ -17,14 +17,14 @@ function App() {
           <html lang="en" />
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="description" content="CentralImpact - Empowering entrepreneurs and transforming communities across Central Asia through sustainable business development and financial literacy programs." />
+          <meta name="description" content="Businesses Beyond Borders - Empowering entrepreneurs and transforming communities across Central Asia through sustainable business development and financial literacy programs." />
           <meta name="keywords" content="entrepreneurship, Central Asia, business development, financial literacy, community development, economic empowerment" />
-          <title>CentralImpact - Empowering Entrepreneurs in Central Asia</title>
-          <meta property="og:title" content="CentralImpact - Empowering Entrepreneurs in Central Asia" />
+          <title>Businesses Beyond Borders - Empowering Entrepreneurs in Central Asia</title>
+          <meta property="og:title" content="Businesses Beyond Borders - Empowering Entrepreneurs in Central Asia" />
           <meta property="og:description" content="Transforming communities through entrepreneurship education and sustainable business development in Central Asia." />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
-          <link rel="canonical" href="https://centralimpact.org" />
+          <link rel="canonical" href="https://businessesbeyondborders.org" />
         </Helmet>
         <Navigation />
         <main className="flex-grow">
@@ -35,7 +35,7 @@ function App() {
             <Route path="/stories" element={<SuccessStories />} />
             <Route path="/get-involved" element={<GetInvolved />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Index />} /> {/* Add catch-all route */}
+            <Route path="*" element={<Index />} />
           </Routes>
         </main>
         <Footer />
