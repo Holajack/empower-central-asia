@@ -47,14 +47,21 @@ const ProgramsAndImpact = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-sage-500 text-white py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Our Programs & Impact
+      <div 
+        className="relative h-[60vh] flex items-center justify-center"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
+            Empowering Through Action
           </h1>
-          <p className="text-xl text-sage-100 max-w-2xl">
-            Transforming communities through entrepreneurship education and
-            sustainable business development.
+          <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
+            Explore our range of programs designed to create sustainable impact in Central Asia.
           </p>
         </div>
       </div>
