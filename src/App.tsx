@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import ProgramsAndImpact from "./pages/ProgramsAndImpact";
+import SuccessStories from "./pages/SuccessStories";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/programs" element={<ProgramsAndImpact />} />
+        <Route path="/stories" element={<SuccessStories />} />
       </Routes>
     </Router>
   );
