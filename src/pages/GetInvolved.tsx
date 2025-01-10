@@ -1,53 +1,138 @@
-import { Helmet } from "react-helmet";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Heart, HandHelping, Users, DollarSign, Handshake } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const GetInvolved = () => {
+  const { toast } = useToast();
+
+  const donationTiers = [
+    {
+      amount: 50,
+      description: "Provides essential business training materials for one entrepreneur",
+      icon: <DollarSign className="h-6 w-6" />,
+    },
+    {
+      amount: 100,
+      description: "Sponsors a full day of workshops for aspiring business owners",
+      icon: <Users className="h-6 w-6" />,
+    },
+    {
+      amount: 250,
+      description: "Funds a month of mentorship for three local entrepreneurs",
+      icon: <HandHelping className="h-6 w-6" />,
+    },
+  ];
+
+  const handleDonateClick = (amount: number) => {
+    // This would typically integrate with a payment processor
+    toast({
+      title: "Thank you for your interest!",
+      description: `Donation processing for $${amount} will be implemented soon.`,
+    });
+  };
+
+  const handlePartnershipClick = () => {
+    toast({
+      title: "Partnership Inquiry",
+      description: "Our team will contact you soon to discuss partnership opportunities.",
+    });
+  };
+
   return (
-    <>
-      <Helmet>
-        <title>Get Involved | CentralImpact - Support Our Mission</title>
-        <meta 
-          name="description" 
-          content="Join CentralImpact's mission to empower entrepreneurs in Central Asia. Discover volunteer opportunities, partnerships, and ways to support our cause." 
-        />
-        <meta 
-          name="keywords" 
-          content="volunteer opportunities, partnerships, support entrepreneurs, Central Asia development, community involvement, social impact" 
-        />
-        <meta property="og:title" content="Get Involved with CentralImpact - Make a Difference" />
-        <meta property="og:description" content="Support our mission to empower entrepreneurs and transform communities across Central Asia." />
-      </Helmet>
+    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in">
+      {/* Hero Section */}
+      <section className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-sand-500">Join Our Mission</h1>
+        <p className="text-lg text-sage-500 max-w-2xl mx-auto">
+          Your support empowers entrepreneurs across Central Asia to build sustainable businesses
+          and transform their communities.
+        </p>
+      </section>
 
-      <main className="min-h-screen py-20" role="main">
-        <div className="container mx-auto px-4">
-          <section className="mb-16" aria-labelledby="volunteer-heading">
-            <h1 id="volunteer-heading" className="text-4xl font-bold text-gray-900 mb-8">Get Involved</h1>
-            <p className="text-lg text-gray-600 mb-6">
-              At CentralImpact, we believe in the power of community. Join us in our mission to empower entrepreneurs across Central Asia.
-            </p>
-            <p className="text-lg text-gray-600 mb-6">
-              Whether you're looking to volunteer your time, partner with us, or support our initiatives, there are many ways to get involved.
-            </p>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Volunteer Opportunities</h2>
-            <p className="text-lg text-gray-600 mb-6">
-              We are always looking for passionate individuals to join our team as volunteers. Your skills and time can make a significant impact in the lives of entrepreneurs we serve.
-            </p>
-            <p className="text-lg text-gray-600 mb-6">
-              If you're interested in volunteering, please reach out to us for more information on available opportunities.
-            </p>
-          </section>
-
-          <section className="mb-16" aria-labelledby="partnership-heading">
-            <h2 id="partnership-heading" className="text-3xl font-bold text-gray-900 mb-6">Partnership Opportunities</h2>
-            <p className="text-lg text-gray-600 mb-6">
-              CentralImpact is committed to building strong partnerships with organizations that share our vision of empowering entrepreneurs. Together, we can create sustainable change in Central Asia.
-            </p>
-            <p className="text-lg text-gray-600 mb-6">
-              If your organization is interested in partnering with us, please contact us to discuss potential collaboration opportunities.
-            </p>
-          </section>
+      {/* Donation Options */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold text-sand-500">Make a Difference Today</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {donationTiers.map((tier) => (
+            <Card key={tier.amount} className="p-6 space-y-4 hover:shadow-lg transition-shadow">
+              <div className="flex items-center gap-3">
+                {tier.icon}
+                <h3 className="text-xl font-semibold">${tier.amount}</h3>
+              </div>
+              <p className="text-sage-500">{tier.description}</p>
+              <Button 
+                onClick={() => handleDonateClick(tier.amount)}
+                className="w-full bg-terracotta-400 hover:bg-terracotta-500"
+              >
+                <Heart className="mr-2 h-4 w-4" />
+                Donate ${tier.amount}
+              </Button>
+            </Card>
+          ))}
         </div>
-      </main>
-    </>
+      </section>
+
+      {/* Volunteer & Partnership Section */}
+      <section className="grid md:grid-cols-2 gap-8">
+        <Card className="p-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <HandHelping className="h-6 w-6 text-sage-500" />
+            <h2 className="text-2xl font-semibold">Volunteer Opportunities</h2>
+          </div>
+          <ul className="space-y-2 text-sage-500">
+            <li>• Mentor aspiring entrepreneurs</li>
+            <li>• Host business workshops</li>
+            <li>• Provide consulting services</li>
+            <li>• Support local initiatives</li>
+          </ul>
+          <Button variant="outline" className="w-full">
+            <Users className="mr-2 h-4 w-4" />
+            Join as Volunteer
+          </Button>
+        </Card>
+
+        <Card className="p-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <Handshake className="h-6 w-6 text-sage-500" />
+            <h2 className="text-2xl font-semibold">Partnership Opportunities</h2>
+          </div>
+          <ul className="space-y-2 text-sage-500">
+            <li>• Corporate sponsorships</li>
+            <li>• Matching grant programs</li>
+            <li>• Resource sharing</li>
+            <li>• Joint initiatives</li>
+          </ul>
+          <Button 
+            variant="outline" 
+            className="w-full"
+            onClick={handlePartnershipClick}
+          >
+            <Handshake className="mr-2 h-4 w-4" />
+            Partner With Us
+          </Button>
+        </Card>
+      </section>
+
+      {/* Impact Recap */}
+      <section className="bg-sand-50 p-8 rounded-lg text-center space-y-4">
+        <h2 className="text-2xl font-semibold text-sand-500">Your Impact in Action</h2>
+        <p className="text-sage-500 max-w-2xl mx-auto">
+          Every contribution directly supports entrepreneurs in Central Asia, helping them build
+          sustainable businesses that create jobs and strengthen local economies. Join us in
+          empowering communities through entrepreneurship.
+        </p>
+        <Button 
+          size="lg" 
+          className="bg-terracotta-400 hover:bg-terracotta-500"
+          onClick={() => handleDonateClick(100)}
+        >
+          <Heart className="mr-2 h-5 w-5" />
+          Donate Today
+        </Button>
+      </section>
+    </div>
   );
 };
 
