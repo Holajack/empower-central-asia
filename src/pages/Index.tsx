@@ -1,9 +1,10 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import StatCard from "@/components/StatCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Heart, HandHelping, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
@@ -136,6 +137,73 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How You Can Help Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+            How You Can Help
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-sage-200 hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Heart className="h-6 w-6 text-terracotta-500" />
+                  <CardTitle className="text-xl">Donate</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <CardDescription>
+                  Your financial support helps provide essential resources and training materials to aspiring entrepreneurs in our communities.
+                </CardDescription>
+                <Link to="/get-involved">
+                  <Button className="w-full bg-terracotta-500 hover:bg-terracotta-400">
+                    Make a Donation
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-sage-200 hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <HandHelping className="h-6 w-6 text-sage-500" />
+                  <CardTitle className="text-xl">Volunteer</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <CardDescription>
+                  Share your expertise and experience by mentoring entrepreneurs or leading workshops in your area of expertise.
+                </CardDescription>
+                <Link to="/get-involved">
+                  <Button variant="outline" className="w-full border-sage-500 text-sage-500 hover:bg-sage-50">
+                    Become a Volunteer
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-sage-200 hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Handshake className="h-6 w-6 text-sand-500" />
+                  <CardTitle className="text-xl">Partner</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <CardDescription>
+                  Collaborate with us to create sustainable impact through resource sharing, sponsorships, or joint initiatives.
+                </CardDescription>
+                <Link to="/get-involved">
+                  <Button variant="outline" className="w-full border-sand-500 text-sand-500 hover:bg-sand-50">
+                    Partner With Us
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
