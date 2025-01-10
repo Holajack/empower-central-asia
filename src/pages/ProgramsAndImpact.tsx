@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import StatCard from "@/components/StatCard";
+import SpotlightStories from "@/components/programs/SpotlightStories";
 import { ArrowRight, BookOpen, Users2, Lightbulb, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -176,6 +177,9 @@ const ProgramsAndImpact = () => {
             <StatCard number={2000} label="Jobs Created" suffix="+" delay={600} />
           </div>
         </div>
+
+        {/* Spotlight Stories Section */}
+        <SpotlightStories />
 
         {/* Call to Action Section */}
         <div className="mt-20 text-center">
