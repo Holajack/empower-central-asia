@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import StatCard from "@/components/StatCard";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const Index = () => {
   return (
@@ -53,6 +54,59 @@ const Index = () => {
             <StatCard number={10} label="Communities Served" suffix="+" delay={200} />
             <StatCard number={85} label="Success Rate" suffix="%" delay={400} />
             <StatCard number={1200} label="Jobs Created" delay={600} />
+          </div>
+        </div>
+      </section>
+
+      {/* Programs at a Glance */}
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+            Programs at a Glance
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Business Training Workshops",
+                description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
+              },
+              {
+                title: "Financial Literacy Classes",
+                description: "Essential financial education covering budgeting, savings, and investment principles.",
+              },
+              {
+                title: "Leadership & Mentorship Sessions",
+                description: "One-on-one mentoring with experienced business leaders to develop management skills.",
+              },
+              {
+                title: "Community Collaboration Projects",
+                description: "Initiatives that bring entrepreneurs together to create sustainable impact in local communities.",
+              },
+            ].map((program, index) => (
+              <Card 
+                key={program.title}
+                className="border-sage-200 hover:shadow-lg transition-all duration-300"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardHeader>
+                  <CardTitle className="text-xl text-sage-500">
+                    {program.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600 mb-4">
+                    {program.description}
+                  </CardDescription>
+                  <Link 
+                    to="/programs"
+                    className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
