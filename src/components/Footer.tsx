@@ -56,8 +56,8 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-gray-800">Contact Us</h4>
             <address className="not-italic">
               <p className="text-gray-600 mb-2">
-                <a href="mailto:info@businessesbeyondborders.org" className="hover:text-terracotta-500">
-                  info@businessesbeyondborders.org
+                <a href="mailto:donations@businessesbeyondborders.com" className="hover:text-terracotta-500">
+                  donations@businessesbeyondborders.com
                 </a>
               </p>
               <p className="text-gray-600 mb-4">
