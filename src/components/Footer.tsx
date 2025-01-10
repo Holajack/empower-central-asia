@@ -54,18 +54,24 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gray-800">Contact Us</h4>
-            <address className="not-italic">
-              <p className="text-gray-600 mb-2">
-                <a href="mailto:donations@businessesbeyondborders.com" className="hover:text-terracotta-500">
+            <ul className="space-y-2">
+              <li>
+                <a 
+                  href="mailto:donations@businessesbeyondborders.com" 
+                  className="text-gray-600 hover:text-terracotta-500 transition-colors"
+                >
                   donations@businessesbeyondborders.com
                 </a>
-              </p>
-              <p className="text-gray-600 mb-4">
-                <a href="tel:+15551234567" className="hover:text-terracotta-500">
+              </li>
+              <li>
+                <a 
+                  href="tel:+15551234567" 
+                  className="text-gray-600 hover:text-terracotta-500 transition-colors"
+                >
                   +1 (555) 123-4567
                 </a>
-              </p>
-            </address>
+              </li>
+            </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gray-800">Follow Us</h4>
