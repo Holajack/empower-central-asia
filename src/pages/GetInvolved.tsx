@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, HandHelping, Users, DollarSign, Handshake } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import DonateButton from "@/components/DonateButton";
 
 const GetInvolved = () => {
   const { toast } = useToast();
@@ -25,13 +26,6 @@ const GetInvolved = () => {
     },
   ];
 
-  const handleDonateClick = (amount: number) => {
-    toast({
-      title: "Thank you for your interest!",
-      description: `Donation processing for $${amount} will be implemented soon.`,
-    });
-  };
-
   const handlePartnershipClick = () => {
     toast({
       title: "Partnership Inquiry",
@@ -42,12 +36,15 @@ const GetInvolved = () => {
   return (
     <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in mt-20">
       {/* Hero Section */}
-      <section className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-sand-500">Join Our Mission</h1>
-        <p className="text-lg text-sage-500 max-w-2xl mx-auto">
-          Your support empowers entrepreneurs across Central Asia to build sustainable businesses
-          and transform their communities.
+      <section className="text-center space-y-6 py-16 max-w-3xl mx-auto">
+        <h1 className="text-5xl font-bold text-sand-500">Be Part of the Change</h1>
+        <p className="text-xl text-sage-500">
+          Explore how you can support and empower entrepreneurs in Central Asia.
         </p>
+        <DonateButton 
+          size="lg"
+          className="bg-terracotta-400 hover:bg-terracotta-500 mt-6"
+        />
       </section>
 
       {/* Donation Options */}
@@ -61,13 +58,10 @@ const GetInvolved = () => {
                 <h3 className="text-xl font-semibold">${tier.amount}</h3>
               </div>
               <p className="text-sage-500">{tier.description}</p>
-              <Button 
-                onClick={() => handleDonateClick(tier.amount)}
-                className="w-full bg-terracotta-400 hover:bg-terracotta-500"
-              >
-                <Heart className="mr-2 h-4 w-4" />
-                Donate ${tier.amount}
-              </Button>
+              <DonateButton 
+                variant="outline"
+                className="w-full"
+              />
             </Card>
           ))}
         </div>
@@ -122,14 +116,10 @@ const GetInvolved = () => {
           sustainable businesses that create jobs and strengthen local economies. Join us in
           empowering communities through entrepreneurship.
         </p>
-        <Button 
-          size="lg" 
+        <DonateButton 
+          size="lg"
           className="bg-terracotta-400 hover:bg-terracotta-500"
-          onClick={() => handleDonateClick(100)}
-        >
-          <Heart className="mr-2 h-5 w-5" />
-          Donate Today
-        </Button>
+        />
       </section>
     </div>
   );
