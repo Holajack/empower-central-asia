@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, HandHelping, Users, DollarSign } from "lucide-react";
+import { HandHelping, Users, Network, Share, DollarSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import DonateButton from "@/components/DonateButton";
 
@@ -36,6 +36,13 @@ const GetInvolved = () => {
     });
   };
 
+  const handlePartnerClick = () => {
+    toast({
+      title: "Partnership Inquiry",
+      description: "Thank you for your interest in partnering with us. Our team will reach out shortly.",
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in mt-20">
       {/* Hero Section */}
@@ -59,7 +66,7 @@ const GetInvolved = () => {
         {/* Donation Section */}
         <div className="space-y-8">
           <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
-            <Heart className="text-terracotta-400" />
+            <DollarSign className="text-terracotta-400" />
             Make a Donation
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -121,6 +128,77 @@ const GetInvolved = () => {
                 Apply as Volunteer
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Partner Section */}
+        <div className="space-y-8">
+          <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
+            <Network className="text-sage-500" />
+            Partner With Us
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-6 space-y-4">
+              <h4 className="font-semibold text-lg">Collaboration Opportunities</h4>
+              <ul className="space-y-2 text-sage-500">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                  Corporate matching donation programs
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                  Joint training workshops and events
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                  Resource sharing initiatives
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                  Sponsorship opportunities
+                </li>
+              </ul>
+              <Button 
+                onClick={handlePartnerClick}
+                variant="outline"
+                className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
+              >
+                Become a Partner
+              </Button>
+            </Card>
+            <Card className="p-6 space-y-4 bg-sage-50">
+              <h4 className="font-semibold text-lg">Why Partner With Us?</h4>
+              <p className="text-sage-500">
+                Join forces with us to create lasting impact in Central Asian communities. 
+                Together, we can strengthen local economies and empower the next generation 
+                of entrepreneurs.
+              </p>
+            </Card>
+          </div>
+        </div>
+
+        {/* Advocate Section */}
+        <div className="space-y-8 bg-sand-50 p-8 rounded-lg">
+          <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
+            <Share className="text-sand-500" />
+            Spread the Word
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="p-6 text-center space-y-4">
+              <Share className="h-8 w-8 mx-auto text-sand-500" />
+              <h4 className="font-semibold">Share on Social Media</h4>
+              <p className="text-sage-500">Help us reach more people by sharing our mission</p>
+            </Card>
+            <Card className="p-6 text-center space-y-4">
+              <Users className="h-8 w-8 mx-auto text-sand-500" />
+              <h4 className="font-semibold">Host a Fundraiser</h4>
+              <p className="text-sage-500">Organize events to support our programs</p>
+            </Card>
+            <Card className="p-6 text-center space-y-4">
+              <Network className="h-8 w-8 mx-auto text-sand-500" />
+              <h4 className="font-semibold">Join Local Events</h4>
+              <p className="text-sage-500">Participate in community gatherings and workshops</p>
+            </Card>
           </div>
         </div>
       </section>
