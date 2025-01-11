@@ -1,9 +1,16 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { HandHelping, Users, Network, Share, DollarSign } from "lucide-react";
+import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import DonateButton from "@/components/DonateButton";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 
 const GetInvolved = () => {
   const { toast } = useToast();
@@ -42,6 +49,46 @@ const GetInvolved = () => {
       description: "Thank you for your interest in partnering with us. Our team will reach out shortly.",
     });
   };
+
+  const impactStats = [
+    { number: "5000+", label: "Volunteer Hours" },
+    { number: "250+", label: "Families Reached" },
+    { number: "100+", label: "Active Volunteers" },
+    { number: "25+", label: "Partner Organizations" },
+  ];
+
+  const upcomingEvents = [
+    {
+      date: "March 15, 2024",
+      title: "Volunteer Orientation",
+      type: "Virtual",
+    },
+    {
+      date: "March 20, 2024",
+      title: "Partner Networking Event",
+      type: "In-Person",
+    },
+    {
+      date: "March 25, 2024",
+      title: "Fundraising Workshop",
+      type: "Hybrid",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "How are donations used?",
+      answer: "Your donations directly support entrepreneur training programs, mentorship initiatives, and resource development in Central Asian communities.",
+    },
+    {
+      question: "What skills do I need to volunteer?",
+      answer: "We welcome volunteers with various skills, particularly in business mentorship, financial literacy, marketing, and general business operations.",
+    },
+    {
+      question: "How can organizations partner with us?",
+      answer: "Organizations can partner through resource sharing, joint programs, sponsorships, or by providing expertise and mentorship to our entrepreneurs.",
+    },
+  ];
 
   return (
     <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in mt-20">
@@ -203,17 +250,103 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* Impact Recap */}
-      <section className="bg-sand-50 p-8 rounded-lg text-center space-y-4">
-        <h2 className="text-2xl font-semibold text-sand-500">Your Impact in Action</h2>
-        <p className="text-sage-500 max-w-2xl mx-auto">
-          Every contribution directly supports entrepreneurs in Central Asia, helping them build
-          sustainable businesses that create jobs and strengthen local economies. Join us in
-          empowering communities through entrepreneurship.
+      {/* Impact Stats */}
+      <section className="py-12 bg-sage-50 rounded-lg">
+        <h2 className="text-3xl font-bold text-center mb-8 text-sage-500">Our Impact</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
+          {impactStats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-4xl font-bold text-terracotta-500 mb-2">{stat.number}</div>
+              <div className="text-sage-600">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Volunteer/Partner Spotlights */}
+      <section className="py-12">
+        <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Success Stories</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <Card className="p-6">
+            <blockquote className="space-y-4">
+              <p className="text-sage-600 italic">
+                "Being a mentor has been incredibly rewarding. Seeing entrepreneurs grow and succeed makes every hour worth it."
+              </p>
+              <footer className="text-sage-500">
+                - Sarah Chen, Business Mentor since 2022
+              </footer>
+            </blockquote>
+          </Card>
+          <Card className="p-6">
+            <blockquote className="space-y-4">
+              <p className="text-sage-600 italic">
+                "Our partnership has enabled us to reach more communities and create lasting impact in Central Asia."
+              </p>
+              <footer className="text-sage-500">
+                - Tech Solutions Co., Partner Organization
+              </footer>
+            </blockquote>
+          </Card>
+        </div>
+      </section>
+
+      {/* Upcoming Events */}
+      <section className="py-12 bg-white rounded-lg shadow-sm">
+        <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Upcoming Events</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {upcomingEvents.map((event, index) => (
+            <Card key={index} className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Calendar className="h-5 w-5 text-sage-500" />
+                <span className="text-sage-600">{event.date}</span>
+              </div>
+              <h3 className="font-semibold mb-2">{event.title}</h3>
+              <p className="text-sage-500 mb-4">{event.type}</p>
+              <Button variant="outline" className="w-full">
+                Register Now
+              </Button>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-12">
+        <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible>
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          <div className="text-center mt-8">
+            <h3 className="text-lg font-semibold mb-4">Still Have Questions?</h3>
+            <Link to="/contact">
+              <Button className="bg-sage-500 hover:bg-sage-600">
+                <HelpCircle className="mr-2 h-4 w-4" />
+                Contact Us
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16 bg-terracotta-50 rounded-lg text-center">
+        <h2 className="text-4xl font-bold mb-6 text-terracotta-500">
+          Ready to Empower Entrepreneurs Today?
+        </h2>
+        <p className="text-lg text-sage-600 mb-8 max-w-2xl mx-auto">
+          Join us in creating lasting change in Central Asian communities through entrepreneurship support.
         </p>
         <DonateButton 
-          size="lg" 
-          className="bg-terracotta-400 hover:bg-terracotta-500"
+          size="lg"
+          className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
         />
       </section>
     </div>
