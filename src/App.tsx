@@ -35,7 +35,6 @@ function App() {
             <Route path="/stories" element={<SuccessStories />} />
             <Route path="/get-involved" element={<GetInvolved />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Index />} />
           </Routes>
         </main>
         <Footer />
