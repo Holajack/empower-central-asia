@@ -9,11 +9,11 @@ const ContactInfo = () => {
         <div className="flex items-center gap-3 text-gray-600">
           <Mail className="h-5 w-5 text-terracotta-500" aria-hidden="true" />
           <a 
-            href="mailto:contact@businessesbeyondborders.org" 
+            href="mailto:donations@businessesbeyondborders.com" 
             className="hover:text-terracotta-500"
             aria-label="Email us"
           >
-            contact@businessesbeyondborders.org
+            donations@businessesbeyondborders.com
           </a>
         </div>
         
@@ -31,8 +31,8 @@ const ContactInfo = () => {
         <div className="flex items-center gap-3 text-gray-600">
           <MapPin className="h-5 w-5 text-terracotta-500" aria-hidden="true" />
           <address className="not-italic">
-            123 Impact Street<br />
-            San Francisco, CA 94105
+            2570 Jasmine Rd.<br />
+            Port Orange, FL 32128
           </address>
         </div>
       </div>
