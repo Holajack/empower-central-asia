@@ -1,3 +1,4 @@
+
 import StatCard from "../StatCard";
 
 const ImpactStats = () => {
@@ -8,10 +9,10 @@ const ImpactStats = () => {
           Our Impact
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <StatCard number={500} label="Entrepreneurs Trained" delay={0} />
-          <StatCard number={10} label="Communities Served" suffix="+" delay={200} />
-          <StatCard number={85} label="Success Rate" suffix="%" delay={400} />
-          <StatCard number={1200} label="Jobs Created" delay={600} />
+          <StatCard number={50} label="Trained in Finances" suffix="+" delay={0} />
+          <StatCard number={6} label="Communities Served" suffix="+" delay={200} />
+          <StatCard number={100} label="Success Rate" suffix="%" delay={400} />
+          <StatCard number={150} label="Lives Transformed" suffix="+" delay={600} />
         </div>
       </div>
     </section>
