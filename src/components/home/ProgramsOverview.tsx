@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
@@ -5,19 +6,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui
 const ProgramsOverview = () => {
   const programs = [
     {
-      title: "Business Training Workshops",
-      description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
-    },
-    {
-      title: "Financial Literacy Classes",
+      title: "Financial Literacy Development",
       description: "Essential financial education covering budgeting, savings, and investment principles.",
     },
     {
-      title: "Leadership & Mentorship Sessions",
+      title: "Business Creation Training",
+      description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
+    },
+    {
+      title: "Leadership Development",
       description: "One-on-one mentoring with experienced business leaders to develop management skills.",
     },
     {
-      title: "Community Collaboration Projects",
+      title: "Community Collaboration",
       description: "Initiatives that bring entrepreneurs together to create sustainable impact in local communities.",
     },
   ];
