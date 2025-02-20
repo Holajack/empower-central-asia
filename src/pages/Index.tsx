@@ -1,3 +1,4 @@
+
 import Hero from "@/components/Hero";
 import QuickAbout from "@/components/home/QuickAbout";
 import ImpactStats from "@/components/home/ImpactStats";
@@ -18,4 +19,5 @@ const Index = () => {
   );
 };
 
+// Make sure to export as default
 export default Index;
