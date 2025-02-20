@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -12,10 +13,15 @@ const QuickAbout = () => {
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-            {["Inclusivity", "Innovation", "Community", "Sustainability"].map((value, index) => (
+            {[
+              "Integrity and Accountability",
+              "Leadership and Empowerment",
+              "Excellence and Impact",
+              "Collaboration and Partnership"
+            ].map((value, index) => (
               <div 
                 key={value}
-                className="p-4 rounded-lg bg-sage-50 text-sage-500 text-center font-semibold"
+                className="p-4 rounded-lg bg-sage-50 text-sage-500 text-center font-semibold text-sm md:text-base"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {value}
