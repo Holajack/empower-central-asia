@@ -1,3 +1,4 @@
+
 import { Heart, Users2, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
@@ -30,6 +31,11 @@ const HowToHelp = () => {
     },
   ];
 
+  // Function to scroll to top when navigating to get-involved page
+  const handleVolunteerClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto max-w-4xl">
@@ -51,7 +57,10 @@ const HowToHelp = () => {
                   <CardDescription>
                     {option.description}
                   </CardDescription>
-                  <Link to="/get-involved">
+                  <Link 
+                    to="/get-involved"
+                    onClick={option.title === "Volunteer" ? handleVolunteerClick : undefined}
+                  >
                     <Button 
                       variant={option.variant} 
                       className={`w-full ${option.buttonClass}`}
