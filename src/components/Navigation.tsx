@@ -20,8 +20,8 @@ const Navigation = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Programs", path: "/programs" },
-    { name: "Success Stories", path: "/stories" },
+    { name: "Programs", path: "/programs-and-impact" }, // Updated path
+    { name: "Success Stories", path: "/success-stories" },
     { name: "Get Involved", path: "/get-involved" },
     { name: "Contact", path: "/contact" },
   ];
