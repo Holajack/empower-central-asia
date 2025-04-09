@@ -106,7 +106,7 @@ const GetInvolved = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in mt-20">
+    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-28">
       {/* Hero Section */}
       <section className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-sand-500">Be Part of the Change</h1>
