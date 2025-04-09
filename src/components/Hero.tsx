@@ -1,8 +1,16 @@
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import DonateButton from "./DonateButton";
 
 const Hero = () => {
+  const scrollToPrograms = () => {
+    const programsSection = document.getElementById("programs-section");
+    if (programsSection) {
+      programsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -34,6 +42,7 @@ const Hero = () => {
             variant="outline"
             size="lg"
             className="bg-white/10 hover:bg-white/20 text-white border-white min-w-[200px] group"
+            onClick={scrollToPrograms}
           >
             Learn More
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

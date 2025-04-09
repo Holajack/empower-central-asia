@@ -24,7 +24,7 @@ const ProgramsOverview = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section id="programs-section" className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
           Programs at a Glance
