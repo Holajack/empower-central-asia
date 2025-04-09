@@ -7,6 +7,7 @@ import GetInvolved from "@/pages/GetInvolved";
 import ProgramsAndImpact from "@/pages/ProgramsAndImpact";
 import SuccessStories from "@/pages/SuccessStories";
 import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/programs-and-impact" element={<ProgramsAndImpact />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </main>
       <Footer />
