@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -11,9 +11,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import VolunteerForm from "@/components/get-involved/VolunteerForm";
 
 const GetInvolved = () => {
   const { toast } = useToast();
+  const [volunteerDialogOpen, setVolunteerDialogOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -37,9 +47,14 @@ const GetInvolved = () => {
   ];
 
   const handleVolunteerClick = () => {
+    setVolunteerDialogOpen(true);
+  };
+
+  const handleVolunteerSubmit = (data: any) => {
+    setVolunteerDialogOpen(false);
     toast({
-      title: "Volunteer Application",
-      description: "Thank you for your interest! We'll contact you soon with more details.",
+      title: "Volunteer Application Submitted",
+      description: `Thank you, ${data.firstName}! We'll contact you soon with more details.`,
     });
   };
 
@@ -349,6 +364,19 @@ const GetInvolved = () => {
           className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
         />
       </section>
+
+      {/* Volunteer Application Dialog */}
+      <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-sage-500 text-xl">Volunteer Application</DialogTitle>
+            <DialogDescription>
+              Fill out the form below to join our volunteer network. We'll get back to you within 48 hours.
+            </DialogDescription>
+          </DialogHeader>
+          <VolunteerForm onSubmit={handleVolunteerSubmit} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
