@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -20,7 +19,7 @@ const Navigation = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Programs", path: "/programs-and-impact" }, // Updated path
+    { name: "Programs", path: "/programs-and-impact" },
     { name: "Success Stories", path: "/success-stories" },
     { name: "Get Involved", path: "/get-involved" },
     { name: "Contact", path: "/contact" },
@@ -38,7 +37,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className="text-2xl font-semibold text-terracotta-500 transition-colors hover:text-terracotta-400"
+            className={`text-2xl font-semibold transition-colors ${
+              isScrolled 
+                ? "text-terracotta-500 hover:text-terracotta-400" 
+                : "text-white hover:text-terracotta-300"
+            }`}
           >
             Businesses Beyond Borders
           </Link>
