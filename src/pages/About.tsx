@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -69,17 +70,22 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Section */}
-      <div className="relative h-[40vh] bg-sage-100">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/placeholder.svg')" }}
-        >
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        <div className="relative container mx-auto h-full flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+      <div 
+        className="relative h-[60vh] flex items-center justify-center"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')", // Same image as Programs page
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
             Our Story
           </h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
+            Our journey of empowerment and sustainable impact
+          </p>
         </div>
       </div>
 
