@@ -46,20 +46,24 @@ const HowToHelp = () => {
           {helpOptions.map((option) => {
             const Icon = option.icon;
             return (
-              <Card key={option.title} className="border-sage-200 hover:shadow-lg transition-all duration-300">
-                <CardHeader>
+              <Card 
+                key={option.title} 
+                className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col"
+              >
+                <CardHeader className="flex-grow-0">
                   <div className="flex items-center gap-3">
                     <Icon className="h-6 w-6 text-terracotta-500" />
                     <CardTitle className="text-xl">{option.title}</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription>
+                <CardContent className="flex flex-col flex-grow justify-between space-y-4">
+                  <CardDescription className="flex-grow">
                     {option.description}
                   </CardDescription>
                   <Link 
                     to="/get-involved"
                     onClick={option.title === "Volunteer" ? handleVolunteerClick : undefined}
+                    className="mt-auto"
                   >
                     <Button 
                       variant={option.variant} 
@@ -79,3 +83,4 @@ const HowToHelp = () => {
 };
 
 export default HowToHelp;
+
