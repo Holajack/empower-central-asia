@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Instagram, Twitter, BookOpen } from "lucide-react";
+import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -46,9 +45,8 @@ const Footer = () => {
               <li>
                 <Link
                   to="/blog"
-                  className="text-gray-600 hover:text-terracotta-500 transition-colors flex items-center gap-1"
+                  className="text-gray-600 hover:text-terracotta-500 transition-colors"
                 >
-                  <BookOpen className="h-4 w-4" />
                   Blog
                 </Link>
               </li>
