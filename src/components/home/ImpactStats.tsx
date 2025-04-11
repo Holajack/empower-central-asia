@@ -102,34 +102,36 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
             Our Impact
           </h2>
           <div className="w-full">
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
-                {stats.map((stat, index) => (
-                  <div 
-                    key={index} 
-                    className="min-w-0 flex-[0_0_80%] mx-2"
-                  >
-                    <StatCard 
-                      number={stat.number} 
-                      label={stat.label} 
-                      suffix={stat.suffix} 
-                      delay={stat.delay}
-                      resetAnimation={index === activeSlideIndex} 
-                    />
-                  </div>
-                ))}
+            <Carousel>
+              <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex">
+                  {stats.map((stat, index) => (
+                    <div 
+                      key={index} 
+                      className="min-w-0 flex-[0_0_80%] mx-2"
+                    >
+                      <StatCard 
+                        number={stat.number} 
+                        label={stat.label} 
+                        suffix={stat.suffix} 
+                        delay={stat.delay}
+                        resetAnimation={index === activeSlideIndex} 
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <CarouselPrevious 
-                onClick={() => emblaApi?.scrollPrev()} 
-                className="static translate-y-0 mr-2" 
-              />
-              <CarouselNext 
-                onClick={() => emblaApi?.scrollNext()} 
-                className="static translate-y-0 ml-2" 
-              />
-            </div>
+              <div className="flex justify-center mt-4">
+                <CarouselPrevious 
+                  onClick={() => emblaApi?.scrollPrev()} 
+                  className="static translate-y-0 mr-2" 
+                />
+                <CarouselNext 
+                  onClick={() => emblaApi?.scrollNext()} 
+                  className="static translate-y-0 ml-2" 
+                />
+              </div>
+            </Carousel>
           </div>
         </div>
       </section>

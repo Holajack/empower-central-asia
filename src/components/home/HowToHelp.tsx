@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui
 import { Button } from "../ui/button";
 import useEmblaCarousel from "embla-carousel-react";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
@@ -55,51 +58,53 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             How You Can Help
           </h2>
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {helpOptions.map((option, index) => {
-                const Icon = option.icon;
-                return (
-                  <div 
-                    key={option.title}
-                    className="min-w-0 flex-[0_0_80%] mx-2"
-                  >
-                    <Card 
-                      className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+          <Carousel>
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {helpOptions.map((option, index) => {
+                  const Icon = option.icon;
+                  return (
+                    <div 
+                      key={option.title}
+                      className="min-w-0 flex-[0_0_80%] mx-2"
                     >
-                      <CardHeader className="flex-shrink-0">
-                        <div className="flex items-center gap-3">
-                          <Icon className="h-6 w-6 text-terracotta-500 flex-shrink-0" />
-                          <CardTitle className="text-xl">{option.title}</CardTitle>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex flex-col flex-grow justify-between space-y-4">
-                        <CardDescription className="flex-grow">
-                          {option.description}
-                        </CardDescription>
-                        <Link 
-                          to="/get-involved"
-                          onClick={option.title === "Volunteer" ? handleVolunteerClick : undefined}
-                          className="mt-auto"
-                        >
-                          <Button 
-                            variant={option.variant} 
-                            className={`w-full ${option.buttonClass}`}
+                      <Card 
+                        className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+                      >
+                        <CardHeader className="flex-shrink-0">
+                          <div className="flex items-center gap-3">
+                            <Icon className="h-6 w-6 text-terracotta-500 flex-shrink-0" />
+                            <CardTitle className="text-xl">{option.title}</CardTitle>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="flex flex-col flex-grow justify-between space-y-4">
+                          <CardDescription className="flex-grow">
+                            {option.description}
+                          </CardDescription>
+                          <Link 
+                            to="/get-involved"
+                            onClick={option.title === "Volunteer" ? handleVolunteerClick : undefined}
+                            className="mt-auto"
                           >
-                            {option.buttonText}
-                          </Button>
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </div>
-                );
-              })}
+                            <Button 
+                              variant={option.variant} 
+                              className={`w-full ${option.buttonClass}`}
+                            >
+                              {option.buttonText}
+                            </Button>
+                          </Link>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center mt-4">
-            <CarouselPrevious className="static translate-y-0 mr-2" />
-            <CarouselNext className="static translate-y-0 ml-2" />
-          </div>
+            <div className="flex justify-center mt-4">
+              <CarouselPrevious className="static translate-y-0 mr-2" />
+              <CarouselNext className="static translate-y-0 ml-2" />
+            </div>
+          </Carousel>
         </div>
       </section>
     );
