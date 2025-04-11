@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import StatCard from "../StatCard";
 import {
@@ -27,7 +26,6 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
     align: "start", 
     loop: true,
     containScroll: "trimSnaps", // Ensures cards are contained properly
-    dragFree: false // Prevents free scrolling
   });
   
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
@@ -50,31 +48,42 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
     };
   }, [emblaApi, isMobile]);
 
+  // Set up auto-scrolling
   useEffect(() => {
     // Only set up auto-scroll for mobile
-    if (!emblaApi || !isMobile || !autoScrollEnabled) return;
+    if (!emblaApi || !isMobile) return;
     
-    const interval = 4000; // 4 seconds per slide
-    
-    const autoScroll = () => {
-      if (emblaApi.canScrollNext()) {
-        emblaApi.scrollNext();
-      } else {
-        emblaApi.scrollTo(0);
-      }
-    };
+    console.log("Auto-scroll setup. Enabled:", autoScrollEnabled);
     
     // Clear any existing interval
     if (autoScrollIntervalRef.current) {
+      console.log("Clearing existing interval");
       window.clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
     }
     
-    // Set up the interval
-    autoScrollIntervalRef.current = window.setInterval(autoScroll, interval);
+    // Set up the interval if auto-scroll is enabled
+    if (autoScrollEnabled) {
+      console.log("Setting up new auto-scroll interval");
+      const interval = 4000; // 4 seconds per slide
+      
+      const autoScroll = () => {
+        console.log("Auto-scrolling to next slide");
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+      };
+      
+      autoScrollIntervalRef.current = window.setInterval(autoScroll, interval);
+    }
     
     return () => {
       if (autoScrollIntervalRef.current) {
+        console.log("Cleanup: Clearing interval");
         window.clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
       }
     };
   }, [emblaApi, autoScrollEnabled, isMobile]);
@@ -84,14 +93,17 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
     if (!emblaApi || !isMobile) return;
     
     const onPointerDown = () => {
+      console.log("User interaction detected: pausing auto-scroll");
       setAutoScrollEnabled(false);
     };
     
     const onPointerUp = () => {
+      console.log("Interaction ended: will resume auto-scroll soon");
       // Wait a brief moment before re-enabling auto-scroll
       setTimeout(() => {
+        console.log("Resuming auto-scroll");
         setAutoScrollEnabled(true);
-      }, 1000);
+      }, 2000);
     };
     
     emblaApi.on("pointerDown", onPointerDown);
@@ -133,6 +145,7 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
               <div className="flex justify-center mt-4">
                 <CarouselPrevious 
                   onClick={() => {
+                    console.log("Manual navigation: previous");
                     emblaApi?.scrollPrev();
                     // Temporarily pause auto-scroll when manually navigating
                     setAutoScrollEnabled(false);
@@ -142,6 +155,7 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
                 />
                 <CarouselNext 
                   onClick={() => {
+                    console.log("Manual navigation: next");
                     emblaApi?.scrollNext();
                     // Temporarily pause auto-scroll when manually navigating
                     setAutoScrollEnabled(false);
