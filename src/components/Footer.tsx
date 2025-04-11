@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Facebook, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -68,15 +68,15 @@ const Footer = () => {
                   href="mailto:donations@businessesbeyondborders.com?subject=Inquiry%20about%20Businesses%20Beyond%20Borders&body=Hello%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%20Businesses%20Beyond%20Borders.%0A%0ABest%20regards%2C%0A" 
                   className="text-gray-600 hover:text-terracotta-500 transition-colors"
                 >
-                  Email Us
+                  Text Us
                 </a>
               </li>
               <li>
                 <a 
-                  href="tel:+15551234567" 
+                  href="tel:+14074098836" 
                   className="text-gray-600 hover:text-terracotta-500 transition-colors"
                 >
-                  +1 (555) 123-4567
+                  +1 (407) 409-8836
                 </a>
               </li>
             </ul>
@@ -85,7 +85,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-gray-800">Follow Us</h4>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/Businesses.BB"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit our Facebook page"
@@ -94,7 +94,7 @@ const Footer = () => {
                 <Facebook className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/businesses-beyond-borders/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit our LinkedIn page"
@@ -103,22 +103,13 @@ const Footer = () => {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/businessesbeyondborders/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit our Instagram page"
                 className="text-gray-400 hover:text-terracotta-500 transition-colors"
               >
                 <Instagram className="w-6 h-6" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Visit our Twitter page"
-                className="text-gray-400 hover:text-terracotta-500 transition-colors"
-              >
-                <Twitter className="w-6 h-6" />
               </a>
             </div>
           </div>
