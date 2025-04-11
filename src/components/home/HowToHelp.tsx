@@ -3,8 +3,19 @@ import { Heart, Users2, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { Button } from "../ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const HowToHelp = () => {
+interface HowToHelpProps {
+  isMobile?: boolean;
+}
+
+const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
   const helpOptions = [
     {
       title: "Donate",
@@ -35,6 +46,60 @@ const HowToHelp = () => {
   const handleVolunteerClick = () => {
     window.scrollTo(0, 0);
   };
+
+  if (isMobile) {
+    return (
+      <section className="py-12 px-4 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+            How You Can Help
+          </h2>
+          <Carousel className="w-full" opts={{ align: "start" }}>
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {helpOptions.map((option) => {
+                const Icon = option.icon;
+                return (
+                  <CarouselItem key={option.title} className="pl-2 md:pl-4 basis-4/5 md:basis-1/2">
+                    <Card 
+                      className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+                    >
+                      <CardHeader className="flex-grow-0">
+                        <div className="flex items-center gap-3">
+                          <Icon className="h-6 w-6 text-terracotta-500" />
+                          <CardTitle className="text-xl">{option.title}</CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="flex flex-col flex-grow justify-between space-y-4">
+                        <CardDescription className="flex-grow">
+                          {option.description}
+                        </CardDescription>
+                        <Link 
+                          to="/get-involved"
+                          onClick={option.title === "Volunteer" ? handleVolunteerClick : undefined}
+                          className="mt-auto"
+                        >
+                          <Button 
+                            variant={option.variant} 
+                            className={`w-full ${option.buttonClass}`}
+                          >
+                            {option.buttonText}
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <div className="flex justify-center mt-4">
+              <CarouselPrevious className="static translate-y-0 mr-2" />
+              <CarouselNext className="static translate-y-0 ml-2" />
+            </div>
+          </Carousel>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 px-4 bg-white">
@@ -83,4 +148,3 @@ const HowToHelp = () => {
 };
 
 export default HowToHelp;
-
