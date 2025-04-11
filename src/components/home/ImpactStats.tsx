@@ -26,7 +26,8 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: "start", 
     loop: true,
-    containScroll: "trimSnaps" // Ensures cards are contained properly
+    containScroll: "trimSnaps", // Ensures cards are contained properly
+    dragFree: false // Prevents free scrolling
   });
   
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
@@ -87,7 +88,10 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
     };
     
     const onPointerUp = () => {
-      setAutoScrollEnabled(true);
+      // Wait a brief moment before re-enabling auto-scroll
+      setTimeout(() => {
+        setAutoScrollEnabled(true);
+      }, 1000);
     };
     
     emblaApi.on("pointerDown", onPointerDown);
@@ -113,7 +117,7 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
                   {stats.map((stat, index) => (
                     <CarouselItem 
                       key={index} 
-                      className="pl-4 md:basis-1/2 lg:basis-1/3 basis-[85%]" // Adjust card width for better fit
+                      className="pl-4 basis-[80%]" // Fixed width to prevent overflow
                     >
                       <StatCard 
                         number={stat.number} 
@@ -128,11 +132,21 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
               </div>
               <div className="flex justify-center mt-4">
                 <CarouselPrevious 
-                  onClick={() => emblaApi?.scrollPrev()} 
+                  onClick={() => {
+                    emblaApi?.scrollPrev();
+                    // Temporarily pause auto-scroll when manually navigating
+                    setAutoScrollEnabled(false);
+                    setTimeout(() => setAutoScrollEnabled(true), 2000);
+                  }} 
                   className="static translate-y-0 mr-2" 
                 />
                 <CarouselNext 
-                  onClick={() => emblaApi?.scrollNext()} 
+                  onClick={() => {
+                    emblaApi?.scrollNext();
+                    // Temporarily pause auto-scroll when manually navigating
+                    setAutoScrollEnabled(false);
+                    setTimeout(() => setAutoScrollEnabled(true), 2000);
+                  }} 
                   className="static translate-y-0 ml-2" 
                 />
               </div>
