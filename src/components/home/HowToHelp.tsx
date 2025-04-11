@@ -3,12 +3,10 @@ import { Heart, Users2, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { Button } from "../ui/button";
+import useEmblaCarousel from "embla-carousel-react";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
   CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 
 interface HowToHelpProps {
@@ -42,6 +40,9 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
     },
   ];
 
+  // Using embla carousel for better mobile control
+  const [emblaRef] = useEmblaCarousel({ align: "start" });
+
   // Function to scroll to top when navigating to get-involved page
   const handleVolunteerClick = () => {
     window.scrollTo(0, 0);
@@ -54,18 +55,21 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             How You Can Help
           </h2>
-          <Carousel className="w-full" opts={{ align: "start" }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {helpOptions.map((option) => {
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {helpOptions.map((option, index) => {
                 const Icon = option.icon;
                 return (
-                  <CarouselItem key={option.title} className="pl-2 md:pl-4 basis-4/5 md:basis-1/2">
+                  <div 
+                    key={option.title}
+                    className="min-w-0 flex-[0_0_80%] mx-2"
+                  >
                     <Card 
                       className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
                     >
-                      <CardHeader className="flex-grow-0">
+                      <CardHeader className="flex-shrink-0">
                         <div className="flex items-center gap-3">
-                          <Icon className="h-6 w-6 text-terracotta-500" />
+                          <Icon className="h-6 w-6 text-terracotta-500 flex-shrink-0" />
                           <CardTitle className="text-xl">{option.title}</CardTitle>
                         </div>
                       </CardHeader>
@@ -87,15 +91,15 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
                         </Link>
                       </CardContent>
                     </Card>
-                  </CarouselItem>
+                  </div>
                 );
               })}
-            </CarouselContent>
-            <div className="flex justify-center mt-4">
-              <CarouselPrevious className="static translate-y-0 mr-2" />
-              <CarouselNext className="static translate-y-0 ml-2" />
             </div>
-          </Carousel>
+          </div>
+          <div className="flex justify-center mt-4">
+            <CarouselPrevious className="static translate-y-0 mr-2" />
+            <CarouselNext className="static translate-y-0 ml-2" />
+          </div>
         </div>
       </section>
     );
@@ -113,11 +117,11 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
             return (
               <Card 
                 key={option.title} 
-                className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col"
+                className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
               >
-                <CardHeader className="flex-grow-0">
+                <CardHeader className="flex-shrink-0">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-6 w-6 text-terracotta-500" />
+                    <Icon className="h-6 w-6 text-terracotta-500 flex-shrink-0" />
                     <CardTitle className="text-xl">{option.title}</CardTitle>
                   </div>
                 </CardHeader>

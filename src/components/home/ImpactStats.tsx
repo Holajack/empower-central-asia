@@ -1,4 +1,5 @@
 
+import { useEffect, useRef, useState } from "react";
 import StatCard from "../StatCard";
 import {
   Carousel,
@@ -7,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface ImpactStatsProps {
   isMobile?: boolean;
@@ -20,6 +22,78 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
     { number: 150, label: "Lives Transformed", suffix: "+", delay: 600 },
   ];
 
+  // Auto-scroll functionality for mobile
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true });
+  const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+  const autoScrollIntervalRef = useRef<number | null>(null);
+  
+  // Reset the counter animation states when a slide changes
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi || !isMobile) return;
+
+    const onSelect = () => {
+      setActiveSlideIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+    
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, isMobile]);
+
+  useEffect(() => {
+    // Only set up auto-scroll for mobile
+    if (!emblaApi || !isMobile || !autoScrollEnabled) return;
+    
+    const interval = 4000; // 4 seconds per slide
+    
+    const autoScroll = () => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    };
+    
+    // Clear any existing interval
+    if (autoScrollIntervalRef.current) {
+      window.clearInterval(autoScrollIntervalRef.current);
+    }
+    
+    // Set up the interval
+    autoScrollIntervalRef.current = window.setInterval(autoScroll, interval);
+    
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        window.clearInterval(autoScrollIntervalRef.current);
+      }
+    };
+  }, [emblaApi, autoScrollEnabled, isMobile]);
+
+  // Pause auto-scroll on interaction
+  useEffect(() => {
+    if (!emblaApi || !isMobile) return;
+    
+    const onPointerDown = () => {
+      setAutoScrollEnabled(false);
+    };
+    
+    const onPointerUp = () => {
+      setAutoScrollEnabled(true);
+    };
+    
+    emblaApi.on("pointerDown", onPointerDown);
+    emblaApi.on("pointerUp", onPointerUp);
+    
+    return () => {
+      emblaApi.off("pointerDown", onPointerDown);
+      emblaApi.off("pointerUp", onPointerUp);
+    };
+  }, [emblaApi, isMobile]);
+
   if (isMobile) {
     return (
       <section className="py-16 px-4">
@@ -27,24 +101,36 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             Our Impact
           </h2>
-          <Carousel className="w-full" opts={{ align: "start" }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {stats.map((stat, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-4/5 md:basis-1/2">
-                  <StatCard 
-                    number={stat.number} 
-                    label={stat.label} 
-                    suffix={stat.suffix} 
-                    delay={stat.delay} 
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-4">
-              <CarouselPrevious className="static translate-y-0 mr-2" />
-              <CarouselNext className="static translate-y-0 ml-2" />
+          <div className="w-full">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {stats.map((stat, index) => (
+                  <div 
+                    key={index} 
+                    className="min-w-0 flex-[0_0_80%] mx-2"
+                  >
+                    <StatCard 
+                      number={stat.number} 
+                      label={stat.label} 
+                      suffix={stat.suffix} 
+                      delay={stat.delay}
+                      resetAnimation={index === activeSlideIndex} 
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </Carousel>
+            <div className="flex justify-center mt-4">
+              <CarouselPrevious 
+                onClick={() => emblaApi?.scrollPrev()} 
+                className="static translate-y-0 mr-2" 
+              />
+              <CarouselNext 
+                onClick={() => emblaApi?.scrollNext()} 
+                className="static translate-y-0 ml-2" 
+              />
+            </div>
+          </div>
         </div>
       </section>
     );
@@ -63,7 +149,8 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
               number={stat.number} 
               label={stat.label} 
               suffix={stat.suffix} 
-              delay={stat.delay} 
+              delay={stat.delay}
+              resetAnimation={true}
             />
           ))}
         </div>

@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface ProgramsOverviewProps {
   isMobile?: boolean;
@@ -34,6 +35,9 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
     },
   ];
 
+  // Adding embla carousel for better mobile control
+  const [emblaRef] = useEmblaCarousel({ align: "start" });
+
   if (isMobile) {
     return (
       <section id="programs-section" className="py-12 px-4 bg-white">
@@ -41,40 +45,43 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             Programs at a Glance
           </h2>
-          <Carousel className="w-full" opts={{ align: "start" }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
               {programs.map((program, index) => (
-                <CarouselItem key={program.title} className="pl-2 md:pl-4 basis-4/5 md:basis-1/2">
+                <div 
+                  key={program.title}
+                  className="min-w-0 flex-[0_0_80%] mx-2"
+                >
                   <Card 
-                    className="border-sage-200 hover:shadow-lg transition-all duration-300 h-full"
+                    className="border-sage-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <CardHeader>
+                    <CardHeader className="flex-shrink-0">
                       <CardTitle className="text-xl text-sage-500">
                         {program.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-gray-600 mb-4">
+                    <CardContent className="flex flex-col flex-grow">
+                      <CardDescription className="text-gray-600 mb-4 flex-grow">
                         {program.description}
                       </CardDescription>
                       <Link 
                         to="/programs"
-                        className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group"
+                        className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group mt-auto"
                       >
                         Learn More
                         <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </CardContent>
                   </Card>
-                </CarouselItem>
+                </div>
               ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-4">
-              <CarouselPrevious className="static translate-y-0 mr-2" />
-              <CarouselNext className="static translate-y-0 ml-2" />
             </div>
-          </Carousel>
+          </div>
+          <div className="flex justify-center mt-4">
+            <CarouselPrevious className="static translate-y-0 mr-2" />
+            <CarouselNext className="static translate-y-0 ml-2" />
+          </div>
         </div>
       </section>
     );
@@ -90,21 +97,21 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
           {programs.map((program, index) => (
             <Card 
               key={program.title}
-              className="border-sage-200 hover:shadow-lg transition-all duration-300"
+              className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardHeader>
+              <CardHeader className="flex-shrink-0">
                 <CardTitle className="text-xl text-sage-500">
                   {program.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 mb-4">
+              <CardContent className="flex flex-col flex-grow">
+                <CardDescription className="text-gray-600 mb-4 flex-grow">
                   {program.description}
                 </CardDescription>
                 <Link 
                   to="/programs"
-                  className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group"
+                  className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group mt-auto"
                 >
                   Learn More
                   <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
