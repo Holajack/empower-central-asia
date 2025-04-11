@@ -23,7 +23,12 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
   ];
 
   // Auto-scroll functionality for mobile
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: "start", 
+    loop: true,
+    containScroll: "trimSnaps" // Ensures cards are contained properly
+  });
+  
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const autoScrollIntervalRef = useRef<number | null>(null);
   
@@ -102,13 +107,13 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
             Our Impact
           </h2>
           <div className="w-full">
-            <Carousel>
+            <Carousel className="w-full">
               <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex">
+                <CarouselContent className="ml-0">
                   {stats.map((stat, index) => (
-                    <div 
+                    <CarouselItem 
                       key={index} 
-                      className="min-w-0 flex-[0_0_80%] mx-2"
+                      className="pl-4 md:basis-1/2 lg:basis-1/3 basis-[85%]" // Adjust card width for better fit
                     >
                       <StatCard 
                         number={stat.number} 
@@ -117,9 +122,9 @@ const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
                         delay={stat.delay}
                         resetAnimation={index === activeSlideIndex} 
                       />
-                    </div>
+                    </CarouselItem>
                   ))}
-                </div>
+                </CarouselContent>
               </div>
               <div className="flex justify-center mt-4">
                 <CarouselPrevious 
