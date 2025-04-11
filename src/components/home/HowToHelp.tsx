@@ -44,7 +44,11 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
   ];
 
   // Using embla carousel for better mobile control
-  const [emblaRef] = useEmblaCarousel({ align: "start" });
+  const [emblaRef] = useEmblaCarousel({ 
+    align: "start",
+    loop: true,
+    containScroll: "trimSnaps" // Ensures cards are contained properly
+  });
 
   // Function to scroll to top when navigating to get-involved page
   const handleVolunteerClick = () => {
@@ -58,15 +62,15 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             How You Can Help
           </h2>
-          <Carousel>
+          <Carousel className="w-full">
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+              <CarouselContent className="ml-0">
                 {helpOptions.map((option, index) => {
                   const Icon = option.icon;
                   return (
-                    <div 
+                    <CarouselItem 
                       key={option.title}
-                      className="min-w-0 flex-[0_0_80%] mx-2"
+                      className="pl-4 basis-[80%]" // Fixed width to prevent overflow
                     >
                       <Card 
                         className="border-sage-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
@@ -95,10 +99,10 @@ const HowToHelp = ({ isMobile = false }: HowToHelpProps) => {
                           </Link>
                         </CardContent>
                       </Card>
-                    </div>
+                    </CarouselItem>
                   );
                 })}
-              </div>
+              </CarouselContent>
             </div>
             <div className="flex justify-center mt-4">
               <CarouselPrevious className="static translate-y-0 mr-2" />
