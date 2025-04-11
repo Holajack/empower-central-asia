@@ -36,7 +36,10 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
   ];
 
   // Adding embla carousel for better mobile control
-  const [emblaRef] = useEmblaCarousel({ align: "start" });
+  const [emblaRef] = useEmblaCarousel({ 
+    align: "start",
+    containScroll: "trimSnaps"  // Ensures cards are contained properly
+  });
 
   if (isMobile) {
     return (
@@ -45,25 +48,25 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
             Programs at a Glance
           </h2>
-          <Carousel>
+          <Carousel className="w-full">
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+              <CarouselContent className="ml-0">
                 {programs.map((program, index) => (
-                  <div 
+                  <CarouselItem 
                     key={program.title}
-                    className="min-w-0 flex-[0_0_80%] mx-2"
+                    className="pl-4 md:basis-1/2 lg:basis-1/3 basis-[85%]" // Adjust card width for better fit
                   >
                     <Card 
                       className="border-sage-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <CardHeader className="flex-shrink-0">
-                        <CardTitle className="text-xl text-sage-500">
+                        <CardTitle className="text-xl text-sage-500 line-clamp-2">
                           {program.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="flex flex-col flex-grow">
-                        <CardDescription className="text-gray-600 mb-4 flex-grow">
+                        <CardDescription className="text-gray-600 mb-4 flex-grow line-clamp-4">
                           {program.description}
                         </CardDescription>
                         <Link 
@@ -75,9 +78,9 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
                         </Link>
                       </CardContent>
                     </Card>
-                  </div>
+                  </CarouselItem>
                 ))}
-              </div>
+              </CarouselContent>
             </div>
             <div className="flex justify-center mt-4">
               <CarouselPrevious className="static translate-y-0 mr-2" />
