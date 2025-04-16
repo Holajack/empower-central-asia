@@ -20,18 +20,22 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
     {
       title: "Financial Literacy Development",
       description: "Essential financial education covering budgeting, savings, and investment principles.",
+      link: "/programs/financial-literacy"
     },
     {
       title: "Business Creation Training",
       description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
+      link: "/programs/business-creation"
     },
     {
       title: "Leadership Development",
       description: "One-on-one mentoring with experienced business leaders to develop management skills.",
+      link: "/programs/leadership-development"
     },
     {
       title: "Community Collaboration",
       description: "Initiatives that bring entrepreneurs together to create sustainable impact in local communities.",
+      link: "/programs/community-collaboration"
     },
   ];
 
@@ -70,7 +74,7 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
                           {program.description}
                         </CardDescription>
                         <Link 
-                          to="/programs"
+                          to={program.link}
                           className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group mt-auto"
                         >
                           Learn More
@@ -115,7 +119,7 @@ const ProgramsOverview = ({ isMobile = false }: ProgramsOverviewProps) => {
                   {program.description}
                 </CardDescription>
                 <Link 
-                  to="/programs"
+                  to={program.link}
                   className="inline-flex items-center text-terracotta-500 hover:text-terracotta-400 text-sm font-medium group mt-auto"
                 >
                   Learn More

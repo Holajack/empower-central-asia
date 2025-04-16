@@ -11,6 +11,10 @@ import BlogPost from "@/pages/BlogPost";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import FinancialLiteracy from "@/pages/programs/FinancialLiteracy";
+import BusinessCreation from "@/pages/programs/BusinessCreation";
+import LeadershipDevelopment from "@/pages/programs/LeadershipDevelopment";
+import CommunityCollaboration from "@/pages/programs/CommunityCollaboration";
 
 function App() {
   return (
@@ -26,6 +30,12 @@ function App() {
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+          
+          {/* New Program Routes */}
+          <Route path="/programs/financial-literacy" element={<FinancialLiteracy />} />
+          <Route path="/programs/business-creation" element={<BusinessCreation />} />
+          <Route path="/programs/leadership-development" element={<LeadershipDevelopment />} />
+          <Route path="/programs/community-collaboration" element={<CommunityCollaboration />} />
         </Routes>
       </main>
       <Footer />
