@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import {
@@ -13,8 +14,8 @@ interface Testimonial {
   business: string;
   quote: string;
   image: string;
-  before: string;
-  after: string;
+  before?: string;
+  after?: string;
 }
 
 interface TestimonialCarouselProps {
@@ -57,20 +58,6 @@ const TestimonialCarousel = ({ testimonials, inView }: TestimonialCarouselProps)
                     <div className="flex gap-4">
                       <Quote className="w-8 h-8 text-muted-foreground" />
                       <p className="text-lg">{testimonial.quote}</p>
-                    </div>
-                    <div className="mt-6 grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-background rounded-lg">
-                        <h4 className="font-semibold mb-2">Before</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.before}
-                        </p>
-                      </div>
-                      <div className="p-4 bg-background rounded-lg">
-                        <h4 className="font-semibold mb-2">After</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.after}
-                        </p>
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
