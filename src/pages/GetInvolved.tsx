@@ -47,8 +47,9 @@ const GetInvolved = () => {
   const { toast } = useToast();
   const [showVolunteerForm, setShowVolunteerForm] = useState(false);
   const [showPartnerForm, setShowPartnerForm] = useState(false);
+  const [partnerIframeHeight, setPartnerIframeHeight] = useState(700);
+  const [volunteerIframeHeight, setVolunteerIframeHeight] = useState(700);
 
-  // Inject the partner form embed script when dialog is open
   useEffect(() => {
     if (showPartnerForm) {
       const existingScript = document.getElementById("partner-embed-script");
@@ -59,8 +60,40 @@ const GetInvolved = () => {
         script.id = "partner-embed-script";
         document.body.appendChild(script);
       }
+      
+      setPartnerIframeHeight(800);
+      
+      const handleResize = () => {
+        const windowHeight = window.innerHeight;
+        const newHeight = Math.max(windowHeight * 0.8, 700);
+        setPartnerIframeHeight(newHeight);
+      };
+      
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
   }, [showPartnerForm]);
+
+  useEffect(() => {
+    if (showVolunteerForm) {
+      const handleResize = () => {
+        const windowHeight = window.innerHeight;
+        const newHeight = Math.max(windowHeight * 0.8, 700);
+        setVolunteerIframeHeight(newHeight);
+      };
+      
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, [showVolunteerForm]);
 
   const donationTiers = [
     {
@@ -198,21 +231,23 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent 
-                    className="!p-0 w-full max-w-3xl min-h-[70vh] md:min-h-[80vh] flex flex-col overflow-hidden"
-                    style={{ maxWidth: "900px", width: "100vw" }}
+                    className="!p-0 w-full max-w-4xl flex flex-col overflow-hidden"
+                    style={{ maxWidth: "90vw", width: "1000px", height: `${volunteerIframeHeight + 20}px` }}
                   >
                     <div className="relative flex-1 flex flex-col items-stretch bg-white">
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
                         title="Volunteer Application Form"
-                        className="w-full h-[74vh] md:h-[78vh]"
                         style={{
+                          width: "100%",
+                          height: `${volunteerIframeHeight}px`,
                           border: "none",
-                          borderRadius: "0 0 8px 8px",
-                          minHeight: 400,
+                          borderRadius: 8,
                           background: "white",
                         }}
                         allow="clipboard-write"
+                        frameBorder="0"
+                        scrolling="no"
                       />
                     </div>
                   </DialogContent>
@@ -254,18 +289,17 @@ const GetInvolved = () => {
                 >
                   Become a Partner
                 </Button>
-                {/* Partner Dialog */}
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="!p-0 w-full max-w-3xl min-h-[70vh] md:min-h-[80vh] flex flex-col overflow-hidden"
-                    style={{ maxWidth: "900px", width: "100vw" }}
+                    className="!p-0 w-full max-w-4xl flex flex-col overflow-hidden"
+                    style={{ maxWidth: "90vw", width: "1000px", height: `${partnerIframeHeight + 20}px` }}
                   >
                     <div className="relative flex-1 flex flex-col items-stretch bg-white !p-0">
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
                         style={{
                           width: "100%",
-                          height: "80vh",
+                          height: `${partnerIframeHeight}px`,
                           border: "none",
                           borderRadius: 8,
                           background: "white",
@@ -284,6 +318,8 @@ const GetInvolved = () => {
                         data-form-id="RrXeqfzdcMvMmpel5vRG"
                         title="Partner With Us"
                         allow="clipboard-write"
+                        frameBorder="0"
+                        scrolling="no"
                       />
                     </div>
                   </DialogContent>
