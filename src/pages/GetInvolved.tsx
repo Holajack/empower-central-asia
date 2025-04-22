@@ -178,7 +178,7 @@ const GetInvolved = () => {
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
                 <Button
-                  className="w-full max-w-md"
+                  className="w-full max-w-md bg-green-500 hover:bg-green-600 text-white"
                   onClick={() => setShowVolunteerForm(true)}
                 >
                   Apply as Volunteer
