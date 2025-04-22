@@ -17,11 +17,10 @@ import { testimonials } from "@/data/testimonials";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
-import VolunteerForm from "@/components/get-involved/VolunteerForm";
 
 const GetInvolvedHeroHeader = () => (
   <div 
@@ -154,16 +153,6 @@ const GetInvolved = () => {
     },
   ];
 
-  // Handler for Volunteer Form
-  const handleVolunteerSubmit = (data: any) => {
-    toast({
-      title: "Application Submitted",
-      description: "Thank you for applying to volunteer! We will be in touch soon.",
-      duration: 6000,
-    });
-    setShowVolunteerForm(false);
-  };
-
   return (
     <div>
       <GetInvolvedHeroHeader />
@@ -251,15 +240,25 @@ const GetInvolved = () => {
                       borderRadius: "16px",
                     }}
                   >
-                    <DialogHeader className="border-b px-6 pt-6 pb-2">
-                      <DialogTitle>Volunteer Application</DialogTitle>
-                      <DialogDescription>
-                        Fill out the form below to start supporting entrepreneurs!
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="px-6 pb-6 pt-2 overflow-y-auto" style={{ maxHeight: "72vh" }}>
-                      <VolunteerForm onSubmit={handleVolunteerSubmit} />
-                    </div>
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                      title="Volunteer Application Form"
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        minHeight: 320,
+                        maxHeight: '80vh',
+                        border: "none",
+                        borderRadius: 0,
+                        background: "white",
+                        margin: "0",
+                        display: 'block',
+                        overflow: "auto"
+                      }}
+                      frameBorder="0"
+                      scrolling="yes"
+                      allow="clipboard-write"
+                    />
                   </DialogContent>
                 </Dialog>
               </div>
@@ -310,21 +309,37 @@ const GetInvolved = () => {
                       borderRadius: "16px",
                     }}
                   >
-                    <DialogHeader className="border-b px-6 pt-6 pb-2">
-                      <DialogTitle>Partner With Us</DialogTitle>
-                      <DialogDescription>
-                        Use the form below to connect and explore partnership opportunities.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="px-6 pb-6 pt-2 overflow-y-auto" style={{ maxHeight: "72vh" }}>
-                      {/* 
-                        You can replace this placeholder with your actual PartnerForm component.
-                        For now, let's display a message. If you want a full partner form, let me know!
-                      */}
-                      <div className="text-sage-600 text-center py-6 font-medium">
-                        [Partner form coming soon. Please contact us directly for urgent requests.]
-                      </div>
-                    </div>
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        minHeight: 320,
+                        maxHeight: '80vh',
+                        border: "none",
+                        borderRadius: 0,
+                        background: "white",
+                        margin: "0",
+                        display: 'block',
+                        overflow: "auto"
+                      }}
+                      id="inline-RrXeqfzdcMvMmpel5vRG"
+                      data-layout='{"id":"INLINE"}'
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="Partner With Us"
+                      data-height="883"
+                      data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
+                      data-form-id="RrXeqfzdcMvMmpel5vRG"
+                      title="Partner With Us"
+                      allow="clipboard-write"
+                      frameBorder="0"
+                      scrolling="auto"
+                    />
                   </DialogContent>
                 </Dialog>
               </Card>
