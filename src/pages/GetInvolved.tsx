@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -11,15 +11,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import VolunteerForm from "@/components/get-involved/VolunteerForm";
 import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
@@ -47,7 +38,6 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [volunteerDialogOpen, setVolunteerDialogOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -69,18 +59,6 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
-
-  const handleVolunteerClick = () => {
-    setVolunteerDialogOpen(true);
-  };
-
-  const handleVolunteerSubmit = (data: any) => {
-    setVolunteerDialogOpen(false);
-    toast({
-      title: "Volunteer Application Submitted",
-      description: `Thank you, ${data.firstName}! We'll contact you soon with more details.`,
-    });
-  };
 
   const handlePartnerClick = () => {
     toast({
@@ -122,6 +100,18 @@ const GetInvolved = () => {
     },
   ];
 
+  // Load the external form script once on mount:
+  useEffect(() => {
+    const scriptId = "leadconnector-form-embed";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://link.msgsndr.com/js/form_embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <div>
       <GetInvolvedHeroHeader />
@@ -134,7 +124,6 @@ const GetInvolved = () => {
           <h2 className="text-3xl font-bold text-center text-sand-500 mb-8">
             Ways to Get Involved
           </h2>
-
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <DollarSign className="text-terracotta-400" />
@@ -160,6 +149,7 @@ const GetInvolved = () => {
             </div>
           </div>
 
+          {/* Volunteer Section */}
           <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <HandHelping className="text-sage-500" />
@@ -188,16 +178,31 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
+              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg w-full">
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <Button 
-                  onClick={handleVolunteerClick}
-                  className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
-                >
-                  Apply as Volunteer
-                </Button>
+                {/* Embedded Volunteer Application Form */}
+                <div className="w-full">
+                  <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                    style={{ display: "block", width: "100%", height: 826, border: "none", borderRadius: 3 }}
+                    id="popup-Eik96ptPRWcPm5P2Am2w"
+                    data-layout='{"id":"POPUP"}'
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Form 1"
+                    data-height="826"
+                    data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
+                    data-form-id="Eik96ptPRWcPm5P2Am2w"
+                    title="Form 1"
+                    allow="camera; microphone; clipboard-read; clipboard-write; display-capture"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -341,18 +346,6 @@ const GetInvolved = () => {
             className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
           />
         </section>
-
-        <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
-          <DialogContent className="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle className="text-sage-500 text-xl">Volunteer Application</DialogTitle>
-              <DialogDescription>
-                Fill out the form below to join our volunteer network. We'll get back to you within 48 hours.
-              </DialogDescription>
-            </DialogHeader>
-            <VolunteerForm onSubmit={handleVolunteerSubmit} />
-          </DialogContent>
-        </Dialog>
       </div>
     </div>
   );
