@@ -153,6 +153,50 @@ const GetInvolved = () => {
     },
   ];
 
+  // Add a container ref for the partner iframe so we can inject the iframe and script dynamically
+  const partnerIframeContainerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (showPartnerForm && partnerIframeContainerRef.current) {
+      // Clear previous content if any
+      partnerIframeContainerRef.current.innerHTML = "";
+      // Add the iframe
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w";
+      iframe.style.display = "none";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "none";
+      iframe.style.borderRadius = "3px";
+      iframe.id = "popup-Eik96ptPRWcPm5P2Am2w";
+      iframe.setAttribute("data-layout", "{'id':'POPUP'}");
+      iframe.setAttribute("data-trigger-type", "alwaysShow");
+      iframe.setAttribute("data-trigger-value", "");
+      iframe.setAttribute("data-activation-type", "alwaysActivated");
+      iframe.setAttribute("data-activation-value", "");
+      iframe.setAttribute("data-deactivation-type", "neverDeactivate");
+      iframe.setAttribute("data-deactivation-value", "");
+      iframe.setAttribute("data-form-name", "Volunteer Application");
+      iframe.setAttribute("data-height", "826");
+      iframe.setAttribute("data-layout-iframe-id", "popup-Eik96ptPRWcPm5P2Am2w");
+      iframe.setAttribute("data-form-id", "Eik96ptPRWcPm5P2Am2w");
+      iframe.title = "Volunteer Application";
+      partnerIframeContainerRef.current.appendChild(iframe);
+
+      // Add the script
+      const script = document.createElement("script");
+      script.src = "https://link.msgsndr.com/js/form_embed.js";
+      script.async = true;
+      partnerIframeContainerRef.current.appendChild(script);
+    }
+    // Optionally clean up
+    return () => {
+      if (partnerIframeContainerRef.current) {
+        partnerIframeContainerRef.current.innerHTML = "";
+      }
+    };
+  }, [showPartnerForm]);
+
   return (
     <div>
       <GetInvolvedHeroHeader />
@@ -318,38 +362,8 @@ const GetInvolved = () => {
                     <DialogDescription className="sr-only">
                       Fill out this form to become a partner
                     </DialogDescription>
-                    <iframe
-                      src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        minHeight: 320,
-                        maxHeight: '80vh',
-                        border: "none",
-                        borderRadius: 0,
-                        background: "white",
-                        margin: "0",
-                        display: 'block',
-                        overflowY: "scroll",
-                        overflowX: "hidden"
-                      }}
-                      id="inline-RrXeqfzdcMvMmpel5vRG"
-                      data-layout='{"id":"INLINE"}'
-                      data-trigger-type="alwaysShow"
-                      data-trigger-value=""
-                      data-activation-type="alwaysActivated"
-                      data-activation-value=""
-                      data-deactivation-type="neverDeactivate"
-                      data-deactivation-value=""
-                      data-form-name="Partner With Us"
-                      data-height="883"
-                      data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
-                      data-form-id="RrXeqfzdcMvMmpel5vRG"
-                      title="Partner With Us"
-                      frameBorder="0"
-                      scrolling="auto"
-                      allow="clipboard-write"
-                    />
+                    {/* Partner form iframe injected here */}
+                    <div ref={partnerIframeContainerRef} style={{width: "100%", minHeight: "400px"}} />
                   </DialogContent>
                 </Dialog>
               </Card>
