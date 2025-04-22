@@ -45,14 +45,14 @@ const About = () => {
   const teamMembers = [
     {
       name: "Jacken Holland",
-      role: "Founder",
+      role: "CEO & Owner",
       bio: "With over 15 years of experience in international development, Jacken leads our mission to empower entrepreneurs across Central Asia.",
       image: "/photo-1581092795360-fd1ca04f0952",
       initials: "JH",
     },
     {
       name: "Yeva Romanova",
-      role: "Co-Founder",
+      role: "COO",
       bio: "Born and raised in Bishkek, Yeva brings deep local knowledge and a passion for community development to our programs.",
       image: "/photo-1581091226825-a6a2a5aee158",
       initials: "YR",
