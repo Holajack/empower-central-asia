@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/dialog";
 import VolunteerForm from "@/components/get-involved/VolunteerForm";
 
-// Add: About-style hero header
 const GetInvolvedHeroHeader = () => (
   <div 
     className="relative h-[60vh] flex items-center justify-center"
@@ -49,22 +48,22 @@ const GetInvolved = () => {
 
   const donationTiers = [
     {
-      amount: 50,
-      description: "Provides essential business training materials for one entrepreneur",
+      amount: 150,
+      description: "Provides comprehensive business training resources for multiple entrepreneurs",
       icon: <DollarSign className="h-6 w-6" />,
-      impact: "Equip one aspiring business owner with fundamental knowledge"
-    },
-    {
-      amount: 100,
-      description: "Sponsors a full day of workshops for aspiring business owners",
-      icon: <Users className="h-6 w-6" />,
-      impact: "Enable 10-15 entrepreneurs to receive hands-on training"
+      impact: "Equip 3-5 aspiring business owners with essential knowledge"
     },
     {
       amount: 250,
-      description: "Funds a month of mentorship for three local entrepreneurs",
+      description: "Sponsors two-day intensive entrepreneurship workshops for local business owners",
+      icon: <Users className="h-6 w-6" />,
+      impact: "Enable 15-20 entrepreneurs to receive hands-on training"
+    },
+    {
+      amount: 500,
+      description: "Funds three months of mentorship for a group of local entrepreneurs",
       icon: <HandHelping className="h-6 w-6" />,
-      impact: "Transform three businesses through expert guidance"
+      impact: "Transform five businesses through expert guidance and support"
     },
   ];
 
@@ -129,22 +128,17 @@ const GetInvolved = () => {
 
   return (
     <div>
-      {/* About-style Hero Header */}
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
-        {/* Hero Section */}
-        {/* Remove old hero section title, subtitle, DonateButton */}
         <section className="text-center space-y-4">
           
         </section>
 
-        {/* Ways to Get Involved Section */}
         <section className="space-y-12 mt-16">
           <h2 className="text-3xl font-bold text-center text-sand-500 mb-8">
             Ways to Get Involved
           </h2>
 
-          {/* Donation Section */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <DollarSign className="text-terracotta-400" />
@@ -170,7 +164,6 @@ const GetInvolved = () => {
             </div>
           </div>
 
-          {/* Volunteer Section */}
           <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <HandHelping className="text-sage-500" />
@@ -212,7 +205,6 @@ const GetInvolved = () => {
             </div>
           </div>
 
-          {/* Partner Section */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <Network className="text-sage-500" />
@@ -258,7 +250,6 @@ const GetInvolved = () => {
             </div>
           </div>
 
-          {/* Advocate Section */}
           <div className="space-y-8 bg-sand-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <Share className="text-sand-500" />
@@ -284,7 +275,6 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        {/* Impact Stats */}
         <section className="py-12 bg-sage-50 rounded-lg">
           <h2 className="text-3xl font-bold text-center mb-8 text-sage-500">Our Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
@@ -297,7 +287,6 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        {/* Volunteer/Partner Spotlights */}
         <section className="py-12">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Success Stories</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -324,7 +313,6 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        {/* Upcoming Events */}
         <section className="py-12 bg-white rounded-lg shadow-sm">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -344,7 +332,6 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="py-12">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">
             Frequently Asked Questions
@@ -370,7 +357,6 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        {/* Final CTA */}
         <section className="py-16 bg-terracotta-50 rounded-lg text-center">
           <h2 className="text-4xl font-bold mb-6 text-terracotta-500">
             Ready to Empower Entrepreneurs Today?
@@ -384,7 +370,6 @@ const GetInvolved = () => {
           />
         </section>
 
-        {/* Volunteer Application Dialog */}
         <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
