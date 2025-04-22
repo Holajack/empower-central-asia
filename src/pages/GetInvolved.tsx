@@ -11,6 +11,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
@@ -181,53 +188,28 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              <div className={openLeadDialog
-                ? "flex flex-col justify-center items-center space-y-4 bg-gray-200 p-6 rounded-lg opacity-60 pointer-events-none select-none"
-                : "flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg"}
-              >
+              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteers.
                 </p>
-                <Button
+                <Button 
                   onClick={handleButtonTest}
                   className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
-                  disabled={openLeadDialog}
-                  style={openLeadDialog ? { pointerEvents: "none", opacity: 0.6 } : {}}
                 >
                   Button Test
                 </Button>
-                {openLeadDialog && (
-                  <div
-                    className="fixed inset-0 z-[9999] flex justify-center items-center bg-black/50"
-                    style={{ backdropFilter: "blur(4px)" }}
-                  >
-                    <div
-                      className="flex flex-col items-center justify-center bg-gray-200 rounded-lg p-2 border-2 border-gray-300 shadow-md relative"
-                      style={{
-                        minWidth: 350,
-                        maxWidth: "95vw",
-                        minHeight: 500,
-                        width: 600,
-                        opacity: 0.7,
-                        filter: "grayscale(100%)",
-                        pointerEvents: "none",
-                      }}
-                    >
-                      <div className="w-full pt-4 pb-1 text-center text-gray-500 font-semibold text-lg" style={{ opacity: 1 }}>
-                        Coming Soon
-                      </div>
+                <Dialog open={openLeadDialog} onOpenChange={setOpenLeadDialog}>
+                  <DialogContent className="max-w-2xl w-[95vw] p-0 overflow-hidden">
+                    <DialogHeader>
+                      <DialogTitle className="p-6 pb-2">Volunteer Application</DialogTitle>
+                      <DialogDescription className="px-6 pb-2 text-sage-600">
+                        Please fill in the volunteer application form below.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div style={{ minHeight: 500, height: 600 }}>
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                        style={{
-                          display: "block",
-                          width: "100%",
-                          height: "430px",
-                          border: "none",
-                          borderRadius: "3px",
-                          background: "#fafafa",
-                          opacity: 0.5,
-                          pointerEvents: "none"
-                        }}
+                        style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px", background: "white" }}
                         id="popup-Eik96ptPRWcPm5P2Am2w"
                         data-layout="{'id':'POPUP'}"
                         data-trigger-type="alwaysShow"
@@ -237,19 +219,15 @@ const GetInvolved = () => {
                         data-deactivation-type="neverDeactivate"
                         data-deactivation-value=""
                         data-form-name="Form 1"
-                        data-height="430"
+                        data-height="850"
                         data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
                         data-form-id="Eik96ptPRWcPm5P2Am2w"
                         title="Form 1"
-                        tabIndex={-1}
-                        aria-hidden="true"
-                      ></iframe>
-                      <div className="mt-3 w-full text-center text-sm text-gray-500">
-                        This feature is not yet available.
-                      </div>
+                        allow="clipboard-write"
+                      />
                     </div>
-                  </div>
-                )}
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
