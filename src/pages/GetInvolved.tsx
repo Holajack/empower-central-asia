@@ -22,85 +22,6 @@ import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
 
-// Modal for displaying external iframe form
-const VolunteerIframeModal = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  // Dynamically inject the external script when open, cleanup when closing
-  useEffect(() => {
-    if (open) {
-      // Only add the script if it doesn't already exist
-      if (!document.getElementById("form-embed-js")) {
-        const script = document.createElement("script");
-        script.src = "https://link.msgsndr.com/js/form_embed.js";
-        script.async = true;
-        script.id = "form-embed-js";
-        document.body.appendChild(script);
-      }
-      // Prevent background scroll when modal is open
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  // Close modal when clicking outside the iframe box
-  useEffect(() => {
-    if (!open) return;
-    const handleClick = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        onOpenChange(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [open, onOpenChange]);
-
-  if (!open) return null;
-  return (
-    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
-      <div ref={modalRef} className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 flex flex-col" style={{minHeight: 500}}>
-        <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 rounded-full p-2 focus:outline-none z-10 bg-white"
-          aria-label="Close"
-          onClick={() => onOpenChange(false)}
-        >
-          ×
-        </button>
-        <div className="p-6 pb-2">
-          <h2 className="text-sage-500 text-xl font-bold mb-2">Volunteer Application</h2>
-          <p className="mb-4 text-sm text-sage-700">
-            Fill out the form below to join our volunteer network.
-          </p>
-        </div>
-        <div className="flex-1 px-6 pb-6">
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-            style={{ width: "100%", height: 650, border: "none", borderRadius: 3 }}
-            id="popup-Eik96ptPRWcPm5P2Am2w"
-            data-layout="{'id':'POPUP'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 1"
-            data-height="850"
-            data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
-            data-form-id="Eik96ptPRWcPm5P2Am2w"
-            title="Form 1"
-            allow="camera; microphone; autoplay; encrypted-media;"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const GetInvolvedHeroHeader = () => (
   <div 
     className="relative h-[60vh] flex items-center justify-center"
@@ -124,7 +45,6 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -146,10 +66,6 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
-
-  const handleVolunteerClick = () => {
-    setVolunteerModalOpen(true);
-  };
 
   const handlePartnerClick = () => {
     toast({
@@ -262,8 +178,8 @@ const GetInvolved = () => {
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
                 <Button 
-                  onClick={handleVolunteerClick}
                   className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
+                  disabled
                 >
                   Apply as Volunteer
                 </Button>
@@ -410,9 +326,6 @@ const GetInvolved = () => {
             className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
           />
         </section>
-
-        {/* Embedded Volunteer Iframe Modal */}
-        <VolunteerIframeModal open={volunteerModalOpen} onOpenChange={setVolunteerModalOpen} />
       </div>
     </div>
   );
