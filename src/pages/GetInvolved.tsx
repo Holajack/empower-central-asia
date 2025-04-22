@@ -186,29 +186,22 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent 
-                    className="w-full max-w-2xl sm:max-h-[90vh] sm:min-h-[480px] min-h-[320px] p-0 overflow-hidden flex flex-col"
+                    className="!p-0 w-full max-w-3xl min-h-[70vh] md:min-h-[80vh] flex flex-col overflow-hidden"
+                    style={{ maxWidth: "900px", width: "100vw" }}
                   >
-                    <DialogHeader className="p-6 pb-2">
-                    </DialogHeader>
-                    <div className="relative w-full flex-1 flex items-center justify-center min-h-[320px] bg-white rounded-b-lg overflow-hidden p-0">
+                    <div className="relative flex-1 flex flex-col items-stretch bg-white">
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                        style={{ width: "100%", height: "100%", minHeight: "320px", border: "none", borderRadius: "0 0 8px 8px" }}
-                        id="inline-Eik96ptPRWcPm5P2Am2w"
-                        data-layout="{'id':'INLINE'}"
-                        data-trigger-type="alwaysShow"
-                        data-trigger-value=""
-                        data-activation-type="alwaysActivated"
-                        data-activation-value=""
-                        data-deactivation-type="neverDeactivate"
-                        data-deactivation-value=""
-                        data-form-name="Form 1"
-                        data-height="934"
-                        data-layout-iframe-id="inline-Eik96ptPRWcPm5P2Am2w"
-                        data-form-id="Eik96ptPRWcPm5P2Am2w"
                         title="Volunteer Application Form"
+                        className="w-full h-[74vh] md:h-[78vh]"
+                        style={{
+                          border: "none",
+                          borderRadius: "0 0 8px 8px",
+                          minHeight: 400,
+                          background: "white",
+                        }}
                         allow="clipboard-write"
-                      ></iframe>
+                      />
                     </div>
                   </DialogContent>
                 </Dialog>
