@@ -44,7 +44,7 @@ const testimonials = [
     name: "Carter",
     business: "Digital Bazaar Boutique",
     quote: "Businesses Beyond Borders provided the crucial support I needed to transform my online shop from a small side project into a thriving e-commerce platform. Their mentorship helped me develop a robust digital strategy and expand my customer base.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    image: "/lovable-uploads/77a468d8-525f-4c56-af58-fc6376b2d26e.png",
   },
   {
     name: "Stephanie",
