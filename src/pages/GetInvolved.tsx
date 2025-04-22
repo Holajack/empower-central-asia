@@ -74,6 +74,13 @@ const GetInvolved = () => {
     });
   };
 
+  const handleButtonTest = () => {
+    toast({
+      title: "Button Test",
+      description: "This is a test button for the Get Involved page.",
+    });
+  };
+
   const upcomingEvents = [
     {
       date: "March 15, 2024",
@@ -154,11 +161,6 @@ const GetInvolved = () => {
               <div className="space-y-4">
                 <h4 className="font-semibold text-lg">Share Your Expertise</h4>
                 <ul className="space-y-2 text-sage-500">
-                  <li className="flex items-center gap-2 opacity-50 cursor-not-allowed">
-                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
-                    Mentor aspiring entrepreneurs
-                    <span className="ml-2 text-xs text-gray-500 italic">(Coming Soon)</span>
-                  </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Provide your skills
@@ -175,13 +177,13 @@ const GetInvolved = () => {
               </div>
               <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
                 <p className="text-center text-sage-500">
-                  Ready to make a difference? Join our network of volunteer mentors and trainers.
+                  Ready to make a difference? Join our network of volunteers.
                 </p>
                 <Button 
-                  disabled
+                  onClick={handleButtonTest}
                   className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
                 >
-                  Apply as Volunteer
+                  Button Test
                 </Button>
               </div>
             </div>
