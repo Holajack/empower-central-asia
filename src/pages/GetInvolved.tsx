@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -45,6 +45,20 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
+  const [openLeadDialog, setOpenLeadDialog] = useState(false);
+
+  useEffect(() => {
+    if (openLeadDialog) {
+      const scriptId = "lead-connector-form";
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.id = scriptId;
+        script.src = "https://link.msgsndr.com/js/form_embed.js";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [openLeadDialog]);
 
   const donationTiers = [
     {
@@ -75,10 +89,7 @@ const GetInvolved = () => {
   };
 
   const handleButtonTest = () => {
-    toast({
-      title: "Button Test",
-      description: "This is a test button for the Get Involved page.",
-    });
+    setOpenLeadDialog(true);
   };
 
   const upcomingEvents = [
@@ -118,9 +129,7 @@ const GetInvolved = () => {
     <div>
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
-        <section className="text-center space-y-4">
-          
-        </section>
+        <section className="text-center space-y-4"></section>
 
         <section className="space-y-12 mt-16">
           <h2 className="text-3xl font-bold text-center text-sand-500 mb-8">
@@ -189,6 +198,36 @@ const GetInvolved = () => {
                 >
                   Button Test
                 </Button>
+                <Dialog open={openLeadDialog} onOpenChange={setOpenLeadDialog}>
+                  <DialogContent className="max-w-2xl w-[95vw] p-0 overflow-hidden">
+                    <DialogHeader>
+                      <DialogTitle className="p-6 pb-2">Volunteer Application</DialogTitle>
+                      <DialogDescription className="px-6 pb-2 text-sage-600">
+                        Please fill in the volunteer application form below.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div style={{ minHeight: 500, height: 600 }}>
+                      <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                        style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px", background: "white" }}
+                        id="popup-Eik96ptPRWcPm5P2Am2w"
+                        data-layout="{'id':'POPUP'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form 1"
+                        data-height="850"
+                        data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
+                        data-form-id="Eik96ptPRWcPm5P2Am2w"
+                        title="Form 1"
+                        allow="clipboard-write"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
