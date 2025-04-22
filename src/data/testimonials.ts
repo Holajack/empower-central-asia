@@ -1,4 +1,3 @@
-
 export interface Testimonial {
   name: string;
   business?: string;
@@ -8,7 +7,6 @@ export interface Testimonial {
   after?: string;
 }
 
-// Only update images for Carter and Stephanie as per chat history.
 export const testimonials: Testimonial[] = [
   {
     name: "Nicole",
@@ -28,7 +26,7 @@ export const testimonials: Testimonial[] = [
     name: "Carter",
     business: "Digital Bazaar Boutique",
     quote: "Businesses Beyond Borders provided the crucial support I needed to transform my online shop from a small side project into a thriving e-commerce platform. Their mentorship helped me develop a robust digital strategy and expand my customer base.",
-    image: "/lovable-uploads/YOUR_CARTER_IMAGE_FILENAME.png", // REPLACE with actual filename
+    image: "/lovable-uploads/cc50db34-68ba-4cbf-a1a9-d6cc73e9f753.png",
   },
   {
     name: "Stephanie",
