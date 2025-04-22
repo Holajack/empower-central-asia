@@ -1,8 +1,13 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const VolunteerApplication = () => {
+  const topRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    // Scroll to the top of the page when component mounts
+    topRef.current?.scrollIntoView({ behavior: 'smooth' });
+
     const script = document.createElement("script");
     script.src = "https://link.msgsndr.com/js/form_embed.js";
     script.async = true;
@@ -16,7 +21,7 @@ const VolunteerApplication = () => {
 
   return (
     <div className="min-h-screen bg-sage-50 flex items-center justify-center py-12 px-2">
-      <div className="w-full max-w-2xl mx-auto bg-white rounded-lg p-4 shadow-md" style={{ minHeight: 950 }}>
+      <div ref={topRef} className="w-full max-w-2xl mx-auto bg-white rounded-lg p-4 shadow-md" style={{ minHeight: 950 }}>
         <h1 className="text-2xl font-bold mb-6 text-center text-sand-500">Volunteer Application</h1>
         <div style={{ width: "100%", minHeight: 934 }}>
           <iframe
