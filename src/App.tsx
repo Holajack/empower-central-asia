@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
@@ -15,6 +14,8 @@ import FinancialLiteracy from "@/pages/programs/FinancialLiteracy";
 import BusinessCreation from "@/pages/programs/BusinessCreation";
 import LeadershipDevelopment from "@/pages/programs/LeadershipDevelopment";
 import CommunityCollaboration from "@/pages/programs/CommunityCollaboration";
+import SarahCaseStudy from "@/pages/success-stories/SarahCaseStudy";
+import MarcusCaseStudy from "@/pages/success-stories/MarcusCaseStudy";
 
 function App() {
   return (
@@ -28,10 +29,11 @@ function App() {
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/programs-and-impact" element={<ProgramsAndImpact />} />
           <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/success-stories/case-study-sarah" element={<SarahCaseStudy />} />
+          <Route path="/success-stories/case-study-marcus" element={<MarcusCaseStudy />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           
-          {/* New Program Routes */}
           <Route path="/programs/financial-literacy" element={<FinancialLiteracy />} />
           <Route path="/programs/business-creation" element={<BusinessCreation />} />
           <Route path="/programs/leadership-development" element={<LeadershipDevelopment />} />

@@ -13,6 +13,11 @@ interface CaseStudiesSectionProps {
   inView: boolean;
 }
 
+const caseStudyLinks = [
+  "/success-stories/case-study-sarah",
+  "/success-stories/case-study-marcus"
+];
+
 const CaseStudiesSection = ({ caseStudies, inView }: CaseStudiesSectionProps) => {
   return (
     <section
@@ -41,7 +46,9 @@ const CaseStudiesSection = ({ caseStudies, inView }: CaseStudiesSectionProps) =>
                   <p className="font-semibold">Impact:</p>
                   <p className="text-muted-foreground">{study.impact}</p>
                 </div>
-                <Button className="mt-4 w-full">Read Full Story</Button>
+                <a href={caseStudyLinks[index]} className="block mt-4">
+                  <Button className="w-full">Read Full Story</Button>
+                </a>
               </CardContent>
             </Card>
           ))}
