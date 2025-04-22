@@ -189,10 +189,6 @@ const GetInvolved = () => {
                     className="w-full max-w-2xl sm:max-h-[90vh] sm:min-h-[480px] min-h-[320px] p-0 overflow-hidden flex flex-col"
                   >
                     <DialogHeader className="p-6 pb-2">
-                      <DialogTitle>Volunteer Application Form</DialogTitle>
-                      <DialogDescription className="text-muted-foreground">
-                        Fill out the form below to join our volunteer program
-                      </DialogDescription>
                     </DialogHeader>
                     <div className="relative w-full flex-1 flex items-center justify-center min-h-[320px] bg-white rounded-b-lg overflow-hidden p-0">
                       <iframe
