@@ -45,10 +45,8 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
   const [showPartnerForm, setShowPartnerForm] = useState(false);
   const [partnerIframeHeight, setPartnerIframeHeight] = useState(700);
-  const [volunteerIframeHeight, setVolunteerIframeHeight] = useState(700);
 
   useEffect(() => {
     if (showPartnerForm) {
@@ -77,23 +75,6 @@ const GetInvolved = () => {
       };
     }
   }, [showPartnerForm]);
-
-  useEffect(() => {
-    if (showVolunteerForm) {
-      const handleResize = () => {
-        const windowHeight = window.innerHeight;
-        const newHeight = Math.max(windowHeight * 0.8, 700);
-        setVolunteerIframeHeight(newHeight);
-      };
-      
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, [showVolunteerForm]);
 
   const donationTiers = [
     {
@@ -152,6 +133,14 @@ const GetInvolved = () => {
       answer: "Organizations can partner through resource sharing, joint programs, sponsorships, or by providing expertise and mentorship to our entrepreneurs.",
     },
   ];
+
+  const volunteerFormRef = React.useRef<HTMLDivElement>(null);
+
+  const handleVolunteerClick = () => {
+    if (volunteerFormRef.current) {
+      volunteerFormRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div>
@@ -225,47 +214,38 @@ const GetInvolved = () => {
                 </p>
                 <Button
                   className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white"
-                  onClick={() => setShowVolunteerForm(true)}
+                  onClick={handleVolunteerClick}
                 >
                   Apply as Volunteer
                 </Button>
-                <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
-                  <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-hidden"
-                    style={{
-                      width: '100%',
-                      maxWidth: '600px',
-                      minHeight: 0,
-                      maxHeight: '90vh',
-                      borderRadius: "16px",
-                    }}
-                  >
-                    <DialogTitle className="sr-only">Volunteer Application Form</DialogTitle>
-                    <DialogDescription className="sr-only">
-                      Fill out this form to apply as a volunteer
-                    </DialogDescription>
+                <div ref={volunteerFormRef} className="w-full mt-8 flex justify-center items-center">
+                  <div className="w-full max-w-2xl">
                     <iframe
                       src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                      title="Volunteer Application Form"
                       style={{
+                        display: "none",
                         width: "100%",
-                        height: "70vh",
-                        minHeight: 320,
-                        maxHeight: '80vh',
+                        height: "100%",
                         border: "none",
-                        borderRadius: 0,
-                        background: "white",
-                        margin: "0",
-                        display: 'block',
-                        overflowY: "scroll",
-                        overflowX: "hidden"
+                        borderRadius: "3px",
                       }}
-                      frameBorder="0"
-                      scrolling="auto"
-                      allow="clipboard-write"
-                    />
-                  </DialogContent>
-                </Dialog>
+                      id="popup-Eik96ptPRWcPm5P2Am2w"
+                      data-layout="{'id':'POPUP'}"
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="Volunteer Application"
+                      data-height="826"
+                      data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
+                      data-form-id="Eik96ptPRWcPm5P2Am2w"
+                      title="Volunteer Application"
+                    ></iframe>
+                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
