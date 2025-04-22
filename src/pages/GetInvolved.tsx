@@ -174,24 +174,27 @@ const GetInvolved = () => {
                 </ul>
               </div>
               <div className="flex flex-col justify-center items-center">
-                <p className="text-center text-sage-500 mb-4">
+                <p className="text-center text-sage-500 mb-2">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
                 <Button
-                  className="w-full max-w-md bg-green-500 hover:bg-green-600 text-white"
+                  className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white"
                   onClick={() => setShowVolunteerForm(true)}
                 >
                   Apply as Volunteer
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
-                  <DialogContent className="max-w-2xl w-full min-h-[600px] flex flex-col items-center justify-center">
-                    <DialogHeader>
+                  <DialogContent 
+                    className="w-full max-w-2xl sm:min-h-[480px] min-h-[320px] p-0 overflow-hidden flex flex-col"
+                    style={{ position: "relative" }}
+                  >
+                    <DialogHeader className="p-6 pb-2">
                       <DialogTitle>Volunteer Application Form</DialogTitle>
                     </DialogHeader>
-                    <div className="w-full h-[540px] md:h-[700px] flex items-center justify-center">
+                    <div className="relative w-full flex-1 flex items-center justify-center min-h-[320px] sm:min-h-[500px] sm:h-[60vh] bg-white rounded-b-lg overflow-hidden p-0">
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                        style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
+                        style={{ width: "100%", height: "100%", minHeight: 320, border: "none", borderRadius: "0 0 8px 8px" }}
                         id="inline-Eik96ptPRWcPm5P2Am2w"
                         data-layout="{'id':'INLINE'}"
                         data-trigger-type="alwaysShow"
