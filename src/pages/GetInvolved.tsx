@@ -175,7 +175,7 @@ const GetInvolved = () => {
                   </li>
                   <li className="flex items-center gap-2 text-muted-foreground opacity-50">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
-                    Mentor aspiring entrepreneurs <span className="text-terracotta-500 text-xs ml-2">Coming soon</span>
+                    Mentor aspiring entrepreneurs <span className="text-gray-500 text-xs ml-2">Coming soon</span>
                   </li>
                 </ul>
               </div>
