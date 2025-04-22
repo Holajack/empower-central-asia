@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -232,7 +231,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col overflow-auto items-center"
+                    className="!p-0 w-full flex flex-col items-center"
                     style={{
                       maxWidth: "94vw",
                       width: "420px",
@@ -254,15 +253,14 @@ const GetInvolved = () => {
                         title="Volunteer Application Form"
                         style={{
                           width: "100%",
-                          height: "100%",
+                          height: "80vh",
                           minHeight: 320,
-                          maxHeight: "80vh",
                           border: "none",
                           borderRadius: 8,
                           background: "white",
                           display: "block",
                           margin: "0 auto",
-                          overflowY: "scroll"
+                          overflowY: "auto",
                         }}
                         frameBorder="0"
                         scrolling="yes"
@@ -310,7 +308,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col overflow-auto items-center"
+                    className="!p-0 w-full flex flex-col items-center"
                     style={{
                       maxWidth: "94vw",
                       width: "420px",
@@ -318,47 +316,36 @@ const GetInvolved = () => {
                       margin: "auto",
                     }}
                   >
-                    <div
-                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-scroll"
-                      style={{ 
-                        minHeight: 300, 
-                        maxHeight: "88vh", 
-                        padding: "8px 0",
-                        overscrollBehavior: "contain"
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
+                      style={{
+                        width: "100%",
+                        height: "80vh",
+                        minHeight: 320,
+                        border: "none",
+                        borderRadius: 8,
+                        background: "white",
+                        display: "block",
+                        margin: "0 auto",
+                        overflowY: "auto",
                       }}
-                    >
-                      <iframe
-                        src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          minHeight: 320,
-                          maxHeight: "80vh",
-                          border: "none",
-                          borderRadius: 8,
-                          background: "white",
-                          display: "block",
-                          margin: "0 auto",
-                          overflowY: "scroll"
-                        }}
-                        id="inline-RrXeqfzdcMvMmpel5vRG"
-                        data-layout='{"id":"INLINE"}'
-                        data-trigger-type="alwaysShow"
-                        data-trigger-value=""
-                        data-activation-type="alwaysActivated"
-                        data-activation-value=""
-                        data-deactivation-type="neverDeactivate"
-                        data-deactivation-value=""
-                        data-form-name="Partner With Us"
-                        data-height="883"
-                        data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
-                        data-form-id="RrXeqfzdcMvMmpel5vRG"
-                        title="Partner With Us"
-                        allow="clipboard-write"
-                        frameBorder="0"
-                        scrolling="auto"
-                      />
-                    </div>
+                      id="inline-RrXeqfzdcMvMmpel5vRG"
+                      data-layout='{"id":"INLINE"}'
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="Partner With Us"
+                      data-height="883"
+                      data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
+                      data-form-id="RrXeqfzdcMvMmpel5vRG"
+                      title="Partner With Us"
+                      allow="clipboard-write"
+                      frameBorder="0"
+                      scrolling="auto"
+                    />
                   </DialogContent>
                 </Dialog>
               </Card>
