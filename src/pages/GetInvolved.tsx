@@ -231,7 +231,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-auto"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-hidden"
                     style={{
                       width: '100%',
                       maxWidth: '600px',
@@ -240,6 +240,10 @@ const GetInvolved = () => {
                       borderRadius: "16px",
                     }}
                   >
+                    <DialogTitle className="sr-only">Volunteer Application Form</DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Fill out this form to apply as a volunteer
+                    </DialogDescription>
                     <iframe
                       src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
                       title="Volunteer Application Form"
@@ -253,7 +257,7 @@ const GetInvolved = () => {
                         background: "white",
                         margin: "0",
                         display: 'block',
-                        overflow: "auto"
+                        overflow: "scroll"
                       }}
                       frameBorder="0"
                       scrolling="auto"
@@ -300,7 +304,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-auto"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-hidden"
                     style={{
                       width: '100%',
                       maxWidth: '600px',
@@ -309,6 +313,10 @@ const GetInvolved = () => {
                       borderRadius: "16px",
                     }}
                   >
+                    <DialogTitle className="sr-only">Partner With Us</DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Fill out this form to become a partner
+                    </DialogDescription>
                     <iframe
                       src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
                       style={{
@@ -321,7 +329,7 @@ const GetInvolved = () => {
                         background: "white",
                         margin: "0",
                         display: 'block',
-                        overflow: "auto"
+                        overflow: "scroll"
                       }}
                       id="inline-RrXeqfzdcMvMmpel5vRG"
                       data-layout='{"id":"INLINE"}'
@@ -336,9 +344,9 @@ const GetInvolved = () => {
                       data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
                       data-form-id="RrXeqfzdcMvMmpel5vRG"
                       title="Partner With Us"
-                      allow="clipboard-write"
                       frameBorder="0"
                       scrolling="auto"
+                      allow="clipboard-write"
                     />
                   </DialogContent>
                 </Dialog>
