@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -45,8 +45,10 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
+  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
   const [showPartnerForm, setShowPartnerForm] = useState(false);
   const [partnerIframeHeight, setPartnerIframeHeight] = useState(700);
+  const [volunteerIframeHeight, setVolunteerIframeHeight] = useState(700);
 
   useEffect(() => {
     if (showPartnerForm) {
@@ -58,18 +60,18 @@ const GetInvolved = () => {
         script.id = "partner-embed-script";
         document.body.appendChild(script);
       }
-
+      
       setPartnerIframeHeight(800);
-
+      
       const handleResize = () => {
         const windowHeight = window.innerHeight;
         const newHeight = Math.max(windowHeight * 0.8, 700);
         setPartnerIframeHeight(newHeight);
       };
-
+      
       handleResize();
       window.addEventListener('resize', handleResize);
-
+      
       return () => {
         window.removeEventListener('resize', handleResize);
       };
@@ -77,15 +79,21 @@ const GetInvolved = () => {
   }, [showPartnerForm]);
 
   useEffect(() => {
-    const scriptId = "volunteer-leadconnector-form-embed";
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement("script");
-      script.src = "https://link.msgsndr.com/js/form_embed.js";
-      script.async = true;
-      script.id = scriptId;
-      document.body.appendChild(script);
+    if (showVolunteerForm) {
+      const handleResize = () => {
+        const windowHeight = window.innerHeight;
+        const newHeight = Math.max(windowHeight * 0.8, 700);
+        setVolunteerIframeHeight(newHeight);
+      };
+      
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
-  }, []);
+  }, [showVolunteerForm]);
 
   const donationTiers = [
     {
@@ -107,6 +115,10 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
+
+  const handlePartnerClick = () => {
+    setShowPartnerForm(true);
+  };
 
   const upcomingEvents = [
     {
@@ -211,25 +223,49 @@ const GetInvolved = () => {
                 <p className="text-center text-sage-500 mb-2">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <div className="w-full">
-                  <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                    style={{ display: "none", width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
-                    id="polite-slide-in-right-Eik96ptPRWcPm5P2Am2w"
-                    data-layout="{'id':'POLITE_SLIDE_IN','minimizedTitle':'','isLeftAligned':false,'isRightAligned':true,'allowMinimize':true}"
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="Volunteer Application"
-                    data-height="826"
-                    data-layout-iframe-id="polite-slide-in-right-Eik96ptPRWcPm5P2Am2w"
-                    data-form-id="Eik96ptPRWcPm5P2Am2w"
-                    title="Volunteer Application"
-                  ></iframe>
-                </div>
+                <Button
+                  className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white"
+                  onClick={() => setShowVolunteerForm(true)}
+                >
+                  Apply as Volunteer
+                </Button>
+                <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
+                  <DialogContent
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-hidden"
+                    style={{
+                      width: '100%',
+                      maxWidth: '600px',
+                      minHeight: 0,
+                      maxHeight: '90vh',
+                      borderRadius: "16px",
+                    }}
+                  >
+                    <DialogTitle className="sr-only">Volunteer Application Form</DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Fill out this form to apply as a volunteer
+                    </DialogDescription>
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                      title="Volunteer Application Form"
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        minHeight: 320,
+                        maxHeight: '80vh',
+                        border: "none",
+                        borderRadius: 0,
+                        background: "white",
+                        margin: "0",
+                        display: 'block',
+                        overflowY: "scroll",
+                        overflowX: "hidden"
+                      }}
+                      frameBorder="0"
+                      scrolling="auto"
+                      allow="clipboard-write"
+                    />
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
