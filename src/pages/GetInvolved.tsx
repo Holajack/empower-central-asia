@@ -20,6 +20,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import VolunteerForm from "@/components/get-involved/VolunteerForm";
+import ImpactStats from "@/components/home/ImpactStats";
 
 const GetInvolvedHeroHeader = () => (
   <div 
@@ -86,12 +87,12 @@ const GetInvolved = () => {
     });
   };
 
-  const impactStats = [
-    { number: "5000+", label: "Volunteer Hours" },
-    { number: "250+", label: "Families Reached" },
-    { number: "100+", label: "Active Volunteers" },
-    { number: "25+", label: "Partner Organizations" },
-  ];
+  // const impactStats = [
+  //   { number: "5000+", label: "Volunteer Hours" },
+  //   { number: "250+", label: "Families Reached" },
+  //   { number: "100+", label: "Active Volunteers" },
+  //   { number: "25+", label: "Partner Organizations" },
+  // ];
 
   const upcomingEvents = [
     {
@@ -277,15 +278,7 @@ const GetInvolved = () => {
         </section>
 
         <section className="py-12 bg-sage-50 rounded-lg">
-          <h2 className="text-3xl font-bold text-center mb-8 text-sage-500">Our Impact</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
-            {impactStats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-terracotta-500 mb-2">{stat.number}</div>
-                <div className="text-sage-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          <ImpactStats isMobile={false} />
         </section>
 
         <section className="py-12">
