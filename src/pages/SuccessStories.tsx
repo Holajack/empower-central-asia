@@ -33,9 +33,9 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
   },
   {
-    name: "Marcus Johnson",
-    business: "Green Earth Markets",
-    quote: "The financial literacy workshops gave me the confidence to expand my sustainable grocery store to three locations.",
+    name: "Kyle",
+    business: "Sparkle Squad Cleaning Services",
+    quote: "Business Beyond Borders gave me the guidance and resources I needed to transform my cleaning side hustle into a professional business. Their mentorship helped me develop a solid business plan and secure my first commercial contracts.",
     image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
     before: "Single market stall owner",
     after: "Multi-location sustainable business",
