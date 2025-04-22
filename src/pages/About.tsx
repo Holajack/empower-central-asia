@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -57,13 +56,6 @@ const About = () => {
       bio: "Born and raised in Bishkek, Azamat brings deep local knowledge and a passion for community development to our programs.",
       image: "/photo-1581091226825-a6a2a5aee158",
       initials: "AK",
-    },
-    {
-      name: "Dr. Maria Santos",
-      role: "Program Director",
-      bio: "An expert in microfinance and sustainable development, Maria designs and oversees our entrepreneurship training programs.",
-      image: "/photo-1605810230434-7631ac76ec81",
-      initials: "MS",
     },
   ];
 
