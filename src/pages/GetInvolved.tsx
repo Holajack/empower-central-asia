@@ -112,7 +112,7 @@ const GetInvolved = () => {
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
         <section className="text-center space-y-4">
-          {/* Keep as is */}
+          
         </section>
 
         <section className="space-y-12 mt-16">
@@ -173,46 +173,44 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg w-full h-full min-h-[300px]">
-                <p className="text-center text-sage-500">
+              <div className="flex flex-col justify-center items-center">
+                <p className="text-center text-sage-500 mb-4">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <div className="w-full h-[934px] min-h-[400px] flex items-center justify-center">
-                  <Button
-                    className="bg-sage-500 text-white hover:bg-sage-600 rounded-md px-6 py-3 transition-colors text-lg font-semibold shadow w-full max-w-md"
-                    onClick={() => setShowVolunteerForm(true)}
-                  >
-                    Apply as Volunteer
-                  </Button>
-                  <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
-                    <DialogContent className="max-w-2xl w-full min-h-[600px] flex flex-col items-center justify-center">
-                      <DialogHeader>
-                        <DialogTitle>Volunteer Application Form</DialogTitle>
-                      </DialogHeader>
-                      <div className="w-full h-[540px] md:h-[700px] flex items-center justify-center">
-                        <iframe
-                          src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                          style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
-                          id="inline-Eik96ptPRWcPm5P2Am2w"
-                          data-layout="{'id':'INLINE'}"
-                          data-trigger-type="alwaysShow"
-                          data-trigger-value=""
-                          data-activation-type="alwaysActivated"
-                          data-activation-value=""
-                          data-deactivation-type="neverDeactivate"
-                          data-deactivation-value=""
-                          data-form-name="Form 1"
-                          data-height="934"
-                          data-layout-iframe-id="inline-Eik96ptPRWcPm5P2Am2w"
-                          data-form-id="Eik96ptPRWcPm5P2Am2w"
-                          title="Form 1"
-                          allow="clipboard-write"
-                        ></iframe>
-                      </div>
-                      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-                    </DialogContent>
-                  </Dialog>
-                </div>
+                <Button
+                  className="w-full max-w-md"
+                  onClick={() => setShowVolunteerForm(true)}
+                >
+                  Apply as Volunteer
+                </Button>
+                <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
+                  <DialogContent className="max-w-2xl w-full min-h-[600px] flex flex-col items-center justify-center">
+                    <DialogHeader>
+                      <DialogTitle>Volunteer Application Form</DialogTitle>
+                    </DialogHeader>
+                    <div className="w-full h-[540px] md:h-[700px] flex items-center justify-center">
+                      <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                        style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
+                        id="inline-Eik96ptPRWcPm5P2Am2w"
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form 1"
+                        data-height="934"
+                        data-layout-iframe-id="inline-Eik96ptPRWcPm5P2Am2w"
+                        data-form-id="Eik96ptPRWcPm5P2Am2w"
+                        title="Form 1"
+                        allow="clipboard-write"
+                      ></iframe>
+                    </div>
+                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
