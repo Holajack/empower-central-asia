@@ -180,7 +180,7 @@ const GetInvolved = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
-                    Lead skill-sharing workshops
+                    Provide your skills
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
