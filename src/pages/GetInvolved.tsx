@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -28,7 +29,8 @@ const GetInvolved = () => {
   const {
     toast
   } = useToast();
-  const [volunteerDialogOpen, setVolunteerDialogOpen] = useState(false);
+  // REMOVED:
+  // const [volunteerDialogOpen, setVolunteerDialogOpen] = useState(false);
   const donationTiers = [{
     amount: 150,
     description: "Provides comprehensive business training resources for multiple entrepreneurs",
@@ -45,16 +47,17 @@ const GetInvolved = () => {
     icon: <HandHelping className="h-6 w-6" />,
     impact: "Transform five businesses through expert guidance and support"
   }];
-  const handleVolunteerClick = () => {
-    setVolunteerDialogOpen(true);
-  };
-  const handleVolunteerSubmit = (data: any) => {
-    setVolunteerDialogOpen(false);
-    toast({
-      title: "Volunteer Application Submitted",
-      description: `Thank you, ${data.firstName}! We'll contact you soon with more details.`
-    });
-  };
+  // REMOVED:
+  // const handleVolunteerClick = () => {
+  //   setVolunteerDialogOpen(true);
+  // };
+  // const handleVolunteerSubmit = (data: any) => {
+  //   setVolunteerDialogOpen(false);
+  //   toast({
+  //     title: "Volunteer Application Submitted",
+  //     description: `Thank you, ${data.firstName}! We'll contact you soon with more details.`
+  //   });
+  // };
   const handlePartnerClick = () => {
     toast({
       title: "Partnership Inquiry",
@@ -152,14 +155,15 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
+              {/* REMOVED: "Apply as Volunteer" Button and related popup */}
+              {/* <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
                 <Button onClick={handleVolunteerClick} className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm">
                   Apply as Volunteer
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -308,8 +312,9 @@ const GetInvolved = () => {
           </p>
           <DonateButton size="lg" className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]" />
         </section>
-
-        <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
+        
+        {/* REMOVED: Volunteer Application Dialog */}
+        {/* <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
               <DialogTitle className="text-sage-500 text-xl">Volunteer Application</DialogTitle>
@@ -319,7 +324,7 @@ const GetInvolved = () => {
             </DialogHeader>
             <VolunteerForm onSubmit={handleVolunteerSubmit} />
           </DialogContent>
-        </Dialog>
+        </Dialog> */}
       </div>
     </div>;
 };
