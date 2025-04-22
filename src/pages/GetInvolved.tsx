@@ -231,7 +231,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-auto"
                     style={{
                       width: '100%',
                       maxWidth: '600px',
@@ -256,7 +256,7 @@ const GetInvolved = () => {
                         overflow: "auto"
                       }}
                       frameBorder="0"
-                      scrolling="yes"
+                      scrolling="auto"
                       allow="clipboard-write"
                     />
                   </DialogContent>
@@ -300,7 +300,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-auto"
                     style={{
                       width: '100%',
                       maxWidth: '600px',
