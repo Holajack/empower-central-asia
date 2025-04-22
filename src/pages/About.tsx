@@ -44,18 +44,18 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: "Sarah Chen",
+      name: "Jacken Holland",
       role: "Executive Director",
-      bio: "With over 15 years of experience in international development, Sarah leads our mission to empower entrepreneurs across Central Asia.",
+      bio: "With over 15 years of experience in international development, Jacken leads our mission to empower entrepreneurs across Central Asia.",
       image: "/photo-1581092795360-fd1ca04f0952",
-      initials: "SC",
+      initials: "JH",
     },
     {
-      name: "Azamat Kulov",
+      name: "Yeva Romanova",
       role: "Regional Director",
-      bio: "Born and raised in Bishkek, Azamat brings deep local knowledge and a passion for community development to our programs.",
+      bio: "Born and raised in Bishkek, Yeva brings deep local knowledge and a passion for community development to our programs.",
       image: "/photo-1581091226825-a6a2a5aee158",
-      initials: "AK",
+      initials: "YR",
     },
   ];
 
@@ -65,7 +65,7 @@ const About = () => {
       <div 
         className="relative h-[60vh] flex items-center justify-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')", // Same image as Programs page
+          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
