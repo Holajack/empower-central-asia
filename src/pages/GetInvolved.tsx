@@ -303,7 +303,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col overflow-hidden items-center"
+                    className="!p-0 w-full flex flex-col overflow-auto items-center"
                     style={{
                       maxWidth: "94vw",
                       width: "420px",
@@ -312,8 +312,8 @@ const GetInvolved = () => {
                     }}
                   >
                     <div
-                      className="relative flex-1 flex flex-col items-stretch bg-white w-full"
-                      style={{ minHeight: 300, maxHeight: "88vh", overflow: "auto", padding: "8px 0" }}
+                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-auto"
+                      style={{ minHeight: 300, maxHeight: "88vh", padding: "8px 0" }}
                     >
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
