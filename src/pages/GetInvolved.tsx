@@ -230,24 +230,36 @@ const GetInvolved = () => {
                   Apply as Volunteer
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
-                  <DialogContent 
-                    className="!p-0 w-full max-w-4xl flex flex-col overflow-hidden"
-                    style={{ maxWidth: "90vw", width: "1000px", height: `${volunteerIframeHeight + 20}px` }}
+                  <DialogContent
+                    className="!p-0 w-full flex flex-col overflow-hidden items-center"
+                    style={{
+                      maxWidth: "94vw",
+                      width: "420px",
+                      maxHeight: "92vh",
+                      margin: "auto",
+                    }}
                   >
-                    <div className="relative flex-1 flex flex-col items-stretch bg-white">
+                    <div
+                      className="relative flex-1 flex flex-col items-stretch bg-white w-full"
+                      style={{ minHeight: 300, maxHeight: "88vh", overflow: "auto", padding: "8px 0" }}
+                    >
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
                         title="Volunteer Application Form"
                         style={{
                           width: "100%",
-                          height: `${volunteerIframeHeight}px`,
+                          height: "70vh",
+                          minHeight: 320,
+                          maxHeight: "80vh",
                           border: "none",
                           borderRadius: 8,
                           background: "white",
+                          display: "block",
+                          margin: "0 auto",
                         }}
-                        allow="clipboard-write"
                         frameBorder="0"
-                        scrolling="no"
+                        scrolling="auto"
+                        allow="clipboard-write"
                       />
                     </div>
                   </DialogContent>
@@ -283,7 +295,7 @@ const GetInvolved = () => {
                   </li>
                 </ul>
                 <Button 
-                  onClick={handlePartnerClick}
+                  onClick={() => setShowPartnerForm(true)}
                   variant="outline"
                   className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
                 >
@@ -291,18 +303,30 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="!p-0 w-full max-w-4xl flex flex-col overflow-hidden"
-                    style={{ maxWidth: "90vw", width: "1000px", height: `${partnerIframeHeight + 20}px` }}
+                    className="!p-0 w-full flex flex-col overflow-hidden items-center"
+                    style={{
+                      maxWidth: "94vw",
+                      width: "420px",
+                      maxHeight: "92vh",
+                      margin: "auto",
+                    }}
                   >
-                    <div className="relative flex-1 flex flex-col items-stretch bg-white !p-0">
+                    <div
+                      className="relative flex-1 flex flex-col items-stretch bg-white w-full"
+                      style={{ minHeight: 300, maxHeight: "88vh", overflow: "auto", padding: "8px 0" }}
+                    >
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
                         style={{
                           width: "100%",
-                          height: `${partnerIframeHeight}px`,
+                          height: "70vh",
+                          minHeight: 320,
+                          maxHeight: "80vh",
                           border: "none",
                           borderRadius: 8,
                           background: "white",
+                          display: "block",
+                          margin: "0 auto",
                         }}
                         id="inline-RrXeqfzdcMvMmpel5vRG"
                         data-layout='{"id":"INLINE"}'
@@ -319,7 +343,7 @@ const GetInvolved = () => {
                         title="Partner With Us"
                         allow="clipboard-write"
                         frameBorder="0"
-                        scrolling="no"
+                        scrolling="auto"
                       />
                     </div>
                   </DialogContent>
