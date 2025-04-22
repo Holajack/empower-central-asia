@@ -231,42 +231,34 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col items-center"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center"
                     style={{
-                      maxWidth: "94vw",
-                      width: "420px",
-                      maxHeight: "92vh",
-                      margin: "auto",
+                      width: '100%',
+                      maxWidth: '600px',
+                      minHeight: 0,
+                      maxHeight: '90vh',
+                      borderRadius: "16px",
                     }}
                   >
-                    <div
-                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-scroll"
-                      style={{ 
-                        minHeight: 300, 
-                        maxHeight: "88vh", 
-                        padding: "8px 0",
-                        overscrollBehavior: "contain"
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                      title="Volunteer Application Form"
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        minHeight: 320,
+                        maxHeight: '80vh',
+                        border: "none",
+                        borderRadius: 0,
+                        background: "white",
+                        margin: "0",
+                        display: 'block',
+                        overflow: "auto"
                       }}
-                    >
-                      <iframe
-                        src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                        title="Volunteer Application Form"
-                        style={{
-                          width: "100%",
-                          height: "80vh",
-                          minHeight: 320,
-                          border: "none",
-                          borderRadius: 8,
-                          background: "white",
-                          display: "block",
-                          margin: "0 auto",
-                          overflowY: "auto",
-                        }}
-                        frameBorder="0"
-                        scrolling="yes"
-                        allow="clipboard-write"
-                      />
-                    </div>
+                      frameBorder="0"
+                      scrolling="yes"
+                      allow="clipboard-write"
+                    />
                   </DialogContent>
                 </Dialog>
               </div>
@@ -308,26 +300,28 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col items-center"
+                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center"
                     style={{
-                      maxWidth: "94vw",
-                      width: "420px",
-                      maxHeight: "92vh",
-                      margin: "auto",
+                      width: '100%',
+                      maxWidth: '600px',
+                      minHeight: 0,
+                      maxHeight: '90vh',
+                      borderRadius: "16px",
                     }}
                   >
                     <iframe
                       src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
                       style={{
                         width: "100%",
-                        height: "80vh",
+                        height: "70vh",
                         minHeight: 320,
+                        maxHeight: '80vh',
                         border: "none",
-                        borderRadius: 8,
+                        borderRadius: 0,
                         background: "white",
-                        display: "block",
-                        margin: "0 auto",
-                        overflowY: "auto",
+                        margin: "0",
+                        display: 'block',
+                        overflow: "auto"
                       }}
                       id="inline-RrXeqfzdcMvMmpel5vRG"
                       data-layout='{"id":"INLINE"}'
