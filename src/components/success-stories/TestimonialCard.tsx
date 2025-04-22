@@ -8,19 +8,17 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard = ({ testimonial }: TestimonialCardProps) => (
-  <Card className="mx-4">
-    <CardHeader>
-      <div>
-        <CardTitle>{testimonial.name}</CardTitle>
-        {testimonial.business && (
-          <CardDescription>{testimonial.business}</CardDescription>
-        )}
-      </div>
+  <Card className="mx-auto w-full max-w-sm md:max-w-xs p-4 rounded-md shadow transition-transform hover:scale-105 hover:shadow-md duration-200 bg-card/90">
+    <CardHeader className="p-3 pb-1">
+      <CardTitle className="text-lg sm:text-base font-semibold">{testimonial.name}</CardTitle>
+      {testimonial.business && (
+        <CardDescription className="text-xs sm:text-xs">{testimonial.business}</CardDescription>
+      )}
     </CardHeader>
-    <CardContent>
-      <div className="flex gap-4">
-        <Quote className="w-8 h-8 text-muted-foreground" />
-        <p className="text-lg">{testimonial.quote}</p>
+    <CardContent className="p-3 pt-0">
+      <div className="flex gap-2 items-start">
+        <Quote className="w-5 h-5 text-muted-foreground shrink-0 mt-1" />
+        <p className="text-sm">{testimonial.quote}</p>
       </div>
     </CardContent>
   </Card>
