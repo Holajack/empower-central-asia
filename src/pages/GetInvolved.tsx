@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -14,13 +14,6 @@ import { Link } from "react-router-dom";
 import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 const GetInvolvedHeroHeader = () => (
   <div 
@@ -45,52 +38,6 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [showPartnerForm, setShowPartnerForm] = useState(false);
-  const [partnerIframeHeight, setPartnerIframeHeight] = useState(700);
-  const [showVolunteerPopup, setShowVolunteerPopup] = useState(false);
-
-  useEffect(() => {
-    if (showPartnerForm) {
-      const existingScript = document.getElementById("partner-embed-script");
-      if (!existingScript) {
-        const script = document.createElement("script");
-        script.src = "https://link.msgsndr.com/js/form_embed.js";
-        script.async = true;
-        script.id = "partner-embed-script";
-        document.body.appendChild(script);
-      }
-      
-      setPartnerIframeHeight(800);
-      
-      const handleResize = () => {
-        const windowHeight = window.innerHeight;
-        const newHeight = Math.max(windowHeight * 0.8, 700);
-        setPartnerIframeHeight(newHeight);
-      };
-      
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, [showPartnerForm]);
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.msgsndr.com/js/form_embed.js";
-    script.async = true;
-    script.id = "volunteer-embed-script";
-    document.body.appendChild(script);
-
-    return () => {
-      const embedScript = document.getElementById("volunteer-embed-script");
-      if (embedScript) {
-        document.body.removeChild(embedScript);
-      }
-    };
-  }, []);
 
   const donationTiers = [
     {
@@ -112,10 +59,6 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
-
-  const handlePartnerClick = () => {
-    setShowPartnerForm(true);
-  };
 
   const upcomingEvents = [
     {
@@ -149,16 +92,6 @@ const GetInvolved = () => {
       answer: "Organizations can partner through resource sharing, joint programs, sponsorships, or by providing expertise and mentorship to our entrepreneurs.",
     },
   ];
-
-  const handleVolunteerClick = () => {
-    setShowVolunteerPopup(true);
-    setTimeout(() => {
-      const popup = document.getElementById("popup-Eik96ptPRWcPm5P2Am2w");
-      if (popup) {
-        popup.setAttribute("data-state", "opened");
-      }
-    }, 100);
-  };
 
   return (
     <div>
@@ -232,42 +165,9 @@ const GetInvolved = () => {
                 </p>
                 <Button
                   className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white"
-                  onClick={handleVolunteerClick}
                 >
                   Apply as Volunteer
                 </Button>
-                
-                <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                  style={{
-                    display: showVolunteerPopup ? "block" : "none",
-                    width: "100%",
-                    height: "100%",
-                    border: "none",
-                    borderRadius: "3px",
-                    zIndex: 9999,
-                    position: showVolunteerPopup ? "fixed" : undefined,
-                    left: showVolunteerPopup ? 0 : undefined,
-                    top: showVolunteerPopup ? 0 : undefined,
-                    right: showVolunteerPopup ? 0 : undefined,
-                    bottom: showVolunteerPopup ? 0 : undefined,
-                    background: "rgba(0,0,0,0.25)",
-                    // matches popup overlay feel if needed, otherwise visible as block
-                  }}
-                  id="popup-Eik96ptPRWcPm5P2Am2w"
-                  data-layout="{'id':'POPUP'}"
-                  data-trigger-type="alwaysShow"
-                  data-trigger-value=""
-                  data-activation-type="alwaysActivated"
-                  data-activation-value=""
-                  data-deactivation-type="neverDeactivate"
-                  data-deactivation-value=""
-                  data-form-name="Volunteer Application"
-                  data-height="826"
-                  data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
-                  data-form-id="Eik96ptPRWcPm5P2Am2w"
-                  title="Volunteer Application"
-                ></iframe>
               </div>
             </div>
           </div>
@@ -299,61 +199,11 @@ const GetInvolved = () => {
                   </li>
                 </ul>
                 <Button 
-                  onClick={() => setShowPartnerForm(true)}
                   variant="outline"
                   className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
                 >
                   Become a Partner
                 </Button>
-                <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
-                  <DialogContent
-                    className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl !p-0 flex flex-col items-stretch justify-center overflow-hidden"
-                    style={{
-                      width: '100%',
-                      maxWidth: '600px',
-                      minHeight: 0,
-                      maxHeight: '90vh',
-                      borderRadius: "16px",
-                    }}
-                  >
-                    <DialogTitle className="sr-only">Partner With Us</DialogTitle>
-                    <DialogDescription className="sr-only">
-                      Fill out this form to become a partner
-                    </DialogDescription>
-                    <iframe
-                      src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        minHeight: 320,
-                        maxHeight: '80vh',
-                        border: "none",
-                        borderRadius: 0,
-                        background: "white",
-                        margin: "0",
-                        display: 'block',
-                        overflowY: "scroll",
-                        overflowX: "hidden"
-                      }}
-                      id="inline-RrXeqfzdcMvMmpel5vRG"
-                      data-layout='{"id":"INLINE"}'
-                      data-trigger-type="alwaysShow"
-                      data-trigger-value=""
-                      data-activation-type="alwaysActivated"
-                      data-activation-value=""
-                      data-deactivation-type="neverDeactivate"
-                      data-deactivation-value=""
-                      data-form-name="Partner With Us"
-                      data-height="883"
-                      data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
-                      data-form-id="RrXeqfzdcMvMmpel5vRG"
-                      title="Partner With Us"
-                      frameBorder="0"
-                      scrolling="auto"
-                      allow="clipboard-write"
-                    />
-                  </DialogContent>
-                </Dialog>
               </Card>
               <Card className="p-6 space-y-4 bg-sage-50">
                 <h4 className="font-semibold text-lg">Why Partner With Us?</h4>
