@@ -11,7 +11,7 @@ import {
 
 interface Testimonial {
   name: string;
-  business: string;
+  business?: string; // Made business optional
   quote: string;
   image: string;
   before?: string;
@@ -50,7 +50,9 @@ const TestimonialCarousel = ({ testimonials, inView }: TestimonialCarouselProps)
                       </div>
                       <div>
                         <CardTitle>{testimonial.name}</CardTitle>
-                        <CardDescription>{testimonial.business}</CardDescription>
+                        {testimonial.business && (
+                          <CardDescription>{testimonial.business}</CardDescription>
+                        )}
                       </div>
                     </div>
                   </CardHeader>
