@@ -173,6 +173,10 @@ const GetInvolved = () => {
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Support on-site training programs
                   </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                    Mentor aspiring entrepreneurs <span className="text-terracotta-500 text-xs ml-2">Coming soon</span>
+                  </li>
                 </ul>
               </div>
               <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
