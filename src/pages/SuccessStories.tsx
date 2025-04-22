@@ -27,9 +27,9 @@ const SuccessStoriesHeroHeader = () => (
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    business: "Tech Solutions Co.",
-    quote: "BBB's mentorship program transformed my small tech startup into a thriving business serving our local community.",
+    name: "Nicole",
+    business: "Thread & Thistle Apparel",
+    quote: "Business Beyond Borders gave me the courage and support I needed to launch my own clothing line. Their resources and mentorship made my dream a reality.",
     image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     before: "Solo freelancer with limited reach",
     after: "15 employees and growing tech firm",
