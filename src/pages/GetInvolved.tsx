@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/dialog";
 import VolunteerForm from "@/components/get-involved/VolunteerForm";
 import ImpactStats from "@/components/home/ImpactStats";
+import TestimonialCard from "@/components/success-stories/TestimonialCard";
+import { testimonials } from "@/data/testimonials";
 
 const GetInvolvedHeroHeader = () => (
   <div 
@@ -86,13 +88,6 @@ const GetInvolved = () => {
       description: "Thank you for your interest in partnering with us. Our team will reach out shortly.",
     });
   };
-
-  // const impactStats = [
-  //   { number: "5000+", label: "Volunteer Hours" },
-  //   { number: "250+", label: "Families Reached" },
-  //   { number: "100+", label: "Active Volunteers" },
-  //   { number: "25+", label: "Partner Organizations" },
-  // ];
 
   const upcomingEvents = [
     {
@@ -284,26 +279,9 @@ const GetInvolved = () => {
         <section className="py-12">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Success Stories</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-6">
-              <blockquote className="space-y-4">
-                <p className="text-sage-600 italic">
-                  "Being a mentor has been incredibly rewarding. Seeing entrepreneurs grow and succeed makes every hour worth it."
-                </p>
-                <footer className="text-sage-500">
-                  - Sarah Chen, Business Mentor since 2022
-                </footer>
-              </blockquote>
-            </Card>
-            <Card className="p-6">
-              <blockquote className="space-y-4">
-                <p className="text-sage-600 italic">
-                  "Our partnership has enabled us to reach more communities and create lasting impact in Central Asia."
-                </p>
-                <footer className="text-sage-500">
-                  - Tech Solutions Co., Partner Organization
-                </footer>
-              </blockquote>
-            </Card>
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} />
+            ))}
           </div>
         </section>
 
