@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -45,6 +45,7 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -75,10 +76,7 @@ const GetInvolved = () => {
   };
 
   const handleButtonTest = () => {
-    toast({
-      title: "Button Test",
-      description: "This is a test button for the Get Involved page.",
-    });
+    setDialogOpen(true);
   };
 
   const upcomingEvents = [
@@ -185,6 +183,37 @@ const GetInvolved = () => {
                 >
                   Button Test
                 </Button>
+                <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                  <DialogContent className="max-w-2xl w-[90vw] h-[900px] p-0 flex flex-col relative">
+                    <DialogHeader className="p-6 pb-2">
+                      <DialogTitle>Volunteer Application</DialogTitle>
+                      <DialogDescription>
+                        Complete the form below to apply as a volunteer.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex-1 w-full relative h-[850px] overflow-hidden px-4 pb-6">
+                      <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                        style={{ display: "block", width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
+                        id="popup-Eik96ptPRWcPm5P2Am2w"
+                        data-layout="{'id':'POPUP'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form 1"
+                        data-height="850"
+                        data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
+                        data-form-id="Eik96ptPRWcPm5P2Am2w"
+                        title="Form 1"
+                        allow="camera; microphone; autoplay; encrypted-media;"
+                      />
+                    </div>
+                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
