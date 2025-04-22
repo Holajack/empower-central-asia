@@ -49,7 +49,7 @@ const testimonials = [
   {
     name: "Stephanie",
     quote: "Businesses Beyond Borders helped me create a strong business plan for my guest house—which will help me build my business step-by-step.",
-    image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167",
+    image: "/lovable-uploads/2da1806b-a61d-47d7-8fe4-9fe62a8e0063.png",
   },
 ];
 
