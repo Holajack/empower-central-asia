@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -11,17 +11,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
-import VolunteerForm from "@/components/get-involved/VolunteerForm";
 
 const GetInvolvedHeroHeader = () => (
   <div 
@@ -46,7 +38,6 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -68,18 +59,6 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
-
-  const handleVolunteerClick = () => {
-    setVolunteerModalOpen(true);
-  };
-
-  const handleVolunteerSubmit = (data: any) => {
-    setVolunteerModalOpen(false);
-    toast({
-      title: "Application Submitted",
-      description: "Thank you for volunteering! We'll be in touch soon.",
-    });
-  };
 
   const handlePartnerClick = () => {
     toast({
@@ -126,7 +105,7 @@ const GetInvolved = () => {
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
         <section className="text-center space-y-4">
-          
+          {/* Keep as is */}
         </section>
 
         <section className="space-y-12 mt-16">
@@ -187,16 +166,30 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
+              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg w-full h-full min-h-[300px]">
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <Button 
-                  onClick={handleVolunteerClick}
-                  className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
-                >
-                  Apply as Volunteer
-                </Button>
+                <div className="w-full h-[934px] min-h-[400px]">
+                  <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                    style={{ width: "100%", height: "100%", border: "none", borderRadius: "3px" }}
+                    id="inline-Eik96ptPRWcPm5P2Am2w"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Form 1"
+                    data-height="934"
+                    data-layout-iframe-id="inline-Eik96ptPRWcPm5P2Am2w"
+                    data-form-id="Eik96ptPRWcPm5P2Am2w"
+                    title="Form 1"
+                    allow="clipboard-write"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -341,18 +334,6 @@ const GetInvolved = () => {
           />
         </section>
       </div>
-      
-      <Dialog open={volunteerModalOpen} onOpenChange={setVolunteerModalOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Volunteer Application</DialogTitle>
-            <DialogDescription>
-              Fill out the form below to join our volunteer network.
-            </DialogDescription>
-          </DialogHeader>
-          <VolunteerForm onSubmit={handleVolunteerSubmit} />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
