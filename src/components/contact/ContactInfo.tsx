@@ -1,3 +1,4 @@
+
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const ContactInfo = () => {
@@ -20,11 +21,11 @@ const ContactInfo = () => {
         <div className="flex items-center gap-3 text-gray-600">
           <Phone className="h-5 w-5 text-terracotta-500" aria-hidden="true" />
           <a 
-            href="tel:+1234567890" 
+            href="tel:+14074098836" 
             className="hover:text-terracotta-500"
             aria-label="Call us"
           >
-            +1 (234) 567-890
+            +1 (407) 409-8836
           </a>
         </div>
         
