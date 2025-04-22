@@ -41,12 +41,10 @@ const testimonials = [
     after: "Multi-location sustainable business",
   },
   {
-    name: "Maria Rodriguez",
-    business: "Digital Learning Hub",
-    quote: "Thanks to BBB's startup incubator, I've been able to bring digital education to underserved communities.",
+    name: "Carter",
+    business: "Digital Bazaar Boutique",
+    quote: "Business Beyond Borders provided the crucial support I needed to transform my online shop from a small side project into a thriving e-commerce platform. Their mentorship helped me develop a robust digital strategy and expand my customer base.",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    before: "Teaching from home",
-    after: "Educational platform reaching thousands",
   },
 ];
 
