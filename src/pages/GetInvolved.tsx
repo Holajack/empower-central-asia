@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -11,13 +12,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import ImpactStats from "@/components/home/ImpactStats";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials } from "@/data/testimonials";
@@ -46,7 +40,6 @@ const GetInvolvedHeroHeader = () => (
 
 const GetInvolved = () => {
   const { toast } = useToast();
-  const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
 
   const donationTiers = [
     {
@@ -68,18 +61,6 @@ const GetInvolved = () => {
       impact: "Transform five businesses through expert guidance and support"
     },
   ];
-
-  const handleVolunteerClick = () => {
-    setVolunteerModalOpen(true);
-  };
-
-  const handleVolunteerSubmit = (data: any) => {
-    setVolunteerModalOpen(false);
-    toast({
-      title: "Application Submitted",
-      description: "Thank you for volunteering! We'll be in touch soon.",
-    });
-  };
 
   const handlePartnerClick = () => {
     toast({
@@ -126,7 +107,7 @@ const GetInvolved = () => {
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
         <section className="text-center space-y-4">
-          
+          {/* You may add introductory messages here if desired */}
         </section>
 
         <section className="space-y-12 mt-16">
@@ -191,12 +172,16 @@ const GetInvolved = () => {
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <Button 
-                  onClick={handleVolunteerClick}
-                  className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
-                >
-                  Apply as Volunteer
-                </Button>
+                {/* Embedded volunteer form directly below instead of a pop-up */}
+                <VolunteerForm
+                  onSubmit={() => {
+                    // Optionally show a toast if you want feedback when form is submitted
+                    toast({
+                      title: "Application Submitted",
+                      description: "Thank you for volunteering! We'll be in touch soon.",
+                    });
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -341,18 +326,6 @@ const GetInvolved = () => {
           />
         </section>
       </div>
-      
-      <Dialog open={volunteerModalOpen} onOpenChange={setVolunteerModalOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Volunteer Application</DialogTitle>
-            <DialogDescription>
-              Fill out the form below to join our volunteer network.
-            </DialogDescription>
-          </DialogHeader>
-          <VolunteerForm onSubmit={handleVolunteerSubmit} />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
