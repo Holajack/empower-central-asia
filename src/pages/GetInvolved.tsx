@@ -76,6 +76,21 @@ const GetInvolved = () => {
     }
   }, [showPartnerForm]);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
+    script.id = "volunteer-embed-script";
+    document.body.appendChild(script);
+
+    return () => {
+      const embedScript = document.getElementById("volunteer-embed-script");
+      if (embedScript) {
+        document.body.removeChild(embedScript);
+      }
+    };
+  }, []);
+
   const donationTiers = [
     {
       amount: 150,
@@ -134,11 +149,10 @@ const GetInvolved = () => {
     },
   ];
 
-  const volunteerFormRef = React.useRef<HTMLDivElement>(null);
-
   const handleVolunteerClick = () => {
-    if (volunteerFormRef.current) {
-      volunteerFormRef.current.scrollIntoView({ behavior: 'smooth' });
+    const popup = document.getElementById("popup-Eik96ptPRWcPm5P2Am2w");
+    if (popup) {
+      popup.setAttribute("data-state", "opened");
     }
   };
 
@@ -218,34 +232,30 @@ const GetInvolved = () => {
                 >
                   Apply as Volunteer
                 </Button>
-                <div ref={volunteerFormRef} className="w-full mt-8 flex justify-center items-center">
-                  <div className="w-full max-w-2xl">
-                    <iframe
-                      src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                      style={{
-                        display: "none",
-                        width: "100%",
-                        height: "100%",
-                        border: "none",
-                        borderRadius: "3px",
-                      }}
-                      id="popup-Eik96ptPRWcPm5P2Am2w"
-                      data-layout="{'id':'POPUP'}"
-                      data-trigger-type="alwaysShow"
-                      data-trigger-value=""
-                      data-activation-type="alwaysActivated"
-                      data-activation-value=""
-                      data-deactivation-type="neverDeactivate"
-                      data-deactivation-value=""
-                      data-form-name="Volunteer Application"
-                      data-height="826"
-                      data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
-                      data-form-id="Eik96ptPRWcPm5P2Am2w"
-                      title="Volunteer Application"
-                    ></iframe>
-                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-                  </div>
-                </div>
+                
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
+                  style={{
+                    display: "none",
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                    borderRadius: "3px",
+                  }}
+                  id="popup-Eik96ptPRWcPm5P2Am2w"
+                  data-layout="{'id':'POPUP'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Volunteer Application"
+                  data-height="826"
+                  data-layout-iframe-id="popup-Eik96ptPRWcPm5P2Am2w"
+                  data-form-id="Eik96ptPRWcPm5P2Am2w"
+                  title="Volunteer Application"
+                ></iframe>
               </div>
             </div>
           </div>
