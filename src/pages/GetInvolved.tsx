@@ -198,12 +198,15 @@ const GetInvolved = () => {
                     Sponsorship opportunities
                   </li>
                 </ul>
-                <Button 
-                  variant="outline"
-                  className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
-                >
-                  Become a Partner
-                </Button>
+                {/* Updated: Wrap the button in a Link to /partner-application */}
+                <Link to="/partner-application">
+                  <Button 
+                    variant="outline"
+                    className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
+                  >
+                    Become a Partner
+                  </Button>
+                </Link>
               </Card>
               <Card className="p-6 space-y-4 bg-sage-50">
                 <h4 className="font-semibold text-lg">Why Partner With Us?</h4>
