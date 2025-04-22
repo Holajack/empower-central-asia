@@ -1,20 +1,36 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import DonateButton from "@/components/DonateButton";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import VolunteerForm from "@/components/get-involved/VolunteerForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import ImpactStats from "@/components/home/ImpactStats";
-const GetInvolvedHeroHeader = () => <div className="relative h-[60vh] flex items-center justify-center" style={{
-  backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
-  backgroundSize: "cover",
-  backgroundPosition: "center"
-}}>
+import TestimonialCard from "@/components/success-stories/TestimonialCard";
+import { testimonials } from "@/data/testimonials";
+
+const GetInvolvedHeroHeader = () => (
+  <div 
+    className="relative h-[60vh] flex items-center justify-center"
+    style={{
+      backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
     <div className="absolute inset-0 bg-black/40" />
     <div className="relative z-10 container mx-auto px-4 text-center text-white">
       <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
@@ -24,78 +40,75 @@ const GetInvolvedHeroHeader = () => <div className="relative h-[60vh] flex items
         Explore how you can support and empower entrepreneurs in Central Asia.
       </p>
     </div>
-  </div>;
+  </div>
+);
+
 const GetInvolved = () => {
-  const {
-    toast
-  } = useToast();
-  // REMOVED:
-  // const [volunteerDialogOpen, setVolunteerDialogOpen] = useState(false);
-  const donationTiers = [{
-    amount: 150,
-    description: "Provides comprehensive business training resources for multiple entrepreneurs",
-    icon: <DollarSign className="h-6 w-6" />,
-    impact: "Equip 3-5 aspiring business owners with essential knowledge"
-  }, {
-    amount: 250,
-    description: "Sponsors two-day intensive entrepreneurship workshops for local business owners",
-    icon: <Users className="h-6 w-6" />,
-    impact: "Enable 15-20 entrepreneurs to receive hands-on training"
-  }, {
-    amount: 500,
-    description: "Funds three months of mentorship for a group of local entrepreneurs",
-    icon: <HandHelping className="h-6 w-6" />,
-    impact: "Transform five businesses through expert guidance and support"
-  }];
-  // REMOVED:
-  // const handleVolunteerClick = () => {
-  //   setVolunteerDialogOpen(true);
-  // };
-  // const handleVolunteerSubmit = (data: any) => {
-  //   setVolunteerDialogOpen(false);
-  //   toast({
-  //     title: "Volunteer Application Submitted",
-  //     description: `Thank you, ${data.firstName}! We'll contact you soon with more details.`
-  //   });
-  // };
+  const { toast } = useToast();
+
+  const donationTiers = [
+    {
+      amount: 150,
+      description: "Provides comprehensive business training resources for multiple entrepreneurs",
+      icon: <DollarSign className="h-6 w-6" />,
+      impact: "Equip 3-5 aspiring business owners with essential knowledge"
+    },
+    {
+      amount: 250,
+      description: "Sponsors two-day intensive entrepreneurship workshops for local business owners",
+      icon: <Users className="h-6 w-6" />,
+      impact: "Enable 15-20 entrepreneurs to receive hands-on training"
+    },
+    {
+      amount: 500,
+      description: "Funds three months of mentorship for a group of local entrepreneurs",
+      icon: <HandHelping className="h-6 w-6" />,
+      impact: "Transform five businesses through expert guidance and support"
+    },
+  ];
+
   const handlePartnerClick = () => {
     toast({
       title: "Partnership Inquiry",
-      description: "Thank you for your interest in partnering with us. Our team will reach out shortly."
+      description: "Thank you for your interest in partnering with us. Our team will reach out shortly.",
     });
   };
 
-  // const impactStats = [
-  //   { number: "5000+", label: "Volunteer Hours" },
-  //   { number: "250+", label: "Families Reached" },
-  //   { number: "100+", label: "Active Volunteers" },
-  //   { number: "25+", label: "Partner Organizations" },
-  // ];
+  const upcomingEvents = [
+    {
+      date: "March 15, 2024",
+      title: "Volunteer Orientation",
+      type: "Virtual",
+    },
+    {
+      date: "March 20, 2024",
+      title: "Partner Networking Event",
+      type: "In-Person",
+    },
+    {
+      date: "March 25, 2024",
+      title: "Fundraising Workshop",
+      type: "Hybrid",
+    },
+  ];
 
-  const upcomingEvents = [{
-    date: "March 15, 2024",
-    title: "Volunteer Orientation",
-    type: "Virtual"
-  }, {
-    date: "March 20, 2024",
-    title: "Partner Networking Event",
-    type: "In-Person"
-  }, {
-    date: "March 25, 2024",
-    title: "Fundraising Workshop",
-    type: "Hybrid"
-  }];
-  const faqs = [{
-    question: "How are donations used?",
-    answer: "Your donations directly support entrepreneur training programs, mentorship initiatives, and resource development in Central Asian communities."
-  }, {
-    question: "What skills do I need to volunteer?",
-    answer: "We welcome volunteers with various skills, particularly in business mentorship, financial literacy, marketing, and general business operations."
-  }, {
-    question: "How can organizations partner with us?",
-    answer: "Organizations can partner through resource sharing, joint programs, sponsorships, or by providing expertise and mentorship to our entrepreneurs."
-  }];
-  return <div>
+  const faqs = [
+    {
+      question: "How are donations used?",
+      answer: "Your donations directly support entrepreneur training programs, mentorship initiatives, and resource development in Central Asian communities.",
+    },
+    {
+      question: "What skills do I need to volunteer?",
+      answer: "We welcome volunteers with various skills, particularly in business mentorship, financial literacy, marketing, and general business operations.",
+    },
+    {
+      question: "How can organizations partner with us?",
+      answer: "Organizations can partner through resource sharing, joint programs, sponsorships, or by providing expertise and mentorship to our entrepreneurs.",
+    },
+  ];
+
+  return (
+    <div>
       <GetInvolvedHeroHeader />
       <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-12">
         <section className="text-center space-y-4">
@@ -113,7 +126,8 @@ const GetInvolved = () => {
               Make a Donation
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
-              {donationTiers.map(tier => <Card key={tier.amount} className="p-6 space-y-4 hover:shadow-lg transition-shadow border-sage-200">
+              {donationTiers.map((tier) => (
+                <Card key={tier.amount} className="p-6 space-y-4 hover:shadow-lg transition-shadow border-sage-200">
                   <div className="flex items-center gap-3">
                     {tier.icon}
                     <h3 className="text-xl font-semibold">${tier.amount}</h3>
@@ -122,8 +136,12 @@ const GetInvolved = () => {
                   <div className="text-sm text-terracotta-400 italic">
                     Impact: {tier.impact}
                   </div>
-                  <DonateButton variant="outline" className="w-full border-terracotta-400 text-terracotta-400 hover:bg-terracotta-50" />
-                </Card>)}
+                  <DonateButton 
+                    variant="outline"
+                    className="w-full border-terracotta-400 text-terracotta-400 hover:bg-terracotta-50"
+                  />
+                </Card>
+              ))}
             </div>
           </div>
 
@@ -139,7 +157,7 @@ const GetInvolved = () => {
                   <li className="flex items-center gap-2 opacity-50 cursor-not-allowed">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Mentor aspiring entrepreneurs
-                    
+                    <span className="ml-2 text-xs text-gray-500 italic">(Coming Soon)</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
@@ -155,19 +173,21 @@ const GetInvolved = () => {
                   </li>
                 </ul>
               </div>
-              {/* REMOVED: "Apply as Volunteer" Button and related popup */}
-              {/* <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
+              <div className="flex flex-col justify-center items-center space-y-4 bg-white p-6 rounded-lg">
                 <p className="text-center text-sage-500">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <Button onClick={handleVolunteerClick} className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm">
+                <Button 
+                  disabled
+                  className="bg-sage-500 hover:bg-sage-400 w-full max-w-sm"
+                >
                   Apply as Volunteer
                 </Button>
-              </div> */}
+              </div>
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
               <Network className="text-sage-500" />
               Partner With Us
@@ -193,7 +213,11 @@ const GetInvolved = () => {
                     Sponsorship opportunities
                   </li>
                 </ul>
-                <Button onClick={handlePartnerClick} variant="outline" className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4">
+                <Button 
+                  onClick={handlePartnerClick}
+                  variant="outline"
+                  className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
+                >
                   Become a Partner
                 </Button>
               </Card>
@@ -239,34 +263,18 @@ const GetInvolved = () => {
 
         <section className="py-12">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Success Stories</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-6">
-              <blockquote className="space-y-4">
-                <p className="text-sage-600 italic">
-                  "Being a mentor has been incredibly rewarding. Seeing entrepreneurs grow and succeed makes every hour worth it."
-                </p>
-                <footer className="text-sage-500">
-                  - Sarah Chen, Business Mentor since 2022
-                </footer>
-              </blockquote>
-            </Card>
-            <Card className="p-6">
-              <blockquote className="space-y-4">
-                <p className="text-sage-600 italic">
-                  "Our partnership has enabled us to reach more communities and create lasting impact in Central Asia."
-                </p>
-                <footer className="text-sage-500">
-                  - Tech Solutions Co., Partner Organization
-                </footer>
-              </blockquote>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} />
+            ))}
           </div>
         </section>
 
         <section className="py-12 bg-white rounded-lg shadow-sm">
           <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {upcomingEvents.map((event, index) => <Card key={index} className="p-6">
+            {upcomingEvents.map((event, index) => (
+              <Card key={index} className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="h-5 w-5 text-sage-500" />
                   <span className="text-sage-600">{event.date}</span>
@@ -276,7 +284,8 @@ const GetInvolved = () => {
                 <Button variant="outline" className="w-full">
                   Register Now
                 </Button>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </section>
 
@@ -286,10 +295,12 @@ const GetInvolved = () => {
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible>
-              {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`}>
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>)}
+                </AccordionItem>
+              ))}
             </Accordion>
             <div className="text-center mt-8">
               <h3 className="text-lg font-semibold mb-4">Still Have Questions?</h3>
@@ -310,22 +321,14 @@ const GetInvolved = () => {
           <p className="text-lg text-sage-600 mb-8 max-w-2xl mx-auto">
             Join us in creating lasting change in Central Asian communities through entrepreneurship support.
           </p>
-          <DonateButton size="lg" className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]" />
+          <DonateButton 
+            size="lg"
+            className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
+          />
         </section>
-        
-        {/* REMOVED: Volunteer Application Dialog */}
-        {/* <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
-          <DialogContent className="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle className="text-sage-500 text-xl">Volunteer Application</DialogTitle>
-              <DialogDescription>
-                Fill out the form below to join our volunteer network. We'll get back to you within 48 hours.
-              </DialogDescription>
-            </DialogHeader>
-            <VolunteerForm onSubmit={handleVolunteerSubmit} />
-          </DialogContent>
-        </Dialog> */}
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default GetInvolved;
