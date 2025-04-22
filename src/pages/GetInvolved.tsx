@@ -231,7 +231,7 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent
-                    className="!p-0 w-full flex flex-col overflow-hidden items-center"
+                    className="!p-0 w-full flex flex-col overflow-auto items-center"
                     style={{
                       maxWidth: "94vw",
                       width: "420px",
@@ -240,15 +240,20 @@ const GetInvolved = () => {
                     }}
                   >
                     <div
-                      className="relative flex-1 flex flex-col items-stretch bg-white w-full"
-                      style={{ minHeight: 300, maxHeight: "88vh", overflow: "auto", padding: "8px 0" }}
+                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-scroll"
+                      style={{ 
+                        minHeight: 300, 
+                        maxHeight: "88vh", 
+                        padding: "8px 0",
+                        overscrollBehavior: "contain"
+                      }}
                     >
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
                         title="Volunteer Application Form"
                         style={{
                           width: "100%",
-                          height: "70vh",
+                          height: "100%",
                           minHeight: 320,
                           maxHeight: "80vh",
                           border: "none",
@@ -256,9 +261,10 @@ const GetInvolved = () => {
                           background: "white",
                           display: "block",
                           margin: "0 auto",
+                          overflowY: "scroll"
                         }}
                         frameBorder="0"
-                        scrolling="auto"
+                        scrolling="yes"
                         allow="clipboard-write"
                       />
                     </div>
@@ -312,14 +318,19 @@ const GetInvolved = () => {
                     }}
                   >
                     <div
-                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-auto"
-                      style={{ minHeight: 300, maxHeight: "88vh", padding: "8px 0" }}
+                      className="relative flex-1 flex flex-col items-stretch bg-white w-full overflow-y-scroll"
+                      style={{ 
+                        minHeight: 300, 
+                        maxHeight: "88vh", 
+                        padding: "8px 0",
+                        overscrollBehavior: "contain"
+                      }}
                     >
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
                         style={{
                           width: "100%",
-                          height: "70vh",
+                          height: "100%",
                           minHeight: 320,
                           maxHeight: "80vh",
                           border: "none",
@@ -327,6 +338,7 @@ const GetInvolved = () => {
                           background: "white",
                           display: "block",
                           margin: "0 auto",
+                          overflowY: "scroll"
                         }}
                         id="inline-RrXeqfzdcMvMmpel5vRG"
                         data-layout='{"id":"INLINE"}'
@@ -343,7 +355,7 @@ const GetInvolved = () => {
                         title="Partner With Us"
                         allow="clipboard-write"
                         frameBorder="0"
-                        scrolling="auto"
+                        scrolling="yes"
                       />
                     </div>
                   </DialogContent>
