@@ -46,6 +46,11 @@ const testimonials = [
     quote: "Businesses Beyond Borders provided the crucial support I needed to transform my online shop from a small side project into a thriving e-commerce platform. Their mentorship helped me develop a robust digital strategy and expand my customer base.",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
   },
+  {
+    name: "Stephanie",
+    quote: "Businesses Beyond Borders helped me create a strong business plan for my guest house—turning my idea into a real, sustainable business.",
+    image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167",
+  },
 ];
 
 const caseStudies = [
