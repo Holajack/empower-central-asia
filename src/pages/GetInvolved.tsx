@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -355,7 +356,7 @@ const GetInvolved = () => {
                         title="Partner With Us"
                         allow="clipboard-write"
                         frameBorder="0"
-                        scrolling="always"
+                        scrolling="auto"
                       />
                     </div>
                   </DialogContent>
