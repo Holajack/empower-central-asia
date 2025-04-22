@@ -355,7 +355,7 @@ const GetInvolved = () => {
                         title="Partner With Us"
                         allow="clipboard-write"
                         frameBorder="0"
-                        scrolling="yes"
+                        scrolling="always"
                       />
                     </div>
                   </DialogContent>
