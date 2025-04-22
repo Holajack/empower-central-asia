@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HandHelping, Users, Network, Share, DollarSign, Calendar, HelpCircle } from "lucide-react";
@@ -46,6 +46,21 @@ const GetInvolvedHeroHeader = () => (
 const GetInvolved = () => {
   const { toast } = useToast();
   const [showVolunteerForm, setShowVolunteerForm] = useState(false);
+  const [showPartnerForm, setShowPartnerForm] = useState(false);
+
+  // Inject the partner form embed script when dialog is open
+  useEffect(() => {
+    if (showPartnerForm) {
+      const existingScript = document.getElementById("partner-embed-script");
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://link.msgsndr.com/js/form_embed.js";
+        script.async = true;
+        script.id = "partner-embed-script";
+        document.body.appendChild(script);
+      }
+    }
+  }, [showPartnerForm]);
 
   const donationTiers = [
     {
@@ -69,10 +84,7 @@ const GetInvolved = () => {
   ];
 
   const handlePartnerClick = () => {
-    toast({
-      title: "Partnership Inquiry",
-      description: "Thank you for your interest in partnering with us. Our team will reach out shortly.",
-    });
+    setShowPartnerForm(true);
   };
 
   const upcomingEvents = [
@@ -242,6 +254,40 @@ const GetInvolved = () => {
                 >
                   Become a Partner
                 </Button>
+                {/* Partner Dialog */}
+                <Dialog open={showPartnerForm} onOpenChange={setShowPartnerForm}>
+                  <DialogContent
+                    className="!p-0 w-full max-w-3xl min-h-[70vh] md:min-h-[80vh] flex flex-col overflow-hidden"
+                    style={{ maxWidth: "900px", width: "100vw" }}
+                  >
+                    <div className="relative flex-1 flex flex-col items-stretch bg-white !p-0">
+                      <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/RrXeqfzdcMvMmpel5vRG"
+                        style={{
+                          width: "100%",
+                          height: "80vh",
+                          border: "none",
+                          borderRadius: 8,
+                          background: "white",
+                        }}
+                        id="inline-RrXeqfzdcMvMmpel5vRG"
+                        data-layout='{"id":"INLINE"}'
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Partner With Us"
+                        data-height="883"
+                        data-layout-iframe-id="inline-RrXeqfzdcMvMmpel5vRG"
+                        data-form-id="RrXeqfzdcMvMmpel5vRG"
+                        title="Partner With Us"
+                        allow="clipboard-write"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </Card>
               <Card className="p-6 space-y-4 bg-sage-50">
                 <h4 className="font-semibold text-lg">Why Partner With Us?</h4>
