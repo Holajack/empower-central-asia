@@ -171,30 +171,32 @@ const About = () => {
           <h2 className="text-3xl font-semibold text-sage-500 mb-8 text-center">
             Our Team
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="w-full mx-auto flex flex-wrap justify-center gap-8">
             {teamMembers.map((member, index) => (
-              <Card
+              <div
                 key={index}
-                className="border-sage-200 hover:border-sage-300 transition-colors"
+                className="flex-[1_1_300px] max-w-xs min-w-[250px] flex justify-center"
               >
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <Avatar className="w-24 h-24 mb-4">
-                    <AvatarImage
-                      src={member.image}
-                      alt={member.name}
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-sage-200 text-sage-700">
-                      {member.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-semibold text-sage-500 mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-sage-400 mb-3">{member.role}</p>
-                  <p className="text-gray-600 leading-relaxed">{member.bio}</p>
-                </CardContent>
-              </Card>
+                <Card className="w-full border-sage-200 hover:border-sage-300 transition-colors flex flex-col items-center">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <Avatar className="w-24 h-24 mb-4">
+                      <AvatarImage
+                        src={member.image}
+                        alt={member.name}
+                        className="object-cover"
+                      />
+                      <AvatarFallback className="bg-sage-200 text-sage-700">
+                        {member.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-semibold text-sage-500 mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-sage-400 mb-3">{member.role}</p>
+                    <p className="text-gray-600 leading-relaxed">{member.bio}</p>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </section>
