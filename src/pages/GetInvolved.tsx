@@ -106,26 +106,40 @@ const GetInvolved = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-28">
-      {/* Hero Section */}
-      <section className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-sand-500">Be Part of the Change</h1>
-        <p className="text-lg text-sage-500 max-w-2xl mx-auto">
-          Explore how you can support and empower entrepreneurs in Central Asia.
-        </p>
-        <DonateButton 
-          className="bg-terracotta-400 hover:bg-terracotta-500 mt-6"
-          size="lg"
-        />
-      </section>
+    <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in">
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-28">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
 
-      {/* Ways to Get Involved Section */}
+        <div className="absolute inset-0 z-10 container mx-auto px-4 text-center text-white pt-28">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms]">
+            Be Part of the Change
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
+            Explore how you can support and empower entrepreneurs in Central Asia.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
+            <DonateButton 
+              size="lg"
+              className="bg-terracotta-500 hover:bg-terracotta-400 text-white min-w-[200px]"
+            />
+          </div>
+        </div>
+      </div>
+
       <section className="space-y-12 mt-16">
         <h2 className="text-3xl font-bold text-center text-sand-500 mb-8">
           Ways to Get Involved
         </h2>
 
-        {/* Donation Section */}
         <div className="space-y-8">
           <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
             <DollarSign className="text-terracotta-400" />
@@ -151,7 +165,6 @@ const GetInvolved = () => {
           </div>
         </div>
 
-        {/* Volunteer Section */}
         <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
           <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
             <HandHelping className="text-sage-500" />
@@ -193,7 +206,6 @@ const GetInvolved = () => {
           </div>
         </div>
 
-        {/* Partner Section */}
         <div className="space-y-8">
           <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
             <Network className="text-sage-500" />
@@ -239,7 +251,6 @@ const GetInvolved = () => {
           </div>
         </div>
 
-        {/* Advocate Section */}
         <div className="space-y-8 bg-sand-50 p-8 rounded-lg">
           <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
             <Share className="text-sand-500" />
@@ -265,7 +276,6 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* Impact Stats */}
       <section className="py-12 bg-sage-50 rounded-lg">
         <h2 className="text-3xl font-bold text-center mb-8 text-sage-500">Our Impact</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
@@ -278,7 +288,6 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* Volunteer/Partner Spotlights */}
       <section className="py-12">
         <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Success Stories</h2>
         <div className="grid md:grid-cols-2 gap-8">
@@ -305,7 +314,6 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* Upcoming Events */}
       <section className="py-12 bg-white rounded-lg shadow-sm">
         <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">Upcoming Events</h2>
         <div className="grid md:grid-cols-3 gap-6">
@@ -325,7 +333,6 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="py-12">
         <h2 className="text-3xl font-bold text-center mb-8 text-sand-500">
           Frequently Asked Questions
@@ -351,7 +358,6 @@ const GetInvolved = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
       <section className="py-16 bg-terracotta-50 rounded-lg text-center">
         <h2 className="text-4xl font-bold mb-6 text-terracotta-500">
           Ready to Empower Entrepreneurs Today?
@@ -365,7 +371,6 @@ const GetInvolved = () => {
         />
       </section>
 
-      {/* Volunteer Application Dialog */}
       <Dialog open={volunteerDialogOpen} onOpenChange={setVolunteerDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
