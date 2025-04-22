@@ -33,6 +33,6 @@ export const testimonials: Testimonial[] = [
   {
     name: "Stephanie",
     quote: "Businesses Beyond Borders helped me create a strong business plan for my guest house—which will help me build my business step-by-step.",
-    image: "/lovable-uploads/YOUR_STEPHANIE_IMAGE_FILENAME.png", // REPLACE with actual filename
+    image: "/lovable-uploads/4ace87e0-dafe-4ed6-8fe9-26b1206c0725.png",
   },
 ];
