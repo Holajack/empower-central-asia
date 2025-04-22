@@ -108,23 +108,15 @@ const GetInvolved = () => {
   return (
     <div className="container mx-auto px-4 py-8 space-y-12 animate-fade-in pt-28">
       {/* Hero Section */}
-      <section 
-        className="relative h-[60vh] flex items-center justify-center"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
-            Be Part of the Change
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-            Explore how you can support and empower entrepreneurs in Central Asia.
-          </p>
-        </div>
+      <section className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-sand-500">Be Part of the Change</h1>
+        <p className="text-lg text-sage-500 max-w-2xl mx-auto">
+          Explore how you can support and empower entrepreneurs in Central Asia.
+        </p>
+        <DonateButton 
+          className="bg-terracotta-400 hover:bg-terracotta-500 mt-6"
+          size="lg"
+        />
       </section>
 
       {/* Ways to Get Involved Section */}
