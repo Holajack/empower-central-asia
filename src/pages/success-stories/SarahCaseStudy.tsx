@@ -29,10 +29,16 @@ const SarahCaseStudy = () => (
             <div className="text-gray-600">{DATA.impact}</div>
           </div>
           <p className="text-gray-600">
-            When Sarah began her business journey, she operated a humble produce stall at the local bazaar. With mentorship and training, she learned to analyze market trends, build strong customer relationships, and streamline her supply chain.
+            Sarah Chen grew up in a small agricultural town, working after school at her family's modest produce stall in the local bazaar. The stall was little more than a table and a few crates of vegetables, but even as a child, Sarah dreamed of more—of helping her family thrive, not just survive. She watched her parents struggle season after season, facing unpredictable weather, rising costs, and fierce competition. Yet, Sarah always sensed that with the right skills and support, they could turn their humble beginnings into something far greater.
           </p>
           <p className="text-gray-600 mt-2">
-            Step by step, Sarah expanded her product range, hired team members from her community, and adopted sustainable business practices. Today, her company is a leader in local produce, creating jobs and inspiring other women to pursue entrepreneurship.
+            Determined to find a better path, Sarah looked for new opportunities. Her journey changed course when she discovered the Businesses Beyond Borders mentorship program. Through tailored workshops and hands-on learning, she developed skills in market analysis, financial management, and digital marketing. Sarah learned to track seasonal trends and buyer behavior, which helped her adjust the stall's offerings to better match customer needs. She also found guidance from experienced women entrepreneurs who encouraged Sarah to visualize bigger possibilities for her business.
+          </p>
+          <p className="text-gray-600 mt-2">
+            Applying what she learned, Sarah gradually expanded the market stall into a thriving business. She began offering not just raw produce, but value-added products such as jams, pickles, and fresh salads, using traditional recipes with a modern twist. With a new eye for branding, Sarah introduced eco-friendly packaging and promoted her products on social media, attracting a new wave of customers from neighboring regions. As demand grew, she hired women from her community, providing them with stable incomes and opportunities they never had before.
+          </p>
+          <p className="text-gray-600 mt-2">
+            Today, Sarah's company is recognized as a model of sustainable business in her area. She champions environmentally conscious practices, like composting waste and supporting local growers, and regularly mentors other aspiring entrepreneurs. Beyond just financial success, Sarah is proud to have created over 50 jobs in her hometown, positively impacting countless families. Her story is a testament to what can happen when determination meets the right support network—a journey from market stall to market leader, inspiring a new generation to dream bigger and build stronger communities.
           </p>
         </div>
       </div>
@@ -41,3 +47,4 @@ const SarahCaseStudy = () => (
 );
 
 export default SarahCaseStudy;
+
