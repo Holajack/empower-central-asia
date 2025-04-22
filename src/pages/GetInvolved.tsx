@@ -257,7 +257,8 @@ const GetInvolved = () => {
                         background: "white",
                         margin: "0",
                         display: 'block',
-                        overflow: "scroll"
+                        overflowY: "scroll",
+                        overflowX: "hidden"
                       }}
                       frameBorder="0"
                       scrolling="auto"
@@ -329,7 +330,8 @@ const GetInvolved = () => {
                         background: "white",
                         margin: "0",
                         display: 'block',
-                        overflow: "scroll"
+                        overflowY: "scroll",
+                        overflowX: "hidden"
                       }}
                       id="inline-RrXeqfzdcMvMmpel5vRG"
                       data-layout='{"id":"INLINE"}'
