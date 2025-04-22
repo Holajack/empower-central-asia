@@ -4,6 +4,27 @@ import TestimonialCarousel from "@/components/success-stories/TestimonialCarouse
 import CaseStudiesSection from "@/components/success-stories/CaseStudiesSection";
 import CtaSection from "@/components/success-stories/CtaSection";
 
+const SuccessStoriesHeroHeader = () => (
+  <div 
+    className="relative h-[60vh] flex items-center justify-center"
+    style={{
+      backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <div className="absolute inset-0 bg-black/40" />
+    <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
+        Success Stories
+      </h1>
+      <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
+        Discover how Businesses Beyond Borders has helped entrepreneurs transform their dreams into reality.
+      </p>
+    </div>
+  </div>
+);
+
 const testimonials = [
   {
     name: "Sarah Chen",
@@ -69,6 +90,7 @@ const SuccessStories = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SuccessStoriesHeroHeader />
       <div ref={heroRef}>
         <HeroSection inView={heroInView} />
       </div>

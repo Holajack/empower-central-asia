@@ -1,8 +1,31 @@
+
 import { Helmet } from "react-helmet";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 import SocialLinks from "@/components/contact/SocialLinks";
 import LocationMap from "@/components/contact/LocationMap";
+
+// Add: About-style hero header
+const ContactHeroHeader = () => (
+  <div 
+    className="relative h-[60vh] flex items-center justify-center"
+    style={{
+      backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <div className="absolute inset-0 bg-black/40" />
+    <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
+        Contact Us
+      </h1>
+      <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
+        Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+      </p>
+    </div>
+  </div>
+);
 
 const Contact = () => {
   return (
@@ -21,16 +44,13 @@ const Contact = () => {
         <meta property="og:description" content="Reach out to discuss entrepreneurship programs, volunteering, or partnerships in Central Asia." />
       </Helmet>
 
-      <div className="min-h-screen pt-20 pb-16" role="main">
+      {/* About-style Hero Header */}
+      <ContactHeroHeader />
+
+      <div className="min-h-screen pt-0 pb-16" role="main">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h1 className="text-4xl font-bold text-gray-900">Contact Us</h1>
-              <p className="text-lg text-gray-600">
-                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-              </p>
-            </div>
-
+            {/* Remove duplicate Contact Us title/desc section */}
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h2 className="sr-only">Contact Form</h2>
