@@ -17,6 +17,7 @@ import { testimonials } from "@/data/testimonials";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -185,16 +186,18 @@ const GetInvolved = () => {
                 </Button>
                 <Dialog open={showVolunteerForm} onOpenChange={setShowVolunteerForm}>
                   <DialogContent 
-                    className="w-full max-w-2xl sm:min-h-[480px] min-h-[320px] p-0 overflow-hidden flex flex-col"
-                    style={{ position: "relative" }}
+                    className="w-full max-w-2xl sm:max-h-[90vh] sm:min-h-[480px] min-h-[320px] p-0 overflow-hidden flex flex-col"
                   >
                     <DialogHeader className="p-6 pb-2">
                       <DialogTitle>Volunteer Application Form</DialogTitle>
+                      <DialogDescription className="text-muted-foreground">
+                        Fill out the form below to join our volunteer program
+                      </DialogDescription>
                     </DialogHeader>
-                    <div className="relative w-full flex-1 flex items-center justify-center min-h-[320px] sm:min-h-[500px] sm:h-[60vh] bg-white rounded-b-lg overflow-hidden p-0">
+                    <div className="relative w-full flex-1 flex items-center justify-center min-h-[320px] bg-white rounded-b-lg overflow-hidden p-0">
                       <iframe
                         src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
-                        style={{ width: "100%", height: "100%", minHeight: 320, border: "none", borderRadius: "0 0 8px 8px" }}
+                        style={{ width: "100%", height: "100%", minHeight: "320px", border: "none", borderRadius: "0 0 8px 8px" }}
                         id="inline-Eik96ptPRWcPm5P2Am2w"
                         data-layout="{'id':'INLINE'}"
                         data-trigger-type="alwaysShow"
@@ -207,11 +210,10 @@ const GetInvolved = () => {
                         data-height="934"
                         data-layout-iframe-id="inline-Eik96ptPRWcPm5P2Am2w"
                         data-form-id="Eik96ptPRWcPm5P2Am2w"
-                        title="Form 1"
+                        title="Volunteer Application Form"
                         allow="clipboard-write"
                       ></iframe>
                     </div>
-                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
                   </DialogContent>
                 </Dialog>
               </div>
