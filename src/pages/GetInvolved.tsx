@@ -173,9 +173,10 @@ const GetInvolved = () => {
               <div className="space-y-4">
                 <h4 className="font-semibold text-lg">Share Your Expertise</h4>
                 <ul className="space-y-2 text-sage-500">
-                  <li className="flex items-center gap-2">
+                  <li className="flex items-center gap-2 opacity-50 cursor-not-allowed">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Mentor aspiring entrepreneurs
+                    <span className="ml-2 text-xs text-gray-500 italic">(Coming Soon)</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
