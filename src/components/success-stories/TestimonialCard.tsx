@@ -10,20 +10,11 @@ interface TestimonialCardProps {
 const TestimonialCard = ({ testimonial }: TestimonialCardProps) => (
   <Card className="mx-4">
     <CardHeader>
-      <div className="flex items-start space-x-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden">
-          <img
-            src={testimonial.image}
-            alt={testimonial.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div>
-          <CardTitle>{testimonial.name}</CardTitle>
-          {testimonial.business && (
-            <CardDescription>{testimonial.business}</CardDescription>
-          )}
-        </div>
+      <div>
+        <CardTitle>{testimonial.name}</CardTitle>
+        {testimonial.business && (
+          <CardDescription>{testimonial.business}</CardDescription>
+        )}
       </div>
     </CardHeader>
     <CardContent>
