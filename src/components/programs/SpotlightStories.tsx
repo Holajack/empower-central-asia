@@ -1,23 +1,15 @@
+
 import { Quote } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useInView } from "react-intersection-observer";
+import { testimonials } from "@/data/testimonials";
 
-const testimonials = [
-  {
-    quote: "BBB's mentorship program transformed my small tech startup into a thriving business serving our local community.",
-    author: "Sarah Chen",
-    role: "Founder, Tech Solutions Co.",
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-  },
-  {
-    quote: "The financial literacy workshops gave me the confidence to expand my sustainable grocery store to three locations.",
-    author: "Marcus Johnson",
-    role: "Owner, Green Earth Markets",
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
-  },
-];
+const spotlightNames = ["Nicole", "Kyle"];
+const spotlightTestimonials = testimonials.filter(t =>
+  spotlightNames.includes(t.name)
+);
 
 const SpotlightStories = () => {
   const { ref, inView } = useInView({
@@ -45,7 +37,7 @@ const SpotlightStories = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-            {testimonials.map((testimonial, index) => (
+            {spotlightTestimonials.map((testimonial, index) => (
               <Card
                 key={index}
                 className="overflow-hidden border-sage-200 hover:shadow-lg transition-all duration-300"
@@ -55,15 +47,17 @@ const SpotlightStories = () => {
                     <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                       <img
                         src={testimonial.image}
-                        alt={testimonial.author}
+                        alt={testimonial.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
                       <h3 className="font-semibold text-sage-500">
-                        {testimonial.author}
+                        {testimonial.name}
                       </h3>
-                      <p className="text-sm text-gray-600">{testimonial.role}</p>
+                      {testimonial.business && (
+                        <p className="text-sm text-gray-600">{testimonial.business}</p>
+                      )}
                     </div>
                   </div>
                   <div className="flex gap-4">
