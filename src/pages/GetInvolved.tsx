@@ -163,11 +163,11 @@ const GetInvolved = () => {
                 <p className="text-center text-sage-500 mb-2">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
-                <Button
-                  className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white"
-                >
-                  Apply as Volunteer
-                </Button>
+                <Link to="/volunteer-application" className="w-full max-w-xs">
+                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
+                    Apply as Volunteer
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

@@ -16,6 +16,7 @@ import LeadershipDevelopment from "@/pages/programs/LeadershipDevelopment";
 import CommunityCollaboration from "@/pages/programs/CommunityCollaboration";
 import SarahCaseStudy from "@/pages/success-stories/SarahCaseStudy";
 import MarcusCaseStudy from "@/pages/success-stories/MarcusCaseStudy";
+import VolunteerApplication from "@/pages/VolunteerApplication";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/programs/business-creation" element={<BusinessCreation />} />
           <Route path="/programs/leadership-development" element={<LeadershipDevelopment />} />
           <Route path="/programs/community-collaboration" element={<CommunityCollaboration />} />
+          <Route path="/volunteer-application" element={<VolunteerApplication />} />
         </Routes>
       </main>
       <Footer />
