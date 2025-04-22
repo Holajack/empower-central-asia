@@ -47,6 +47,7 @@ const GetInvolved = () => {
   const { toast } = useToast();
   const [showPartnerForm, setShowPartnerForm] = useState(false);
   const [partnerIframeHeight, setPartnerIframeHeight] = useState(700);
+  const [showVolunteerPopup, setShowVolunteerPopup] = useState(false);
 
   useEffect(() => {
     if (showPartnerForm) {
@@ -150,10 +151,13 @@ const GetInvolved = () => {
   ];
 
   const handleVolunteerClick = () => {
-    const popup = document.getElementById("popup-Eik96ptPRWcPm5P2Am2w");
-    if (popup) {
-      popup.setAttribute("data-state", "opened");
-    }
+    setShowVolunteerPopup(true);
+    setTimeout(() => {
+      const popup = document.getElementById("popup-Eik96ptPRWcPm5P2Am2w");
+      if (popup) {
+        popup.setAttribute("data-state", "opened");
+      }
+    }, 100);
   };
 
   return (
@@ -236,11 +240,19 @@ const GetInvolved = () => {
                 <iframe
                   src="https://api.leadconnectorhq.com/widget/form/Eik96ptPRWcPm5P2Am2w"
                   style={{
-                    display: "none",
+                    display: showVolunteerPopup ? "block" : "none",
                     width: "100%",
                     height: "100%",
                     border: "none",
                     borderRadius: "3px",
+                    zIndex: 9999,
+                    position: showVolunteerPopup ? "fixed" : undefined,
+                    left: showVolunteerPopup ? 0 : undefined,
+                    top: showVolunteerPopup ? 0 : undefined,
+                    right: showVolunteerPopup ? 0 : undefined,
+                    bottom: showVolunteerPopup ? 0 : undefined,
+                    background: "rgba(0,0,0,0.25)",
+                    // matches popup overlay feel if needed, otherwise visible as block
                   }}
                   id="popup-Eik96ptPRWcPm5P2Am2w"
                   data-layout="{'id':'POPUP'}"
