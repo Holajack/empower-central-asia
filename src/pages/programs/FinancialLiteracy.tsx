@@ -177,7 +177,7 @@ const FinancialLiteracy = () => {
             <section className="bg-sage-50 p-6 rounded-lg">
               <h2 className="text-2xl font-bold text-sage-600 mb-4">Participant Snapshot</h2>
               <blockquote className="border-l-4 border-sage-300 pl-4 italic text-gray-700">
-                "Before the course, money controlled me. Now I have a budget, paid off two loans, and showed my neighbors how to do the same."
+                "Before the course, money terrified me as a single mom. Now I follow a budget, beat my debt, and show other moms how to build secure futures."
                 <footer className="mt-2 text-sage-500 not-italic">— A. Tursunov, 2024 Graduate</footer>
               </blockquote>
             </section>
