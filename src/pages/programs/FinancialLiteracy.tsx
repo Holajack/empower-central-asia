@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check, FileText, CircleDollarSign, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -178,7 +177,7 @@ const FinancialLiteracy = () => {
               <h2 className="text-2xl font-bold text-sage-600 mb-4">Participant Snapshot</h2>
               <blockquote className="border-l-4 border-sage-300 pl-4 italic text-gray-700">
                 "Before the course, money terrified me as a single mom. Now I follow a budget, beat my debt, and show other moms how to build secure futures."
-                <footer className="mt-2 text-sage-500 not-italic">— A. Tursunov, 2024 Graduate</footer>
+                <footer className="mt-2 text-sage-500 not-italic">— Ana, 2023 Graduate</footer>
               </blockquote>
             </section>
 
