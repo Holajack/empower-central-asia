@@ -1,9 +1,10 @@
 
-import { ArrowRight, DollarSign, PiggyBank, TrendingUp, BarChart3 } from "lucide-react";
+import { ArrowRight, Check, FileText, CircleDollarSign, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import UpcomingEvents from "@/components/programs/UpcomingEvents";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FinancialLiteracy = () => {
   return (
@@ -23,7 +24,7 @@ const FinancialLiteracy = () => {
             Financial Literacy Development
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-            Essential financial education covering budgeting, savings, and investment principles
+            Delivered with the Three-Thirds Learning Cycle: Review → Discover → Plan for lasting change
           </p>
         </div>
       </div>
@@ -37,113 +38,156 @@ const FinancialLiteracy = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-sage-600 mb-6">About the Program</h2>
               <div className="prose max-w-none text-gray-700">
                 <p className="mb-4">
-                  Our Financial Literacy Development program is designed to equip individuals with essential knowledge and skills to make informed financial decisions. In today's complex economic landscape, understanding how to manage personal finances effectively is critical for long-term success and stability.
+                  Sustainable money habits come from consistent reflection, actionable knowledge, and immediate practice.
+                  Over 6 weeks you'll work through a condensed, field-tested curriculum—adapted from Building Your Finances God's Way for a broad audience—using the Three-Thirds Learning Cycle each session:
                 </p>
+                
+                <div className="overflow-x-auto my-6">
+                  <table className="min-w-full border-collapse border border-sage-200">
+                    <thead>
+                      <tr className="bg-sage-50">
+                        <th className="border border-sage-200 px-4 py-2 text-sage-700">Learning Segment</th>
+                        <th className="border border-sage-200 px-4 py-2 text-sage-700">What Happens</th>
+                        <th className="border border-sage-200 px-4 py-2 text-sage-700">Benefit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-sage-200 px-4 py-2 font-medium">Review</td>
+                        <td className="border border-sage-200 px-4 py-2">Celebrate last week's wins, troubleshoot challenges, measure progress</td>
+                        <td className="border border-sage-200 px-4 py-2">Accountability keeps momentum high</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-sage-200 px-4 py-2 font-medium">Discover</td>
+                        <td className="border border-sage-200 px-4 py-2">30-minute interactive lesson + real-life story or demo</td>
+                        <td className="border border-sage-200 px-4 py-2">Delivers bite-sized concepts you can remember</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-sage-200 px-4 py-2 font-medium">Plan & Practice</td>
+                        <td className="border border-sage-200 px-4 py-2">Hands-on lab and SMART goal-setting</td>
+                        <td className="border border-sage-200 px-4 py-2">Turns knowledge into repeatable skills you can share with others</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <p className="mb-4">
-                  Financial literacy is more than just knowing how to balance a checkbook or save for retirement—it's about developing a comprehensive understanding of how money works in the world. Our program takes a holistic approach, combining theoretical knowledge with practical application to ensure participants can immediately apply what they learn to their daily lives.
-                </p>
-                <p className="mb-4">
-                  We believe that financial education should be accessible to everyone, regardless of their background or current financial situation. That's why our curriculum is designed to be approachable for beginners while still offering valuable insights for those with more financial experience.
+                  Participants invest 4 hrs/week (two 90-min workshops + personal assignments). Materials work in low-tech settings—paper worksheets, group discussion, and phone follow-ups—so the course functions equally well in urban centers or rural villages.
                 </p>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold text-sage-600 mb-6">Key Focus Areas</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card className="border-sage-200">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-sage-100 rounded-lg">
-                        <PiggyBank className="h-5 w-5 text-sage-500" />
-                      </div>
-                      <CardTitle className="text-xl text-sage-500">Budgeting & Saving</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">
-                      Learn practical techniques for creating effective budgets, tracking expenses, and establishing healthy saving habits that grow your financial security over time.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-sage-200">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-sage-100 rounded-lg">
-                        <DollarSign className="h-5 w-5 text-sage-500" />
-                      </div>
-                      <CardTitle className="text-xl text-sage-500">Debt Management</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">
-                      Develop strategies for efficiently managing and reducing debt, understanding interest rates, and making informed decisions about loans and credit.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-sage-200">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-sage-100 rounded-lg">
-                        <TrendingUp className="h-5 w-5 text-sage-500" />
-                      </div>
-                      <CardTitle className="text-xl text-sage-500">Investment Basics</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">
-                      Explore fundamental investment concepts, diversification strategies, and how to build wealth through various investment vehicles appropriate for different life stages.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-sage-200">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-sage-100 rounded-lg">
-                        <BarChart3 className="h-5 w-5 text-sage-500" />
-                      </div>
-                      <CardTitle className="text-xl text-sage-500">Financial Planning</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">
-                      Create comprehensive financial plans that address short and long-term goals, from emergency funds to retirement planning and estate considerations.
-                    </p>
-                  </CardContent>
-                </Card>
+              <h2 className="text-2xl md:text-3xl font-bold text-sage-600 mb-6">Core Focus Areas (6-Module Track)</h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full border-collapse border border-sage-200">
+                  <thead>
+                    <tr className="bg-sage-50">
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">Module</th>
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">Session Principle</th>
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">Practical Outcomes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">1 · Money Mind-set & Tracking</td>
+                      <td className="border border-sage-200 px-4 py-2">Money is a resource to manage, not just spend</td>
+                      <td className="border border-sage-200 px-4 py-2">• Heart-attitude check<br />• Net-worth snapshot</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">2 · Spending Plan (Budget)</td>
+                      <td className="border border-sage-200 px-4 py-2">A clear plan directs every unit of currency on purpose</td>
+                      <td className="border border-sage-200 px-4 py-2">• Zero-based "Every Dollar Counts" budget<br />• Envelope / cash-jar system</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">3 · Debt Freedom</td>
+                      <td className="border border-sage-200 px-4 py-2">Reducing debt increases options and peace of mind</td>
+                      <td className="border border-sage-200 px-4 py-2">• Complete debt list & interest tally<br />• Chosen payoff strategy (snowball / avalanche)</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">4 · Margin & Contentment</td>
+                      <td className="border border-sage-200 px-4 py-2">Emergency savings and contentment reduce financial stress</td>
+                      <td className="border border-sage-200 px-4 py-2">• Savings target set<br />• Needs-vs-wants audit</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">5 · Income Growth & Generosity</td>
+                      <td className="border border-sage-200 px-4 py-2">Skill growth expands earning capacity; sharing builds community resilience</td>
+                      <td className="border border-sage-200 px-4 py-2">• Side-income brainstorm<br />• Personal giving policy & group project</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">6 · Capstone: Teach It Forward</td>
+                      <td className="border border-sage-200 px-4 py-2">Teaching others reinforces and multiplies learning</td>
+                      <td className="border border-sage-200 px-4 py-2">• Prepare & deliver a 15-min money lesson to family or friends</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+              <p className="mt-4 text-sm text-gray-600 italic">
+                Note: We focus on budgeting, saving, and debt reduction—topics that apply universally—rather than formal investment products that may be unavailable in some regions.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold text-sage-600 mb-6">Program Format</h2>
-              <div className="prose max-w-none text-gray-700">
-                <p className="mb-4">
-                  Our Financial Literacy Development program is delivered through a combination of interactive workshops, one-on-one coaching sessions, and self-paced learning modules. This multi-faceted approach ensures that participants can engage with the material in ways that best suit their learning styles.
-                </p>
-                <p className="mb-4">
-                  Workshops are held bi-weekly and cover specific financial topics in depth. These sessions are interactive, encouraging participants to ask questions and engage in discussions with both instructors and peers. Real-world scenarios and case studies are incorporated to help bridge the gap between theory and practical application.
-                </p>
-                <p className="mb-4">
-                  Each participant is also paired with a financial coach who provides personalized guidance based on individual circumstances and goals. These one-on-one sessions allow for more tailored advice and create a supportive environment for addressing specific financial challenges.
-                </p>
-                <p className="mb-4">
-                  To complement the in-person learning, participants have access to our online portal containing resources, tools, and additional learning materials that can be reviewed at their own pace.
-                </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-sage-600 mb-6">Weekly Roadmap</h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full border-collapse border border-sage-200">
+                  <thead>
+                    <tr className="bg-sage-50">
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">Week</th>
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">Learning Focus</th>
+                      <th className="border border-sage-200 px-4 py-2 text-sage-700">At-Home Assignment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">1</td>
+                      <td className="border border-sage-200 px-4 py-2">Money Mind-set & Tracking</td>
+                      <td className="border border-sage-200 px-4 py-2">Track every expenditure for 7 days</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">2</td>
+                      <td className="border border-sage-200 px-4 py-2">Spending Plan</td>
+                      <td className="border border-sage-200 px-4 py-2">Draft first zero-based budget</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">3</td>
+                      <td className="border border-sage-200 px-4 py-2">Debt Freedom</td>
+                      <td className="border border-sage-200 px-4 py-2">List debts & choose payoff order</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">4</td>
+                      <td className="border border-sage-200 px-4 py-2">Margin & Contentment</td>
+                      <td className="border border-sage-200 px-4 py-2">Start funding an emergency jar + 24-hour "no-spend" challenge</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">5</td>
+                      <td className="border border-sage-200 px-4 py-2">Income Growth & Generosity</td>
+                      <td className="border border-sage-200 px-4 py-2">Identify one skill or side-gig; plan and complete a small give-back act</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-sage-200 px-4 py-2 font-medium">6</td>
+                      <td className="border border-sage-200 px-4 py-2">Capstone Share-Back</td>
+                      <td className="border border-sage-200 px-4 py-2">Teach one learned concept to someone else</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
             <section className="bg-sage-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-bold text-sage-600 mb-4">Success Stories</h2>
+              <h2 className="text-2xl font-bold text-sage-600 mb-4">Participant Snapshot</h2>
               <blockquote className="border-l-4 border-sage-300 pl-4 italic text-gray-700">
-                "Before joining this program, I was constantly stressed about money. Now, I have a budget that works, I'm steadily reducing my debt, and I've even started a small investment portfolio. The confidence I've gained in managing my finances has changed my life."
-                <footer className="mt-2 text-sage-500 not-italic">– Sarah K., Program Graduate</footer>
+                "Before the course, money controlled me. Now I have a budget, paid off two loans, and showed my neighbors how to do the same."
+                <footer className="mt-2 text-sage-500 not-italic">— A. Tursunov, 2024 Graduate</footer>
               </blockquote>
             </section>
 
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center gap-4 mt-8">
+              <Link to="/contact">
+                <Button variant="outline" className="border-sage-300 text-sage-600 hover:bg-sage-50">
+                  Request Information
+                </Button>
+              </Link>
               <Link to="/contact">
                 <Button className="bg-sage-500 hover:bg-sage-600">
                   Register for the Program
@@ -164,7 +208,7 @@ const FinancialLiteracy = () => {
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Duration:</span>
-                  <span className="font-medium">8 weeks</span>
+                  <span className="font-medium">6 weeks</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Format:</span>
@@ -178,10 +222,6 @@ const FinancialLiteracy = () => {
                   <span className="text-gray-600">Next Start Date:</span>
                   <span className="font-medium">May 5, 2025</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Cost:</span>
-                  <span className="font-medium">Sliding scale available</span>
-                </div>
                 <div className="pt-4">
                   <Link to="/contact">
                     <Button variant="outline" className="w-full border-sage-300 text-sage-600 hover:bg-sage-50">
@@ -193,6 +233,12 @@ const FinancialLiteracy = () => {
             </Card>
 
             <UpcomingEvents />
+
+            <div className="bg-white p-4 rounded-lg border border-sage-200">
+              <div className="text-center text-gray-500 text-sm italic">
+                Businesses Beyond Borders • Empowering entrepreneurs and communities through practical financial education
+              </div>
+            </div>
           </div>
         </div>
       </div>
