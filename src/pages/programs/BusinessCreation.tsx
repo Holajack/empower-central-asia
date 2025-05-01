@@ -138,8 +138,8 @@ const BusinessCreation = () => {
             <section className="bg-sage-50 p-6 rounded-lg">
               <h2 className="text-2xl font-bold text-sage-600 mb-4">Success Stories</h2>
               <blockquote className="border-l-4 border-sage-300 pl-4 italic text-gray-700">
-                "When I joined this program, I had a business idea but no clue how to execute it. The workshops and mentoring helped me transform my concept into a viable business plan. Today, my small consulting firm employs three people and serves clients across the region. This wouldn't have been possible without the foundation I built through this program."
-                <footer className="mt-2 text-sage-500 not-italic">– Michael R., Program Graduate</footer>
+                "When I joined this program, I had a business idea but no clue how to execute it. The workshops and mentoring helped me transform my concept into a viable business plan. Today, my cleaning and sewage company employs struggling people and serves clients across the region. This wouldn't have been possible without the foundation I built through this program."
+                <footer className="mt-2 text-sage-500 not-italic">– Kameron K., Program Graduate</footer>
               </blockquote>
             </section>
 
