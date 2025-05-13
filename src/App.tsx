@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
@@ -18,10 +19,12 @@ import SarahCaseStudy from "@/pages/success-stories/SarahCaseStudy";
 import MarcusCaseStudy from "@/pages/success-stories/MarcusCaseStudy";
 import VolunteerApplication from "@/pages/VolunteerApplication";
 import PartnerApplication from "@/pages/PartnerApplication";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navigation />
       <main>
         <Routes>
