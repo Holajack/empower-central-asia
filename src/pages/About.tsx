@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -21,24 +22,24 @@ const About = () => {
 
   const coreValues = [
     {
-      title: "Inclusivity",
+      title: "Integrity & Accountability",
       description:
-        "Creating opportunities for all, regardless of background or experience.",
+        "Building trust through transparent actions and taking responsibility for our commitments to the communities we serve.",
     },
     {
-      title: "Innovation",
+      title: "Leadership & Empowerment",
       description:
-        "Embracing creative solutions to address complex economic challenges.",
+        "Developing leaders within communities who can drive sustainable change and empower others to reach their potential.",
     },
     {
-      title: "Community",
+      title: "Excellence & Impact",
       description:
-        "Building strong networks that foster collaboration and mutual support.",
+        "Striving for the highest quality in everything we do, ensuring our efforts create meaningful and lasting transformation.",
     },
     {
-      title: "Sustainability",
+      title: "Collaboration & Partnership",
       description:
-        "Promoting long-term economic growth that benefits future generations.",
+        "Working together with local communities, global partners, and stakeholders to build solutions that work for everyone.",
     },
   ];
 
@@ -73,10 +74,10 @@ const About = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
-            Our Story
+            From Vision to Reality
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-            Our journey of empowerment and sustainable impact
+            Empowering People to Stay and Build
           </p>
         </div>
       </div>
@@ -86,50 +87,53 @@ const About = () => {
         {/* Background Section */}
         <section className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-semibold text-sage-500 mb-6">
-            Our Background
+            Our Story
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-6">
-            Businesses Beyond Borders emerged from a simple yet powerful vision: to
-            create sustainable economic opportunities in Central Asia. Founded in
-            2015, our organization began by partnering with local communities to
-            understand their unique challenges and aspirations.
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            What started as a small initiative has grown into a comprehensive
-            platform that equips entrepreneurs with the skills, resources, and
-            networks they need to thrive in today's global economy.
-          </p>
+          <div className="prose max-w-none text-gray-700 space-y-4">
+            <p className="leading-relaxed">
+              Businesses Beyond Borders was officially founded in 2022, but the heart behind it began long before. Years before the paperwork, there was a burden. A quiet conviction. A belief that people in low-income, high-risk regions deserve more than survival—they deserve the tools, the knowledge, and the support to <em>thrive</em>.
+            </p>
+            <p className="leading-relaxed">
+              We saw what was happening—people leaving their homes, their communities, and even their countries in search of something better. But what if <em>better</em> could be built right where they are?
+            </p>
+            <p className="leading-relaxed font-medium text-sage-600">
+              What if the solution wasn't found across a border… but <strong>within</strong> the community itself?
+            </p>
+          </div>
         </section>
 
-        {/* Mission & Vision Section */}
+        {/* What We Do Section */}
         <section
           ref={missionRef}
-          className={`max-w-3xl mx-auto space-y-12 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto transition-all duration-700 ${
             missionInView
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
           }`}
         >
-          <div>
-            <h2 className="text-3xl font-semibold text-sage-500 mb-6">
-              Our Mission
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              To empower entrepreneurs in Central Asia through comprehensive
-              business education, leadership development, and community support,
-              fostering sustainable economic growth and positive social impact.
+          <h2 className="text-3xl font-semibold text-sage-500 mb-6">
+            What We Do
+          </h2>
+          <div className="prose max-w-none text-gray-700 space-y-4">
+            <p className="leading-relaxed">
+              Since 2022, we've walked alongside:
             </p>
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-semibold text-sage-500 mb-6">
-              Our Vision
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              We envision thriving communities across Central Asia where local
-              entrepreneurs lead the way in creating sustainable businesses,
-              generating employment opportunities, and building resilient local
-              economies.
+            <ul className="space-y-2 text-gray-700">
+              <li><strong>15+ families</strong>, teaching financial literacy from the kitchen table to the marketplace.</li>
+              <li><strong>100+ children</strong>, benefiting from more stable, supportive home environments.</li>
+              <li><strong>6+ businesses</strong>, now launched and sustained through training and micro-loans—with loans already repaid in full.</li>
+            </ul>
+            <p className="leading-relaxed">
+              We don't just hold seminars—we walk through every step of business development:
+            </p>
+            <ul className="space-y-1 text-gray-700">
+              <li>• Brainstorming ideas</li>
+              <li>• Writing business plans</li>
+              <li>• Offering mentorship and financial training</li>
+              <li>• Connecting locals with regional and global partners</li>
+            </ul>
+            <p className="leading-relaxed font-medium text-sage-600">
+              We activate vision. Equip with tools. Empower transformation.
             </p>
           </div>
         </section>
@@ -158,6 +162,48 @@ const About = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Why We Do It Section */}
+        <section className="max-w-3xl mx-auto bg-sage-50 p-8 rounded-lg">
+          <h2 className="text-3xl font-semibold text-sage-500 mb-6">
+            Why We Do It
+          </h2>
+          <div className="prose max-w-none text-gray-700 space-y-4">
+            <p className="leading-relaxed">
+              Most people don't leave their homes because they want to—they leave because they feel they have no choice.
+            </p>
+            <p className="leading-relaxed">
+              But when local individuals are empowered with education, tools, and support, they begin to see a new future. One built not out of desperation, but out of purpose and potential.
+            </p>
+            <p className="leading-relaxed font-medium text-sage-600">
+              Our work is about more than economics—it's about <em>transformation</em> from the inside out.
+            </p>
+          </div>
+        </section>
+
+        {/* How You Can Help Section */}
+        <section className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-semibold text-sage-500 mb-6">
+            How You Can Help
+          </h2>
+          <div className="prose max-w-none text-gray-700 space-y-4">
+            <p className="leading-relaxed font-medium">
+              We can't do this alone.
+            </p>
+            <p className="leading-relaxed">
+              You can partner with us by:
+            </p>
+            <ul className="space-y-1 text-gray-700">
+              <li>• Donating to fund micro-loans and education</li>
+              <li>• Sponsoring entrepreneurs and families</li>
+              <li>• Volunteering or helping lead programs</li>
+              <li>• Joining us on future trips</li>
+            </ul>
+            <p className="leading-relaxed">
+              When you partner with us, you're helping build something that lasts—for families, for futures, and for entire communities.
+            </p>
           </div>
         </section>
 
@@ -199,6 +245,13 @@ const About = () => {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Closing Statement */}
+        <section className="max-w-3xl mx-auto text-center">
+          <p className="text-xl font-medium text-sage-600 italic">
+            Let's go beyond borders—together.
+          </p>
         </section>
       </div>
     </div>
