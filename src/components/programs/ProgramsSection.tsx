@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import { BookOpen, Users2, Lightbulb, Target } from "lucide-react";
@@ -5,23 +6,8 @@ import ProgramCard from "./ProgramCard";
 
 const programs = [
   {
-    title: "Business Training Workshops",
-    description: "Comprehensive workshops covering essential business fundamentals, from planning to execution. Our practical sessions are led by experienced entrepreneurs and industry experts.",
-    icon: BookOpen,
-    details: [
-      "Business planning, marketing strategies, and operational management",
-      "Guest lectures from successful local entrepreneurs",
-      "90% of participants launch businesses within one year",
-      "Hands-on practical sessions and real-world case studies"
-    ],
-    cta: {
-      text: "Join Next Workshop",
-      link: "/programs/business-training"
-    }
-  },
-  {
-    title: "Financial Literacy Classes",
-    description: "Essential financial education designed specifically for entrepreneurs, focusing on sustainable business growth and personal financial management.",
+    title: "Financial Literacy Development",
+    description: "Essential financial education covering budgeting, savings, and investment principles designed specifically for entrepreneurs.",
     icon: Target,
     details: [
       "Micro-financing opportunities and management",
@@ -35,8 +21,23 @@ const programs = [
     }
   },
   {
-    title: "Leadership & Mentorship Sessions",
-    description: "One-on-one mentoring and group coaching sessions with experienced business leaders, designed to develop strong management and leadership skills.",
+    title: "Business Creation Training",
+    description: "Comprehensive workshops covering business planning, marketing, and financial management fundamentals.",
+    icon: BookOpen,
+    details: [
+      "Business planning, marketing strategies, and operational management",
+      "Guest lectures from successful local entrepreneurs",
+      "90% of participants launch businesses within one year",
+      "Hands-on practical sessions and real-world case studies"
+    ],
+    cta: {
+      text: "Join Next Workshop",
+      link: "/programs/business-creation"
+    }
+  },
+  {
+    title: "Leadership Development",
+    description: "One-on-one mentoring with experienced business leaders to develop management skills and leadership capabilities.",
     icon: Users2,
     details: [
       "Personalized mentor matching program",
@@ -46,12 +47,12 @@ const programs = [
     ],
     cta: {
       text: "Find a Mentor",
-      link: "/programs/mentorship"
+      link: "/programs/leadership-development"
     }
   },
   {
-    title: "Community Collaboration Projects",
-    description: "Initiative-driven projects that bring entrepreneurs together to create sustainable impact in local communities through shared resources and knowledge.",
+    title: "Community Collaboration",
+    description: "Initiatives that bring entrepreneurs together to create sustainable impact in local communities through shared resources.",
     icon: Lightbulb,
     details: [
       "Cross-sector partnership opportunities",
@@ -61,7 +62,7 @@ const programs = [
     ],
     cta: {
       text: "Collaborate With Us",
-      link: "/programs/collaborate"
+      link: "/programs/community-collaboration"
     }
   },
 ];
