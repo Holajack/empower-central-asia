@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -109,63 +108,63 @@ const GetInvolved = () => {
 
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
-              <DollarSign className="text-purple-400" />
+              <DollarSign className="text-terracotta-400" />
               Make a Donation
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {donationTiers.map((tier) => (
-                <Card key={tier.amount} className="p-6 space-y-4 hover:shadow-lg transition-shadow border-blue-200">
+                <Card key={tier.amount} className="p-6 space-y-4 hover:shadow-lg transition-shadow border-sage-200">
                   <div className="flex items-center gap-3">
                     {tier.icon}
                     <h3 className="text-xl font-semibold">${tier.amount}</h3>
                   </div>
-                  <p className="text-blue-500">{tier.description}</p>
-                  <div className="text-sm text-purple-400 italic">
+                  <p className="text-sage-500">{tier.description}</p>
+                  <div className="text-sm text-terracotta-400 italic">
                     Impact: {tier.impact}
                   </div>
                   <DonateButton 
                     variant="outline"
-                    className="w-full border-purple-400 text-purple-400 hover:bg-purple-50"
+                    className="w-full border-terracotta-400 text-terracotta-400 hover:bg-terracotta-50"
                   />
                 </Card>
               ))}
             </div>
           </div>
 
-          <div className="space-y-8 bg-blue-50 p-8 rounded-lg">
+          <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
-              <HandHelping className="text-blue-500" />
+              <HandHelping className="text-sage-500" />
               Volunteer Opportunities
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <h4 className="font-semibold text-lg">Share Your Expertise</h4>
-                <ul className="space-y-2 text-blue-500">
+                <ul className="space-y-2 text-sage-500">
                   <li className="flex items-center gap-2 opacity-50 cursor-not-allowed">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Mentor aspiring entrepreneurs
                     <span className="ml-2 text-xs text-gray-500 italic">(Coming Soon)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Provide your skills
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Advocate for us
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Support on-site training programs
                   </li>
                 </ul>
               </div>
               <div className="flex flex-col justify-center items-center">
-                <p className="text-center text-blue-500 mb-2">
+                <p className="text-center text-sage-500 mb-2">
                   Ready to make a difference? Join our network of volunteer mentors and trainers.
                 </p>
                 <Link to="/volunteer-application" className="w-full max-w-xs">
-                  <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white">
+                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
                     Apply as Volunteer
                   </Button>
                 </Link>
@@ -173,44 +172,45 @@ const GetInvolved = () => {
             </div>
           </div>
 
-          <div className="space-y-8 bg-blue-50 p-8 rounded-lg">
+          <div className="space-y-8 bg-sage-50 p-8 rounded-lg">
             <h3 className="text-2xl font-semibold text-sand-500 flex items-center gap-2">
-              <Network className="text-blue-500" />
+              <Network className="text-sage-500" />
               Partner With Us
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="p-6 space-y-4">
                 <h4 className="font-semibold text-lg">Collaboration Opportunities</h4>
-                <ul className="space-y-2 text-blue-500">
+                <ul className="space-y-2 text-sage-500">
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Corporate matching donation programs
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Joint training workshops and events
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Resource sharing initiatives
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400" />
                     Sponsorship opportunities
                   </li>
                 </ul>
+                {/* Updated: Wrap the button in a Link to /partner-application */}
                 <Link to="/partner-application">
                   <Button 
                     variant="outline"
-                    className="w-full border-blue-300 text-blue-600 hover:bg-blue-50 mt-4"
+                    className="w-full border-sage-300 text-sage-600 hover:bg-sage-50 mt-4"
                   >
                     Become a Partner
                   </Button>
                 </Link>
               </Card>
-              <Card className="p-6 space-y-4 bg-blue-50">
+              <Card className="p-6 space-y-4 bg-sage-50">
                 <h4 className="font-semibold text-lg">Why Partner With Us?</h4>
-                <p className="text-blue-500">
+                <p className="text-sage-500">
                   Join forces with us to create lasting impact in Central Asian communities. 
                   Together, we can strengthen local economies and empower the next generation 
                   of entrepreneurs.
@@ -228,23 +228,23 @@ const GetInvolved = () => {
               <Card className="p-6 text-center space-y-4">
                 <Share className="h-8 w-8 mx-auto text-sand-500" />
                 <h4 className="font-semibold">Share on Social Media</h4>
-                <p className="text-blue-500">Help us reach more people by sharing our mission</p>
+                <p className="text-sage-500">Help us reach more people by sharing our mission</p>
               </Card>
               <Card className="p-6 text-center space-y-4">
                 <Users className="h-8 w-8 mx-auto text-sand-500" />
                 <h4 className="font-semibold">Host a Fundraiser</h4>
-                <p className="text-blue-500">Organize events to support our programs</p>
+                <p className="text-sage-500">Organize events to support our programs</p>
               </Card>
               <Card className="p-6 text-center space-y-4">
                 <Network className="h-8 w-8 mx-auto text-sand-500" />
                 <h4 className="font-semibold">Join Local Events</h4>
-                <p className="text-blue-500">Participate in community gatherings and workshops</p>
+                <p className="text-sage-500">Participate in community gatherings and workshops</p>
               </Card>
             </div>
           </div>
         </section>
 
-        <section className="py-12 bg-blue-50 rounded-lg">
+        <section className="py-12 bg-sage-50 rounded-lg">
           <ImpactStats isMobile={false} />
         </section>
 
@@ -263,11 +263,11 @@ const GetInvolved = () => {
             {upcomingEvents.map((event, index) => (
               <Card key={index} className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="h-5 w-5 text-blue-500" />
-                  <span className="text-blue-600">{event.date}</span>
+                  <Calendar className="h-5 w-5 text-sage-500" />
+                  <span className="text-sage-600">{event.date}</span>
                 </div>
                 <h3 className="font-semibold mb-2">{event.title}</h3>
-                <p className="text-blue-500 mb-4">{event.type}</p>
+                <p className="text-sage-500 mb-4">{event.type}</p>
                 <Button variant="outline" className="w-full">
                   Register Now
                 </Button>
@@ -292,7 +292,7 @@ const GetInvolved = () => {
             <div className="text-center mt-8">
               <h3 className="text-lg font-semibold mb-4">Still Have Questions?</h3>
               <Link to="/contact">
-                <Button className="bg-blue-500 hover:bg-blue-600">
+                <Button className="bg-sage-500 hover:bg-sage-600">
                   <HelpCircle className="mr-2 h-4 w-4" />
                   Contact Us
                 </Button>
@@ -301,16 +301,16 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        <section className="py-16 bg-purple-50 rounded-lg text-center">
-          <h2 className="text-4xl font-bold mb-6 text-purple-500">
+        <section className="py-16 bg-terracotta-50 rounded-lg text-center">
+          <h2 className="text-4xl font-bold mb-6 text-terracotta-500">
             Ready to Empower Entrepreneurs Today?
           </h2>
-          <p className="text-lg text-blue-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-sage-600 mb-8 max-w-2xl mx-auto">
             Join us in creating lasting change in Central Asian communities through entrepreneurship support.
           </p>
           <DonateButton 
             size="lg"
-            className="bg-purple-500 hover:bg-purple-400 min-w-[200px]"
+            className="bg-terracotta-500 hover:bg-terracotta-400 min-w-[200px]"
           />
         </section>
       </div>

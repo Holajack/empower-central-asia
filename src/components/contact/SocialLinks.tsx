@@ -1,4 +1,3 @@
-
 import { Facebook, Linkedin, Instagram } from "lucide-react";
 
 const SocialLinks = () => {
@@ -10,7 +9,7 @@ const SocialLinks = () => {
           href="https://facebook.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 rounded-full bg-gray-100 hover:bg-purple-100 text-gray-600 hover:text-purple-500 transition-colors"
+          className="p-2 rounded-full bg-gray-100 hover:bg-terracotta-100 text-gray-600 hover:text-terracotta-500 transition-colors"
           aria-label="Visit our Facebook page"
         >
           <Facebook className="h-5 w-5" aria-hidden="true" />
@@ -19,7 +18,7 @@ const SocialLinks = () => {
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 rounded-full bg-gray-100 hover:bg-purple-100 text-gray-600 hover:text-purple-500 transition-colors"
+          className="p-2 rounded-full bg-gray-100 hover:bg-terracotta-100 text-gray-600 hover:text-terracotta-500 transition-colors"
           aria-label="Visit our LinkedIn page"
         >
           <Linkedin className="h-5 w-5" aria-hidden="true" />
@@ -28,7 +27,7 @@ const SocialLinks = () => {
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 rounded-full bg-gray-100 hover:bg-purple-100 text-gray-600 hover:text-purple-500 transition-colors"
+          className="p-2 rounded-full bg-gray-100 hover:bg-terracotta-100 text-gray-600 hover:text-terracotta-500 transition-colors"
           aria-label="Visit our Instagram page"
         >
           <Instagram className="h-5 w-5" aria-hidden="true" />

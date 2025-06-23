@@ -1,4 +1,3 @@
-
 import { Button } from "./ui/button";
 import { Heart } from "lucide-react";
 import {
@@ -43,7 +42,7 @@ const DonateButton = ({
         <Button
           variant={variant}
           size={size}
-          className={`bg-purple-500 hover:bg-purple-600 ${className}`}
+          className={`${className}`}
         >
           {showIcon && <Heart className="mr-2 h-4 w-4" />}
           Donate Now

@@ -36,7 +36,7 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
           <DonateButton
             size="lg"
-            className="bg-purple-500 hover:bg-purple-400 text-white min-w-[200px]"
+            className="bg-terracotta-500 hover:bg-terracotta-400 text-white min-w-[200px]"
           />
           <Button
             variant="outline"

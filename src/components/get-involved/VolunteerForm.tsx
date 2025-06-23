@@ -134,7 +134,7 @@ const VolunteerForm = ({ onSubmit }: VolunteerFormProps) => {
         <DialogFooter className="pt-4">
           <Button 
             type="submit" 
-            className="bg-blue-500 hover:bg-blue-400 w-full sm:w-auto"
+            className="bg-sage-500 hover:bg-sage-400 w-full sm:w-auto"
           >
             Submit Application
           </Button>
