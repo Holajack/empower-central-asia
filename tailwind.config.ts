@@ -19,6 +19,33 @@ export default {
     },
     extend: {
       colors: {
+        // Logo-inspired purple palette
+        purple: {
+          50: "#F8F6FF",
+          100: "#F0EBFF", 
+          200: "#E0D4FF",
+          300: "#C9B3FF",
+          400: "#A885FF",
+          500: "#8B5CF6", // Main logo purple
+          600: "#7C3AED",
+          700: "#6D28D9",
+          800: "#5B21B6",
+          900: "#4C1D95",
+        },
+        // Logo-inspired blue palette
+        blue: {
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#3B82F6", // Main logo blue
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF",
+          900: "#1E3A8A",
+        },
+        // Keep existing sand/brown colors for warmth
         sand: {
           50: "#F5EEE6",
           100: "#E6D5C7",
