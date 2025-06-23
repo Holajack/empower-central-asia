@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -61,6 +62,13 @@ const ContactForm = () => {
 
   return (
     <div className="space-y-6">
+      <div className="text-center mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Send Us a Message</h2>
+        <p className="text-gray-600">
+          We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+        </p>
+      </div>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -68,9 +76,9 @@ const ContactForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} aria-label="Your name" />
+                  <Input placeholder="Your full name" {...field} aria-label="Your name" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,7 +90,7 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email Address</FormLabel>
                 <FormControl>
                   <Input placeholder="your@email.com" {...field} aria-label="Your email address" />
                 </FormControl>
@@ -96,7 +104,7 @@ const ContactForm = () => {
             name="inquiryType"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Inquiry Type</FormLabel>
+                <FormLabel>How can we help you?</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger aria-label="Select inquiry type">
@@ -105,9 +113,11 @@ const ContactForm = () => {
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="general">General Inquiry</SelectItem>
-                    <SelectItem value="volunteer">Volunteer Inquiry</SelectItem>
-                    <SelectItem value="media">Media Request</SelectItem>
-                    <SelectItem value="partnership">Partnership Opportunity</SelectItem>
+                    <SelectItem value="programs">Program Information</SelectItem>
+                    <SelectItem value="volunteer">Volunteer Opportunities</SelectItem>
+                    <SelectItem value="partnership">Partnership Opportunities</SelectItem>
+                    <SelectItem value="media">Media & Press</SelectItem>
+                    <SelectItem value="donation">Donation Questions</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -120,10 +130,10 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Your Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="How can we help you?"
+                    placeholder="Tell us more about your inquiry. The more details you provide, the better we can assist you."
                     className="min-h-[120px]"
                     {...field}
                     aria-label="Your message"
@@ -136,7 +146,7 @@ const ContactForm = () => {
 
           <Button
             type="submit"
-            className="w-full bg-terracotta-500 hover:bg-terracotta-600"
+            className="w-full bg-purple-500 hover:bg-purple-600 text-white"
             disabled={isSubmitting}
             aria-label={isSubmitting ? "Sending message..." : "Send message"}
           >

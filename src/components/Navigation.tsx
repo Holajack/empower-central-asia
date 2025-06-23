@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -39,8 +40,8 @@ const Navigation = () => {
             to="/"
             className={`text-2xl font-semibold transition-colors ${
               isScrolled 
-                ? "text-terracotta-500 hover:text-terracotta-400" 
-                : "text-white hover:text-terracotta-300"
+                ? "text-purple-500 hover:text-purple-400" 
+                : "text-white hover:text-purple-300"
             }`}
           >
             Businesses Beyond Borders
@@ -54,21 +55,21 @@ const Navigation = () => {
                 to={link.path}
                 className={`${
                   isScrolled
-                    ? "text-gray-600 hover:text-terracotta-500"
-                    : "text-white hover:text-terracotta-300"
+                    ? "text-gray-600 hover:text-purple-500"
+                    : "text-white hover:text-purple-300"
                 } transition-colors font-medium`}
               >
                 {link.name}
               </Link>
             ))}
-            <DonateButton className="bg-terracotta-500 hover:bg-terracotta-400 text-white" />
+            <DonateButton className="bg-purple-500 hover:bg-purple-400 text-white" />
           </div>
 
           {/* Mobile Menu Button */}
           <button
             className={`md:hidden transition-colors ${
               isScrolled ? "text-gray-600" : "text-white"
-            } hover:text-terracotta-500`}
+            } hover:text-purple-500`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -83,13 +84,13 @@ const Navigation = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-gray-600 hover:text-terracotta-500 transition-colors py-2"
+                  className="text-gray-600 hover:text-purple-500 transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <DonateButton className="bg-terracotta-500 hover:bg-terracotta-400 text-white w-full" />
+              <DonateButton className="bg-purple-500 hover:bg-purple-400 text-white w-full" />
             </div>
           </div>
         )}

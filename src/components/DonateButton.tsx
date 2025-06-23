@@ -1,3 +1,4 @@
+
 import { Button } from "./ui/button";
 import { Heart } from "lucide-react";
 import {
@@ -32,7 +33,9 @@ const DonateButton = ({
 
     return () => {
       // Cleanup script when component unmounts
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -42,7 +45,7 @@ const DonateButton = ({
         <Button
           variant={variant}
           size={size}
-          className={`${className}`}
+          className={`bg-purple-500 hover:bg-purple-600 text-white ${className}`}
         >
           {showIcon && <Heart className="mr-2 h-4 w-4" />}
           Donate Now

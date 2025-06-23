@@ -5,7 +5,7 @@ import ContactInfo from "@/components/contact/ContactInfo";
 import SocialLinks from "@/components/contact/SocialLinks";
 import LocationMap from "@/components/contact/LocationMap";
 
-// Add: About-style hero header
+// About-style hero header
 const ContactHeroHeader = () => (
   <div 
     className="relative h-[60vh] flex items-center justify-center"
@@ -21,7 +21,8 @@ const ContactHeroHeader = () => (
         Contact Us
       </h1>
       <p className="text-xl text-white/90 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-        Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+        Ready to make a difference? Whether you're interested in our programs, want to volunteer, 
+        or explore partnership opportunities, we're here to connect with you.
       </p>
     </div>
   </div>
@@ -31,47 +32,98 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us | CentralImpact - Reach Out for Support and Information</title>
+        <title>Contact Us | Businesses Beyond Borders - Connect for Impact</title>
         <meta 
           name="description" 
-          content="Get in touch with CentralImpact. Whether you're interested in our entrepreneurship programs, want to volunteer, or explore partnership opportunities in Central Asia, we're here to help." 
+          content="Get in touch with Businesses Beyond Borders. Connect with us for program information, volunteer opportunities, partnerships, or general inquiries about our Central Asian entrepreneurship initiatives." 
         />
         <meta 
           name="keywords" 
-          content="contact, entrepreneurship support, Central Asia business, volunteer opportunities, partnership, community development" 
+          content="contact, entrepreneurship support, Central Asia business, volunteer opportunities, partnership, community development, business mentorship" 
         />
-        <meta property="og:title" content="Contact CentralImpact - Get Involved in Central Asian Entrepreneurship" />
-        <meta property="og:description" content="Reach out to discuss entrepreneurship programs, volunteering, or partnerships in Central Asia." />
+        <meta property="og:title" content="Contact Businesses Beyond Borders - Join Our Mission" />
+        <meta property="og:description" content="Reach out to discuss entrepreneurship programs, volunteering, partnerships, or learn more about our impact in Central Asia." />
       </Helmet>
 
-      {/* About-style Hero Header */}
+      {/* Hero Header */}
       <ContactHeroHeader />
 
-      <div className="min-h-screen pt-0 pb-16" role="main">
+      <div className="min-h-screen pt-0 pb-16 bg-gray-50" role="main">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-12">
-            {/* Remove duplicate Contact Us title/desc section */}
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h2 className="sr-only">Contact Form</h2>
-                <ContactForm />
+          <div className="max-w-6xl mx-auto">
+            
+            {/* Main Contact Section */}
+            <div className="grid lg:grid-cols-3 gap-12 py-16">
+              {/* Contact Form - Takes up 2 columns */}
+              <div className="lg:col-span-2">
+                <div className="bg-white rounded-lg shadow-sm p-8">
+                  <ContactForm />
+                </div>
               </div>
 
+              {/* Contact Info - Takes up 1 column */}
               <div className="space-y-8">
-                <section aria-labelledby="contact-info-heading">
-                  <h2 id="contact-info-heading" className="sr-only">Contact Information</h2>
+                <div className="bg-white rounded-lg shadow-sm p-8">
                   <ContactInfo />
-                </section>
+                </div>
+              </div>
+            </div>
 
-                <section aria-labelledby="location-heading">
-                  <h2 id="location-heading" className="sr-only">Our Location</h2>
-                  <LocationMap />
-                </section>
+            {/* Bottom Section - Map and Social */}
+            <div className="grid md:grid-cols-2 gap-12 pb-16">
+              <div className="bg-white rounded-lg shadow-sm p-8">
+                <LocationMap />
+              </div>
 
-                <section aria-labelledby="social-heading">
-                  <h2 id="social-heading" className="sr-only">Social Media Links</h2>
-                  <SocialLinks />
-                </section>
+              <div className="bg-white rounded-lg shadow-sm p-8">
+                <SocialLinks />
+              </div>
+            </div>
+
+            {/* Additional Information Section */}
+            <div className="bg-purple-50 rounded-lg p-8 mb-16">
+              <div className="text-center max-w-3xl mx-auto">
+                <h2 className="text-2xl font-bold text-purple-800 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-left">
+                  <div>
+                    <h3 className="font-semibold text-purple-700 mb-2">
+                      How quickly do you respond to inquiries?
+                    </h3>
+                    <p className="text-purple-600 text-sm">
+                      We typically respond within 24-48 hours during business days. 
+                      Urgent matters are addressed the same day.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-purple-700 mb-2">
+                      Can I schedule a consultation?
+                    </h3>
+                    <p className="text-purple-600 text-sm">
+                      Yes! We offer free initial consultations to discuss how our 
+                      programs can benefit you or your organization.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-purple-700 mb-2">
+                      Do you work with international partners?
+                    </h3>
+                    <p className="text-purple-600 text-sm">
+                      Absolutely. We collaborate with organizations worldwide to 
+                      expand our impact across Central Asia and beyond.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-purple-700 mb-2">
+                      How can I support your mission?
+                    </h3>
+                    <p className="text-purple-600 text-sm">
+                      There are many ways to help: donate, volunteer, mentor, 
+                      or spread awareness about our programs.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
