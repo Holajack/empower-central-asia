@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -47,7 +48,7 @@ const CaseStudiesSection = ({ caseStudies, inView }: CaseStudiesSectionProps) =>
                   <p className="text-muted-foreground">{study.impact}</p>
                 </div>
                 <a href={caseStudyLinks[index]} className="block mt-4">
-                  <Button className="w-full">Read Full Story</Button>
+                  <Button className="w-full bg-purple-500 hover:bg-purple-600">Read Full Story</Button>
                 </a>
               </CardContent>
             </Card>
