@@ -20,6 +20,7 @@ import MarcusCaseStudy from "@/pages/success-stories/MarcusCaseStudy";
 import VolunteerApplication from "@/pages/VolunteerApplication";
 import PartnerApplication from "@/pages/PartnerApplication";
 import ScrollToTop from "@/components/ScrollToTop";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
       </main>
       <Footer />
       <Toaster />
+      <NewsletterPopup />
     </Router>
   );
 }
