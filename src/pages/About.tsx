@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Helmet } from "react-helmet";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useInView } from "react-intersection-observer";
@@ -61,10 +62,120 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>About Businesses Beyond Borders - Port Orange FL Nonprofit | Our Mission, Team & Impact in Central Asia</title>
+        <meta name="description" content="Founded in Port Orange, FL in 2022, Businesses Beyond Borders has helped 15+ families and launched 6+ businesses in Kazakhstan, Kyrgyzstan, and Tajikistan through proven entrepreneurship programs. Meet our team and learn about our mission to empower Central Asian communities through business training and financial literacy education." />
+        <meta name="keywords" content="about Businesses Beyond Borders Port Orange FL, Central Asia development nonprofit Florida, Volusia County international development organization, Kazakhstan business development nonprofit, Kyrgyzstan entrepreneurship programs, Tajikistan microfinance organization, Port Orange nonprofit mission statement, Daytona Beach area international charity, business training programs Central Asia, financial literacy nonprofit Florida, entrepreneur development organization Volusia County" />
+        
+        {/* Open Graph tags for social media sharing */}
+        <meta property="og:title" content="About Businesses Beyond Borders - Port Orange FL Nonprofit Transforming Central Asia" />
+        <meta property="og:description" content="Meet our Port Orange-based team transforming Central Asian communities through proven business training programs. Founded in 2022, serving 15+ families across Kazakhstan, Kyrgyzstan & Tajikistan with 100% success rate." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/about" />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Our Port Orange FL Nonprofit - Empowering Central Asia" />
+        <meta name="twitter:description" content="Founded in 2022 in Port Orange, FL. Proven results: 15+ families helped, 6+ businesses launched in Kazakhstan, Kyrgyzstan & Tajikistan through business training programs." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
+        
+        {/* Additional SEO tags */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="author" content="Businesses Beyond Borders" />
+        <meta name="geo.region" content="US-FL" />
+        <meta name="geo.placename" content="Port Orange, Florida" />
+        <meta name="geo.position" content="29.1386;-81.0062" />
+        <meta name="ICBM" content="29.1386, -81.0062" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/about" />
+        
+        {/* Organization schema markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["NonprofitOrganization", "Organization"],
+            "name": "Businesses Beyond Borders",
+            "description": "Port Orange Florida nonprofit organization empowering entrepreneurs in Central Asia through comprehensive business training, financial literacy education, and leadership development programs",
+            "url": "https://businessesbeyondborders.com/about",
+            "logo": "https://businessesbeyondborders.com/logo.png",
+            "image": "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2",
+            "foundingDate": "2022",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Port Orange",
+              "addressRegion": "FL",
+              "postalCode": "32127",
+              "addressCountry": "US"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-386-517-1527",
+              "contactType": "customer support",
+              "email": "donations@businessesbeyondborders.com",
+              "areaServed": ["US-FL", "KZ", "KG", "TJ"],
+              "availableLanguage": ["English", "Russian"]
+            },
+            "sameAs": [
+              "https://www.facebook.com/Businesses.BB",
+              "https://www.linkedin.com/company/businesses-beyond-borders",
+              "https://www.instagram.com/businessesbeyondborders"
+            ],
+            "employee": [
+              {
+                "@type": "Person",
+                "name": "Jacken Holland",
+                "jobTitle": "CEO & Owner",
+                "description": "With over 15 years of experience in international development, Jacken leads our mission to empower entrepreneurs across Central Asia."
+              },
+              {
+                "@type": "Person", 
+                "name": "Yeva Romanova",
+                "jobTitle": "COO",
+                "description": "Born and raised in Bishkek, Yeva brings deep local knowledge and a passion for community development to our programs."
+              }
+            ],
+            "mission": "To empower people in Central Asia to stay and build thriving communities through proven business training, financial literacy education, and leadership development programs",
+            "areaServed": [
+              {
+                "@type": "Place",
+                "name": "Volusia County, Florida"
+              },
+              {
+                "@type": "Country",
+                "name": "Kazakhstan"
+              },
+              {
+                "@type": "Country",
+                "name": "Kyrgyzstan"
+              },
+              {
+                "@type": "Country",
+                "name": "Tajikistan"
+              }
+            ],
+            "accomplishments": [
+              "Served 15+ families since 2022",
+              "Launched 6+ successful businesses", 
+              "Maintained 100% program success rate",
+              "Provided financial literacy training to 100+ individuals",
+              "Operates in multiple Central Asian countries"
+            ],
+            "coreValues": [
+              "Integrity & Accountability",
+              "Leadership & Empowerment", 
+              "Excellence & Impact",
+              "Collaboration & Partnership"
+            ]
+          })}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header Section */}
       <div 
-        className="relative h-[60vh] flex items-center justify-center"
+        className="relative h-[60vh] flex items-center justify-center pt-20"
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
           backgroundSize: "cover",
@@ -152,7 +263,7 @@ const About = () => {
             {coreValues.map((value, index) => (
               <Card
                 key={index}
-                className="border-sage-200 hover:border-sage-300 transition-colors"
+                className="border-gray-200 hover:border-blue-300 transition-colors hover:shadow-lg"
               >
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold text-sage-500 mb-2">
@@ -166,7 +277,7 @@ const About = () => {
         </section>
 
         {/* Why We Do It Section */}
-        <section className="max-w-3xl mx-auto bg-sage-50 p-8 rounded-lg">
+        <section className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-sm border border-gray-100">
           <h2 className="text-3xl font-semibold text-sage-500 mb-6">
             Why We Do It
           </h2>
@@ -255,6 +366,7 @@ const About = () => {
         </section>
       </div>
     </div>
+    </>
   );
 };
 

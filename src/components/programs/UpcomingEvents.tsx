@@ -6,17 +6,17 @@ import { Calendar } from "lucide-react";
 
 const upcomingEvents = [
   {
-    date: "March 15, 2024",
+    date: "March 15, 2026",
     title: "Business Planning Workshop",
     type: "Workshop",
   },
   {
-    date: "March 20, 2024",
+    date: "March 20, 2026",
     title: "Financial Literacy Basics",
     type: "Class",
   },
   {
-    date: "March 25, 2024",
+    date: "March 25, 2026",
     title: "Mentor Matching Event",
     type: "Networking",
   },

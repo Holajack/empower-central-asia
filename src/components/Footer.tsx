@@ -30,7 +30,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/programs"
+                  to="/programs-and-impact"
                   className="text-gray-600 hover:text-purple-600 transition-colors"
                 >
                   Programs
@@ -38,7 +38,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/stories"
+                  to="/success-stories"
                   className="text-gray-600 hover:text-purple-600 transition-colors"
                 >
                   Success Stories

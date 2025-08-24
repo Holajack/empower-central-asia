@@ -25,13 +25,13 @@ const ContactInfo = () => {
           <Phone className="h-5 w-5 text-purple-500" aria-hidden="true" />
           <div>
             <a 
-              href="tel:+14074098836" 
+              href="tel:+13865171527" 
               className="hover:text-purple-500 font-medium"
               aria-label="Call us"
             >
-              +1 (407) 409-8836
+              +1 (386) 517-1527
             </a>
-            <p className="text-sm text-gray-500">Available Monday - Friday</p>
+            <p className="text-sm text-gray-500">Text & Call Available Monday - Friday</p>
           </div>
         </div>
         
@@ -74,9 +74,9 @@ const ContactInfo = () => {
       <div className="bg-purple-50 p-4 rounded-lg">
         <h3 className="font-semibold text-purple-800 mb-2">Emergency Contact</h3>
         <p className="text-sm text-purple-700">
-          For urgent matters related to ongoing programs, please call our emergency line at 
-          <a href="tel:+14074098836" className="font-medium hover:underline ml-1">
-            +1 (407) 409-8836
+          For urgent matters related to ongoing programs, please call or text our emergency line at 
+          <a href="tel:+13865171527" className="font-medium hover:underline ml-1">
+            +1 (386) 517-1527
           </a>
         </p>
       </div>

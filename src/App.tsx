@@ -6,6 +6,7 @@ import Contact from "@/pages/Contact";
 import GetInvolved from "@/pages/GetInvolved";
 import ProgramsAndImpact from "@/pages/ProgramsAndImpact";
 import SuccessStories from "@/pages/SuccessStories";
+import SuccessStoryDetail from "@/pages/SuccessStoryDetail";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Navigation from "@/components/Navigation";
@@ -19,6 +20,11 @@ import SarahCaseStudy from "@/pages/success-stories/SarahCaseStudy";
 import MarcusCaseStudy from "@/pages/success-stories/MarcusCaseStudy";
 import VolunteerApplication from "@/pages/VolunteerApplication";
 import PartnerApplication from "@/pages/PartnerApplication";
+import LeadershipMentor from "@/pages/volunteer-opportunities/LeadershipMentor";
+import CommunityOrganizer from "@/pages/volunteer-opportunities/CommunityOrganizer";
+import BusinessTraining from "@/pages/volunteer-opportunities/BusinessTraining";
+import AdministrativeSupport from "@/pages/volunteer-opportunities/AdministrativeSupport";
+import AdvocacyOutreach from "@/pages/volunteer-opportunities/AdvocacyOutreach";
 import ScrollToTop from "@/components/ScrollToTop";
 import NewsletterPopup from "@/components/NewsletterPopup";
 
@@ -35,6 +41,7 @@ function App() {
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/programs-and-impact" element={<ProgramsAndImpact />} />
           <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/success-stories/:id" element={<SuccessStoryDetail />} />
           <Route path="/success-stories/case-study-sarah" element={<SarahCaseStudy />} />
           <Route path="/success-stories/case-study-marcus" element={<MarcusCaseStudy />} />
           <Route path="/blog" element={<Blog />} />
@@ -46,6 +53,13 @@ function App() {
           <Route path="/programs/community-collaboration" element={<CommunityCollaboration />} />
           <Route path="/volunteer-application" element={<VolunteerApplication />} />
           <Route path="/partner-application" element={<PartnerApplication />} />
+          
+          {/* Volunteer Opportunity Pages */}
+          <Route path="/volunteer-opportunities/leadership-mentor" element={<LeadershipMentor />} />
+          <Route path="/volunteer-opportunities/community-organizer" element={<CommunityOrganizer />} />
+          <Route path="/volunteer-opportunities/business-training" element={<BusinessTraining />} />
+          <Route path="/volunteer-opportunities/administrative-support" element={<AdministrativeSupport />} />
+          <Route path="/volunteer-opportunities/advocacy-outreach" element={<AdvocacyOutreach />} />
         </Routes>
       </main>
       <Footer />
