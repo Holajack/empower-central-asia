@@ -119,8 +119,32 @@ const Footer = () => {
             <NewsletterSignup />
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
-          <p>&copy; {new Date().getFullYear()} Businesses Beyond Borders. All rights reserved.</p>
+        <div className="mt-8 pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} Businesses Beyond Borders. All rights reserved.
+            </p>
+            <div className="flex space-x-6">
+              <Link
+                to="/privacy"
+                className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/mobile-terms"
+                className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+              >
+                Mobile Terms
+              </Link>
+              <Link
+                to="/sms"
+                className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+              >
+                SMS Notifications
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

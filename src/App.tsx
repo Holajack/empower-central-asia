@@ -25,6 +25,9 @@ import CommunityOrganizer from "@/pages/volunteer-opportunities/CommunityOrganiz
 import BusinessTraining from "@/pages/volunteer-opportunities/BusinessTraining";
 import AdministrativeSupport from "@/pages/volunteer-opportunities/AdministrativeSupport";
 import AdvocacyOutreach from "@/pages/volunteer-opportunities/AdvocacyOutreach";
+import SmsOptIn from "@/pages/SmsOptIn";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import MobileTerms from "@/pages/MobileTerms";
 import ScrollToTop from "@/components/ScrollToTop";
 import NewsletterPopup from "@/components/NewsletterPopup";
 
@@ -60,6 +63,11 @@ function App() {
           <Route path="/volunteer-opportunities/business-training" element={<BusinessTraining />} />
           <Route path="/volunteer-opportunities/administrative-support" element={<AdministrativeSupport />} />
           <Route path="/volunteer-opportunities/advocacy-outreach" element={<AdvocacyOutreach />} />
+          
+          {/* Legal and Compliance Pages */}
+          <Route path="/sms" element={<SmsOptIn />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/mobile-terms" element={<MobileTerms />} />
         </Routes>
       </main>
       <Footer />
