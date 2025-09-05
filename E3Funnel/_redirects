@@ -1,0 +1,22 @@
+# Netlify redirects file
+# Long funnel URL (hard to remember for ad retargeting)
+/ca-ministry-partnership-outreach-support-monthly-commitment-150-unreached-peoples-10-40-window-gospel-transformation    /index.html    200
+/ca-ministry-partnership-outreach-support-monthly-commitment-150-unreached-peoples-10-40-window-gospel-transformation/*    /index.html    200
+
+# Short donation links
+/donate    https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=direct_link    302
+/give      https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=give_redirect    302
+/monthly   https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=monthly_redirect  302
+
+# Amount-specific donation links
+/give100   https://www.purecharity.com/checkout/576519?amount=100&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=give100    302
+/give150   https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=give150    302
+/give250   https://www.purecharity.com/checkout/576519?amount=250&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=give250    302
+
+# Social media friendly links
+/partner   /#partners-circle    301
+/story     /#story-section      301
+/impact    /#impact-section     301
+
+# Handle all other routes by serving the main page
+/*    /index.html   200

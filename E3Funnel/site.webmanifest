@@ -1,0 +1,22 @@
+{
+    "name": "Central Asia Partners - Monthly Missions Support",
+    "short_name": "Central Asia Partners",
+    "description": "Join the $150 Partners Circle and help reach Central Asia with the gospel. Monthly partnerships put missionaries at real tables with real families.",
+    "icons": [
+        {
+            "src": "1040+Window+Map+with+Box.png.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#2c5530",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "start_url": "/",
+    "categories": ["charity", "missions", "nonprofit"],
+    "lang": "en-US",
+    "dir": "ltr"
+}
