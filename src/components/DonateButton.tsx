@@ -15,13 +15,15 @@ interface DonateButtonProps {
   variant?: "default" | "outline";
   size?: "default" | "sm" | "lg" | "icon";
   showIcon?: boolean;
+  children?: React.ReactNode;
 }
 
 const DonateButton = ({ 
   className = "", 
   variant = "default",
   size = "default",
-  showIcon = true 
+  showIcon = true,
+  children = "Donate Now"
 }: DonateButtonProps) => {
   useEffect(() => {
     // Add Donorbox widget script
@@ -48,7 +50,7 @@ const DonateButton = ({
           className={`bg-purple-500 hover:bg-purple-600 text-white ${className}`}
         >
           {showIcon && <Heart className="mr-2 h-4 w-4" />}
-          Donate Now
+          {children}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
