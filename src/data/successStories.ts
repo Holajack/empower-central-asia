@@ -504,7 +504,7 @@ Kyle's business now employs 25 people:
     location: "Dushanbe, Tajikistan",
     title: "E-Commerce Pioneer: How Carter Built Tajikistan's First Sustainable Online Marketplace",
     excerpt: "From a small Etsy shop to Tajikistan's leading online marketplace for traditional crafts, Carter's journey showcases the power of digital commerce in emerging markets.",
-    heroImage: "/lovable-uploads/cc50db34-68ba-4cbf-a1a9-d6cc73e9f753.png",
+    heroImage: "/images/cc50db34-68ba-4cbf-a1a9-d6cc73e9f753.png",
     beforeStory: `Carter Mahmudov was a computer science graduate working as an IT technician in Dushanbe, Tajikistan, earning a modest salary while dreaming of entrepreneurship. Inspired by his mother's traditional textile work and the beautiful crafts made by local artisans, he started a small Etsy shop to sell these products internationally.
 
 His initial attempts generated minimal sales due to poor product photography, limited marketing knowledge, and challenges with international shipping. Despite the rich cultural heritage and exceptional craftsmanship available in Tajikistan, Carter struggled to connect local artisans with global customers who would appreciate their work.
@@ -733,7 +733,7 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
     location: "Samarkand, Uzbekistan", 
     title: "Heritage Tourism Success: Building Uzbekistan's Premier Cultural Guest House Experience",
     excerpt: "How Stephanie transformed a family home into Uzbekistan's most sought-after cultural tourism destination, combining traditional hospitality with modern business practices.",
-    heroImage: "/lovable-uploads/4ace87e0-dafe-4ed6-8fe9-26b1206c0725.png",
+    heroImage: "/images/4ace87e0-dafe-4ed6-8fe9-26b1206c0725.png",
     beforeStory: `Stephanie Karimova owned a beautiful traditional home in Samarkand, Uzbekistan, near the famous Registan Square. With tourism growing in Central Asia and her children grown and moved away, she dreamed of transforming her family home into a guest house that would showcase traditional Uzbek hospitality while providing sustainable income.
 
 However, Stephanie had no experience in the hospitality industry, tourism marketing, or business management. Her idea remained just a dream as she struggled with questions about licensing, international marketing, customer service standards, and financial planning for such a significant undertaking.

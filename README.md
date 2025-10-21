@@ -1,69 +1,153 @@
-# Welcome to your Lovable project
+# Businesses Beyond Borders
 
-## Project info
+Empowering entrepreneurs in Central Asia through financial literacy, business training, and community development.
 
-**URL**: https://lovable.dev/projects/eac2890c-5bb3-44d3-9438-b81db8a3fc90
+## About This Project
 
-## How can I edit this code?
+This is the official website for Businesses Beyond Borders, a Volusia County-based nonprofit organization providing financial literacy training, microloans, and business mentorship in Kazakhstan, Kyrgyzstan, and Tajikistan.
 
-There are several ways of editing your application.
+**Live Site**: https://businessesbeyondborders.com
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/eac2890c-5bb3-44d3-9438-b81db8a3fc90) and start prompting.
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui with Radix UI primitives
+- **Routing**: React Router v6
+- **Forms**: React Hook Form with Zod validation
+- **Deployment**: Netlify
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js 18+ and npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+```bash
+# Clone the repository
+git clone <repository-url>
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Navigate to the project directory
+cd empower-central-asia
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build in development mode
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+- `npm run blog-scheduler` - Run blog scheduler (see blog management)
+- `npm run blog-scheduler:test` - Test blog scheduler
+- `npm run blog-scheduler:help` - Get help with blog scheduler
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+empower-central-asia/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # React components
+│   │   ├── ui/         # shadcn/ui components
+│   │   └── ...         # Custom components
+│   ├── pages/          # Page components
+│   │   ├── programs/   # Program-specific pages
+│   │   ├── success-stories/ # Case studies
+│   │   └── volunteer-opportunities/ # Volunteer pages
+│   ├── data/           # Static data files
+│   ├── lib/            # Utility functions
+│   └── main.tsx        # Application entry point
+├── index.html
+├── vite.config.ts
+└── package.json
+```
 
-This project is built with .
+## Key Features
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Multi-page website** with React Router
+- **Responsive design** with Tailwind CSS
+- **Blog system** with markdown support
+- **SEO optimized** with meta tags and structured data
+- **Form integrations** with GoHighLevel
+- **Donation widget** with DonorBox
+- **Chat widget** powered by GoHighLevel
 
-## How can I deploy this project?
+## Adding Content
 
-Simply open [Lovable](https://lovable.dev/projects/eac2890c-5bb3-44d3-9438-b81db8a3fc90) and click on Share -> Publish.
+### Adding Blog Posts
 
-## I want to use a custom domain - is that possible?
+Blog posts are managed using markdown files. To add a new post:
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. Create a new `.md` file in the appropriate location
+2. Add frontmatter with title, date, author, excerpt, image, and tags
+3. Use the blog scheduler tool to publish: `npm run blog-scheduler`
+
+See `BLOG_SCHEDULER_README.md` for detailed instructions.
+
+### Updating Programs
+
+Program content is located in `src/pages/programs/`. Edit the respective `.tsx` file to update content.
+
+### Managing Success Stories
+
+Success stories are in `src/data/successStories.ts` and individual case study pages are in `src/pages/success-stories/`.
+
+## Deployment
+
+This project is configured for deployment on Netlify.
+
+### Deploy to Netlify
+
+1. Push your changes to GitHub
+2. Connect your repository to Netlify
+3. Configure build settings:
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+4. Deploy!
+
+Netlify will automatically handle React Router redirects using the `netlify.toml` configuration.
+
+### Environment Variables
+
+If you need environment variables, create a `.env` file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+## Integrations
+
+### GoHighLevel
+- Chat widget for visitor engagement
+- Form submissions for volunteers and partners
+- SMS opt-in functionality
+
+### DonorBox
+- Donation widget embedded on Get Involved page
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
+
+## Support
+
+For questions or issues, please contact the Businesses Beyond Borders team.
+
+## License
+
+Copyright © 2025 Businesses Beyond Borders. All rights reserved.
