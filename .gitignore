@@ -33,3 +33,54 @@ dist-ssr
 
 # OS files
 Thumbs.db
+
+# ==========================================
+# Morpheus Web Intelligence System
+# ==========================================
+
+# Environment variables - DO NOT COMMIT!
+.env.agents
+.env.*.local
+
+# API credentials
+*credentials*.json
+*service-account*.json
+gcp-*.json
+
+# API cache
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Agent logs
+logs/
+*.log
+
+# Backups
+backups/
+*.bak
+*.backup
+
+# Reports (may contain sensitive data)
+reports/*.json
+reports/*.csv
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# Build artifacts
+.netlify/

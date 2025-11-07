@@ -1,0 +1,44 @@
+# Python Dependencies for Morpheus Web Intelligence System
+# Install with: pip install -r requirements-agents.txt
+
+# Core dependencies
+openai>=1.3.0                    # OpenAI API for content generation
+gitpython>=3.1.40                # Git operations
+requests>=2.31.0                 # HTTP requests
+python-dotenv>=1.0.0             # Environment variable management
+
+# Google APIs
+google-api-python-client>=2.108.0    # Google APIs
+google-auth-oauthlib>=1.1.0          # OAuth for Google
+google-auth-httplib2>=0.1.1          # HTTP for Google Auth
+google-analytics-data>=0.17.0        # Google Analytics 4
+pytrends>=4.9.2                      # Google Trends (unofficial)
+
+# Web scraping & analysis
+beautifulsoup4>=4.12.2          # HTML parsing
+lxml>=4.9.3                     # XML/HTML processing
+requests-html>=0.10.0           # Async web scraping
+
+# Image optimization
+Pillow>=10.1.0                  # Image processing
+pillow-heif>=0.14.0            # HEIF/HEIC support
+
+# Performance & monitoring
+python-dateutil>=2.8.2          # Date utilities
+pytz>=2023.3                    # Timezone handling
+
+# Schema validation
+jsonschema>=4.19.2              # JSON schema validation
+
+# Optional: Translation services
+# googletrans==4.0.0rc1         # Google Translate (unofficial)
+# deepl>=1.16.1                 # DeepL API
+
+# Optional: SMS/Email services
+# twilio>=8.10.0                # SMS notifications
+# sendgrid>=6.10.0              # Email service
+
+# Development
+pytest>=7.4.3                   # Testing
+black>=23.11.0                  # Code formatting
+flake8>=6.1.0                   # Linting

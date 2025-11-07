@@ -3,18 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1a56db" />
+
+    <!-- Primary Meta Tags -->
     <title>Businesses Beyond Borders - Empowering Central Asian Entrepreneurs</title>
+    <meta name="title" content="Businesses Beyond Borders - Empowering Central Asian Entrepreneurs" />
     <meta name="description" content="Transform communities through entrepreneurship. Volusia County-based nonprofit providing financial literacy training, microloans, and business mentorship in Kazakhstan, Kyrgyzstan, and Tajikistan." />
+    <meta name="keywords" content="entrepreneurship, Central Asia, nonprofit, microloans, financial literacy, business training, Kazakhstan, Kyrgyzstan, Tajikistan, economic development, poverty alleviation" />
     <meta name="author" content="Businesses Beyond Borders" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.businessesbeyondborders.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.businessesbeyondborders.com/" />
+    <meta property="og:site_name" content="Businesses Beyond Borders" />
     <meta property="og:title" content="Businesses Beyond Borders - Empowering Central Asian Entrepreneurs" />
     <meta property="og:description" content="Transform communities through entrepreneurship. Volusia County-based nonprofit providing financial literacy training, microloans, and business mentorship in Kazakhstan, Kyrgyzstan, and Tajikistan." />
-    <meta property="og:image" content="/og-image.png" />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.businessesbeyondborders.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.businessesbeyondborders.com/" />
+    <meta name="twitter:title" content="Businesses Beyond Borders - Empowering Central Asian Entrepreneurs" />
+    <meta name="twitter:description" content="Transform communities through entrepreneurship. Volusia County-based nonprofit providing financial literacy training, microloans, and business mentorship in Kazakhstan, Kyrgyzstan, and Tajikistan." />
+    <meta name="twitter:image" content="https://www.businessesbeyondborders.com/og-image.png" />
+
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   </head>
 
   <body>
     <div id="root"></div>
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Businesses Beyond Borders",
+      "alternateName": "BBB",
+      "url": "https://www.businessesbeyondborders.com",
+      "logo": "https://www.businessesbeyondborders.com/og-image.png",
+      "description": "Transform communities through entrepreneurship. Volusia County-based nonprofit providing financial literacy training, microloans, and business mentorship in Kazakhstan, Kyrgyzstan, and Tajikistan.",
+      "foundingDate": "2020",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Kazakhstan"
+        },
+        {
+          "@type": "Country",
+          "name": "Kyrgyzstan"
+        },
+        {
+          "@type": "Country",
+          "name": "Tajikistan"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Volusia County",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.facebook.com/businessesbeyondborders",
+        "https://www.instagram.com/businessesbeyondborders",
+        "https://www.linkedin.com/company/businesses-beyond-borders"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "General Inquiries",
+        "url": "https://www.businessesbeyondborders.com/contact"
+      },
+      "knowsAbout": [
+        "Entrepreneurship",
+        "Financial Literacy",
+        "Microfinance",
+        "Business Training",
+        "Economic Development",
+        "Poverty Alleviation",
+        "Central Asia Development"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Businesses Beyond Borders",
+      "url": "https://www.businessesbeyondborders.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.businessesbeyondborders.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- GoHighLevel Chat Widget -->
