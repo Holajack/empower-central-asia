@@ -6,10 +6,12 @@
   publish = "dist"
 
 # Redirect all routes to index.html for React Router to handle
+# force = false means: only redirect if the file doesn't exist
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Force HTTPS
 [[redirects]]
