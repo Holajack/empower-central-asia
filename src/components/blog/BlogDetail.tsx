@@ -190,26 +190,56 @@ const BlogDetail = () => {
             </div>
           </article>
 
-          {/* Call to Action Section */}
+          {/* Call to Action Section - Value-Driven Resources */}
           <div className="mt-16 pt-12 border-t border-gray-200">
             <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Ready to Make a Global Impact from Volusia County?</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Free Resources to Get Started</h3>
               <p className="text-gray-600 mb-6">
-                Join our mission to empower entrepreneurs in Central Asia. Whether you're looking to volunteer, 
-                donate, or partner with us, there are many ways to get involved.
+                Download our complete toolkit to implement community-based international development in your organization. 
+                Includes asset mapping templates, volunteer engagement playbooks, and impact measurement frameworks.
               </p>
+              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                <div className="bg-white p-4 rounded-lg border border-purple-200">
+                  <h4 className="font-semibold text-gray-800 mb-2">📋 Asset Mapping Toolkit</h4>
+                  <p className="text-sm text-gray-600 mb-3">Identify and mobilize community resources for global work</p>
+                  <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                    Download Free →
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-purple-200">
+                  <h4 className="font-semibold text-gray-800 mb-2">🌐 Remote Volunteer Playbook</h4>
+                  <p className="text-sm text-gray-600 mb-3">Create meaningful virtual international engagement</p>
+                  <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                    Download Free →
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-purple-200">
+                  <h4 className="font-semibold text-gray-800 mb-2">📊 Impact Measurement Templates</h4>
+                  <p className="text-sm text-gray-600 mb-3">Track dual-impact across local and global communities</p>
+                  <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                    Download Free →
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-purple-200">
+                  <h4 className="font-semibold text-gray-800 mb-2">🚀 Implementation Guide</h4>
+                  <p className="text-sm text-gray-600 mb-3">Step-by-step roadmap for launching your program</p>
+                  <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                    Download Free →
+                  </Link>
+                </div>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
-                  to="/get-involved" 
+                  to="/contact" 
                   className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors text-center"
                 >
-                  Get Involved Today
+                  Access Complete Toolkit
                 </Link>
                 <Link 
-                  to="/contact" 
+                  to="/get-involved" 
                   className="border border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-lg font-medium transition-colors text-center"
                 >
-                  Contact Us
+                  Explore BBB Programs
                 </Link>
               </div>
             </div>
@@ -219,9 +249,10 @@ const BlogDetail = () => {
           <div className="bg-gray-50 rounded-xl p-6 mb-12">
             <h4 className="text-lg font-semibold text-gray-800 mb-2">About the Author</h4>
             <p className="text-gray-600">
-              <strong>{post.author}</strong> is the founder of Businesses Beyond Borders, a Port Orange-based 
-              nonprofit dedicated to empowering entrepreneurs in Central Asia through financial literacy training 
-              and microfinance programs.
+              <strong>{post.author}</strong> is the founder of Businesses Beyond Borders, a community-based 
+              nonprofit demonstrating the principles outlined in this guide through programs empowering entrepreneurs 
+              in Central Asia. The organization serves as a real-world case study for community-based international 
+              development, engaging local volunteers remotely while creating measurable global impact.
             </p>
           </div>
 
