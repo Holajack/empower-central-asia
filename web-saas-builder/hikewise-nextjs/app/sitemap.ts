@@ -20,37 +20,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/faq`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/help`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/careers`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-09"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
@@ -74,19 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority,
     };
   });
-
-  // Category pages (if they exist)
-  const categories = Array.from(
-    new Set(blogData.posts.map((post) => post.category))
-  );
-  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${baseUrl}/blog/category/${category
-      .toLowerCase()
-      .replace(/\s+/g, "-")}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }));
 
   return [...staticPages, ...blogPosts];
 }

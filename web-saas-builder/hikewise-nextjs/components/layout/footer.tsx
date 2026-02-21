@@ -75,24 +75,24 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="bg-white border-t border-black/5">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+      <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Brand Column */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <Link
               href="/"
-              className="flex items-center gap-3 font-extrabold text-xl mb-4"
+              className="flex items-center gap-2.5 sm:gap-3 font-extrabold text-lg sm:text-xl mb-3 sm:mb-4"
             >
               <Image
                 src="/images/app-icon.png"
                 alt="HikeWise"
-                width={40}
-                height={40}
-                className="rounded-[10px]"
+                width={36}
+                height={36}
+                className="rounded-[10px] sm:w-10 sm:h-10"
               />
               HikeWise
             </Link>
-            <p className="text-muted-foreground max-w-xs mb-6">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xs mb-5 sm:mb-6">
               Helping students study smarter and achieve their academic goals
               through intelligent focus tracking and AI-powered insights.
             </p>
@@ -104,13 +104,13 @@ export function Footer() {
 
           {/* Product Links */}
           <div>
-            <h4 className="font-semibold mb-4">Product</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-sm sm:text-base mb-3 sm:mb-4">Product</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -121,13 +121,13 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-sm sm:text-base mb-3 sm:mb-4">Company</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -137,14 +137,14 @@ export function Footer() {
           </div>
 
           {/* Support Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Support</h4>
-            <ul className="space-y-3">
+          <div className="col-span-2 sm:col-span-1">
+            <h4 className="font-semibold text-sm sm:text-base mb-3 sm:mb-4">Support</h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:space-y-3 sm:gap-0">
               {footerLinks.support.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -155,16 +155,16 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-muted-foreground text-xs sm:text-sm">
             &copy; {new Date().getFullYear()} HikeWise. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             {socialLinks.map((social) => (
               <Link
                 key={social.label}
                 href={social.href}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1"
                 aria-label={social.label}
               >
                 {social.icon}

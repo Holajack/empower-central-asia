@@ -10,10 +10,10 @@ export function SectionHeader({
   centered = true,
 }: SectionHeaderProps) {
   return (
-    <div className={`max-w-2xl ${centered ? "mx-auto text-center" : ""} mb-12`}>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+    <div className={`max-w-2xl ${centered ? "mx-auto text-center" : ""} mb-8 sm:mb-12`}>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">{title}</h2>
       {subtitle && (
-        <p className="text-lg text-muted-foreground">{subtitle}</p>
+        <p className="text-base sm:text-lg text-muted-foreground">{subtitle}</p>
       )}
     </div>
   );

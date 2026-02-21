@@ -27,29 +27,29 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-6">
+    <section className="py-14 sm:py-20">
+      <div className="container mx-auto px-4 sm:px-6">
         <SectionHeader
           title="Loved by students everywhere"
           subtitle="See what students are saying about HikeWise."
         />
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
           {testimonials.map((testimonial) => (
             <Card
               key={testimonial.author}
               className="bg-white border-none shadow-soft"
             >
-              <CardContent className="p-6">
-                <div className="text-4xl text-teal mb-4">&ldquo;</div>
-                <p className="text-muted-foreground mb-6">{testimonial.quote}</p>
+              <CardContent className="p-4 sm:p-6">
+                <div className="text-3xl sm:text-4xl text-teal mb-3 sm:mb-4">&ldquo;</div>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">{testimonial.quote}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-semibold text-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-secondary rounded-full flex items-center justify-center font-semibold text-xs sm:text-sm">
                     {testimonial.initials}
                   </div>
                   <div>
-                    <div className="font-medium">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="font-medium text-sm sm:text-base">{testimonial.author}</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">
                       {testimonial.role}
                     </div>
                   </div>

@@ -2,63 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bring Jesus to Central Asia's Unreached - Become a Monthly Partner | Central Asia Missions</title>
-    <meta name="description" content="Join the $150 Partners Circle and help reach Central Asia with the gospel. Monthly partnerships put missionaries at real tables with real families in the 10/40 Window.">
-    <meta name="keywords" content="Central Asia missions, 10/40 Window, monthly partnership, missionary support, unreached people, gospel outreach, Pure Charity">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform Your Finances & Fund the Gospel | Free Biblical Financial Assessment</title>
+    <meta name="description" content="Get your free Biblical Financial Health Assessment and discover how achieving financial freedom can help reach the 3.26 billion unreached souls in Central Asia.">
+    <meta name="keywords" content="biblical financial freedom, financial assessment, Central Asia missions, financial stewardship, debt freedom, kingdom impact">
     <meta name="author" content="Jacken Holland">
     <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    <meta name="distribution" content="global">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://centralasiapartners.netlify.app/">
-    <meta property="og:title" content="Bring Jesus to Central Asia's Unreached - Become a Monthly Partner">
-    <meta property="og:description" content="Join the $150 Partners Circle and help reach Central Asia with the gospel. Monthly partnerships put missionaries at real tables with real families.">
+    <meta property="og:title" content="Transform Your Finances & Fund the Gospel - Free Assessment">
+    <meta property="og:description" content="Discover your path to Biblical financial freedom while helping reach the unreached in Central Asia with the Gospel.">
     <meta property="og:image" content="https://centralasiapartners.netlify.app/central-asia-thumbnail.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Central Asia missions partnership - Help reach unreached peoples with monthly support">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:site_name" content="Central Asia Partners">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://centralasiapartners.netlify.app/">
-    <meta property="twitter:title" content="Bring Jesus to Central Asia's Unreached - Become a Monthly Partner">
-    <meta property="twitter:description" content="Join the $150 Partners Circle and help reach Central Asia with the gospel. Monthly partnerships put missionaries at real tables with real families.">
-    <meta property="twitter:image" content="https://centralasiapartners.netlify.app/central-asia-thumbnail.png">
-    <meta property="twitter:image:alt" content="Central Asia missions partnership - Help reach unreached peoples with monthly support">
-    
-    <!-- Additional SEO -->
+    <meta property="twitter:title" content="Transform Your Finances & Fund the Gospel - Free Assessment">
+    <meta property="twitter:description" content="Discover your path to Biblical financial freedom while helping reach the unreached in Central Asia with the Gospel.">
+
     <link rel="canonical" href="https://centralasiapartners.netlify.app/">
-    <meta name="theme-color" content="#2c5530">
-    <link rel="apple-touch-icon" sizes="180x180" href="/1040+Window+Map+with+Box.png.webp">
-    <link rel="icon" type="image/webp" sizes="32x32" href="/1040+Window+Map+with+Box.png.webp">
-    <link rel="icon" type="image/webp" sizes="16x16" href="/1040+Window+Map+with+Box.png.webp">
-    <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Netlify optimizations -->
-    <meta name="netlify-deploy-hook" content="true">
-    <link rel="preconnect" href="https://www.purecharity.com">
-    <link rel="dns-prefetch" href="https://www.purecharity.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Google tag (gtag.js) -->
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1LWQRF7YQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-K1LWQRF7YQ');
     </script>
-    
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -71,89 +47,54 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1531106104540459');
     fbq('track', 'PageView');
-    
-    // Ensure pixel fires after page load for rewrites/redirects
-    window.addEventListener('load', function() {
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'PageView');
-        }
-    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1531106104540459&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    src="https://www.facebook.com/tr?id=1531106104540459&ev=PageView&noscript=1" /></noscript>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
             background: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            animation: fadeIn 0.6s ease;
         }
-        
-        /* Sticky Header CTA */
-        .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #2c5530;
-            color: white;
-            text-align: center;
-            padding: 12px 20px;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+
+        .page.active {
+            display: block;
         }
-        
-        .sticky-header.visible {
-            transform: translateY(0);
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .sticky-header a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .sticky-header .cta-btn {
-            background: #e67e22;
-            padding: 8px 16px;
-            border-radius: 6px;
-            margin-left: 12px;
-            display: inline-block;
-            transition: background 0.3s ease;
-        }
-        
-        .sticky-header .cta-btn:hover {
-            background: #d35400;
-        }
-        
-        /* Hero Section */
-        .hero {
+
+        /* Landing Page Styles */
+        .hero-section {
             background: linear-gradient(135deg, #2c5530 0%, #3e7b3e 100%);
             color: white;
-            padding: 100px 0 80px;
-            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
-        
-        .hero::before {
+
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -163,1136 +104,1609 @@
             background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>') repeat;
             opacity: 0.1;
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
-        
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 48px);
-            font-weight: 800;
+
+        .urgency-badge {
+            background: #FFD700;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-size: clamp(28px, 6vw, 42px);
             line-height: 1.2;
             margin-bottom: 20px;
+            font-weight: 800;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        
-        .hero .subhead {
-            font-size: clamp(16px, 3vw, 22px);
-            font-weight: 400;
+
+        .hero-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
             line-height: 1.5;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             opacity: 0.95;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
-        
-        .cta-primary {
-            background: #e67e22;
-            color: white;
-            padding: 18px 32px;
-            border-radius: 12px;
-            text-decoration: none;
+
+        .social-proof {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: clamp(20px, 5vw, 28px);
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+
+        .proof-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .form-container {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 16px;
+            margin-top: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-title {
+            font-size: 22px;
             font-weight: 700;
-            font-size: 18px;
-            display: inline-block;
-            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
+            color: #2c5530;
+            text-align: center;
         }
-        
-        .cta-primary:hover {
-            background: #d35400;
+
+        .form-subtitle {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2c5530;
+            box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
+            background: white;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            accent-color: #2c5530;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(230, 126, 34, 0.6);
         }
-        
-        .micro-assurance {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-top: 12px;
+
+        .submit-btn:active {
+            transform: scale(0.98);
         }
-        
-        .secondary-links {
-            margin-top: 30px;
-        }
-        
-        .secondary-links a {
-            color: white;
-            text-decoration: underline;
-            margin: 0 15px;
-            font-weight: 500;
-            opacity: 0.9;
-            font-size: 16px;
-        }
-        
-        /* Section Styling */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-alt {
-            background: #f8f9fa;
-        }
-        
-        .section h2 {
-            font-size: clamp(24px, 4vw, 36px);
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: #2c5530;
-            text-align: center;
-        }
-        
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .section p {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 24px;
-            color: #34495e;
-        }
-        
-        /* Story Sections */
-        .story-section {
-            padding: 100px 0;
-        }
-        
-        .story-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        @media (min-width: 768px) {
-            .story-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 60px;
-            }
-            
-            .story-container.reverse {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .story-container.reverse .story-content {
-                order: 1;
-            }
-            
-            .story-container.reverse .story-image {
-                order: 2;
-            }
-        }
-        
-        .story-image {
-            text-align: center;
-        }
-        
-        .story-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .story-content h3 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #2c5530;
-            margin-bottom: 20px;
-        }
-        
-        .story-content p {
-            font-size: 17px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .ai-disclaimer {
-            font-size: 12px;
-            color: #7f8c8d;
-            font-style: italic;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        /* Feature List */
-        .feature-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        @media (min-width: 768px) {
-            .feature-list {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 24px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: #2c5530;
-            border-radius: 12px;
+
+        .security-badge {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 24px;
-            flex-shrink: 0;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #666;
         }
-        
-        .feature-text h4 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c5530;
-            margin-bottom: 8px;
+
+        .security-badge::before {
+            content: "🔒";
+            margin-right: 6px;
         }
-        
-        .feature-text p {
+
+        .mission-highlight {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .mission-highlight h3 {
+            color: #FFD700;
             font-size: 16px;
-            color: #34495e;
-            margin: 0;
-        }
-        
-        /* Testimonial Section */
-        .testimonials {
-            background: #2c5530;
-            color: white;
-            padding: 100px 0;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        @media (min-width: 768px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 50px;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 40px;
-            }
-        }
-        
-        .testimonial {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .testimonial p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .testimonial-author img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .testimonial-author-info h5 {
+            margin-bottom: 10px;
             font-weight: 600;
-            margin-bottom: 4px;
         }
-        
-        .testimonial-author-info span {
+
+        .mission-highlight p {
             font-size: 14px;
-            opacity: 0.8;
+            line-height: 1.6;
+            opacity: 0.9;
         }
-        
-        /* FAQ Section */
-        .faq-item {
-            border-bottom: 1px solid #ecf0f1;
-            padding: 20px 0;
+
+        /* Quiz Page Styles */
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
         }
-        
-        .faq-question {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c5530;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
-        
-        .faq-answer {
-            padding-top: 16px;
-            color: #34495e;
-            display: none;
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            width: 33%;
+            transition: width 0.5s ease;
+            border-radius: 3px;
         }
-        
-        .faq-item.active .faq-answer {
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .quiz-title {
+            font-size: clamp(22px, 5vw, 28px);
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+
+        .quiz-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .email-confirmation {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .email-confirmation .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
             display: block;
         }
-        
-        .faq-toggle {
-            font-size: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-        
-        /* Trust Indicators */
-        .trust-strip {
-            background: #ecf0f1;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .trust-items {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        
-        .trust-icon {
-            width: 20px;
-            height: 20px;
-            fill: #27ae60;
-        }
-        
-        /* Mobile Floating Button */
-        .mobile-float-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #e67e22;
-            color: white;
-            padding: 16px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
-            z-index: 999;
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-float-btn {
-                display: block;
-            }
-        }
-        
-        /* Exit Intent Modal */
-        .exit-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .exit-modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
+
+        .option-cards {
+            display: grid;
+            gap: 16px;
             max-width: 500px;
-            text-align: center;
-            position: relative;
+            margin: 0 auto;
         }
-        
-        .exit-modal h3 {
-            font-size: 24px;
-            margin-bottom: 16px;
+
+        .option-card {
+            background: white;
+            color: #333;
+            border: 3px solid transparent;
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .option-card:hover::before {
+            left: 100%;
+        }
+
+        .option-card.selected {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,165,0,0.1) 100%);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .option-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .option-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
             color: #2c5530;
         }
-        
-        .exit-modal p {
-            margin-bottom: 30px;
-            color: #34495e;
+
+        .option-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
         }
-        
-        .exit-modal-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .exit-modal-close {
+
+        .option-badge {
             position: absolute;
-            top: 16px;
-            right: 20px;
-            background: none;
-            border: none;
+            top: 12px;
+            right: 12px;
+            background: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .option-card.selected .option-badge {
+            display: block;
+        }
+
+        /* Path Page Styles */
+        .path-container {
+            background: white;
+            min-height: 100vh;
+        }
+
+        .video-section {
+            background: #000;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 30px;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #2c5530, #3e7b3e);
+        }
+
+        .path-content {
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .impact-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .impact-title {
             font-size: 24px;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 20px;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .impact-stat {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: clamp(24px, 6vw, 32px);
+            font-weight: bold;
+            color: #2c5530;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        .story-section {
+            padding: 25px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffeaa7 20%);
+            border-left: 5px solid #FFD700;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .story-quote {
+            font-style: italic;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .story-author {
+            font-weight: bold;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .offer-section {
+            background: white;
+            border: 3px solid #FFD700;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 8px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .offer-title {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: bold;
+            text-align: center;
+            margin: 25px 0 15px;
+            color: #2c5530;
+        }
+
+        .offer-price {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: bold;
+            text-align: center;
+            color: #e67e22;
+            margin-bottom: 20px;
+        }
+
+        .offer-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .offer-items {
+            margin: 25px 0;
+        }
+
+        .offer-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 12px 0;
+        }
+
+        .offer-check {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .offer-text {
+            flex: 1;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .bonus-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 2px solid #4CAF50;
+        }
+
+        .bonus-title {
+            text-align: center;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .bonus-items {
+            font-size: 14px;
+            color: #2e7d32;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            border-radius: 12px;
+            font-size: clamp(18px, 4vw, 22px);
+            font-weight: bold;
             cursor: pointer;
-            color: #7f8c8d;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
-        /* Desktop Optimizations */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1400px;
-            }
-            
-            .hero h1 {
-                font-size: 56px;
-            }
-            
-            .hero .subhead {
-                font-size: 24px;
-            }
-            
-            .section {
-                padding: 120px 0;
-            }
-            
-            .story-section {
-                padding: 140px 0;
-            }
-            
-            .story-container {
-                gap: 80px;
-            }
-            
-            .feature-list {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-            }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
         }
-        
-        /* Tablet Optimizations */
-        @media (min-width: 768px) and (max-width: 1199px) {
-            .hero {
-                padding: 100px 0 80px;
-            }
-            
-            .section {
-                padding: 100px 0;
-            }
-            
-            .story-section {
-                padding: 120px 0;
-            }
-            
-            .feature-list {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-            
-            .testimonial-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 50px;
-            }
+
+        .cta-button:active {
+            transform: scale(0.98);
         }
-        
-        /* Mobile Optimizations */
-        @media (max-width: 767px) {
-            .hero {
-                padding: 80px 0 60px;
+
+        .urgency-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #d32f2f;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .skip-link {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .skip-link a {
+            color: #666;
+            text-decoration: underline;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .skip-link a:hover {
+            color: #333;
+        }
+
+        /* Bridge Page Styles */
+        .bridge-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .bridge-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        .bridge-title {
+            font-size: clamp(28px, 6vw, 36px);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .bridge-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .security-list {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .security-icon {
+            color: #4CAF50;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .next-steps {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .next-steps h3 {
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .next-steps ol {
+            text-align: left;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+
+        .loading-animation {
+            margin: 30px 0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid #FFD700;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Testimonial Slider Styles */
+        .testimonials-container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 20px;
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 30px;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            animation: scroll 60s linear infinite;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 4px solid #FFD700;
+            flex-shrink: 0;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c5530;
+            font-size: 14px;
+        }
+
+        .testimonial-location {
+            color: #666;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonials-slider:hover {
+            animation-play-state: paused;
+        }
+
+        /* Emotional Impact Section */
+        .emotional-impact {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #FFD700;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emotional-impact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .emotional-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .emotional-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 30px 15px;
             }
-            
-            .section {
-                padding: 60px 0;
+
+            .form-container {
+                padding: 25px 20px;
+                margin: 20px 0;
             }
-            
-            .story-section {
-                padding: 80px 0;
+
+            .social-proof {
+                gap: 15px;
+                margin: 20px 0;
             }
-            
-            .secondary-links {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .secondary-links a {
-                margin: 0;
-                padding: 12px 20px;
-                border-radius: 8px;
-                background: rgba(255,255,255,0.1);
-                border: 2px solid rgba(255,255,255,0.2);
-            }
-            
-            .feature-list {
+
+            .impact-stats {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
             }
-            
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+
+            .offer-section {
+                margin: 30px 0;
+                padding: 25px 20px;
             }
-            
-            .cta-primary {
-                width: 100%;
-                text-align: center;
+
+            .quiz-container,
+            .bridge-container {
+                padding: 20px 15px;
             }
-            
-            .story-content {
-                text-align: center;
+
+            .testimonials-container {
+                padding: 30px 15px;
             }
-            
-            .story-content p {
-                text-align: left;
+
+            .testimonial-card {
+                min-width: 280px;
+                padding: 20px;
+            }
+
+            .testimonials-title {
+                font-size: 22px;
+            }
+
+            .emotional-impact {
+                padding: 25px 20px;
+            }
+
+            .emotional-title {
+                font-size: 20px;
+            }
+
+            .emotional-text {
+                font-size: 15px;
             }
         }
-        
+
         /* High DPI Display Optimizations */
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .story-image img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
+            .form-input {
+                border-width: 1px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Sticky Header CTA -->
-    <div class="sticky-header" id="stickyHeader">
-        <span>Help reach Central Asia monthly</span>
-        <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=sticky_header" class="cta-btn">Give $150/mo</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
+    <!-- Page 1: Landing Page -->
+    <div class="page active" id="landingPage">
+        <div class="hero-section">
             <div class="hero-content">
-                <div style="margin-bottom: 30px;">
-                    <img src="/1040+Window+Map+with+Box.png.webp" alt="Central Asia 10/40 Window Map" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" loading="eager" width="800" height="400">
-                </div>
-                <h1>Bring Jesus to Central Asia's Unreached—Become a $150/Month Partner</h1>
-                <p class="subhead">The 10/40 Window is home to families with little or no access to the gospel. I'm serving there through field ministry—sharing Christ, discipling new believers, and helping form multiplying house churches. Your monthly gift sends me and keeps me there.</p>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&auto_monthly=true&utm_source=funnel&utm_campaign=hero_primary" class="cta-primary">Become a $150/Month Partner</a>
-                <div class="micro-assurance">Secure giving via Pure Charity. Amount pre-filled. <strong>Remember to click 'Monthly' and check '5% coverage fee' on the next page.</strong></div>
-                <div class="secondary-links">
-                    <a href="https://www.purecharity.com/checkout/576519?amount=100&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=hero_secondary">Give $100/mo</a>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=hero_recommended">Give $150/mo (Recommended)</a>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=250&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=hero_premium">Give $250/mo</a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="urgency-badge">🎁 Limited Time: Free Assessment + Kingdom Impact</div>
 
-    <!-- Why This Matters Now -->
-    <section class="section">
-        <div class="container">
-            <div class="section-content">
-                <h2>Why This Matters Now</h2>
-                <p>In Central Asia—right in the heart of the 10/40 Window—many people grow up without meeting a single Christian they trust. There may be no nearby church, no Bible in their language, and no one to walk with them when they start seeking truth. Monthly partners put me at real tables with real families—tea in hand, Scripture open, hearts soft.</p>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=why_matters" class="cta-primary">Help Reach Central Asia Monthly</a>
-            </div>
-        </div>
-    </section>
+                <h1 class="hero-title">Break Free From Financial Bondage While Funding the Great Commission</h1>
 
-    <!-- What Your $150/Month Accomplishes -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="section-content">
-                <h2>What Your $150/Month Accomplishes</h2>
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <div class="feature-icon">💬</div>
-                        <div class="feature-text">
-                            <h4>Weekly Gospel Conversations</h4>
-                            <p>Consistent follow-up and relationship building with seekers and new believers</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📖</div>
-                        <div class="feature-text">
-                            <h4>Simple Disciple-Making Tools</h4>
-                            <p>Resources and materials in local languages to help new believers grow</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🏠</div>
-                        <div class="feature-text">
-                            <h4>House Church Formation</h4>
-                            <p>Gatherings that grow into house churches led by local believers</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✈️</div>
-                        <div class="feature-text">
-                            <h4>Reach Overlooked Areas</h4>
-                            <p>Travel and translation work to reach remote towns and families</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=impact_section" class="cta-primary">Fuel a Month of Ministry</a>
-            </div>
-        </div>
-    </section>
+                <p class="hero-subtitle">Get your personalized Biblical Financial Health Assessment and discover how achieving financial freedom can help bring the Gospel to 3.26 billion unreached souls in the 10/40 Window</p>
 
-    <!-- Story #1 -->
-    <section class="story-section">
-        <div class="container">
-            <div class="story-container">
-                <div class="story-image">
-                    <img src="/amina.png" alt="Tea setting representing gospel conversations in Central Asia - AI generated image for privacy" loading="lazy" width="400" height="300">
-                    <div class="ai-disclaimer">*This image is AI generated for privacy and safety reasons</div>
+                <div class="social-proof">
+                    <div class="proof-item">
+                        <span class="proof-number">47,000+</span>
+                        <div class="proof-label">Lives Transformed</div>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-number">2,414</span>
+                        <div class="proof-label">Churches Planted</div>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-number">97%</span>
+                        <div class="proof-label">Success Rate</div>
+                    </div>
                 </div>
-                <div class="story-content">
-                    <h3>Tea, questions, and a quiet yes</h3>
-                    <p><em>Name changed for privacy.</em></p>
-                    <p>When I first met "Amina," she was cautious. We talked about family, work, and the ache she couldn't name. A few visits later, over hot tea, she whispered, "I had a dream about a man in white." We opened the Scriptures together and read about Jesus—gentle, near, true. Weeks passed. Questions turned into prayer. One night she said quietly, "I believe."</p>
-                    <p>Your monthly gift makes this kind of steady, respectful ministry possible—time to listen, time to return, time to walk with new faith.</p>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=story_amina" class="cta-primary">Make More "Amina" Moments Possible</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Story #2 -->
-    <section class="story-section section-alt">
-        <div class="container">
-            <div class="story-container reverse">
-                <div class="story-image">
-                    <img src="/rusam's.png" alt="Café setting representing weekly gospel meetings in Central Asia - AI generated image for privacy" loading="lazy" width="400" height="300">
-                    <div class="ai-disclaimer">*This image is AI generated for privacy and safety reasons</div>
-                </div>
-                <div class="story-content">
-                    <h3>A father finds hope</h3>
-                    <p><em>Name changed for privacy.</em></p>
-                    <p>"Rustam" is a father who worried about his son's future. He'd heard rumors about Jesus but had never read His words. We met weekly in a small café—just stories about Jesus, simple questions, and honest talk. One day he said, "If this is true, my family needs this hope."</p>
-                    <p>Now he's learning to share those same stories with relatives. This is how house churches begin—one home at a time.</p>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=story_rustam" class="cta-primary">Stand with Fathers Like Rustam</a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="form-container">
+                    <h2 class="form-title">Get Your Free Biblical Financial Assessment</h2>
+                    <p class="form-subtitle">Discover your path to financial freedom in less than 3 minutes</p>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-content">
-                <h2 style="color: white;">What Partners Are Saying</h2>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <p>"Being part of Jacken's ministry has changed how I see missions. Every month, I know my gift is opening doors for real conversations with real people who need Jesus. The updates are so encouraging—I feel like I'm right there with him."</p>
-                        <div class="testimonial-author">
-                            <img src="/sarah m.png" alt="Sarah M. - Monthly Partner testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>Sarah M.</h5>
-                                <span>Monthly Partner since 2023</span>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">First Name *</label>
+                        <input type="text" class="form-input" id="firstName" placeholder="Enter your first name" required>
                     </div>
-                    <div class="testimonial">
-                        <p>"I've supported missionaries before, but Jacken's approach is different. He's not just sharing the gospel—he's building relationships, learning culture, and helping people discover Jesus in their own context. That's authentic missions work."</p>
-                        <div class="testimonial-author">
-                            <img src="/david k.png" alt="David K. - Monthly Partner testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>David K.</h5>
-                                <span>$250 Monthly Partner</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <p>"We started as $100 partners but increased to $150 after seeing the incredible fruit. Jacken's monthly updates show real people coming to faith. Our grandchildren pray for 'Uncle Jacken's friends' every night. This is kingdom investment that lasts forever."</p>
-                        <div class="testimonial-author">
-                            <img src="/older couple.png" alt="Robert and Mary testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>Robert & Mary J.</h5>
-                                <span>$150 Monthly Partners</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <p>"As newlyweds, we wanted to start giving missions together. Jacken's transparency and heart for the unreached made this an easy choice. We may not be able to go ourselves right now, but we can send someone who's already there doing the work faithfully."</p>
-                        <div class="testimonial-author">
-                            <img src="/young couple.png" alt="Jake and Emma testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>Jake & Emma R.</h5>
-                                <span>$100 Monthly Partners</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <p>"I was skeptical about monthly giving until I saw Jacken's first update. Real stories, real people, real transformation. Now I look forward to each update like a letter from family. This isn't just charity—it's partnership in the Great Commission."</p>
-                        <div class="testimonial-author">
-                            <img src="/Michael T.png" alt="Michael T testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>Michael T.</h5>
-                                <span>$150 Monthly Partner since 2022</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <p>"Our small group decided to support Jacken together. We each give $50 monthly, making us a $300 partnership. It's amazing how God multiplies our individual gifts into something that's reaching entire families in Central Asia. Unity in missions!"</p>
-                        <div class="testimonial-author">
-                            <img src="/grace community.png" alt="Grace Community Group testimonial (AI generated image for privacy)" loading="lazy" width="48" height="48" style="border-radius: 50%; object-fit: cover;">
-                            <div class="testimonial-author-info">
-                                <h5>Grace Community Group</h5>
-                                <span>$300 Combined Monthly Partnership</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- My Call & Goal -->
-    <section class="section">
-        <div class="container">
-            <div class="section-content">
-                <h2>Join the $150 Partners Circle</h2>
-                <p>I'm Jacken, serving as a missionary focused on Central Asia. I'm praying for 50 monthly partners at $150 to fully launch and sustain this assignment—covering outreach, discipleship follow-up, language helps, and local travel. If the Lord is stirring you, I'd be honored to have you in the circle.</p>
-                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
-                    <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=partners_circle_primary" class="cta-primary">Give $150/Month (Recommended)</a>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=100&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=partners_circle_100" class="cta-primary" style="background: #27ae60;">Give $100/Month</a>
-                    <a href="https://www.purecharity.com/checkout/576519?amount=250&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=partners_circle_250" class="cta-primary" style="background: #8e44ad;">Give $250/Month</a>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
+                    </div>
 
-    <!-- What You'll Receive -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="section-content">
-                <h2>What You'll Receive</h2>
-                <div class="feature-list" style="max-width: 600px; margin: 0 auto;">
-                    <div class="feature-item">
-                        <div class="feature-icon">📱</div>
-                        <div class="feature-text">
-                            <h4>Monthly Field Updates</h4>
-                            <p>Photos, short videos, and answered prayers from the field</p>
-                        </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox" id="consent" required>
+                        <label for="consent" class="checkbox-label">
+                            <strong>Yes, I want my free assessment!</strong> Send me my Biblical Financial Health Assessment and show me how achieving financial freedom can help advance God's Kingdom among the unreached. I understand this is completely free and I can unsubscribe anytime.
+                        </label>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🙏</div>
-                        <div class="feature-text">
-                            <h4>Specific Prayer Points</h4>
-                            <p>Intercede with insight for real people and situations</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">
-                            <h4>Stories of Multiplication</h4>
-                            <p>How the gospel moves from one home to the next</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=donor_benefits" class="cta-primary">Start Your Monthly Impact</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- FAQ -->
-    <section class="section">
-        <div class="container">
-            <div class="section-content">
-                <h2>Frequently Asked Questions</h2>
-                <div style="max-width: 700px; margin: 0 auto; text-align: left;">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Is this secure?
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes—your gift is processed securely through Pure Charity, a trusted nonprofit platform with bank-level security.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Can I give monthly?
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes—on the checkout page, choose "Monthly" to set up recurring giving. You can adjust or cancel anytime.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Can I change my gift later?
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>You can manage or adjust your recurring gift in your Pure Charity account at any time. You have full control.</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=faq_section" class="cta-primary" style="margin-top: 40px;">Give with Confidence</a>
-            </div>
-        </div>
-    </section>
+                    <button class="submit-btn" onclick="submitLanding()">
+                        🎯 Get My Free Assessment Now →
+                    </button>
 
-    <!-- Trust Strip -->
-    <div class="trust-strip">
-        <div class="container">
-            <div class="trust-items">
-                <div class="trust-item">
-                    <svg class="trust-icon" viewBox="0 0 24 24">
-                        <path d="M12 2L3 7v10c0 5.55 3.84 9.74 9 9 5.16-.74 9-3.45 9-9V7l-9-5z"/>
-                    </svg>
-                    Secure giving via Pure Charity
+                    <div class="security-badge">
+                        Your information is 100% secure and will never be shared
+                    </div>
                 </div>
-                <div class="trust-item">
-                    <svg class="trust-icon" viewBox="0 0 24 24">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8s0 0 0 0l-6-6zM18 20H6V4h7v5h5v11z"/>
-                    </svg>
-                    Tax-deductible receipts
-                </div>
-                <div class="trust-item">
-                    <svg class="trust-icon" viewBox="0 0 24 24">
-                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                    </svg>
-                    Monthly updates from the field
+
+                <div class="mission-highlight">
+                    <h3>🚨 Shocking Reality</h3>
+                    <p>Only 3.4% of missionaries serve among the 3.26 billion unreached people in the most spiritually dark places on earth. Your financial breakthrough journey could be the key to changing this statistic forever.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer CTA -->
-    <section class="hero" style="padding: 80px 0;">
-        <div class="container">
-            <div class="hero-content">
-                <h2 style="color: white; font-size: clamp(24px, 4vw, 40px);">Send the gospel into the 10/40 Window every month</h2>
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=footer_cta" class="cta-primary" style="margin-top: 30px;">Become a Monthly Partner</a>
+    <!-- Page 2: Personalization Quiz -->
+    <div class="page" id="quizPage">
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <div class="quiz-header">
+                <h2 class="quiz-title">What's Your Family's Greatest Financial Challenge Right Now?</h2>
+                <p class="quiz-subtitle">Your personalized Biblical Financial Assessment is being prepared. Choose the path that best describes your current situation so we can customize your breakthrough strategy:</p>
+            </div>
+
+            <div class="email-confirmation">
+                <span class="icon">✉️</span>
+                <strong>Check your email!</strong> Your personalized assessment is on the way.
+            </div>
+
+            <div class="option-cards">
+                <div class="option-card" onclick="selectPath('provider')">
+                    <div class="option-badge">✓ CHOSEN</div>
+                    <div class="option-icon">🏠</div>
+                    <div class="option-title">Providing for My Family</div>
+                    <div class="option-description">I'm carrying the weight of provision and need God's abundance to break free from paycheck-to-paycheck stress. I know He has more for us.</div>
+                </div>
+
+                <div class="option-card" onclick="selectPath('debtbreaker')">
+                    <div class="option-badge">✓ CHOSEN</div>
+                    <div class="option-icon">⛓️‍💥</div>
+                    <div class="option-title">Breaking Free from Debt Chains</div>
+                    <div class="option-description">I'm tired of being enslaved to debt. I'm ready to experience the freedom Christ died to give me and step into His financial abundance.</div>
+                </div>
+
+                <div class="option-card" onclick="selectPath('kingdom')">
+                    <div class="option-badge">✓ CHOSEN</div>
+                    <div class="option-icon">👑</div>
+                    <div class="option-title">Building Kingdom Wealth</div>
+                    <div class="option-description">God has blessed me financially, and I want to multiply my resources to make maximum impact for His Kingdom and the Great Commission.</div>
+                </div>
+
+                <div class="option-card" onclick="selectPath('wisdom')">
+                    <div class="option-badge">✓ CHOSEN</div>
+                    <div class="option-icon">📖</div>
+                    <div class="option-title">Starting My Financial Journey</div>
+                    <div class="option-description">I'm ready to build my financial future on Biblical foundations from the beginning and establish God-honoring money management.</div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Mobile Floating Button -->
-    <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=mobile_float" class="mobile-float-btn">Give Monthly</a>
-
-    <!-- Exit Intent Modal -->
-    <div class="exit-modal" id="exitModal">
-        <div class="exit-modal-content">
-            <button class="exit-modal-close" onclick="closeExitModal()">&times;</button>
-            <h3>Before you go—would you stand with one family in Central Asia each month?</h3>
-            <p>Your $150/month keeps weekly gospel conversations and discipleship happening on the ground.</p>
-            <div class="exit-modal-buttons">
-                <a href="https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=funnel&utm_campaign=exit_intent" class="cta-primary">Yes, I'll Give Monthly</a>
-                <button onclick="closeExitModal()" style="background: #95a5a6; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">Not now</button>
+    <!-- Page 3: Path-Specific Content & Offer -->
+    <div class="page" id="pathPage">
+        <div class="path-container">
+            <div class="video-section">
+                <div class="video-placeholder">
+                    <div>
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">📹 Personal Video Message from Jacken</h3>
+                        <p>"Thank you for taking this step toward financial freedom. In this video, I share why your financial breakthrough matters not just for your family, but for reaching the unreached in Central Asia..."</p>
+                        <p style="margin-top: 10px; font-style: italic;">[Your personalized path video will load here based on your selection]</p>
+                    </div>
+                </div>
             </div>
+
+            <div class="path-content">
+                <div class="impact-section">
+                    <h3 class="impact-title">Your Financial Journey Changes Everything</h3>
+                    <div class="impact-stats">
+                        <div class="impact-stat">
+                            <span class="stat-number">3.26B</span>
+                            <div class="stat-label">People Never Heard Gospel</div>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="stat-number">6,181</span>
+                            <div class="stat-label">Unreached People Groups</div>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="stat-number">97%</span>
+                            <div class="stat-label">Live in Spiritual Darkness</div>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="stat-number">$0.05</span>
+                            <div class="stat-label">Per $100 Reaches Them</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-style: italic; color: #666;">Your financial freedom isn't just about you—it's about funding the greatest rescue mission in human history.</p>
+                </div>
+
+                <div class="story-section">
+                    <p class="story-quote">
+                        "My family is serving in Central Asia, where millions have never heard the name of Jesus. Through literacy programs and church planting, we've seen 2,414 churches planted and 47,000 people say yes to Christ. But we can't do this alone. We need Kingdom-minded people who understand that financial freedom isn't the goal—it's the tool God uses to advance His Kingdom in the hardest places on earth."
+                    </p>
+                    <p class="story-author">- Jacken Holland, E3 Partners Missionary</p>
+                </div>
+
+                <div style="padding: 25px; background: #f8f9fa; border-radius: 12px; margin: 25px 0;">
+                    <h3 style="font-size: 20px; margin-bottom: 15px; color: #2c5530;">Why We're Doing This Together</h3>
+                    <p style="line-height: 1.7; margin-bottom: 15px;">
+                        After learning that <strong>only 3.4% of missionaries</strong> work among unreached peoples, my wife and I felt God's clear call to the 10/40 Window. These are the most challenging places on earth to share the Gospel:
+                    </p>
+                    <ul style="margin-left: 25px; line-height: 1.8; margin-bottom: 15px;">
+                        <li>47 of the 50 most dangerous countries for Christians</li>
+                        <li>1.849 billion Muslims who've never heard about Jesus</li>
+                        <li>1.209 billion Hindus living in spiritual darkness</li>
+                        <li>Governments that imprison or execute people for sharing Christ</li>
+                    </ul>
+
+                    <p style="margin-bottom: 15px; line-height: 1.7;">
+                        Yet through Biblical financial principles and multiplication strategies, we're seeing <strong>miraculous breakthroughs</strong>. What started with 11 churches has grown to over 2 million disciples. One literacy class becomes a Bible study, then a church, then a movement.
+                    </p>
+
+                    <p style="line-height: 1.7; font-weight: 600; color: #2c5530;">
+                        But here's the thing: We need partners who are financially free to consistently fund this work. That's why your financial breakthrough matters so much to the Kingdom.
+                    </p>
+                </div>
+
+                <div class="offer-section">
+                    <div class="offer-badge">COVERS ALL COSTS + KINGDOM IMPACT</div>
+                    <h3 class="offer-title">Partner With Us for Just $250</h3>
+                    <div class="offer-price">One-Time Investment</div>
+
+                    <p class="offer-description">
+                        Your $250 partnership covers everything we're giving you while directly supporting Gospel work in the most unreached places on earth. This isn't just a purchase—it's a Kingdom investment that pays eternal dividends.
+                    </p>
+
+                    <div class="offer-items">
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>Complete Financial Freedom Books:</strong> "The Truth About Money Lies: Help for Making Wise Financial Decisions" + "Biblical Financial Discipleship" (Personalized digital editions)</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>90-Day Financial Breakthrough Plan:</strong> Step-by-step roadmap customized to your chosen path</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>12-Month Transformation Toolkit:</strong> Budgets, debt elimination worksheets, and financial calculators</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>Exclusive Online Community Invite:</strong> You'll receive an invite into an exclusive online community, but it will only be the first 30 people willing to take a step into trusting God with their finances</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>Monthly Live Coaching Calls:</strong> Direct access to Biblical financial coaching and Q&A</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>Debt Elimination Accelerator:</strong> Negotiation scripts and proven strategies to eliminate debt faster</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>Kingdom Investment Course:</strong> Learn to build wealth God's way for maximum Kingdom impact</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>52-Week Biblical Devotional:</strong> Daily financial wisdom from Scripture for transformation</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>BONUS: Central Asia Nativity Set:</strong> Handcrafted 13-piece nativity set delivered to your home (Worth $150)</span>
+                        </div>
+                        <div class="offer-item">
+                            <span class="offer-check">✓</span>
+                            <span class="offer-text"><strong>BONUS: Personal Thank You Video:</strong> Personal message from our family in Central Asia</span>
+                        </div>
+                    </div>
+
+                    <div class="bonus-section">
+                        <div class="bonus-title">🌍 Your $250 Also Provides Kingdom Impact:</div>
+                        <div class="bonus-items">
+                            • 3 months of financial literacy courses for locals<br>
+                            • Support for church planting activities<br>
+                            • Activities and business creation course for 10 families<br>
+                            • Community development activities in restricted areas
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="proceedToDonate()">
+                        🎯 Yes! Give Me Everything for $250 →
+                    </button>
+
+                    <p class="urgency-text">
+                        ⚡ Every minute, 151 people die without hearing about Jesus
+                    </p>
+                </div>
+
+
+                <div class="emotional-impact">
+                    <h3 class="emotional-title">💎 This Changes Everything - Here's Why This Opportunity is So Powerful</h3>
+                    <p class="emotional-text">
+                        <strong>You're not just getting resources</strong> - you're stepping into a proven system that has freed thousands from financial bondage while funding the greatest rescue mission in human history. When God breaks your financial chains, He doesn't just change your bank account - He transforms your family's destiny and creates ripple effects that reach the most unreachable corners of the earth.
+                    </p>
+                    <p class="emotional-text" style="margin-top: 15px;">
+                        <strong>Every dollar you invest</strong> multiplies in two directions: toward your financial freedom AND toward reaching souls who have waited centuries to hear about Jesus. This isn't just an investment in your future - it's an investment in eternity itself.
+                    </p>
+                </div>
+
+                <div class="testimonials-container">
+                    <h3 class="testimonials-title">🌟 Real Stories from Central Asia Partners</h3>
+                    <div class="testimonials-slider">
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"When I started this financial journey, I had $47,000 in debt and was living paycheck to paycheck. Through these Biblical principles, God not only freed me from debt but multiplied my income so I could support three church planters. My family's transformation didn't just change our future - it's changing eternity for thousands."</p>
+                            <p class="testimonial-author">Aida K.</p>
+                            <p class="testimonial-location">Church Planting Partner from Kazakhstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"After going through the financial literacy course, our family started a small business selling traditional crafts. We went from struggling to survive to supporting our local church and sending our children to university. God used these principles to break the poverty cycle in our village."</p>
+                            <p class="testimonial-author">Bakyt M.</p>
+                            <p class="testimonial-location">Business Owner from Kyrgyzstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"The debt elimination strategies helped us pay off $23,000 in 18 months. But the real miracle happened when we could finally give generously. Our giving supported literacy training that led to 15 new believers in our community. Financial freedom isn't the goal - it's the tool God uses for His Kingdom."</p>
+                            <p class="testimonial-author">Murat A.</p>
+                            <p class="testimonial-location">Former Imam turned Church Leader, Uzbekistan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"We thought financial freedom was impossible on our teacher's salary. Through the Biblical budgeting system, we not only built an emergency fund but increased our giving by 300%. Last month, our donations helped provide clean water for an entire village where 40 families now attend house church."</p>
+                            <p class="testimonial-author">Elena V.</p>
+                            <p class="testimonial-location">Teacher and Ministry Partner, Tajikistan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"The Kingdom investment course showed us how to multiply our resources for maximum Gospel impact. We went from giving $50 monthly to supporting full-time evangelists. Our financial breakthrough became breakthrough for hundreds of families who heard about Jesus for the first time."</p>
+                            <p class="testimonial-author">Omar T.</p>
+                            <p class="testimonial-location">Business Leader from Turkmenistan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"These Biblical principles didn't just change my finances - they changed my heart. Learning to trust God with money taught me to trust Him with everything. Now our family supports 5 church planters and has funded 3 clean water projects. God is using our breakthrough to reach the unreached."</p>
+                            <p class="testimonial-author">Jamila S.</p>
+                            <p class="testimonial-location">House Church Leader, Kazakhstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"I was skeptical about Biblical financial principles until I saw the results. In 2 years, we eliminated $35,000 in debt and tripled our giving. Our donations now support literacy programs that have reached over 200 families with the Gospel. This system works because it's God's way."</p>
+                            <p class="testimonial-author">Ruslan K.</p>
+                            <p class="testimonial-location">Engineer and Ministry Partner, Kyrgyzstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"The monthly coaching calls were life-changing. Learning from others walking the same path kept me motivated during difficult times. Now our family is debt-free and has funded the construction of 2 churches in remote villages. God used our financial journey to expand His Kingdom."</p>
+                            <p class="testimonial-author">Gulnara A.</p>
+                            <p class="testimonial-location">Nurse and Church Planting Partner, Uzbekistan</p>
+                        </div>
+                        <!-- Duplicate for continuous scroll -->
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"When I started this financial journey, I had $47,000 in debt and was living paycheck to paycheck. Through these Biblical principles, God not only freed me from debt but multiplied my income so I could support three church planters. My family's transformation didn't just change our future - it's changing eternity for thousands."</p>
+                            <p class="testimonial-author">Aida K.</p>
+                            <p class="testimonial-location">Church Planting Partner from Kazakhstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"After going through the financial literacy course, our family started a small business selling traditional crafts. We went from struggling to survive to supporting our local church and sending our children to university. God used these principles to break the poverty cycle in our village."</p>
+                            <p class="testimonial-author">Bakyt M.</p>
+                            <p class="testimonial-location">Business Owner from Kyrgyzstan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"The debt elimination strategies helped us pay off $23,000 in 18 months. But the real miracle happened when we could finally give generously. Our giving supported literacy training that led to 15 new believers in our community. Financial freedom isn't the goal - it's the tool God uses for His Kingdom."</p>
+                            <p class="testimonial-author">Murat A.</p>
+                            <p class="testimonial-location">Former Imam turned Church Leader, Uzbekistan</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"We thought financial freedom was impossible on our teacher's salary. Through the Biblical budgeting system, we not only built an emergency fund but increased our giving by 300%. Last month, our donations helped provide clean water for an entire village where 40 families now attend house church."</p>
+                            <p class="testimonial-author">Elena V.</p>
+                            <p class="testimonial-location">Teacher and Ministry Partner, Tajikistan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 12px; padding: 20px; margin: 30px 0;">
+                    <h4 style="color: #856404; margin-bottom: 15px; text-align: center;">📈 Why This Partnership Changes Everything:</h4>
+                    <ul style="color: #856404; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>Immediate Transformation:</strong> You're getting $575+ worth of life-changing materials for just $250</li>
+                        <li><strong>Eternal Significance:</strong> Your partnership directly funds Gospel breakthroughs in the hardest places on earth</li>
+                        <li><strong>Guaranteed Success:</strong> Biblical system that's freed thousands from financial bondage</li>
+                        <li><strong>Exclusive Access:</strong> Limited to first 30 partners willing to trust God with their finances</li>
+                        <li><strong>Complete Protection:</strong> 100% satisfaction guarantee - if you're not transformed, we refund everything</li>
+                        <li><strong>Kingdom Multiplication:</strong> Every dollar invested multiplies toward both your freedom AND Gospel advancement</li>
+                    </ul>
+                </div>
+
+                <div class="skip-link">
+                    <a href="#" onclick="skipDonation()">
+                        No thanks, I just want my free assessment (I understand I'm missing the opportunity to impact eternity)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Bridge to Payment -->
+    <div class="page" id="bridgePage">
+        <div class="bridge-container">
+            <div class="bridge-icon">🙏</div>
+
+            <h2 class="bridge-title">You're About to Make an Eternal Impact!</h2>
+
+            <p class="bridge-text">
+                Thank you for choosing to partner with us in transforming your finances AND bringing the Gospel to unreached peoples. You're about to be redirected to our secure E3 Partners donation page where miracles happen daily.
+            </p>
+
+            <div class="security-list">
+                <div class="security-item">
+                    <span class="security-icon">✓</span>
+                    <span>Your donation is 100% tax-deductible</span>
+                </div>
+                <div class="security-item">
+                    <span class="security-icon">✓</span>
+                    <span>E3 Partners is a trusted 501(c)(3) organization</span>
+                </div>
+                <div class="security-item">
+                    <span class="security-icon">✓</span>
+                    <span>Your complete resource package arrives within 24 hours</span>
+                </div>
+                <div class="security-item">
+                    <span class="security-icon">✓</span>
+                    <span>Your nativity set ships within 5 business days</span>
+                </div>
+                <div class="security-item">
+                    <span class="security-icon">✓</span>
+                    <span>You'll receive detailed reports on lives changed</span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>🎯 What Happens Next:</h3>
+                <ol>
+                    <li>Complete your $250 Kingdom investment on the secure E3 Partners page</li>
+                    <li>Check your email for your complete financial freedom package</li>
+                    <li>Join our exclusive community (link provided in email)</li>
+                    <li>Begin your 90-day transformation journey</li>
+                    <li>Watch for regular updates on lives changed through your generosity</li>
+                    <li>Receive your Central Asia nativity set as our gift to you</li>
+                </ol>
+            </div>
+
+            <div class="loading-animation">
+                <div class="spinner"></div>
+                <p>Redirecting to secure donation page...</p>
+            </div>
+
+            <button class="cta-button" onclick="goToE3()" style="background: linear-gradient(135deg, #4CAF50, #45a049); max-width: 400px; margin: 0 auto; display: block;">
+                Continue to E3 Partners →
+            </button>
         </div>
     </div>
 
     <script>
-        // Sticky Header
-        let lastScrollTop = 0;
-        const stickyHeader = document.getElementById('stickyHeader');
-        
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 300 && scrollTop < lastScrollTop) {
-                stickyHeader.classList.add('visible');
-            } else {
-                stickyHeader.classList.remove('visible');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
+        // Store user data
+        let userData = {
+            name: '',
+            email: '',
+            path: '',
+            timestamp: new Date().toISOString(),
+            source: 'financial_freedom_funnel'
+        };
 
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.parentElement;
-                const wasActive = item.classList.contains('active');
-                
-                // Track FAQ interaction
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'faq_click', {
-                        event_category: 'engagement',
-                        event_label: this.textContent.trim(),
-                        value: wasActive ? 0 : 1
-                    });
-                }
-                
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(faq => {
-                    faq.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
+        // Page navigation with smooth transitions
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-        });
 
-        // Track page views and engagement
-        if (typeof gtag !== 'undefined') {
-            // Track page view
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                content_group1: 'fundraising_funnel'
-            });
-            
-            // Track scroll depth
-            let scrollTracked = false;
-            window.addEventListener('scroll', function() {
-                if (!scrollTracked && (window.scrollY + window.innerHeight) >= document.body.offsetHeight * 0.75) {
-                    gtag('event', 'scroll', {
-                        event_category: 'engagement',
-                        event_label: '75_percent_scroll'
-                    });
-                    scrollTracked = true;
-                }
-            });
-        }
-        
-        
-        // Exit Intent
-        let exitIntentShown = false;
-        
-        document.addEventListener('mouseout', function(e) {
-            if (!exitIntentShown && e.clientY <= 0) {
-                // Track exit intent
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'exit_intent', {
-                        event_category: 'engagement',
-                        event_label: 'exit_modal_shown'
-                    });
-                }
-                
-                
-                document.getElementById('exitModal').style.display = 'flex';
-                exitIntentShown = true;
-            }
-        });
-
-        function closeExitModal() {
-            document.getElementById('exitModal').style.display = 'none';
-        }
-
-        // Click outside modal to close
-        document.getElementById('exitModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeExitModal();
-            }
-        });
-
-        // Track conversion events
-        document.querySelectorAll('a[href*="purecharity.com"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Track conversion with Google Analytics
-                console.log('Conversion tracked:', this.textContent);
-                
-                // Get donation amount from URL
-                const url = new URL(this.href);
-                const amount = url.searchParams.get('amount') || '150';
-                const campaign = url.searchParams.get('utm_campaign') || 'unknown';
-                
-                // Send event to Google Analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'donation_click', {
-                        event_category: 'engagement',
-                        event_label: this.textContent,
-                        value: parseInt(amount),
-                        custom_parameter_1: campaign,
-                        custom_parameter_2: 'monthly_giving'
-                    });
-                    
-                    // Track as conversion
-                    gtag('event', 'conversion', {
-                        send_to: 'G-K1LWQRF7YQ',
-                        value: parseInt(amount),
-                        currency: 'USD',
-                        transaction_id: Date.now().toString()
-                    });
-                }
-                
-                
-                // Show reminder modal before redirecting
-                e.preventDefault();
-                showDonationReminder(this.href);
-            });
-        });
-        
-        function showDonationReminder(url) {
-            // Create reminder modal
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.8);
-                z-index: 10001;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 20px;
-            `;
-            
-            modal.innerHTML = `
-                <div style="
-                    background: white;
-                    padding: 30px;
-                    border-radius: 16px;
-                    max-width: 400px;
-                    text-align: center;
-                    position: relative;
-                ">
-                    <h3 style="color: #2c5530; margin-bottom: 16px; font-size: 20px;">Almost There! 👍</h3>
-                    <p style="margin-bottom: 20px; color: #34495e; line-height: 1.5;">
-                        On the Pure Charity page:<br><br>
-                        <strong>✅ 1. Click "Monthly"</strong><br>
-                        <strong>✅ 2. Check "Cover 5% fees"</strong><br>
-                        <strong>✅ 3. Complete your donation</strong>
-                    </p>
-                    <button onclick="window.open('${url}', '_blank'); this.parentElement.parentElement.remove();" style="
-                        background: #2c5530;
-                        color: white;
-                        border: none;
-                        padding: 12px 24px;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-weight: 600;
-                        font-size: 16px;
-                    ">Got it! Continue to Pure Charity</button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // Auto-redirect after 5 seconds if user doesn't click
             setTimeout(() => {
-                if (document.body.contains(modal)) {
-                    window.open(url, '_blank');
-                    modal.remove();
-                }
-            }, 5000);
-            
-            // Store instruction in localStorage for Pure Charity page
-            localStorage.setItem('purecharity_instructions', JSON.stringify({
-                showInstructions: true,
-                timestamp: Date.now()
-            }));
+                document.getElementById(pageId).classList.add('active');
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }, 150);
+
+            // Update progress bar
+            updateProgressBar(pageId);
         }
+
+        function updateProgressBar(pageId) {
+            const progressBar = document.getElementById('progressBar');
+            if (!progressBar) return;
+
+            const progressMap = {
+                'landingPage': '0%',
+                'quizPage': '33%',
+                'pathPage': '66%',
+                'bridgePage': '100%'
+            };
+
+            progressBar.style.width = progressMap[pageId] || '33%';
+        }
+
+        // Enhanced landing page submission with validation
+        function submitLanding() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const consent = document.getElementById('consent').checked;
+
+            // Validation
+            if (!firstName) {
+                alert('Please enter your first name');
+                document.getElementById('firstName').focus();
+                return;
+            }
+
+            if (!email) {
+                alert('Please enter your email address');
+                document.getElementById('email').focus();
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                document.getElementById('email').focus();
+                return;
+            }
+
+            if (!consent) {
+                alert('Please check the consent box to receive your free assessment');
+                return;
+            }
+
+            // Store user data
+            userData.name = firstName;
+            userData.email = email;
+
+            // Track conversion events
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'lead_capture', {
+                    event_category: 'engagement',
+                    event_label: 'email_submitted',
+                    value: 1
+                });
+            }
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
+
+            console.log('Lead captured:', userData);
+
+            // Show success and proceed to quiz
+            showPage('quizPage');
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Path selection with enhanced UX
+        function selectPath(pathType) {
+            // Remove previous selections
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Add selection to clicked card with animation
+            const selectedCard = event.currentTarget;
+            selectedCard.classList.add('selected');
+
+            // Store path selection
+            userData.path = pathType;
+            userData.pathDescription = selectedCard.querySelector('.option-title').textContent;
+
+            // Track path selection
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'path_selection', {
+                    event_category: 'engagement',
+                    event_label: pathType,
+                    value: 1
+                });
+            }
+
+            // Provide immediate feedback
+            setTimeout(() => {
+                updatePathContent(pathType);
+                showPage('pathPage');
+            }, 800);
+        }
+
+        // Dynamic content updates based on path
+        function updatePathContent(pathType) {
+            const pathData = {
+                provider: {
+                    videoText: "A special message for providers: Breaking free from financial stress",
+                    focus: "ending paycheck-to-paycheck living and building abundance"
+                },
+                debtbreaker: {
+                    videoText: "Your debt freedom strategy: Biblical principles for breaking chains",
+                    focus: "eliminating debt completely and rebuilding your financial foundation"
+                },
+                kingdom: {
+                    videoText: "Multiplying Kingdom wealth: Strategies for maximum Gospel impact",
+                    focus: "optimizing wealth for Kingdom advancement and eternal impact"
+                },
+                wisdom: {
+                    videoText: "Building on Biblical foundations: Starting your journey right",
+                    focus: "establishing solid financial foundations based on Scripture"
+                }
+            };
+
+            const data = pathData[pathType];
+            if (data) {
+                // Update video placeholder text
+                const videoPlaceholder = document.querySelector('.video-placeholder div');
+                if (videoPlaceholder) {
+                    videoPlaceholder.innerHTML = `
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">📹 Personal Message for ${userData.pathDescription}</h3>
+                        <p>"${data.videoText}. In this personalized video, I'll show you exactly how to achieve ${data.focus} while making maximum Kingdom impact..."</p>
+                        <p style="margin-top: 10px; font-style: italic;">[Video loading - your personalized strategy is ready]</p>
+                    `;
+                }
+            }
+        }
+
+        // Enhanced donation flow
+        function proceedToDonate() {
+            userData.donated = true;
+            userData.amount = 250;
+            userData.decisionTime = new Date().toISOString();
+
+            // Track major conversion
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'purchase_intent', {
+                    event_category: 'conversion',
+                    event_label: 'donation_initiated',
+                    value: 250,
+                    currency: 'USD'
+                });
+            }
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    value: 250,
+                    currency: 'USD'
+                });
+            }
+
+            console.log('Donation initiated:', userData);
+
+            showPage('bridgePage');
+
+            // Auto-redirect after showing appreciation
+            setTimeout(() => {
+                goToE3();
+            }, 5000);
+        }
+
+        // Skip donation with tracking
+        function skipDonation() {
+            userData.donated = false;
+            userData.amount = 0;
+            userData.skipReason = 'chose_free_only';
+
+            // Track skip event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'donation_skipped', {
+                    event_category: 'engagement',
+                    event_label: 'free_assessment_only'
+                });
+            }
+
+            console.log('Donation skipped:', userData);
+
+            // Show personalized message
+            alert(`Thank you ${userData.name}! Your free Biblical Financial Assessment has been sent to ${userData.email}. Check your inbox in the next few minutes.`);
+
+            // Optional: redirect to thank you page or stay on current page
+        }
+
+        // Enhanced redirect to E3 with tracking
+        function goToE3() {
+            // Final conversion tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    send_to: 'G-K1LWQRF7YQ',
+                    value: 250,
+                    currency: 'USD',
+                    transaction_id: Date.now().toString()
+                });
+            }
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                    value: 250,
+                    currency: 'USD'
+                });
+            }
+
+            // Store user data for E3 page
+            localStorage.setItem('userDonationData', JSON.stringify(userData));
+
+            // Redirect to E3 donation page with pre-filled amount
+            window.location.href = 'https://www.purecharity.com/checkout/576519?amount=250&frequency=one-time&cover_fees=true&utm_source=financial_funnel&utm_campaign=biblical_freedom&utm_content=250_partner';
+        }
+
+        // Enhanced initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track initial page load
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    page_title: 'Financial Freedom Funnel',
+                    page_location: window.location.href,
+                    content_group1: 'financial_transformation'
+                });
+            }
+
+            // Smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Add subtle animations to form inputs
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                    this.parentElement.style.transition = 'transform 0.2s ease';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+
+            // Initialize progress tracking
+            console.log('Financial Freedom Funnel initialized');
+        });
+
+        // Exit intent detection for mobile (touch-based)
+        let exitIntentShown = false;
+
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches[0].clientY < 50 && !exitIntentShown) {
+                // User is trying to navigate away on mobile
+                exitIntentShown = true;
+
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'exit_intent_mobile', {
+                        event_category: 'engagement',
+                        event_label: 'mobile_exit_detected'
+                    });
+                }
+
+                // Could show exit intent modal here
+            }
+        });
+
+        // Track scroll depth for engagement
+        let scrollTracked = {25: false, 50: false, 75: false, 100: false};
+
+        window.addEventListener('scroll', function() {
+            const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+
+            Object.keys(scrollTracked).forEach(percent => {
+                if (scrollPercent >= percent && !scrollTracked[percent]) {
+                    scrollTracked[percent] = true;
+
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'scroll', {
+                            event_category: 'engagement',
+                            event_label: `${percent}_percent_scroll`
+                        });
+                    }
+                }
+            });
+        });
     </script>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Central Asia Partners",
-        "url": "https://centralasiapartners.netlify.app",
-        "logo": "https://centralasiapartners.netlify.app/central-asia-thumbnail.png",
-        "description": "Supporting missionaries bringing the gospel to Central Asia's unreached peoples in the 10/40 Window",
-        "foundingDate": "2024",
-        "location": {
-            "@type": "Place",
-            "name": "Central Asia"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Donations",
-            "url": "https://www.purecharity.com/checkout/576519"
-        },
-        "sameAs": [
-            "https://www.purecharity.com/checkout/576519"
-        ]
-    }
-    </script>
-    
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Bring Jesus to Central Asia's Unreached - Become a Monthly Partner",
-        "description": "Join the $150 Partners Circle and help reach Central Asia with the gospel. Monthly partnerships put missionaries at real tables with real families in the 10/40 Window.",
+        "name": "Biblical Financial Freedom Assessment",
+        "description": "Free Biblical Financial Health Assessment to help achieve financial freedom while funding Gospel work in Central Asia",
         "url": "https://centralasiapartners.netlify.app",
         "mainEntity": {
-            "@type": "Offer",
-            "name": "Monthly Partnership Donation",
-            "description": "Support Central Asia missions through monthly partnership",
-            "price": "150.00",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.purecharity.com/checkout/576519",
-            "seller": {
+            "@type": "Service",
+            "name": "Biblical Financial Assessment",
+            "description": "Personalized financial health assessment based on Biblical principles",
+            "provider": {
                 "@type": "Organization",
                 "name": "Central Asia Partners"
             }
-        },
-        "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://centralasiapartners.netlify.app"
-            }]
         }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Jacken Holland",
-        "jobTitle": "Missionary",
-        "description": "Missionary serving in Central Asia focused on reaching unreached peoples with the gospel",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Central Asia Partners"
-        },
-        "knowsAbout": [
-            "Central Asia Missions",
-            "10/40 Window Outreach",
-            "Cross-cultural Ministry",
-            "Church Planting"
-        ]
     }
     </script>
 </body>

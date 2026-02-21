@@ -76,30 +76,35 @@ const features = [
 ];
 
 export function FeaturesSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
-    <section id="features" className="py-24 bg-white relative overflow-hidden">
+    <section id="features" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-sage/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-sage/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-teal/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeader
           title="Everything you need to study better"
           subtitle="Powerful features designed to help you stay focused, track progress, and achieve your academic goals."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mt-8 sm:mt-12">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative h-[340px]"
+              className="group relative h-[280px] sm:h-[340px]"
               style={{ perspective: "1000px" }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              onClick={() => handleToggle(index)}
             >
               {/* Card container with 3D transform */}
               <div
@@ -107,50 +112,51 @@ export function FeaturesSection() {
                 style={{
                   transformStyle: "preserve-3d",
                   transform:
-                    hoveredIndex === index ? "rotateY(180deg)" : "rotateY(0deg)",
+                    activeIndex === index ? "rotateY(180deg)" : "rotateY(0deg)",
                 }}
               >
                 {/* Front */}
                 <div
-                  className="absolute inset-0 glass-card rounded-2xl p-6 flex flex-col"
+                  className="absolute inset-0 glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col"
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div
-                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br ${feature.gradient}`}
+                    className={`w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-5 bg-gradient-to-br ${feature.gradient}`}
                   >
-                    <feature.icon className="w-7 h-7 text-forest" />
+                    <feature.icon className="w-5 h-5 sm:w-7 sm:h-7 text-forest" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground flex-1">
+                  <h3 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">{feature.title}</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground flex-1 line-clamp-3 sm:line-clamp-none">
                     {feature.description}
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-teal mt-4 font-medium">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Hover for details</span>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-teal mt-3 sm:mt-4 font-medium">
+                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Hover for details</span>
+                    <span className="sm:hidden">Tap for details</span>
                   </div>
                 </div>
 
                 {/* Back */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-forest to-forest-light text-white rounded-2xl p-6 flex flex-col"
+                  className="absolute inset-0 bg-gradient-to-br from-forest to-forest-light text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col"
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "rotateY(180deg)",
                   }}
                 >
-                  <h3 className="text-xl font-semibold mb-3">
+                  <h3 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">
                     {feature.details.heading}
                   </h3>
-                  <p className="text-white/80 text-sm mb-4">
+                  <p className="text-white/80 text-xs sm:text-sm mb-3 sm:mb-4">
                     {feature.details.text}
                   </p>
-                  <ul className="space-y-2.5 flex-1">
+                  <ul className="space-y-1.5 sm:space-y-2.5 flex-1">
                     {feature.details.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-3 text-sm text-white/90"
+                        className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-white/90"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-sage mt-1.5 shrink-0" />
+                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-sage mt-1.5 shrink-0" />
                         {bullet}
                       </li>
                     ))}
@@ -161,7 +167,7 @@ export function FeaturesSection() {
               {/* Hover glow effect */}
               <div
                 className={`absolute inset-0 -z-10 rounded-2xl blur-xl transition-opacity duration-500 bg-gradient-to-br ${feature.gradient} ${
-                  hoveredIndex === index ? "opacity-60" : "opacity-0"
+                  activeIndex === index ? "opacity-60" : "opacity-0"
                 }`}
               />
             </div>

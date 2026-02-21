@@ -33,17 +33,17 @@ export function Header() {
         isScrolled && "shadow-soft"
       )}
     >
-      <div className="container mx-auto px-6 h-[72px] flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 h-[60px] sm:h-[72px] flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-3 font-extrabold text-xl"
+          className="flex items-center gap-2 sm:gap-3 font-extrabold text-lg sm:text-xl"
         >
           <Image
             src="/images/app-icon.png"
             alt="HikeWise"
-            width={40}
-            height={40}
-            className="rounded-[10px]"
+            width={34}
+            height={34}
+            className="rounded-[8px] sm:w-10 sm:h-10 sm:rounded-[10px]"
           />
           HikeWise
         </Link>
@@ -62,7 +62,7 @@ export function Header() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <Button asChild className="hidden md:inline-flex rounded-full px-6">
             <Link
               href="https://testflight.apple.com/join/HIKEWISE"
@@ -76,17 +76,17 @@ export function Header() {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-9 w-9 sm:h-10 sm:w-10">
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-              <nav className="flex flex-col gap-4 mt-8">
+            <SheetContent side="right" className="w-[280px] sm:w-[300px]">
+              <nav className="flex flex-col gap-3 sm:gap-4 mt-6 sm:mt-8">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-medium py-2"
+                    className="text-base sm:text-lg font-medium py-2 active:text-teal transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
