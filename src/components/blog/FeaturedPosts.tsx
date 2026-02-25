@@ -30,7 +30,7 @@ const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Main Featured Post */}
         <Link
-          to={`/blog/${mainPost.id}`}
+          to={`/blog/${mainPost.slug}`}
           className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow"
         >
           <div className="aspect-[16/10] overflow-hidden">
@@ -74,7 +74,7 @@ const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
             {secondaryPosts.map((post) => (
               <Link
                 key={post.id}
-                to={`/blog/${post.id}`}
+                to={`/blog/${post.slug}`}
                 className="group flex gap-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4"
               >
                 <div className="w-32 h-24 flex-shrink-0 overflow-hidden rounded-lg">

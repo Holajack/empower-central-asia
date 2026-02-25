@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -50,6 +51,12 @@ const SmsOptIn = () => {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>SMS Updates | Businesses Beyond Borders</title>
+      <meta name="description" content="Sign up for SMS updates from Businesses Beyond Borders. Get donor updates, impact stories, and event reminders." />
+      <link rel="canonical" href="https://businessesbeyondborders.com/sms" />
+    </Helmet>
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12">
@@ -173,6 +180,7 @@ const SmsOptIn = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -13,6 +13,15 @@ const CommunityOrganizer = () => {
         <title>Community Organizer - Volunteer Opportunity | Businesses Beyond Borders</title>
         <meta name="description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from anywhere." />
         <meta name="keywords" content="community organizer volunteer, volunteer coordinator opportunities, nonprofit community organizing, volunteer program coordinator, community development volunteer, nonprofit outreach volunteer opportunities, remote community organizer" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/community-organizer" />
+        <meta property="og:title" content="Community Organizer - Volunteer Opportunity | Businesses Beyond Borders" />
+        <meta property="og:description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from anywhere." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/community-organizer" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Community Organizer - Volunteer Opportunity | Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from anywhere." />
       </Helmet>
 
       <div className="min-h-screen pt-20">

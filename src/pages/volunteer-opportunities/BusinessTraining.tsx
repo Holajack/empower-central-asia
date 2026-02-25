@@ -13,6 +13,15 @@ const BusinessTraining = () => {
         <title>Business Training Volunteer - Support Our Programs | Businesses Beyond Borders</title>
         <meta name="description" content="Support our proven Financial Discipleship and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible remote scheduling." />
         <meta name="keywords" content="business training volunteer, financial literacy volunteer, entrepreneurship education volunteer, business mentor volunteer, nonprofit training volunteer, volunteer business instructor opportunities, remote business training" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/business-training" />
+        <meta property="og:title" content="Business Training Volunteer - Support Our Programs | Businesses Beyond Borders" />
+        <meta property="og:description" content="Support our proven Financial Discipleship and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible remote scheduling." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/business-training" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Business Training Volunteer - Support Our Programs | Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Support our proven Financial Discipleship and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible remote scheduling." />
       </Helmet>
 
       <div className="min-h-screen pt-20">

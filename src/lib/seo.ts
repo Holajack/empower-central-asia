@@ -23,8 +23,8 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/businessesbeyondborders"
   },
   foundingDate: "2022",
-  logo: "https://businessesbeyondborders.com/logo.png",
-  defaultImage: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2"
+  logo: "https://businessesbeyondborders.com/images/bbb-logo.png",
+  defaultImage: "https://businessesbeyondborders.com/images/bbb-logo.png"
 };
 
 // Generate NonprofitOrganization schema

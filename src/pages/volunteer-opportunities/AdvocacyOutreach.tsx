@@ -4,11 +4,27 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Users, Megaphone, FileText, Calendar, MapPin, Clock, CheckCircle, Target, Globe, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 
 const AdvocacyOutreach = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <>
+      <Helmet>
+        <title>Advocacy & Outreach Volunteer - Amplify Our Mission | Businesses Beyond Borders</title>
+        <meta name="description" content="Become an Advocacy & Outreach volunteer with Businesses Beyond Borders. Help amplify our mission to empower entrepreneurs in Central Asia through communications and advocacy." />
+        <meta name="keywords" content="advocacy volunteer, nonprofit outreach, communications volunteer, mission advocacy, nonprofit advocacy opportunities, remote advocacy volunteer" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/advocacy-outreach" />
+        <meta property="og:title" content="Advocacy & Outreach Volunteer - Amplify Our Mission | Businesses Beyond Borders" />
+        <meta property="og:description" content="Become an Advocacy & Outreach volunteer with Businesses Beyond Borders. Help amplify our mission to empower entrepreneurs in Central Asia through communications and advocacy." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/advocacy-outreach" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Advocacy & Outreach Volunteer - Amplify Our Mission | Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Become an Advocacy & Outreach volunteer with Businesses Beyond Borders. Help amplify our mission to empower entrepreneurs in Central Asia through communications and advocacy." />
+      </Helmet>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 to-indigo-700 text-white pt-20">
         <div className="container mx-auto px-4 py-16">
@@ -413,7 +429,8 @@ const AdvocacyOutreach = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

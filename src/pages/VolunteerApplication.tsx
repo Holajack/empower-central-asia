@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 
 const VolunteerApplication = () => {
   const topRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,17 @@ const VolunteerApplication = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Volunteer Application | Businesses Beyond Borders</title>
+      <meta name="description" content="Apply to volunteer with Businesses Beyond Borders. Join our mission to create sustainable economic opportunities through entrepreneurship training in Central Asia." />
+      <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-application" />
+      <meta property="og:title" content="Volunteer Application - Businesses Beyond Borders" />
+      <meta property="og:description" content="Apply to volunteer with Businesses Beyond Borders. Join our mission to empower entrepreneurs in Central Asia." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-application" />
+      <meta property="og:site_name" content="Businesses Beyond Borders" />
+    </Helmet>
     <div className="min-h-screen bg-white">
       {/* Header Section - Copied from About page */}
       <div 
@@ -75,6 +87,7 @@ const VolunteerApplication = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

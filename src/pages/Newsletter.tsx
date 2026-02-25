@@ -75,6 +75,12 @@ const Newsletter = () => {
           name="description"
           content="Get inspiring updates about entrepreneurship development in Central Asia. Stories, program updates, and ways to make a difference."
         />
+        <link rel="canonical" href="https://businessesbeyondborders.com/newsletter" />
+        <meta property="og:title" content="Subscribe to Our Newsletter" />
+        <meta property="og:description" content="Get inspiring updates about entrepreneurship development in Central Asia. Stories, program updates, and ways to make a difference." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/newsletter" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-purple-50 to-white px-4 py-12">

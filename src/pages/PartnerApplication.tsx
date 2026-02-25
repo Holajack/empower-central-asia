@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 
 const PartnerApplication = () => {
   const topRef = useRef<HTMLDivElement>(null);
@@ -18,6 +19,17 @@ const PartnerApplication = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Partner Application | Businesses Beyond Borders</title>
+      <meta name="description" content="Apply to become a partner with Businesses Beyond Borders. Help us create sustainable economic opportunities in Central Asia through corporate and organizational partnerships." />
+      <link rel="canonical" href="https://businessesbeyondborders.com/partner-application" />
+      <meta property="og:title" content="Partner Application - Businesses Beyond Borders" />
+      <meta property="og:description" content="Partner with Businesses Beyond Borders to empower entrepreneurs in Central Asia." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://businessesbeyondborders.com/partner-application" />
+      <meta property="og:site_name" content="Businesses Beyond Borders" />
+    </Helmet>
     <div className="min-h-screen bg-white">
       {/* Header from About page */}
       <div
@@ -76,6 +88,7 @@ const PartnerApplication = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

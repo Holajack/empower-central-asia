@@ -1,5 +1,14 @@
+import { Helmet } from "react-helmet";
+
 const PrivacyPolicy = () => {
   return (
+    <>
+    <Helmet>
+      <title>Privacy Policy | Businesses Beyond Borders</title>
+      <meta name="description" content="Privacy policy for Businesses Beyond Borders. Learn how we collect, use, and protect your personal information." />
+      <link rel="canonical" href="https://businessesbeyondborders.com/privacy" />
+      <meta name="robots" content="noindex, follow" />
+    </Helmet>
     <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12">
@@ -152,6 +161,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const Index = () => {
         <meta property="og:description" content="Transform communities through proven entrepreneurship programs. International nonprofit with 100% success rate serving Kazakhstan, Kyrgyzstan & Tajikistan. Volunteer & donation opportunities worldwide." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com" />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
+        <meta property="og:image" content="https://businessesbeyondborders.com/images/bbb-logo.png" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Businesses Beyond Borders" />
         
@@ -32,7 +32,7 @@ const Index = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Businesses Beyond Borders - Transform Central Asia Through Entrepreneurship" />
         <meta name="twitter:description" content="Join our volunteers empowering entrepreneurs in Kazakhstan, Kyrgyzstan & Tajikistan through proven business training programs with 100% success rate." />
-        <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
+        <meta name="twitter:image" content="https://businessesbeyondborders.com/images/bbb-logo.png" />
         
         {/* Additional SEO tags */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -51,8 +51,8 @@ const Index = () => {
             "name": "Businesses Beyond Borders",
             "description": "International nonprofit empowering entrepreneurs in Central Asia through proven business training, financial literacy, and leadership development programs",
             "url": "https://businessesbeyondborders.com",
-            "logo": "https://businessesbeyondborders.com/logo.png",
-            "image": "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2",
+            "logo": "https://businessesbeyondborders.com/images/bbb-logo.png",
+            "image": "https://businessesbeyondborders.com/images/bbb-logo.png",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Port Orange",

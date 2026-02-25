@@ -13,6 +13,15 @@ const LeadershipMentor = () => {
         <title>Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders</title>
         <meta name="description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
         <meta name="keywords" content="leadership mentor volunteer, business mentorship opportunities, executive coaching volunteer, leadership development mentor, mentor volunteer Central Asia, nonprofit mentorship program, volunteer business advisor opportunities, remote volunteer mentoring" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/leadership-mentor" />
+        <meta property="og:title" content="Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders" />
+        <meta property="og:description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/leadership-mentor" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
       </Helmet>
 
       <div className="min-h-screen pt-20">

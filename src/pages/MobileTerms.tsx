@@ -1,5 +1,14 @@
+import { Helmet } from "react-helmet";
+
 const MobileTerms = () => {
   return (
+    <>
+    <Helmet>
+      <title>Mobile Terms and Conditions | Businesses Beyond Borders</title>
+      <meta name="description" content="SMS messaging terms of service for Businesses Beyond Borders. Review our mobile communications policies." />
+      <link rel="canonical" href="https://businessesbeyondborders.com/mobile-terms" />
+      <meta name="robots" content="noindex, follow" />
+    </Helmet>
     <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12">
@@ -215,6 +224,7 @@ const MobileTerms = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

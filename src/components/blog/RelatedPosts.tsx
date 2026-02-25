@@ -62,7 +62,7 @@ const RelatedPosts = ({ currentPostId, tags, maxPosts = 3 }: RelatedPostsProps) 
 const RelatedPostCard = ({ post }: { post: BlogPost }) => {
   return (
     <Link
-      to={`/blog/${post.id}`}
+      to={`/blog/${post.slug}`}
       className="group block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden"
     >
       {/* Image */}

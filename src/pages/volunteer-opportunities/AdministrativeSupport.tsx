@@ -13,6 +13,15 @@ const AdministrativeSupport = () => {
         <title>Administrative Support Volunteer - Essential Operations | Businesses Beyond Borders</title>
         <meta name="description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from anywhere." />
         <meta name="keywords" content="administrative support volunteer, nonprofit admin volunteer, virtual assistant volunteer, event coordination volunteer, communications volunteer, database management volunteer opportunities, remote nonprofit volunteer" />
+        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/administrative-support" />
+        <meta property="og:title" content="Administrative Support Volunteer - Essential Operations | Businesses Beyond Borders" />
+        <meta property="og:description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from anywhere." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/administrative-support" />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Administrative Support Volunteer - Essential Operations | Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from anywhere." />
       </Helmet>
 
       <div className="min-h-screen pt-20">

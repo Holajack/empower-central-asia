@@ -86,3 +86,8 @@ temp/
 .netlify/
 .vercel
 .env*.local
+
+# Unrelated projects (keep repo clean - BBB only)
+E3Funnel/
+web-saas-builder/
+Momentum - Milestone Tracking App/

@@ -1,6 +1,7 @@
 
 export interface BlogPost {
   id: number;
+  slug: string;
   title: string;
   excerpt: string;
   content: string;
@@ -14,6 +15,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 11,
+    slug: "community-based-international-development",
     title: "Community-Based International Development: How Local Organizations Create Global Impact",
     excerpt: "Discover the proven framework that enables small, community-based nonprofits to create meaningful international impact while engaging local volunteers—complete with actionable tools you can implement today.",
     content: `The international development sector spends approximately **$200 billion annually** according to the [OECD Development Assistance Committee](https://www.oecd.org/dac/financing-sustainable-development/development-finance-standards/official-development-assistance.htm), yet a growing body of evidence suggests that some of the most sustainable and cost-effective development outcomes come not from large institutions but from small, community-rooted organizations that leverage local expertise to create global impact. The [Brookings Institution](https://www.brookings.edu/articles/the-future-of-international-development/) has documented a significant shift in development thinking over the past decade, moving away from top-down, institution-driven models toward approaches that emphasize local ownership, cultural authenticity, and sustainable community engagement on both ends of the partnership.
@@ -127,6 +129,7 @@ The [UNDP's Human Development Report](https://hdr.undp.org/) has called for a fu
   },
   {
     id: 1,
+    slug: "florida-nonprofits-global-entrepreneurs",
     title: "How Florida Nonprofits Support Global Entrepreneurs: Turning Local Resources into Business Opportunities",
     excerpt: "Discover how Volusia County-based Businesses Beyond Borders helps entrepreneurs in Central Asia identify and leverage local resources to create sustainable business ventures, and how you can get involved.",
     content: `When most people think of international development organizations, they picture large institutions headquartered in Washington, New York, or Geneva, organizations with billion-dollar budgets, thousands of employees, and decades of institutional history. What they rarely picture is a small nonprofit in Florida helping entrepreneurs in Central Asia build businesses through remote mentorship and financial literacy training. Yet according to the [National Council of Nonprofits](https://www.councilofnonprofits.org/), the United States is home to more than **1.8 million** registered nonprofit organizations, and a growing number of these smaller, community-rooted organizations are proving that you do not need a massive budget or a global brand to create meaningful international impact. What you need is expertise, commitment, and a model that connects the resources available in your community with the needs that exist in communities thousands of miles away.
@@ -208,6 +211,7 @@ Remote mentoring represents the most direct way to contribute expertise. Volunte
   },
   {
     id: 2,
+    slug: "microfinance-small-loans-big-impact",
     title: "Microfinance: Small Loans, Big Impact - How Global Organizations Are Transforming Entrepreneurship",
     excerpt: "How organizations like Kiva, FINCA, and the Grameen Bank are transforming entrepreneurship in low-income communities through innovative microfinance solutions.",
     content: `Access to capital remains one of the most stubborn barriers to entrepreneurship in developing economies. According to the [World Bank's Global Findex Database](https://www.worldbank.org/en/topic/financialinclusion), approximately **1.4 billion adults** worldwide remain without access to formal financial services, concentrated overwhelmingly in Sub-Saharan Africa, South Asia, and Central Asia. The [International Finance Corporation (IFC)](https://www.ifc.org/) estimates that the total financing gap for micro, small, and medium enterprises across developing economies stands at approximately **$5.7 trillion**, a figure that represents not just unmet demand for credit but unrealized human potential. Behind every unfunded loan application is an entrepreneur with a viable idea, a willingness to work, and no way to access the capital that would make her business possible.
@@ -313,6 +317,7 @@ The future of microfinance lies not in any single innovation but in the integrat
   },
   {
     id: 3,
+    slug: "digital-marketing-zero-budget-startups",
     title: "Digital Marketing for Zero-Budget Startups",
     excerpt: "Practical strategies for marketing your business online with minimal resources using free digital tools.",
     content: `In 2024, [Google](https://www.thinkwithgoogle.com/intl/en-emea/consumer-insights/consumer-trends/) reported that 97% of consumers search online for local businesses before making a purchase decision. For entrepreneurs in Central Asia and emerging markets worldwide, this statistic represents both a challenge and an extraordinary opportunity. Building a visible, credible digital presence no longer requires thousands of dollars in advertising spend. It requires strategy, consistency, and a willingness to learn tools that are freely available to anyone with internet access.
@@ -510,6 +515,7 @@ By the end of 30 days, you will have a functioning digital marketing foundation 
   },
   {
     id: 4,
+    slug: "community-cooperatives-sustainable-development",
     title: "Community-Based Business Models: How Global Cooperatives Create Sustainable Development",
     excerpt: "Community-based business models like cooperatives distribute risk and reward among members, creating resilient enterprises that honor Central Asian cultural traditions while building sustainable local economies.",
     content: `Individual entrepreneurship captures most of the attention in conversations about economic development, but it is not the only model that works. Across Central Asia and the developing world, community-based business models, including cooperatives, association-based enterprises, and collectively owned ventures, are quietly building resilient local economies that distribute both risk and reward among their members. According to the [International Co-operative Alliance (ICA)](https://ica.coop/en/cooperatives/facts-and-figures), at least 12% of the world's population belongs to one of approximately 3 million cooperatives worldwide, and these organizations provide employment or work opportunities to roughly 10% of the global employed population, some **279 million people** across 156 countries. The 300 largest cooperatives and mutuals alone generate **$2.79 trillion** in annual turnover, an economic output that would rank as the world's seventh-largest economy if cooperatives were a country.
@@ -669,6 +675,7 @@ The question is not whether cooperative models can succeed in Central Asia. They
   },
   {
     id: 5,
+    slug: "side-hustle-to-main-income",
     title: "From Side Hustle to Main Income",
     excerpt: "The step-by-step journey of transitioning from supplementary business activities to full-time entrepreneurship.",
     content: `Every year, millions of aspiring entrepreneurs around the world wrestle with the same question: when is the right time to leave stable employment and commit fully to a growing business? The answer, according to decades of research and thousands of real-world case studies, is rarely a single dramatic leap. Instead, the most successful transitions from side hustle to primary income follow a deliberate, phased approach that minimizes risk while maximizing learning. A [2019 study published in the Academy of Management Journal](https://journals.aom.org/doi/10.5465/amj.2017.0903) found that entrepreneurs who kept their day jobs while developing their ventures were 33% less likely to fail than those who quit to start their businesses outright. That statistic alone should reshape how we think about building enterprises from the ground up.
@@ -856,6 +863,7 @@ If you are an entrepreneur in Central Asia looking for structured support throug
   },
   {
     id: 6,
+    slug: "business-skills-learn-free",
     title: "Business Skills You Can Learn for Free",
     excerpt: "Essential entrepreneurial skills and where to access free training resources online and in your community.",
     content: `The assumption that you need an MBA or an expensive certification program to run a successful business has never been less true than it is right now. According to a [2024 report from the U.S. Bureau of Labor Statistics](https://www.bls.gov/bdm/entrepreneurship/bdm_chart3.htm), more than **5.5 million** new business applications were filed in 2023 alone, and the overwhelming majority of those founders did not hold a formal business degree. What they did have was access to the same free resources that are available to you today, combined with the discipline to use them consistently.
@@ -1053,6 +1061,7 @@ The path from where you are to where you want to be does not require expensive p
   },
   {
     id: 7,
+    slug: "economic-challenges-business-opportunities",
     title: "Turning Economic Challenges into Business Opportunities",
     excerpt: "How entrepreneurs can identify and address unmet needs in disadvantaged communities through innovative business models.",
     content: `When the [World Bank](https://www.worldbank.org/en/region/eca/overview) reports that Central Asian economies face persistent structural challenges including limited economic diversification, infrastructure gaps, and uneven access to financial services, the natural response is concern. But embedded within each of these challenges lies an entrepreneurial opportunity that local business owners are uniquely positioned to exploit. Across Kazakhstan, Kyrgyzstan, and Tajikistan, the entrepreneurs who are building the most resilient and profitable businesses are not those who wait for perfect conditions. They are the ones who look directly at the obstacles in their communities and ask a fundamentally different question: what would people pay for a solution to this problem?
@@ -1170,6 +1179,7 @@ We are always seeking volunteers who can contribute business expertise remotely,
   },
   {
     id: 8,
+    slug: "financial-independence-entrepreneurship",
     title: "Financial Independence Through Entrepreneurship",
     excerpt: "Personal stories of how small business ownership has created economic stability and family wealth in underserved communities.",
     content: `For millions of people living in Central Asia and other developing regions, the phrase "financial independence" can feel like an abstraction reserved for the wealthy. Yet across Kazakhstan, Kyrgyzstan, and Tajikistan, a quiet revolution is unfolding. Ordinary people, many of whom began with almost nothing, are building small businesses that generate not only income but lasting economic stability for their families. According to the [World Bank's Global Findex Database](https://www.worldbank.org/en/publication/globalfindex), approximately **1.4 billion adults** worldwide remain unbanked, locked out of the formal financial systems that most people in developed nations take for granted. In Central Asia specifically, account ownership among adults hovers around 49%, meaning roughly half the adult population lacks a basic bank account. For these individuals, entrepreneurship is not merely a career choice. It is often the only viable path to financial security.
@@ -1297,6 +1307,7 @@ About the Organization: Businesses Beyond Borders is a 501(c)(3) nonprofit organ
   },
   {
     id: 9,
+    slug: "low-capital-business-ideas-that-scale",
     title: "Low-Capital Business Ideas That Scale",
     excerpt: "Business models that require minimal upfront investment but offer significant growth potential in developing markets.",
     content: `Across the developing world, the most transformative businesses often begin not with large loans or venture capital, but with ingenuity, a modest sum of money, and the determination to build something lasting. According to the [World Bank's MSME Finance Gap Report](https://www.worldbank.org/en/topic/smefinance), approximately **40 percent of formal micro, small, and medium enterprises** in developing economies remain credit-constrained, which means the majority of entrepreneurs in these regions must find ways to launch and grow businesses with whatever resources they already possess. In Central Asia alone, micro and small enterprises account for **99.9 percent of all registered businesses** in Kazakhstan, employing more than 4.4 million people. The pattern is clear: low-capital entrepreneurship is not a stopgap measure but rather the dominant engine of economic growth in emerging markets. Through our programs at **Businesses Beyond Borders**, we have seen firsthand how entrepreneurs in Kazakhstan, Kyrgyzstan, and Tajikistan transform modest beginnings into enterprises that sustain families, create jobs, and reshape entire communities.
@@ -1414,6 +1425,7 @@ At **Businesses Beyond Borders**, we are committed to supporting this journey at
   },
   {
     id: 10,
+    slug: "building-business-networks-isolated-communities",
     title: "Building Business Networks in Isolated Communities",
     excerpt: "Strategies for connecting with customers, suppliers, and mentors when geographic and digital isolation presents challenges.",
     content: `In the high valleys of Kyrgyzstan's Naryn region, where mountain passes close for months during winter and the nearest city requires a full day's travel, entrepreneurs face a challenge that no amount of individual talent can overcome alone: isolation. According to the [World Bank](https://www.worldbank.org/en/country/kyrgyzrepublic/overview), approximately **65 percent** of Kyrgyzstan's population lives in rural areas, and in Tajikistan the figure is even higher at roughly **73 percent**. For these communities, geographic remoteness is compounded by limited digital infrastructure, sparse transportation networks, and restricted access to the markets, suppliers, mentors, and financial services that urban entrepreneurs take for granted. Yet isolation does not have to mean economic stagnation. Through our work at **Businesses Beyond Borders**, we have witnessed how deliberate, structured network-building transforms isolated entrepreneurs from solitary operators into connected participants in regional and even international value chains.

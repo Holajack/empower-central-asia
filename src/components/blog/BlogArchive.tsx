@@ -126,7 +126,7 @@ const BlogArchive = () => {
                       {posts.map(post => (
                         <li key={post.id}>
                           <Link
-                            to={`/blog/${post.id}`}
+                            to={`/blog/${post.slug}`}
                             className="text-sm text-gray-500 hover:text-purple-600 transition-colors line-clamp-1"
                           >
                             {post.title}

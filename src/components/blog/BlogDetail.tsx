@@ -1,13 +1,18 @@
 
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { blogPosts } from "@/data/blogPosts";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import TableOfContents from "./TableOfContents";
+import { generateBlogPostSchema, generateBreadcrumbSchema } from "@/lib/seo";
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const post = blogPosts.find((post) => post.id === Number(id));
+  // Support both slug-based and numeric ID lookups
+  const post = blogPosts.find(
+    (p) => p.slug === id || p.id === Number(id)
+  );
 
   if (!post) {
     return (
@@ -19,6 +24,26 @@ const BlogDetail = () => {
       </div>
     );
   }
+
+  const canonicalUrl = `https://businessesbeyondborders.com/blog/${post.slug}`;
+  const wordCount = post.content.split(/\s+/).length;
+
+  const blogSchema = generateBlogPostSchema({
+    title: post.title,
+    description: post.excerpt,
+    datePublished: new Date(post.date).toISOString().split('T')[0],
+    author: post.author,
+    image: post.imageUrl,
+    url: canonicalUrl,
+    tags: post.tags,
+    wordCount,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://businessesbeyondborders.com" },
+    { name: "Blog", url: "https://businessesbeyondborders.com/blog" },
+    { name: post.title, url: canonicalUrl },
+  ]);
 
   // Function to render blog content with proper formatting
   const renderContent = (content: string) => {
@@ -52,7 +77,7 @@ const BlogDetail = () => {
           }
           return `<a href="${url}" class="text-purple-600 hover:text-purple-800 underline" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
         });
-        
+
         return text;
       };
 
@@ -106,7 +131,7 @@ const BlogDetail = () => {
           }
           return null;
         }).filter(Boolean);
-        
+
         return (
           <ul key={index} className="list-disc list-inside mb-5 space-y-2 text-gray-600">
             {listItems}
@@ -121,7 +146,7 @@ const BlogDetail = () => {
           }
           return null;
         }).filter(Boolean);
-        
+
         return (
           <ol key={index} className="list-decimal list-inside mb-5 space-y-2 text-gray-600">
             {listItems}
@@ -147,22 +172,55 @@ const BlogDetail = () => {
 
   return (
     <div className="min-h-screen pt-20 md:pt-28 bg-white">
+      <Helmet>
+        <title>{post.title} | Businesses Beyond Borders</title>
+        <meta name="description" content={post.excerpt} />
+        <meta name="keywords" content={post.tags.join(", ")} />
+        <meta name="author" content={post.author} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={post.imageUrl} />
+        <meta property="og:site_name" content="Businesses Beyond Borders" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="article:published_time" content={new Date(post.date).toISOString()} />
+        <meta property="article:author" content={post.author} />
+        {post.tags.map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={post.imageUrl} />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      </Helmet>
+
       {/* Hero Section with Featured Image */}
       <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-        <img 
+        <img
           src={`${post.imageUrl}?w=1920&h=1080&fit=crop`}
           alt={post.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        
+
         {/* Content overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
           <div className="container mx-auto max-w-4xl">
             <Link to="/blog" className="text-white/80 hover:text-white flex items-center gap-2 mb-4">
               <ArrowLeft size={16} /> Back to all articles
             </Link>
-            
+
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
@@ -170,9 +228,9 @@ const BlogDetail = () => {
                 </Badge>
               ))}
             </div>
-            
+
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">{post.title}</h1>
-            
+
             <div className="flex flex-wrap items-center text-white/80 gap-4 md:gap-6 text-sm md:text-base">
               <span className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
@@ -230,33 +288,33 @@ const BlogDetail = () => {
             <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 mb-12">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Free Resources to Get Started</h3>
               <p className="text-gray-600 mb-6">
-                Download our complete toolkit to implement community-based international development in your organization. 
+                Download our complete toolkit to implement community-based international development in your organization.
                 Includes asset mapping templates, volunteer engagement playbooks, and impact measurement frameworks.
               </p>
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
                 <div className="bg-white p-4 rounded-lg border border-purple-200">
-                  <h4 className="font-semibold text-gray-800 mb-2">📋 Asset Mapping Toolkit</h4>
+                  <h4 className="font-semibold text-gray-800 mb-2">Asset Mapping Toolkit</h4>
                   <p className="text-sm text-gray-600 mb-3">Identify and mobilize community resources for global work</p>
                   <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
                     Download Free →
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-purple-200">
-                  <h4 className="font-semibold text-gray-800 mb-2">🌐 Remote Volunteer Playbook</h4>
+                  <h4 className="font-semibold text-gray-800 mb-2">Remote Volunteer Playbook</h4>
                   <p className="text-sm text-gray-600 mb-3">Create meaningful virtual international engagement</p>
                   <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
                     Download Free →
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-purple-200">
-                  <h4 className="font-semibold text-gray-800 mb-2">📊 Impact Measurement Templates</h4>
+                  <h4 className="font-semibold text-gray-800 mb-2">Impact Measurement Templates</h4>
                   <p className="text-sm text-gray-600 mb-3">Track dual-impact across local and global communities</p>
                   <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
                     Download Free →
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-purple-200">
-                  <h4 className="font-semibold text-gray-800 mb-2">🚀 Implementation Guide</h4>
+                  <h4 className="font-semibold text-gray-800 mb-2">Implementation Guide</h4>
                   <p className="text-sm text-gray-600 mb-3">Step-by-step roadmap for launching your program</p>
                   <Link to="/contact" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
                     Download Free →
@@ -264,14 +322,14 @@ const BlogDetail = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors text-center"
                 >
                   Access Complete Toolkit
                 </Link>
-                <Link 
-                  to="/get-involved" 
+                <Link
+                  to="/get-involved"
                   className="border border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-lg font-medium transition-colors text-center"
                 >
                   Explore BBB Programs
@@ -284,9 +342,9 @@ const BlogDetail = () => {
           <div className="bg-gray-50 rounded-xl p-6 mb-12">
             <h4 className="text-lg font-semibold text-gray-800 mb-2">About the Author</h4>
             <p className="text-gray-600">
-              <strong>{post.author}</strong> is the founder of Businesses Beyond Borders, a community-based 
-              nonprofit demonstrating the principles outlined in this guide through programs empowering entrepreneurs 
-              in Central Asia. The organization serves as a real-world case study for community-based international 
+              <strong>{post.author}</strong> is the founder of Businesses Beyond Borders, a community-based
+              nonprofit demonstrating the principles outlined in this guide through programs empowering entrepreneurs
+              in Central Asia. The organization serves as a real-world case study for community-based international
               development, engaging local volunteers remotely while creating measurable global impact.
             </p>
           </div>
@@ -295,16 +353,16 @@ const BlogDetail = () => {
           <div className="border-t border-gray-200 pt-8 mb-12">
             <h4 className="text-lg font-medium text-gray-800 mb-4">Share this article</h4>
             <div className="flex gap-4">
-              <a 
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
               >
                 Share on Facebook
               </a>
-              <a 
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded-lg transition-colors"
@@ -316,8 +374,8 @@ const BlogDetail = () => {
 
           {/* Back to Blog */}
           <div className="text-center">
-            <Link 
-              to="/blog" 
+            <Link
+              to="/blog"
               className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               <ArrowLeft size={16} /> Back to all articles

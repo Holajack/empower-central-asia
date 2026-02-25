@@ -11,7 +11,7 @@ interface BlogCardProps {
 
 const BlogCard = ({ post }: BlogCardProps) => {
   return (
-    <Link to={`/blog/${post.id}`} className="block h-full">
+    <Link to={`/blog/${post.slug}`} className="block h-full">
       <Card className="h-full flex flex-col hover:shadow-lg transition-all duration-300 overflow-hidden group">
         <div className="relative h-48 sm:h-52 overflow-hidden">
           <img 
