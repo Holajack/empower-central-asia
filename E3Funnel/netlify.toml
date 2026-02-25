@@ -1,0 +1,131 @@
+[build]
+  # No build command needed for static site
+  publish = "."
+  command = ""
+
+[build.environment]
+  # Set Node.js version if needed
+  NODE_VERSION = "18"
+
+# Custom headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    
+    # Performance headers
+    Cache-Control = "public, max-age=3600"
+
+# Cache static assets for 1 year
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirect rules
+[[redirects]]
+  from = "/donate"
+  to = "https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=direct_link"
+  status = 302
+
+[[redirects]]
+  from = "/ca-ministry-partnership-outreach-support-monthly-commitment-150-unreached-peoples-10-40-window-gospel-transformation"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ca-ministry-partnership-outreach-support-monthly-commitment-150-unreached-peoples-10-40-window-gospel-transformation/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partner"
+  to = "/#partners-circle"
+  status = 301
+
+[[redirects]]
+  from = "/give"
+  to = "https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=give_redirect"
+  status = 302
+
+[[redirects]]
+  from = "/monthly"
+  to = "https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=netlify&utm_campaign=monthly_redirect"
+  status = 302
+
+# Handle 404s by serving the main page (since it's a single page app)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Form handling (if you add contact forms later)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Site settings
+[context.production]
+  command = ""
+  publish = "."
+
+[context.deploy-preview]
+  command = ""
+  publish = "."
+
+[context.branch-deploy]
+  command = ""
+  publish = "."

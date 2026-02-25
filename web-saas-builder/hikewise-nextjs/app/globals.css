@@ -1,0 +1,390 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-geist-mono);
+
+  /* HikeWise Custom Colors */
+  --color-cream: #F5F9FA;
+  --color-cream-dark: #E8F0F2;
+  --color-forest: #234E3E;
+  --color-forest-light: #2D6A5A;
+  --color-teal: #3D7A80;
+  --color-sage: #D4E5E0;
+
+  /* shadcn variables */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-2xl: 48px;
+  --radius-3xl: 56px;
+  --radius-4xl: 64px;
+}
+
+:root {
+  --radius: 0.625rem;
+  /* HikeWise Light Theme (default) */
+  --background: #F5F9FA;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #1A1A1A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #D4E5E0;
+  --secondary-foreground: #1A1A1A;
+  --muted: #E8F0F2;
+  --muted-foreground: #6B6B6B;
+  --accent: #3D7A80;
+  --accent-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #3D7A80;
+  --chart-1: #234E3E;
+  --chart-2: #3D7A80;
+  --chart-3: #D4E5E0;
+  --chart-4: #F5F9FA;
+  --chart-5: #2D6A5A;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #234E3E;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E8F0F2;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: #3D7A80;
+}
+
+.dark {
+  --background: #1A1A1A;
+  --foreground: #F5F9FA;
+  --card: #234E3E;
+  --card-foreground: #F5F9FA;
+  --popover: #234E3E;
+  --popover-foreground: #F5F9FA;
+  --primary: #F5F9FA;
+  --primary-foreground: #1A1A1A;
+  --secondary: #2D6A5A;
+  --secondary-foreground: #F5F9FA;
+  --muted: #2D6A5A;
+  --muted-foreground: #9A9A9A;
+  --accent: #3D7A80;
+  --accent-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #3D7A80;
+  --chart-1: #D4E5E0;
+  --chart-2: #3D7A80;
+  --chart-3: #2D6A5A;
+  --chart-4: #234E3E;
+  --chart-5: #F5F9FA;
+  --sidebar: #234E3E;
+  --sidebar-foreground: #F5F9FA;
+  --sidebar-primary: #3D7A80;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2D6A5A;
+  --sidebar-accent-foreground: #F5F9FA;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #3D7A80;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom shadow utilities */
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-medium {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   PREMIUM PHONE MOCKUP STYLES
+   ============================================ */
+
+/* iPhone Frame - realistic depth and metallic finish */
+.iphone-frame {
+  background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  border-radius: 54px;
+  padding: 14px;
+  box-shadow:
+    0 50px 100px -20px rgba(0, 0, 0, 0.4),
+    0 30px 60px -30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Screen area with rounded corners */
+.iphone-screen {
+  background: #000;
+  border-radius: 40px;
+  aspect-ratio: 9/19.5;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Screen reflection effect */
+.screen-reflection {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 35%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================
+   PREMIUM GLASSMORPHISM CARDS
+   ============================================ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-card {
+  background: rgba(36, 78, 62, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   PREMIUM BUTTON STYLES
+   ============================================ */
+
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   3D CARD FLIP ANIMATION
+   ============================================ */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.flip-card {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ============================================
+   SCROLL-LOCKED SECTION STYLES
+   ============================================ */
+
+.scroll-section-outer {
+  height: 400vh;
+  position: relative;
+}
+
+.scroll-section-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ============================================
+   ORGANIC BLOB BACKGROUNDS
+   ============================================ */
+
+.blob-background {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: blob-morph 20s ease-in-out infinite;
+}
+
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(120deg) scale(1.1);
+  }
+  66% {
+    border-radius: 50% 50% 30% 70% / 30% 70% 50% 50%;
+    transform: rotate(240deg) scale(0.95);
+  }
+}
+
+/* ============================================
+   FEATURE CARD HOVER EFFECTS
+   ============================================ */
+
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-sage) 20%,
+    var(--color-sage) 80%,
+    transparent 100%
+  );
+}
+
+/* ============================================
+   SMOOTH SCROLL INDICATOR
+   ============================================ */
+
+.scroll-indicator {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
