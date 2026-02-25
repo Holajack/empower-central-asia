@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, User, CheckCircle } from "lucide-react";
+import { Mail, User, Phone, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -13,6 +13,7 @@ const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -49,6 +50,7 @@ const Newsletter = () => {
           email: email.trim(),
           firstName: firstName.trim(),
           lastName: lastName.trim(),
+          phone: phone.trim(),
         }),
       });
 
@@ -56,6 +58,7 @@ const Newsletter = () => {
       setEmail("");
       setFirstName("");
       setLastName("");
+      setPhone("");
     } catch (error) {
       toast({
         title: "Something went wrong",
@@ -192,6 +195,27 @@ const Newsletter = () => {
                       className="pl-10 h-12 text-base"
                       required
                       autoComplete="email"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Phone number
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="(386) 555-0123"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="pl-10 h-12 text-base"
+                      autoComplete="tel"
                     />
                   </div>
                 </div>

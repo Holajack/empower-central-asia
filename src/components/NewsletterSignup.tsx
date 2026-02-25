@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Mail, User } from "lucide-react";
+import { Mail, User, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 // Google Apps Script web app URL - handles writing to Google Sheet
@@ -18,6 +18,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -53,6 +54,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
           email: email.trim(),
           firstName: firstName.trim(),
           lastName: lastName.trim(),
+          phone: phone.trim(),
         }),
       });
 
@@ -64,6 +66,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
       setEmail("");
       setFirstName("");
       setLastName("");
+      setPhone("");
     } catch (error) {
       toast({
         title: "Subscription Failed",
@@ -121,7 +124,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
               />
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-2">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
@@ -133,6 +136,18 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
                 required
               />
             </div>
+            <div className="relative flex-1">
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                type="tel"
+                placeholder="Phone (optional)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <div className="flex">
             <Button
               type="submit"
               disabled={isSubmitting}
@@ -141,7 +156,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
               {isSubmitting ? "Subscribing..." : "Subscribe"}
             </Button>
           </div>
-        </div>
+          </div>
         <p className="text-xs text-gray-500">
           We respect your privacy. Unsubscribe at any time.
         </p>
