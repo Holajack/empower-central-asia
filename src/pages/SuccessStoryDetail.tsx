@@ -101,7 +101,7 @@ const SuccessStoryDetail = () => {
         />
         <meta 
           name="keywords" 
-          content={`${story.tags.join(', ')}, success story, entrepreneur, business development, Central Asia, Volusia County mentorship`}
+          content={`${story.tags.join(', ')}, success story, entrepreneur, business development, Central Asia, volunteer mentorship`}
         />
         
         <meta property="og:title" content={`${story.name} Success Story - ${story.business}`} />
@@ -289,7 +289,7 @@ const SuccessStoryDetail = () => {
           {/* Volunteer Support */}
           {story.volunteerSupport && (
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">Volusia County Volunteer Support</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">Our Volunteer Support Network</h2>
               <div className="bg-sage-50 border-l-4 border-sage-500 p-6 rounded-r-lg">
                 {renderContent(story.volunteerSupport)}
               </div>

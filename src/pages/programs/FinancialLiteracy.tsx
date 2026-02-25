@@ -11,20 +11,20 @@ const FinancialLiteracy = () => {
   return (
     <>
       <Helmet>
-        <title>Three-Thirds Financial Education Curriculum - Comprehensive Financial Literacy | Volusia County</title>
-        <meta name="description" content="Transform lives through our proven Three-Thirds Financial Education Curriculum. Comprehensive financial literacy education serving Volusia County and Central Asia. 100% success rate with 10-week, 6-week, and 4-week programs available. Join Port Orange volunteers making global impact." />
-        <meta name="keywords" content="financial education Volusia County, financial literacy curriculum, money management education Florida, Three-Thirds learning method, financial stewardship training Port Orange, financial planning education Daytona Beach, nonprofit financial education program, budgeting curriculum, debt elimination program, financial literacy volunteer opportunities Florida" />
+        <title>Three-Thirds Financial Education Curriculum - Comprehensive Financial Literacy | Businesses Beyond Borders</title>
+        <meta name="description" content="Transform lives through our proven Three-Thirds Financial Education Curriculum. Comprehensive financial literacy education serving Central Asia. 100% success rate with 10-week, 6-week, and 4-week programs available. Join our volunteers making global impact." />
+        <meta name="keywords" content="financial education program, financial literacy curriculum, money management education, Three-Thirds learning method, financial stewardship training, nonprofit financial education program, budgeting curriculum, debt elimination program, financial literacy volunteer opportunities, Central Asia financial education" />
         
         {/* Open Graph tags */}
         <meta property="og:title" content="Three-Thirds Financial Education Curriculum - Comprehensive Financial Literacy Education" />
-        <meta property="og:description" content="Comprehensive financial education using the proven Three-Thirds learning method. Serving Volusia County volunteers and Central Asian entrepreneurs through practical money management training." />
+        <meta property="og:description" content="Comprehensive financial education using the proven Three-Thirds learning method. Serving volunteers and Central Asian entrepreneurs through practical money management training." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com/programs/financial-literacy" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Financial Education Curriculum - Port Orange Nonprofit" />
+        <meta name="twitter:title" content="Financial Education Curriculum - Businesses Beyond Borders" />
         <meta name="twitter:description" content="Three-Thirds method financial education: Look Back, Look Up, Look Forward. Comprehensive stewardship training with 100% completion success rate." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e" />
         
@@ -133,7 +133,7 @@ const FinancialLiteracy = () => {
 
           {/* Social Proof */}
           <p className="text-sm text-white/70 mt-6 animate-fade-up [--animation-delay:1000ms]">
-            ⭐ Trusted by <strong className="text-white">50+ Volusia County volunteers</strong> • 
+            ⭐ Trusted by <strong className="text-white">50+ dedicated volunteers</strong> • 
             🌍 Serving Central Asia since 2022 • 
             📖 Time-tested principles with practical application
           </p>
@@ -609,7 +609,7 @@ const FinancialLiteracy = () => {
                 <div className="text-center">
                   <h4 className="font-medium text-gray-800 mb-2">Questions?</h4>
                   <p className="text-sm text-gray-600 mb-4">
-                    Speak with our <strong>Port Orange team</strong> about the curriculum and enrollment.
+                    Speak with our <strong>program team</strong> about the curriculum and enrollment.
                   </p>
                   <Link to="/contact">
                     <Button variant="outline" size="sm" className="w-full">

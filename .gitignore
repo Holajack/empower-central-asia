@@ -84,3 +84,5 @@ temp/
 
 # Build artifacts
 .netlify/
+.vercel
+.env*.local

@@ -36,7 +36,7 @@ export const successStories: SuccessStory[] = [
     business: "Thread & Thistle Apparel",
     location: "Almaty, Kazakhstan",
     title: "From Seamstress to Fashion Entrepreneur: Nicole's Journey to Building Kazakhstan's Premier Sustainable Fashion Brand",
-    excerpt: "How Nicole transformed her traditional sewing skills into a thriving sustainable fashion business serving international markets, with mentorship support from Volusia County volunteers.",
+    excerpt: "How Nicole transformed her traditional sewing skills into a thriving sustainable fashion business serving international markets, with mentorship from our volunteer network.",
     heroImage: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     beforeStory: `Nicole Dzamukova grew up in Almaty, Kazakhstan, watching her grandmother create beautiful traditional clothing by hand. After completing her education, she worked as a seamstress in a local factory, earning minimal wages while dreaming of starting her own clothing line that would blend traditional Kazakh designs with modern sustainable fashion principles.
 
@@ -94,7 +94,7 @@ Our program provided Nicole with comprehensive business development resources:
 - Connection with other fashion entrepreneurs in our global network
 
 **Technology Training:**
-Through partnerships with Volusia County technology volunteers:
+Through partnerships with our technology volunteers:
 - Basic fashion design software training (Adobe Illustrator, Photoshop)
 - Social media marketing for fashion brands
 - E-commerce website development using Shopify
@@ -244,7 +244,7 @@ Nicole's success enabled her to hire:
       }
     ],
 
-    volunteerSupport: `**Volusia County Volunteer Team Supporting Nicole:**
+    volunteerSupport: `**Our Volunteer Team Supporting Nicole:**
 
 **Primary Mentor:** Sarah Martinez (Daytona Beach) - Retired Fashion Industry Executive
 - 25+ years experience in sustainable fashion and international markets
@@ -253,7 +253,7 @@ Nicole's success enabled her to hire:
 - Ongoing relationship continues with quarterly check-ins
 
 **Technical Support Team:**
-- **Mike Thompson** (Port Orange) - Retired IT Professional: Website development and e-commerce setup
+- **Mike Thompson** - Retired IT Professional: Website development and e-commerce setup
 - **Jennifer Liu** (Ormond Beach) - Marketing Consultant: Social media strategy and digital marketing training
 - **Robert Kim** (New Smyrna Beach) - Photographer: Product photography techniques and lighting setup
 
@@ -473,9 +473,9 @@ Kyle's business now employs 25 people:
       }
     ],
 
-    volunteerSupport: `**Volusia County Volunteer Support Network:**
+    volunteerSupport: `**Our Volunteer Support Network:**
 
-**Primary Business Mentor:** James Patterson (Port Orange) - Former Facilities Management Company Owner
+**Primary Business Mentor:** James Patterson - Former Facilities Management Company Owner
 - 30+ years experience building service-based businesses
 - Provided weekly strategy sessions covering operations, finance, and growth planning
 - Connected Kyle with commercial cleaning equipment suppliers and industry associations
@@ -711,7 +711,7 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
 - Ongoing quarterly strategic planning sessions
 
 **Technical Development Team:**
-- **Ryan Patterson** (Port Orange) - Web Developer: Platform architecture and user experience optimization
+- **Ryan Patterson** - Web Developer: Platform architecture and user experience optimization
 - **Michelle Chen** (Ormond Beach) - Digital Marketing Specialist: SEO strategy and paid advertising campaigns
 - **Carlos Santos** (Daytona Beach) - Photography Instructor: Product photography and visual marketing training
 
@@ -941,7 +941,7 @@ Stephanie's success created broader community economic benefits:
 
 **Specialized Support Team:**
 - **Robert Chen** (New Smyrna Beach) - Travel Industry Marketing Expert: Online presence and booking platform optimization
-- **Maria Santos** (Port Orange) - Interior Design Consultant: Space planning balancing authenticity with modern comfort
+- **Maria Santos** - Interior Design Consultant: Space planning balancing authenticity with modern comfort
 - **David Johnson** (Ormond Beach) - Restaurant Operations Advisor: Food service planning and kitchen operations
 - **Lisa Rodriguez** (Holly Hill) - Photography Professional: Property and experience photography for marketing materials
 

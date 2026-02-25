@@ -12,9 +12,9 @@ const BusinessCreation = () => {
   return (
     <>
       <Helmet>
-        <title>Business Creation Training - Comprehensive Entrepreneurship Program | Volusia County</title>
-        <meta name="description" content="Transform your business idea into reality with our 12-week comprehensive entrepreneurship program. Lean Startup methodology, Business Model Canvas, MVP development, and hands-on training serving Volusia County and Central Asia. 90% launch success rate." />
-        <meta name="keywords" content="business creation training Volusia County, entrepreneurship program Florida, lean startup methodology Port Orange, business model canvas training Daytona Beach, MVP development course, startup accelerator program Florida, business planning workshops Central Florida, entrepreneur training nonprofit, business incubator Volusia County, startup mentorship program" />
+        <title>Business Creation Training - Comprehensive Entrepreneurship Program | Businesses Beyond Borders</title>
+        <meta name="description" content="Transform your business idea into reality with our 12-week comprehensive entrepreneurship program. Lean Startup methodology, Business Model Canvas, MVP development, and hands-on training serving Central Asia. 90% launch success rate." />
+        <meta name="keywords" content="business creation training, entrepreneurship program, lean startup methodology, business model canvas training, MVP development course, startup accelerator program, business planning workshops, entrepreneur training nonprofit, business incubator, startup mentorship program, Central Asia entrepreneurship" />
         
         {/* Open Graph tags */}
         <meta property="og:title" content="Business Creation Training - Comprehensive Entrepreneurship Program" />
@@ -26,7 +26,7 @@ const BusinessCreation = () => {
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Business Creation Training - Entrepreneurship Program" />
-        <meta name="twitter:description" content="Comprehensive 12-week program: Think Like Entrepreneur → Shape Business Model → Validate Assumptions → Build Traction. From Port Orange serving globally." />
+        <meta name="twitter:description" content="Comprehensive 12-week program: Think Like Entrepreneur → Shape Business Model → Validate Assumptions → Build Traction. Serving entrepreneurs globally." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1542744173-8e7e53415bb0" />
         
         {/* Additional SEO tags */}
@@ -762,7 +762,7 @@ const BusinessCreation = () => {
                 <div className="text-center">
                   <h4 className="font-medium text-gray-800 mb-2">Questions About the Program?</h4>
                   <p className="text-sm text-gray-600 mb-4">
-                    Speak with our <strong>Port Orange team</strong> about curriculum, scheduling, and enrollment.
+                    Speak with our <strong>program team</strong> about curriculum, scheduling, and enrollment.
                   </p>
                   <Link to="/contact">
                     <Button variant="outline" size="sm" className="w-full">

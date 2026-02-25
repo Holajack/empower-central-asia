@@ -11,8 +11,8 @@ const BusinessTraining = () => {
     <>
       <Helmet>
         <title>Business Training Volunteer - Support Our Programs | Businesses Beyond Borders</title>
-        <meta name="description" content="Support our proven Financial Discipleship and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible scheduling from Port Orange, FL." />
-        <meta name="keywords" content="business training volunteer Port Orange FL, financial literacy volunteer Volusia County, entrepreneurship education volunteer Florida, business mentor volunteer Daytona Beach, nonprofit training volunteer Central Florida, volunteer business instructor opportunities" />
+        <meta name="description" content="Support our proven Financial Discipleship and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible remote scheduling." />
+        <meta name="keywords" content="business training volunteer, financial literacy volunteer, entrepreneurship education volunteer, business mentor volunteer, nonprofit training volunteer, volunteer business instructor opportunities, remote business training" />
       </Helmet>
 
       <div className="min-h-screen pt-20">

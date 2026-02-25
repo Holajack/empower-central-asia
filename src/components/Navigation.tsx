@@ -38,13 +38,20 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className={`text-2xl font-semibold transition-colors ${
-              isScrolled 
-                ? "text-purple-500 hover:text-purple-400" 
-                : "text-white hover:text-purple-300"
-            }`}
+            className="flex items-center gap-3 transition-opacity hover:opacity-80"
           >
-            Businesses Beyond Borders
+            <img
+              src="/images/bbb-logo.png"
+              alt="Businesses Beyond Borders"
+              className="h-10 w-10 rounded-full"
+            />
+            <span className={`text-xl font-semibold transition-colors hidden sm:inline ${
+              isScrolled
+                ? "text-purple-500"
+                : "text-white"
+            }`}>
+              Businesses Beyond Borders
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

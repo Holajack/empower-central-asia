@@ -12,9 +12,9 @@ const LeadershipDevelopment = () => {
   return (
     <>
       <Helmet>
-        <title>Leadership Development & Mentorship Program - Transformational Leadership Training | Volusia County</title>
-        <meta name="description" content="Comprehensive 12-month leadership development program using the proven 70-20-10 model. Emotional intelligence, servant leadership, and transformational leadership training serving Volusia County and Central Asia. 85% career advancement rate with expert mentorship." />
-        <meta name="keywords" content="leadership development Volusia County, mentorship program Florida, emotional intelligence training Port Orange, servant leadership development Daytona Beach, transformational leadership program, executive coaching Florida, leadership mentorship nonprofit, management development Central Florida, leadership skills training, business leadership program Volusia County" />
+        <title>Leadership Development & Mentorship Program - Transformational Leadership Training | Businesses Beyond Borders</title>
+        <meta name="description" content="Comprehensive 12-month leadership development program using the proven 70-20-10 model. Emotional intelligence, servant leadership, and transformational leadership training serving Central Asia. 85% career advancement rate with expert mentorship." />
+        <meta name="keywords" content="leadership development program, mentorship program, emotional intelligence training, servant leadership development, transformational leadership program, executive coaching nonprofit, leadership mentorship, management development, leadership skills training, business leadership program, Central Asia leadership" />
         
         {/* Open Graph tags */}
         <meta property="og:title" content="Leadership Development & Mentorship Program - Transformational Leadership Training" />
@@ -139,8 +139,8 @@ const LeadershipDevelopment = () => {
 
           {/* Social Proof */}
           <p className="text-sm text-white/70 mt-6 animate-fade-up [--animation-delay:1000ms]">
-            ⭐ Trusted by <strong className="text-white">200+ leaders across Volusia County</strong> • 
-            🌍 Serving Central Asia & Florida since 2022 • 
+            ⭐ Trusted by <strong className="text-white">200+ leaders worldwide</strong> •
+            🌍 Serving Central Asia since 2022 • 
             👥 Expert mentorship from successful executives
           </p>
         </div>
@@ -640,7 +640,7 @@ const LeadershipDevelopment = () => {
                 <div className="text-center">
                   <h4 className="font-medium text-gray-800 mb-2">Questions About Leadership Development?</h4>
                   <p className="text-sm text-gray-600 mb-4">
-                    Speak with our <strong>Port Orange team</strong> about program curriculum, mentorship, and application process.
+                    Speak with our <strong>program team</strong> about curriculum, mentorship, and application process.
                   </p>
                   <Link to="/contact">
                     <Button variant="outline" size="sm" className="w-full">

@@ -11,7 +11,7 @@ export const testimonials: Testimonial[] = [
   {
     name: "Nicole",
     business: "Thread & Thistle Apparel",
-    quote: "Businesses Beyond Borders gave me the courage and support I needed to launch my own clothing line. Their resources and mentorship made my dream a reality.",
+    quote: "The support and mentorship gave me the courage I needed to launch my own clothing line. Their resources made my dream a reality.",
     image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
   },
   {

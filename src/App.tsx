@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
@@ -25,17 +25,24 @@ import CommunityOrganizer from "@/pages/volunteer-opportunities/CommunityOrganiz
 import BusinessTraining from "@/pages/volunteer-opportunities/BusinessTraining";
 import AdministrativeSupport from "@/pages/volunteer-opportunities/AdministrativeSupport";
 import AdvocacyOutreach from "@/pages/volunteer-opportunities/AdvocacyOutreach";
+import Newsletter from "@/pages/Newsletter";
 import SmsOptIn from "@/pages/SmsOptIn";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import MobileTerms from "@/pages/MobileTerms";
 import ScrollToTop from "@/components/ScrollToTop";
 import NewsletterPopup from "@/components/NewsletterPopup";
 
-function App() {
+// Standalone pages that render without Nav/Footer (e.g. QR code landing pages)
+const STANDALONE_ROUTES = ["/newsletter"];
+
+function AppContent() {
+  const location = useLocation();
+  const isStandalone = STANDALONE_ROUTES.includes(location.pathname);
+
   return (
-    <Router>
+    <>
       <ScrollToTop />
-      <Navigation />
+      {!isStandalone && <Navigation />}
       <main>
         <Routes>
           <Route path="/" element={<Index />} />
@@ -64,15 +71,26 @@ function App() {
           <Route path="/volunteer-opportunities/administrative-support" element={<AdministrativeSupport />} />
           <Route path="/volunteer-opportunities/advocacy-outreach" element={<AdvocacyOutreach />} />
           
+          {/* Newsletter Signup (QR code landing page) */}
+          <Route path="/newsletter" element={<Newsletter />} />
+
           {/* Legal and Compliance Pages */}
           <Route path="/sms" element={<SmsOptIn />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/mobile-terms" element={<MobileTerms />} />
         </Routes>
       </main>
-      <Footer />
+      {!isStandalone && <Footer />}
       <Toaster />
-      <NewsletterPopup />
+      {!isStandalone && <NewsletterPopup />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

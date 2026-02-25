@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { blogPosts } from "@/data/blogPosts";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import TableOfContents from "./TableOfContents";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -21,9 +22,22 @@ const BlogDetail = () => {
 
   // Function to render blog content with proper formatting
   const renderContent = (content: string) => {
+    // Pre-compute heading IDs matching the TableOfContents component's logic
+    const headingIds: string[] = [];
+    const lines = content.split('\n');
+    lines.forEach((line, lineIndex) => {
+      const match = line.match(/^(#{2,3})\s+(.+)$/);
+      if (match) {
+        const text = match[2].replace(/\*\*/g, '').replace(/\*/g, '');
+        const id = `heading-${lineIndex}-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        headingIds.push(id);
+      }
+    });
+    let headingCounter = 0;
+
     // Split by double newlines to identify paragraphs
     const paragraphs = content.split('\n\n');
-    
+
     return paragraphs.map((paragraph, index) => {
       // Process markdown formatting for the text content
       const processMarkdown = (text: string) => {
@@ -31,24 +45,33 @@ const BlogDetail = () => {
         text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-800">$1</strong>');
         // Handle italic text *text*
         text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em class="italic">$1</em>');
-        // Handle links [text](url)
-        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-purple-600 hover:text-purple-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+        // Handle links [text](url) - internal links don't get target="_blank"
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+          if (url.startsWith('/')) {
+            return `<a href="${url}" class="text-purple-600 hover:text-purple-800 underline">${linkText}</a>`;
+          }
+          return `<a href="${url}" class="text-purple-600 hover:text-purple-800 underline" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+        });
         
         return text;
       };
 
       // Check if paragraph is a header (starts with ## or #)
+      // Note: dangerouslySetInnerHTML is used here with content from our own blogPosts.ts data file,
+      // not user-generated content. The blog content is hardcoded and trusted.
       if (paragraph.startsWith('## ')) {
         const headerText = processMarkdown(paragraph.replace('## ', ''));
+        const headingId = headingIds[headingCounter++] || undefined;
         return (
-          <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-gray-800" 
+          <h2 key={index} id={headingId} className="text-2xl font-bold mt-8 mb-4 text-gray-800"
               dangerouslySetInnerHTML={{ __html: headerText }}>
           </h2>
         );
       } else if (paragraph.startsWith('### ')) {
         const headerText = processMarkdown(paragraph.replace('### ', ''));
+        const headingId = headingIds[headingCounter++] || undefined;
         return (
-          <h3 key={index} className="text-xl font-bold mt-6 mb-3 text-gray-700"
+          <h3 key={index} id={headingId} className="text-xl font-bold mt-6 mb-3 text-gray-700"
               dangerouslySetInnerHTML={{ __html: headerText }}>
           </h3>
         );
@@ -167,31 +190,43 @@ const BlogDetail = () => {
 
       {/* Article Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Article Excerpt */}
-          <div className="mb-10">
+          <div className="max-w-3xl mb-10">
             <p className="text-xl md:text-2xl font-normal text-gray-700 leading-relaxed border-l-4 border-purple-500 pl-6 bg-gray-50 py-6 rounded-r-lg">
               {post.excerpt}
             </p>
           </div>
-          
-          {/* Article Content with Optimal Typography */}
-          <article className="prose prose-lg prose-gray max-w-none">
-            <div 
-              style={{
-                fontSize: '18px',
-                lineHeight: '1.7',
-                maxWidth: '680px',
-                margin: '0 auto'
-              }}
-              className="text-gray-700"
-            >
-              {renderContent(post.content)}
-            </div>
-          </article>
+
+          {/* Mobile TOC - collapsed, shown only on mobile */}
+          <div className="lg:hidden">
+            <TableOfContents content={post.content} variant="inline" />
+          </div>
+
+          {/* Desktop: sidebar TOC + content side by side */}
+          <div className="flex gap-10">
+            {/* Main article content */}
+            <article className="prose prose-lg prose-gray max-w-none flex-1 min-w-0">
+              <div
+                style={{
+                  fontSize: '18px',
+                  lineHeight: '1.7',
+                  maxWidth: '680px',
+                }}
+                className="text-gray-700"
+              >
+                {renderContent(post.content)}
+              </div>
+            </article>
+
+            {/* Desktop sidebar TOC - hidden on mobile */}
+            <aside className="hidden lg:block w-44 flex-shrink-0">
+              <TableOfContents content={post.content} variant="sidebar" />
+            </aside>
+          </div>
 
           {/* Call to Action Section - Value-Driven Resources */}
-          <div className="mt-16 pt-12 border-t border-gray-200">
+          <div className="mt-16 pt-12 border-t border-gray-200 max-w-3xl">
             <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 mb-12">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Free Resources to Get Started</h3>
               <p className="text-gray-600 mb-6">

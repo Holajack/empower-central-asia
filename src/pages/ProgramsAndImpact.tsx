@@ -18,21 +18,21 @@ const ProgramsAndImpact = () => {
   return (
     <>
       <Helmet>
-        <title>Business Training Programs Volusia County - Financial Literacy & Entrepreneurship | Port Orange Nonprofit</title>
-        <meta name="description" content="Port Orange-based Businesses Beyond Borders offers proven business development programs supporting Central Asian entrepreneurs through Volusia County volunteers. Financial literacy, leadership development, and community collaboration with 100% success rate. Volunteer opportunities available in Daytona Beach area." />
-        <meta name="keywords" content="business training programs Volusia County, financial literacy programs Florida, entrepreneurship training nonprofit Port Orange, business development programs Daytona Beach, volunteer opportunities Volusia County, nonprofit organizations Port Orange FL, microfinance organizations USA, international development volunteer Florida, business mentorship programs Central Florida, nonprofit volunteer opportunities Daytona Beach" />
+        <title>Global Business Training Programs - Financial Literacy & Entrepreneurship | Businesses Beyond Borders</title>
+        <meta name="description" content="Businesses Beyond Borders offers proven business development programs supporting Central Asian entrepreneurs through our volunteer network. Financial literacy, leadership development, and community collaboration with 100% success rate. Remote volunteer opportunities available." />
+        <meta name="keywords" content="global business training programs, financial literacy programs nonprofit, entrepreneurship training nonprofit, business development programs international, remote volunteer opportunities, nonprofit organizations USA, microfinance organizations, international development volunteer, business mentorship programs, nonprofit volunteer opportunities" />
         
         {/* Open Graph tags for social media sharing */}
-        <meta property="og:title" content="Business Training Programs - Volusia County Nonprofit Supporting Global Entrepreneurs" />
-        <meta property="og:description" content="Join Volusia County volunteers supporting entrepreneurs in Central Asia through proven business training programs. Based in Port Orange, serving globally." />
+        <meta property="og:title" content="Business Training Programs - Nonprofit Supporting Global Entrepreneurs" />
+        <meta property="og:description" content="Join our volunteers supporting entrepreneurs in Central Asia through proven business training programs. Based in Florida, serving globally." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com/programs-and-impact" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Business Training Programs - Port Orange Nonprofit" />
-        <meta name="twitter:description" content="Volusia County volunteers supporting global entrepreneurs through comprehensive business development programs." />
+        <meta name="twitter:title" content="Business Training Programs - Businesses Beyond Borders" />
+        <meta name="twitter:description" content="Our volunteers support global entrepreneurs through comprehensive business development programs." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         
         {/* Additional SEO tags */}
@@ -46,7 +46,7 @@ const ProgramsAndImpact = () => {
             "@context": "https://schema.org",
             "@type": ["NonprofitOrganization", "EducationalOrganization"],
             "name": "Businesses Beyond Borders",
-            "description": "Port Orange nonprofit providing business training programs and volunteer opportunities for Volusia County residents to support entrepreneurs in Central Asia",
+            "description": "International nonprofit providing business training programs and volunteer opportunities to support entrepreneurs in Central Asia",
             "url": "https://businessesbeyondborders.com/programs-and-impact",
             "address": {
               "@type": "PostalAddress",
@@ -55,10 +55,9 @@ const ProgramsAndImpact = () => {
               "addressCountry": "US"
             },
             "areaServed": [
-              "Volusia County",
-              "Central Florida", 
+              "United States",
               "Kazakhstan",
-              "Kyrgyzstan", 
+              "Kyrgyzstan",
               "Tajikistan"
             ],
             "sameAs": [
@@ -123,8 +122,8 @@ const ProgramsAndImpact = () => {
             <span className="text-yellow-400"> Business Education</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-            <strong className="text-yellow-300">Volusia County volunteers</strong> provide world-class business training to entrepreneurs in Central Asia. 
-            Join our <strong className="text-yellow-300">Port Orange-based team</strong> creating global impact through proven programs.
+            <strong className="text-yellow-300">Our volunteers</strong> provide world-class business training to entrepreneurs in Central Asia.
+            Join our <strong className="text-yellow-300">dedicated team</strong> creating global impact through proven programs.
           </p>
           
           {/* Key Program Highlights */}

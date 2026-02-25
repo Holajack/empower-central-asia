@@ -9,9 +9,16 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-purple-600">
-              Businesses Beyond Borders
-            </h3>
+            <Link to="/" className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
+              <img
+                src="/images/bbb-logo.png"
+                alt="Businesses Beyond Borders"
+                className="h-12 w-12 rounded-full"
+              />
+              <h3 className="text-xl font-semibold text-purple-600">
+                Businesses Beyond Borders
+              </h3>
+            </Link>
             <p className="text-gray-600 mb-4">
               Empowering entrepreneurs and transforming communities across Central
               Asia through sustainable business development.

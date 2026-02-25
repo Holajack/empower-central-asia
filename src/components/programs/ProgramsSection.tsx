@@ -89,8 +89,8 @@ const ProgramsSection = () => {
           <span className="text-blue-600"> 100% Success Rate</span>
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          <strong className="text-gray-800">Volusia County volunteers</strong> deliver world-class business training programs 
-          designed to empower entrepreneurs in Central Asia. Our <strong className="text-gray-800">Port Orange-based team</strong> has 
+          <strong className="text-gray-800">Our dedicated volunteers</strong> deliver world-class business training programs
+          designed to empower entrepreneurs in Central Asia. Our <strong className="text-gray-800">remote-first team</strong> has
           achieved measurable success through comprehensive, culturally-sensitive business education.
         </p>
       </div>

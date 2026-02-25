@@ -98,8 +98,8 @@ const CaseStudiesSection = ({ caseStudies, inView }: CaseStudiesSectionProps) =>
           <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
             <blockquote className="text-center">
               <p className="text-xl md:text-2xl font-medium text-gray-800 mb-6 italic">
-                "Every entrepreneur's success story started with someone believing in their potential. 
-                Through Businesses Beyond Borders, Volusia County volunteers become part of these transformative journeys."
+                "Every entrepreneur's success story started with someone believing in their potential.
+                Through Businesses Beyond Borders, our volunteers become part of these transformative journeys."
               </p>
               <footer className="text-purple-600 font-semibold">
                 — Jacken Holland, Founder & Executive Director

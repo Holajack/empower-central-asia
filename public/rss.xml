@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+  <title>Businesses Beyond Borders Blog</title>
+  <link>https://businessesbeyondborders.com/blog</link>
+  <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
+  <language>en-us</language>
+  <lastBuildDate>Mon, 08 Dec 2025 03:14:25 GMT</lastBuildDate>
+  <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
+  <image>
+    <url>https://businessesbeyondborders.com/bbb-logo.png</url>
+    <title>Businesses Beyond Borders Blog</title>
+    <link>https://businessesbeyondborders.com</link>
+  </image>
+  <copyright>Copyright 2025 Businesses Beyond Borders. All rights reserved.</copyright>
+  <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
+  <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
+  <ttl>60</ttl>
+
+  <item>
+    <title>How Volusia County Nonprofits Are Making Global Impact: A Port Orange Success Story</title>
+    <link>https://businessesbeyondborders.com/blog/11</link>
+    <description>Discover how Businesses Beyond Borders, a Port Orange-based nonprofit, creates international impact while providing meaningful volunteer opportunities for Daytona Beach area residents.</description>
+    <pubDate>Wed, 08 Apr 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/11</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Volusia County</category>
+    <category>Local Impact</category>
+    <category>Global Development</category>
+    <category>Volunteer Opportunities</category>
+    <enclosure url="https://images.unsplash.com/photo-1559223607-a43c990c692c" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>How Florida Nonprofits Support Global Entrepreneurs: Turning Local Resources into Business Opportunities</title>
+    <link>https://businessesbeyondborders.com/blog/1</link>
+    <description>Discover how Volusia County-based Businesses Beyond Borders helps entrepreneurs in Central Asia identify and leverage local resources to create sustainable business ventures, and how you can get involved.</description>
+    <pubDate>Sun, 05 Apr 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/1</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Local Resources</category>
+    <category>Sustainable Business</category>
+    <category>Rural Entrepreneurship</category>
+    <enclosure url="https://images.unsplash.com/photo-1593526613712-7b4b9a707330" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Turning Economic Challenges into Business Opportunities</title>
+    <link>https://businessesbeyondborders.com/blog/7</link>
+    <description>How entrepreneurs can identify and address unmet needs in disadvantaged communities through innovative business models.</description>
+    <pubDate>Wed, 01 Apr 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/7</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Social Entrepreneurship</category>
+    <category>Problem Solving</category>
+    <category>Community Development</category>
+    <enclosure url="https://images.unsplash.com/photo-1519389950473-47ba0277781c" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>From Side Hustle to Main Income</title>
+    <link>https://businessesbeyondborders.com/blog/5</link>
+    <description>The step-by-step journey of transitioning from supplementary business activities to full-time entrepreneurship.</description>
+    <pubDate>Tue, 31 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/5</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Side Hustle</category>
+    <category>Business Growth</category>
+    <category>Risk Management</category>
+    <enclosure url="https://images.unsplash.com/photo-1556155092-490a1ba16284" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Microfinance: Small Loans, Big Impact - How Global Organizations Are Transforming Entrepreneurship</title>
+    <link>https://businessesbeyondborders.com/blog/2</link>
+    <description>How organizations like Kiva, FINCA, and the Grameen Bank are transforming entrepreneurship in low-income communities through innovative microfinance solutions.</description>
+    <pubDate>Sat, 28 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/2</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Microfinance</category>
+    <category>Kiva</category>
+    <category>FINCA</category>
+    <category>Grameen Bank</category>
+    <category>Financial Inclusion</category>
+    <enclosure url="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Business Skills You Can Learn for Free</title>
+    <link>https://businessesbeyondborders.com/blog/6</link>
+    <description>Essential entrepreneurial skills and where to access free training resources online and in your community.</description>
+    <pubDate>Fri, 27 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/6</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Business Skills</category>
+    <category>Free Resources</category>
+    <category>Self-Education</category>
+    <enclosure url="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Financial Independence Through Entrepreneurship</title>
+    <link>https://businessesbeyondborders.com/blog/8</link>
+    <description>Personal stories of how small business ownership has created economic stability and family wealth in underserved communities.</description>
+    <pubDate>Wed, 25 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/8</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Financial Independence</category>
+    <category>Wealth Building</category>
+    <category>Economic Mobility</category>
+    <enclosure url="https://images.unsplash.com/photo-1579621970795-87facc2f976d" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Low-Capital Business Ideas That Scale</title>
+    <link>https://businessesbeyondborders.com/blog/9</link>
+    <description>Business models that require minimal upfront investment but offer significant growth potential in developing markets.</description>
+    <pubDate>Mon, 23 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/9</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Low Capital Startups</category>
+    <category>Service Businesses</category>
+    <category>Bootstrapping</category>
+    <enclosure url="https://images.unsplash.com/photo-1554224155-6726b3ff858f" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Building Business Networks in Isolated Communities</title>
+    <link>https://businessesbeyondborders.com/blog/10</link>
+    <description>Strategies for connecting with customers, suppliers, and mentors when geographic and digital isolation presents challenges.</description>
+    <pubDate>Wed, 18 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/10</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Networking</category>
+    <category>Rural Business</category>
+    <category>Community Connections</category>
+    <enclosure url="https://images.unsplash.com/photo-1559223607-a43c990c692c" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Digital Marketing for Zero-Budget Startups</title>
+    <link>https://businessesbeyondborders.com/blog/3</link>
+    <description>Practical strategies for marketing your business online with minimal resources using free digital tools.</description>
+    <pubDate>Sun, 15 Mar 2026 16:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/3</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Digital Marketing</category>
+    <category>Zero Budget</category>
+    <category>Social Media Strategy</category>
+    <enclosure url="https://images.unsplash.com/photo-1563986768609-322da13575f3" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>Community-Based Business Models: How Global Cooperatives Create Sustainable Development</title>
+    <link>https://businessesbeyondborders.com/blog/4</link>
+    <description>How organizations like Fair Trade USA, the International Co-operative Alliance, and regional development banks support cooperative enterprises that create sustainable economic development.</description>
+    <pubDate>Sat, 07 Mar 2026 17:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/4</guid>
+    <author>contact@businessesbeyondborders.com (Jacken Holland)</author>
+    <category>Cooperatives</category>
+    <category>Fair Trade</category>
+    <category>International Co-operative Alliance</category>
+    <category>Community Enterprise</category>
+    <enclosure url="https://images.unsplash.com/photo-1600880292203-757bb62b4baf" type="image/jpeg" />
+  </item>
+
+</channel>
+</rss>

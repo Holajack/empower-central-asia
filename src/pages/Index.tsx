@@ -15,13 +15,13 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Businesses Beyond Borders - Port Orange FL Nonprofit Empowering Central Asia Entrepreneurs | Volunteer & Donate</title>
-        <meta name="description" content="Port Orange nonprofit transforming Central Asian communities through proven business training programs. 100% success rate in Kazakhstan, Kyrgyzstan, Tajikistan. Volunteer opportunities & donation options in Volusia County. Join our mission today." />
-        <meta name="keywords" content="Port Orange nonprofit, Volusia County business training, Central Asia entrepreneurship programs, nonprofit volunteer opportunities Daytona Beach, financial literacy training nonprofit Florida, international development volunteer Port Orange, business mentorship programs Central Florida, Kazakhstan business development, Kyrgyzstan entrepreneurship support, Tajikistan microfinance programs, nonprofit donations Port Orange FL, charity organizations Volusia County" />
-        
+        <title>Businesses Beyond Borders - Empowering Central Asia Entrepreneurs | Volunteer & Donate</title>
+        <meta name="description" content="International nonprofit transforming Central Asian communities through proven business training programs. 100% success rate in Kazakhstan, Kyrgyzstan, Tajikistan. Remote volunteer opportunities & donation options. Join our mission today." />
+        <meta name="keywords" content="Central Asia entrepreneurship programs, nonprofit volunteer opportunities, financial literacy training nonprofit, international development volunteer, business mentorship programs, Kazakhstan business development, Kyrgyzstan entrepreneurship support, Tajikistan microfinance programs, nonprofit donations, remote volunteer opportunities, global entrepreneurship nonprofit" />
+
         {/* Open Graph tags for social media sharing */}
-        <meta property="og:title" content="Businesses Beyond Borders - Port Orange FL Nonprofit Empowering Central Asia" />
-        <meta property="og:description" content="Transform communities through proven entrepreneurship programs. Port Orange-based nonprofit with 100% success rate serving Kazakhstan, Kyrgyzstan & Tajikistan. Volunteer & donation opportunities in Volusia County." />
+        <meta property="og:title" content="Businesses Beyond Borders - Empowering Central Asia Entrepreneurs" />
+        <meta property="og:description" content="Transform communities through proven entrepreneurship programs. International nonprofit with 100% success rate serving Kazakhstan, Kyrgyzstan & Tajikistan. Volunteer & donation opportunities worldwide." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
@@ -30,8 +30,8 @@ const Index = () => {
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Port Orange FL Nonprofit - Transform Central Asia Through Entrepreneurship" />
-        <meta name="twitter:description" content="Join Volusia County volunteers empowering entrepreneurs in Kazakhstan, Kyrgyzstan & Tajikistan through proven business training programs with 100% success rate." />
+        <meta name="twitter:title" content="Businesses Beyond Borders - Transform Central Asia Through Entrepreneurship" />
+        <meta name="twitter:description" content="Join our volunteers empowering entrepreneurs in Kazakhstan, Kyrgyzstan & Tajikistan through proven business training programs with 100% success rate." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         
         {/* Additional SEO tags */}
@@ -49,7 +49,7 @@ const Index = () => {
             "@context": "https://schema.org",
             "@type": ["NonprofitOrganization", "Organization"],
             "name": "Businesses Beyond Borders",
-            "description": "Port Orange nonprofit empowering entrepreneurs in Central Asia through proven business training, financial literacy, and leadership development programs",
+            "description": "International nonprofit empowering entrepreneurs in Central Asia through proven business training, financial literacy, and leadership development programs",
             "url": "https://businessesbeyondborders.com",
             "logo": "https://businessesbeyondborders.com/logo.png",
             "image": "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2",
@@ -77,7 +77,7 @@ const Index = () => {
             "areaServed": [
               {
                 "@type": "Place",
-                "name": "Volusia County, Florida"
+                "name": "United States"
               },
               {
                 "@type": "Country", 

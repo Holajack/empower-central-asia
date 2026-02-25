@@ -11,8 +11,8 @@ const LeadershipMentor = () => {
     <>
       <Helmet>
         <title>Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders</title>
-        <meta name="description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from Port Orange, FL." />
-        <meta name="keywords" content="leadership mentor volunteer Port Orange FL, business mentorship opportunities Volusia County, executive coaching volunteer Florida, leadership development volunteer Daytona Beach, mentor volunteer Central Asia, nonprofit mentorship program Florida, volunteer business advisor opportunities" />
+        <meta name="description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
+        <meta name="keywords" content="leadership mentor volunteer, business mentorship opportunities, executive coaching volunteer, leadership development mentor, mentor volunteer Central Asia, nonprofit mentorship program, volunteer business advisor opportunities, remote volunteer mentoring" />
       </Helmet>
 
       <div className="min-h-screen pt-20">

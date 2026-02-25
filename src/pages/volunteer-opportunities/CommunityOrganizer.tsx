@@ -11,8 +11,8 @@ const CommunityOrganizer = () => {
     <>
       <Helmet>
         <title>Community Organizer - Volunteer Opportunity | Businesses Beyond Borders</title>
-        <meta name="description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from Port Orange, FL." />
-        <meta name="keywords" content="community organizer volunteer Port Orange FL, volunteer coordinator opportunities Volusia County, nonprofit community organizing Florida, volunteer program coordinator Daytona Beach, community development volunteer Central Florida, nonprofit outreach volunteer opportunities" />
+        <meta name="description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from anywhere." />
+        <meta name="keywords" content="community organizer volunteer, volunteer coordinator opportunities, nonprofit community organizing, volunteer program coordinator, community development volunteer, nonprofit outreach volunteer opportunities, remote community organizer" />
       </Helmet>
 
       <div className="min-h-screen pt-20">

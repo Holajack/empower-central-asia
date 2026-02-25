@@ -34,8 +34,8 @@ const GetInvolvedHeroHeader = () => (
       </div>
       
       <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-        Make Global Impact From 
-        <span className="text-yellow-400"> Port Orange</span>
+        Make Global Impact From
+        <span className="text-yellow-400"> Anywhere</span>
       </h1>
       
       <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
@@ -82,7 +82,7 @@ const GetInvolvedHeroHeader = () => (
 
       {/* Social Proof */}
       <p className="text-sm text-white/70 mt-6 animate-fade-up [--animation-delay:1100ms]">
-        ⭐ <strong className="text-white">Be among our founding volunteers</strong> - we're just getting started but growing our mission in Volusia County • 
+        ⭐ <strong className="text-white">Be among our founding volunteers</strong> - we're just getting started but growing our mission globally • 
         🌍 <strong className="text-white">3 proven programs</strong> with 100% success rate • 
         🤝 <strong className="text-white">Research-based approaches</strong> that transform communities
       </p>
@@ -183,13 +183,13 @@ const GetInvolved = () => {
   return (
     <>
       <Helmet>
-        <title>Get Involved - Volunteer, Donate & Partner | Businesses Beyond Borders Port Orange FL</title>
-        <meta name="description" content="Join our Port Orange nonprofit empowering Central Asia entrepreneurs. URGENT: Leadership mentors & community organizers needed for new programs. Volunteer in Volusia County, donate online, or become a corporate partner. 100% success rate programs." />
-        <meta name="keywords" content="volunteer mentor opportunities Port Orange FL, leadership development volunteers Volusia County, community organizer volunteer Daytona Beach, nonprofit volunteer Central Florida, international development volunteer Florida, donate entrepreneurs Central Asia, corporate partnerships nonprofit Florida, business mentorship volunteer opportunities, volunteer coordinator positions Port Orange, community collaboration volunteer Florida" />
+        <title>Get Involved - Volunteer, Donate & Partner | Businesses Beyond Borders</title>
+        <meta name="description" content="Join our nonprofit empowering Central Asia entrepreneurs. URGENT: Leadership mentors & community organizers needed for new programs. Volunteer remotely, donate online, or become a corporate partner. 100% success rate programs." />
+        <meta name="keywords" content="remote volunteer mentor opportunities, leadership development volunteers, community organizer volunteer, international nonprofit volunteer, international development volunteer, donate entrepreneurs Central Asia, corporate partnerships nonprofit, business mentorship volunteer opportunities, remote volunteer coordinator positions, community collaboration volunteer" />
         
         {/* Open Graph tags */}
         <meta property="og:title" content="Get Involved - Volunteer Mentors Needed | Businesses Beyond Borders" />
-        <meta property="og:description" content="NEW PROGRAMS LAUNCHING: We need volunteer mentors for our Leadership Development program and community organizers for our Collaboration Network. Make global impact from Port Orange, FL." />
+        <meta property="og:description" content="NEW PROGRAMS LAUNCHING: We need volunteer mentors for our Leadership Development program and community organizers for our Collaboration Network. Make global impact from anywhere." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com/get-involved" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1559827260-dc66d52bef19" />
@@ -197,7 +197,7 @@ const GetInvolved = () => {
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Volunteer Mentors Needed - New Programs Launching" />
-        <meta name="twitter:description" content="Help us launch Leadership Development & Community Collaboration programs. Volunteer mentors and coordinators needed in Volusia County." />
+        <meta name="twitter:description" content="Help us launch Leadership Development & Community Collaboration programs. Volunteer mentors and coordinators needed." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1559827260-dc66d52bef19" />
         
         {/* Additional SEO tags */}
@@ -211,7 +211,7 @@ const GetInvolved = () => {
             "@context": "https://schema.org",
             "@type": ["NonprofitOrganization", "VolunteerAction"],
             "name": "Businesses Beyond Borders",
-            "description": "Port Orange nonprofit empowering entrepreneurs in Central Asia through business training, leadership development, and community collaboration programs",
+            "description": "International nonprofit empowering entrepreneurs in Central Asia through business training, leadership development, and community collaboration programs",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Port Orange",
@@ -415,7 +415,7 @@ const GetInvolved = () => {
               <div className="text-center mb-8">
                 <h4 className="text-xl md:text-2xl font-bold text-blue-600 mb-2">Operations & Training Support</h4>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Help us maintain our <strong className="text-blue-600">Port Orange operations</strong> and train local staff in Central Asia to deliver programs effectively.
+                  Help us maintain <strong className="text-blue-600">our operations</strong> and train local staff in Central Asia to deliver programs effectively.
                 </p>
               </div>
               <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -549,7 +549,7 @@ const GetInvolved = () => {
                 Why Our Volunteers Love What They Do
               </h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                <strong className="text-orange-600">Be among our founding volunteers</strong> who will build valuable skills while creating global impact from Volusia County. 
+                <strong className="text-orange-600">Be among our founding volunteers</strong> who will build valuable skills while creating global impact. 
                 While positions are unpaid, the personal and professional benefits are tremendous!
               </p>
             </div>
@@ -601,7 +601,7 @@ const GetInvolved = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">Global Impact from Home</p>
-                      <p className="text-sm text-gray-600">Transform lives in Central Asia while living in Florida</p>
+                      <p className="text-sm text-gray-600">Transform lives in Central Asia from wherever you are</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -643,7 +643,7 @@ const GetInvolved = () => {
                 Corporate & Organizational Partnerships
               </h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Join leading organizations in <strong className="text-blue-600">Volusia County and beyond</strong> who partner with us to create 
+                Join leading organizations in <strong className="text-blue-600">around the world</strong> who partner with us to create 
                 <strong className="text-blue-600"> measurable social impact</strong> and enhance their corporate social responsibility.
               </p>
             </div>
@@ -796,8 +796,7 @@ const GetInvolved = () => {
         {/* Final CTA Section - Enhanced */}
         <section className="py-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl text-center text-white">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Ready to Make Global Impact From 
-            <span className="text-yellow-300"> Volusia County?</span>
+            Ready to Make Global Impact?
           </h2>
           <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
             <strong className="text-white">Be among our founding volunteers and donors</strong> who are transforming lives in Central Asia through 
@@ -819,7 +818,7 @@ const GetInvolved = () => {
               💝 Donate to Support
             </DonateButton>
             <Link to="/partner-application">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600 font-bold px-8 py-4 text-lg">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-bold px-8 py-4 text-lg">
                 🤝 Become a Partner
               </Button>
             </Link>
@@ -839,7 +838,7 @@ const GetInvolved = () => {
               </div>
             </div>
             <p className="text-xs text-blue-100 mt-3">
-              📍 Proudly serving from Port Orange, FL • Making global impact locally
+              📍 Based in Florida • Making global impact worldwide
             </p>
           </div>
         </section>

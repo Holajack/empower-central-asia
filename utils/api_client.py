@@ -14,6 +14,10 @@ from datetime import datetime
 from functools import wraps
 from typing import Dict, List, Optional, Any
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # ====================
@@ -37,8 +41,8 @@ class Config:
     NETLIFY_SITE_ID = os.getenv("NETLIFY_SITE_ID")
 
     # Git Configuration
-    GIT_REPO_PATH = "/Users/jackenholland/Businesses Beyond Borders/empower-central-asia"
-    GIT_DEFAULT_BRANCH = "main"
+    GIT_REPO_PATH = os.getenv("GIT_REPO_PATH", "/Users/jackenholland/Websites/empower-central-asia")
+    GIT_DEFAULT_BRANCH = os.getenv("GIT_DEFAULT_BRANCH", "main")
 
     # Rate Limiting
     RATE_LIMIT_REQUESTS = 100

@@ -19,7 +19,7 @@ const ContactHeroHeader = () => (
     <div className="relative z-10 container mx-auto px-4 text-center text-white">
       {/* Trust Badge */}
       <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-up [--animation-delay:100ms]">
-        📍 Port Orange, FL • Serving Central Asia
+        📍 Serving Central Asia from the USA
       </div>
       
       <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
@@ -60,7 +60,7 @@ const ContactHeroHeader = () => (
 
       {/* Social Proof */}
       <p className="text-sm text-white/70 animate-fade-up [--animation-delay:1000ms]">
-        🌟 <strong className="text-white">Be among our founding volunteers and partners</strong> - we're just getting started but growing our mission in Volusia County • 
+        🌟 <strong className="text-white">Be among our founding volunteers and partners</strong> - we're just getting started and growing our mission globally • 
         💬 <strong className="text-white">Free consultations available</strong> • 
         🤝 <strong className="text-white">Multilingual support</strong> (English & Russian)
       </p>
@@ -72,27 +72,27 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us - Port Orange FL Nonprofit | Businesses Beyond Borders | (386) 517-1527</title>
+        <title>Contact Us - Businesses Beyond Borders | International Nonprofit | (386) 517-1527</title>
         <meta 
           name="description" 
-          content="Contact Businesses Beyond Borders in Port Orange, FL for volunteer opportunities, program information, partnerships, or donations. Call (386) 517-1527 or email donations@businessesbeyondborders.com. Serving Volusia County and empowering Central Asia entrepreneurs." 
+          content="Contact Businesses Beyond Borders for volunteer opportunities, program information, partnerships, or donations. Call (386) 517-1527 or email donations@businessesbeyondborders.com. Empowering Central Asia entrepreneurs through proven programs." 
         />
         <meta 
           name="keywords" 
-          content="contact nonprofit Port Orange FL, Businesses Beyond Borders phone number, volunteer opportunities Volusia County, nonprofit contact Daytona Beach, Central Asia entrepreneurship programs contact, Port Orange business mentorship, nonprofit partnerships Florida, community development contact Volusia County, international development nonprofit Florida" 
+          content="contact nonprofit, Businesses Beyond Borders phone number, volunteer opportunities, Central Asia entrepreneurship programs contact, business mentorship nonprofit, nonprofit partnerships, community development contact, international development nonprofit" 
         />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content="Contact Businesses Beyond Borders - Port Orange FL Nonprofit" />
-        <meta property="og:description" content="Get in touch with our Port Orange team for volunteer opportunities, partnerships, donations, or program information. Transforming Central Asia from Volusia County." />
+        <meta property="og:title" content="Contact Businesses Beyond Borders - International Nonprofit" />
+        <meta property="og:description" content="Get in touch with our team for volunteer opportunities, partnerships, donations, or program information. Empowering entrepreneurs across Central Asia." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com/contact" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1559827260-dc66d52bef19" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Port Orange Nonprofit - Volunteer & Partnership Opportunities" />
-        <meta name="twitter:description" content="Connect with Businesses Beyond Borders for volunteer mentoring, donations, partnerships, or program information. Port Orange serving Central Asia." />
+        <meta name="twitter:title" content="Contact Businesses Beyond Borders - Volunteer & Partnership Opportunities" />
+        <meta name="twitter:description" content="Connect with Businesses Beyond Borders for volunteer mentoring, donations, partnerships, or program information. Empowering Central Asia entrepreneurs." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1559827260-dc66d52bef19" />
         
         {/* Additional SEO tags */}
@@ -110,7 +110,7 @@ const Contact = () => {
             "@context": "https://schema.org",
             "@type": "NonprofitOrganization",
             "name": "Businesses Beyond Borders",
-            "description": "Port Orange nonprofit empowering entrepreneurs in Central Asia through business training, leadership development, and community collaboration programs",
+            "description": "International nonprofit empowering entrepreneurs in Central Asia through business training, leadership development, and community collaboration programs",
             "url": "https://businessesbeyondborders.com",
             "logo": "https://businessesbeyondborders.com/logo.png",
             "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
@@ -149,7 +149,7 @@ const Contact = () => {
             ],
             "serviceArea": {
               "@type": "Place",
-              "name": "Central Asia and Volusia County, Florida"
+              "name": "Central Asia and United States"
             }
           })}
         </script>
@@ -171,7 +171,7 @@ const Contact = () => {
                 </h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                   Whether you're ready to volunteer, make a donation, explore partnerships, or learn about our programs, 
-                  we're here to guide you toward the perfect way to make global impact from Volusia County.
+                  we're here to guide you toward the perfect way to make global impact.
                 </p>
               </div>
 
@@ -289,7 +289,7 @@ const Contact = () => {
                       🌍 Do you work with international partners?
                     </h3>
                     <p className="text-purple-700">
-                      Absolutely. We collaborate with organizations in <strong>Central Asia, Volusia County, 
+                      Absolutely. We collaborate with organizations in <strong>Central Asia
                       and worldwide</strong> to expand our impact. Our programs operate in Kazakhstan, 
                       Kyrgyzstan, Tajikistan, and beyond.
                     </p>
@@ -313,7 +313,7 @@ const Contact = () => {
                     <p className="text-purple-700">
                       <strong>$400</strong> trains a local facilitator, <strong>$5,000</strong> provides startup capital, 
                       and <strong>$10,000</strong> establishes a complete incubator. Even smaller amounts 
-                      like <strong>$150</strong> support our Port Orange operations.
+                      like <strong>$150</strong> support our daily operations.
                     </p>
                   </div>
                   
@@ -323,7 +323,7 @@ const Contact = () => {
                     </h3>
                     <p className="text-purple-700">
                       We offer <strong>employee volunteer programs</strong>, matching donations, 
-                      sponsorship opportunities, and CSR collaborations. Perfect for Volusia County 
+                      sponsorship opportunities, and CSR collaborations. Perfect for
                       businesses wanting to make global impact.
                     </p>
                   </div>
@@ -332,7 +332,7 @@ const Contact = () => {
                 {/* Additional Contact CTA */}
                 <div className="mt-8 p-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg text-white">
                   <h3 className="text-xl font-bold mb-2">Still Have Questions?</h3>
-                  <p className="mb-4">We're here to help you find the perfect way to make global impact from Port Orange.</p>
+                  <p className="mb-4">We're here to help you find the perfect way to make global impact.</p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="tel:+13865171527" className="bg-white text-purple-600 font-bold px-6 py-3 rounded-lg hover:bg-purple-50 transition-colors">
                       📞 Call (386) 517-1527

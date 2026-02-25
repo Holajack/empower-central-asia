@@ -12,9 +12,9 @@ const CommunityCollaboration = () => {
   return (
     <>
       <Helmet>
-        <title>Community Collaboration Network - Volunteer-Driven Partnerships | Volusia County</title>
-        <meta name="description" content="Join our volunteer-driven community collaboration network connecting entrepreneurs, businesses, and organizations in Volusia County and Central Asia. Volunteers needed to help build sustainable partnerships for local economic development and social impact." />
-        <meta name="keywords" content="community collaboration Volusia County, volunteer opportunities Port Orange, nonprofit partnerships Florida, community development Daytona Beach, volunteer coordinator positions, business networking Central Florida, social enterprise collaboration, community organizing volunteers, nonprofit community partnerships, volunteer management programs" />
+        <title>Community Collaboration Network - Volunteer-Driven Partnerships | Businesses Beyond Borders</title>
+        <meta name="description" content="Join our volunteer-driven community collaboration network connecting entrepreneurs, businesses, and organizations worldwide and in Central Asia. Volunteers needed to help build sustainable partnerships for economic development and social impact." />
+        <meta name="keywords" content="community collaboration network, volunteer opportunities, nonprofit partnerships, community development, volunteer coordinator positions, business networking, social enterprise collaboration, community organizing volunteers, nonprofit community partnerships, volunteer management programs, Central Asia partnerships" />
         
         {/* Open Graph tags */}
         <meta property="og:title" content="Community Collaboration Network - Volunteer-Driven Partnerships" />
@@ -40,7 +40,7 @@ const CommunityCollaboration = () => {
             "@context": "https://schema.org",
             "@type": ["VolunteerAction", "Organization"],
             "name": "Community Collaboration Network",
-            "description": "Volunteer-driven community partnerships connecting entrepreneurs, businesses, and organizations for sustainable local impact in Volusia County and Central Asia",
+            "description": "Volunteer-driven community partnerships connecting entrepreneurs, businesses, and organizations for sustainable impact in Central Asia and beyond",
             "organizer": {
               "@type": "NonprofitOrganization",
               "name": "Businesses Beyond Borders",
@@ -65,7 +65,7 @@ const CommunityCollaboration = () => {
             ],
             "location": {
               "@type": "Place",
-              "name": "Volusia County, Florida",
+              "name": "Remote - United States",
               "address": {
                 "@type": "PostalAddress",
                 "addressRegion": "FL",
@@ -101,7 +101,7 @@ const CommunityCollaboration = () => {
           
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
             <strong className="text-yellow-300">Help us launch</strong> a volunteer-driven network connecting entrepreneurs, businesses, and organizations for 
-            <strong className="text-yellow-300"> sustainable community impact</strong> in Volusia County and beyond.
+            <strong className="text-yellow-300"> sustainable community impact</strong> across Central Asia and beyond.
           </p>
 
           {/* Key Benefits Grid */}
@@ -140,7 +140,7 @@ const CommunityCollaboration = () => {
 
           {/* Social Proof */}
           <p className="text-sm text-white/70 mt-6 animate-fade-up [--animation-delay:1000ms]">
-            ⭐ Join <strong className="text-white">pioneering volunteers</strong> building Volusia County's first comprehensive community collaboration network • 
+            ⭐ Join <strong className="text-white">pioneering volunteers</strong> building our comprehensive community collaboration network • 
             🌍 Connecting local impact to global change • 
             🤝 Be part of something transformational from day one
           </p>
@@ -460,7 +460,7 @@ const CommunityCollaboration = () => {
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Community Impact</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Drive economic development in Volusia County</li>
+                        <li>• Drive economic development in Central Asia</li>
                         <li>• Create lasting partnerships and collaborations</li>
                         <li>• Support emerging entrepreneurs and businesses</li>
                         <li>• Build a stronger, more connected community</li>
@@ -475,7 +475,7 @@ const CommunityCollaboration = () => {
             <div className="text-center bg-gradient-to-br from-orange-600 to-orange-700 text-white p-8 rounded-2xl">
               <h3 className="text-2xl font-bold mb-4">Ready to Help Build Something Amazing?</h3>
               <p className="text-orange-100 mb-6 max-w-2xl mx-auto">
-                Join our founding volunteer team and help create Volusia County's premier community collaboration network. 
+                Join our founding volunteer team and help create our premier community collaboration network. 
                 Your time and skills can drive transformational change in our community.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -648,7 +648,7 @@ const CommunityCollaboration = () => {
                 <div className="text-center">
                   <h4 className="font-medium text-gray-800 mb-2">Questions About Volunteering?</h4>
                   <p className="text-sm text-gray-600 mb-4">
-                    Speak with our <strong>Port Orange team</strong> about volunteer opportunities and training.
+                    Speak with our <strong>program team</strong> about volunteer opportunities and training.
                   </p>
                   <Link to="/contact">
                     <Button variant="outline" size="sm" className="w-full">

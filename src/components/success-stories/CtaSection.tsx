@@ -183,7 +183,7 @@ const CtaSection = ({ inView }: CtaSectionProps) => {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 text-center mb-4">
-                Questions about getting involved? Speak directly with our Port Orange team.
+                Questions about getting involved? Speak directly with our team.
               </p>
               <Link to="/contact">
                 <Button variant="outline" size="sm" className="w-full">
@@ -197,7 +197,7 @@ const CtaSection = ({ inView }: CtaSectionProps) => {
         {/* Social Proof and Urgency */}
         <div className="bg-white rounded-2xl p-8 text-center border border-gray-200">
           <p className="text-lg text-gray-700 mb-4">
-            <strong className="text-purple-600">Join 50+ volunteers</strong> from Volusia County already creating global impact from their homes.
+            <strong className="text-purple-600">Join 50+ volunteers</strong> already creating global impact from their homes.
           </p>
           <p className="text-sm text-gray-500 mb-6">
             🌟 <strong>Next mentor training session:</strong> February 25, 2026 | <strong>Application deadline:</strong> February 20, 2026

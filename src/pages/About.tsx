@@ -64,7 +64,7 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Businesses Beyond Borders - Port Orange FL Nonprofit | Our Mission, Team & Impact in Central Asia</title>
+        <title>About Businesses Beyond Borders - International Nonprofit Empowering Central Asian Entrepreneurs | Our Mission & Team</title>
         <meta name="description" content="Founded in Port Orange, FL in 2022, Businesses Beyond Borders has helped 15+ families and launched 6+ businesses in Kazakhstan, Kyrgyzstan, and Tajikistan through proven entrepreneurship programs. Meet our team and learn about our mission to empower Central Asian communities through business training and financial literacy education." />
         <meta name="keywords" content="about Businesses Beyond Borders Port Orange FL, Central Asia development nonprofit Florida, Volusia County international development organization, Kazakhstan business development nonprofit, Kyrgyzstan entrepreneurship programs, Tajikistan microfinance organization, Port Orange nonprofit mission statement, Daytona Beach area international charity, business training programs Central Asia, financial literacy nonprofit Florida, entrepreneur development organization Volusia County" />
         

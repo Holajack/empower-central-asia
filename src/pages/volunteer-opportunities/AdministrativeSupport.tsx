@@ -11,8 +11,8 @@ const AdministrativeSupport = () => {
     <>
       <Helmet>
         <title>Administrative Support Volunteer - Essential Operations | Businesses Beyond Borders</title>
-        <meta name="description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from Port Orange, FL." />
-        <meta name="keywords" content="administrative support volunteer Port Orange FL, nonprofit admin volunteer Volusia County, virtual assistant volunteer Florida, event coordination volunteer Daytona Beach, communications volunteer Central Florida, database management volunteer opportunities" />
+        <meta name="description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from anywhere." />
+        <meta name="keywords" content="administrative support volunteer, nonprofit admin volunteer, virtual assistant volunteer, event coordination volunteer, communications volunteer, database management volunteer opportunities, remote nonprofit volunteer" />
       </Helmet>
 
       <div className="min-h-screen pt-20">

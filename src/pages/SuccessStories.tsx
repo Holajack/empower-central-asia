@@ -29,7 +29,7 @@ const SuccessStoriesHeroHeader = () => (
       </h1>
       <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed">
         Meet the entrepreneurs who built thriving businesses with mentorship from 
-        <strong className="text-yellow-300"> Volusia County volunteers</strong> and support from our Port Orange-based team.
+        <strong className="text-yellow-300"> our volunteer network</strong> and support from our team.
       </p>
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-center">
         <div className="animate-fade-up [--animation-delay:600ms]">
@@ -86,27 +86,27 @@ const SuccessStories = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Success Stories - Volusia County Entrepreneurs Transforming Communities | Businesses Beyond Borders</title>
+        <title>Success Stories - Entrepreneurs Transforming Communities | Businesses Beyond Borders</title>
         <meta 
           name="description" 
-          content="Discover inspiring success stories from Port Orange-based Businesses Beyond Borders. See how entrepreneurs in Central Asia and local Volusia County volunteers create lasting impact through business development programs." 
+          content="Discover inspiring success stories from Businesses Beyond Borders. See how entrepreneurs in Central Asia and our dedicated volunteers create lasting impact through business development programs."
         />
         <meta 
           name="keywords" 
-          content="success stories Volusia County, entrepreneur testimonials Port Orange, business development results, Central Asia success stories, volunteer impact stories Daytona Beach, nonprofit success stories Florida, microfinance success stories, international development testimonials" 
+          content="entrepreneur success stories, business development results, Central Asia success stories, volunteer impact stories, nonprofit success stories, microfinance success stories, international development testimonials, global entrepreneurship impact"
         />
         
         {/* Open Graph tags for social media sharing */}
-        <meta property="og:title" content="Success Stories - Entrepreneurs Creating Global Impact from Volusia County" />
-        <meta property="og:description" content="Real stories of transformation: How Businesses Beyond Borders helps entrepreneurs in Central Asia while creating volunteer opportunities for Daytona Beach area residents." />
+        <meta property="og:title" content="Success Stories - Entrepreneurs Creating Global Impact" />
+        <meta property="og:description" content="Real stories of transformation: How Businesses Beyond Borders helps entrepreneurs in Central Asia through volunteer-driven mentorship and business training programs." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         <meta property="og:url" content="https://businessesbeyondborders.com/success-stories" />
         <meta property="og:type" content="website" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Success Stories - Global Impact from Volusia County" />
-        <meta name="twitter:description" content="Inspiring entrepreneurship success stories from Port Orange nonprofit serving Central Asia and local community." />
+        <meta name="twitter:title" content="Success Stories - Global Impact Through Entrepreneurship" />
+        <meta name="twitter:description" content="Inspiring entrepreneurship success stories from Businesses Beyond Borders serving Central Asia." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         
         {/* Additional SEO tags */}
@@ -120,7 +120,7 @@ const SuccessStories = () => {
             "@context": "https://schema.org",
             "@type": "NonprofitOrganization",
             "name": "Businesses Beyond Borders",
-            "description": "Port Orange nonprofit supporting entrepreneurship in Central Asia while creating volunteer opportunities in Volusia County",
+            "description": "International nonprofit supporting entrepreneurship in Central Asia through volunteer-driven business training and mentorship programs",
             "url": "https://businessesbeyondborders.com/success-stories",
             "address": {
               "@type": "PostalAddress",

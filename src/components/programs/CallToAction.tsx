@@ -22,7 +22,7 @@ const CallToAction = () => {
               <span className="text-purple-600"> Transform Lives</span>
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join <strong className="text-gray-800">50+ Volusia County volunteers</strong> already making a difference. 
+              Join <strong className="text-gray-800">50+ volunteers worldwide</strong> already making a difference. 
               Your expertise becomes someone's breakthrough opportunity.
             </p>
             
@@ -65,7 +65,7 @@ const CallToAction = () => {
                 <CardTitle className="text-2xl font-bold text-center">Become a Program Volunteer</CardTitle>
                 <CardDescription className="text-purple-100 text-center text-lg">
                   <strong className="text-white">2-4 hours per month</strong> of your expertise creates life-changing impact.
-                  <strong className="text-white"> Remote volunteering</strong> from anywhere in Volusia County.
+                  <strong className="text-white"> Remote volunteering</strong> from anywhere.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -140,7 +140,7 @@ const CallToAction = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600 text-center mb-4">
-                  Engage your Daytona Beach team in meaningful skills-based volunteering programs.
+                  Engage your team in meaningful skills-based volunteering programs.
                 </p>
                 <Link to="/contact">
                   <Button variant="outline" size="sm" className="w-full">
@@ -180,7 +180,7 @@ const CallToAction = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600 text-center mb-4">
-                  Speak directly with our Port Orange program team about volunteer opportunities.
+                  Speak directly with our program team about volunteer opportunities.
                 </p>
                 <Link to="/contact">
                   <Button variant="outline" size="sm" className="w-full">
@@ -217,7 +217,7 @@ const CallToAction = () => {
             <div className="border-t border-gray-100 pt-6 text-center">
               <div className="flex items-center justify-center gap-2 text-gray-600 mb-2">
                 <MapPin className="w-4 h-4" />
-                <span className="text-sm">Serving from Port Orange, FL - Open to all Volusia County residents</span>
+                <span className="text-sm">Serving globally - Remote volunteer opportunities open to everyone</span>
               </div>
               <p className="text-xs text-gray-500">
                 Virtual volunteer opportunities • Flexible scheduling • Full training provided • Ongoing support
