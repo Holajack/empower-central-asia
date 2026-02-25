@@ -122,7 +122,7 @@ The [UNDP's Human Development Report](https://hdr.undp.org/) has called for a fu
 
 **Keywords:** community-based international development, grassroots global impact, remote international volunteering, local nonprofit global mission, asset-based community development, cross-cultural volunteer engagement, sustainable international programs, Businesses Beyond Borders`,
     author: "Jacken Holland",
-    date: "April 8, 2026",
+    date: "February 20, 2026",
     readTime: "20 min read",
     imageUrl: "https://images.unsplash.com/photo-1559223607-a43c990c692c",
     tags: ["International Development", "Community Engagement", "Volunteer Management", "Global Impact"]
@@ -204,7 +204,7 @@ Remote mentoring represents the most direct way to contribute expertise. Volunte
 
 **Keywords:** nonprofit entrepreneurship support, Florida nonprofit global impact, turning local resources into business opportunities, Central Asia business development, financial literacy training, microfinance organizations, Businesses Beyond Borders, community-based international development`,
     author: "Jacken Holland",
-    date: "April 5, 2026",
+    date: "October 15, 2025",
     readTime: "18 min read",
     imageUrl: "https://images.unsplash.com/photo-1593526613712-7b4b9a707330",
     tags: ["Local Resources", "Sustainable Business", "Rural Entrepreneurship"]
@@ -310,7 +310,7 @@ The future of microfinance lies not in any single innovation but in the integrat
 
 **Keywords:** microfinance Central Asia, small loans big impact, Grameen Bank model, financial inclusion developing economies, microfinance and financial literacy, women entrepreneurs microfinance, FINCA village banking, Kiva crowdfunded lending, Businesses Beyond Borders, community economic development`,
     author: "Jacken Holland",
-    date: "March 28, 2026",
+    date: "October 30, 2025",
     readTime: "20 min read",
     imageUrl: "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6",
     tags: ["Microfinance", "Kiva", "FINCA", "Grameen Bank", "Financial Inclusion"]
@@ -508,7 +508,7 @@ By the end of 30 days, you will have a functioning digital marketing foundation 
 
 **Ready to build your digital marketing skills and grow your business?** [Businesses Beyond Borders](/programs-and-impact) offers free business development training for entrepreneurs in Central Asia, including digital marketing workshops, financial literacy courses, and mentorship programs. Visit our [Get Involved page](/get-involved) to learn how you can support or participate in our programs, or explore more [strategies for building a business from scratch](/blog/5) and [developing essential business skills for free](/blog/6).`,
     author: "Jacken Holland",
-    date: "March 15, 2026",
+    date: "November 12, 2025",
     readTime: "18 min read",
     imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
     tags: ["Digital Marketing", "Zero Budget", "Social Media Strategy"]
@@ -668,7 +668,7 @@ The question is not whether cooperative models can succeed in Central Asia. They
 
 **Keywords:** cooperative business models Central Asia, community-based enterprise development, agricultural cooperatives Kyrgyzstan Tajikistan Kazakhstan, cooperative economic development, collective enterprise developing economies, Businesses Beyond Borders, producer cooperatives Central Asia, sustainable community development`,
     author: "Jacken Holland",
-    date: "March 7, 2026",
+    date: "November 28, 2025",
     readTime: "20 min read",
     imageUrl: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
     tags: ["Cooperatives", "Community Enterprise", "Sustainable Development", "Central Asia"]
@@ -856,7 +856,7 @@ If you are an entrepreneur in Central Asia looking for structured support throug
 
 **About the Organization:** **Businesses Beyond Borders** is a **501(c)(3) nonprofit organization** headquartered in Port Orange, Florida. Founded in 2022, the organization supports entrepreneurship development in Kazakhstan, Kyrgyzstan, and Tajikistan through financial literacy training, microfinance programs, and comprehensive business development support. Learn more at [businessesbeyondborders.com](/).`,
     author: "Jacken Holland",
-    date: "March 31, 2026",
+    date: "December 10, 2025",
     readTime: "25 min read",
     imageUrl: "https://images.unsplash.com/photo-1556155092-490a1ba16284",
     tags: ["Side Hustle", "Business Growth", "Risk Management"]
@@ -1054,7 +1054,7 @@ The path from where you are to where you want to be does not require expensive p
 
 **Keywords:** free business education, learn business skills for free, free entrepreneurship courses, SCORE mentorship, SBA free training, Coursera free business courses, financial literacy training, free marketing certification, small business resources, Businesses Beyond Borders`,
     author: "Jacken Holland",
-    date: "March 27, 2026",
+    date: "December 28, 2025",
     readTime: "18 min read",
     imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173",
     tags: ["Business Skills", "Free Resources", "Self-Education"]
@@ -1172,7 +1172,7 @@ We are always seeking volunteers who can contribute business expertise remotely,
 
 **Keywords:** economic challenges Central Asia, entrepreneurship development Kazakhstan Kyrgyzstan Tajikistan, turning problems into business opportunities, social entrepreneurship developing economies, financial literacy training Central Asia, microfinance Central Asia, Businesses Beyond Borders, community economic development`,
     author: "Jacken Holland",
-    date: "April 1, 2026",
+    date: "January 10, 2026",
     readTime: "20 min read",
     imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
     tags: ["Social Entrepreneurship", "Problem Solving", "Community Development"]
@@ -1300,7 +1300,7 @@ Ready to make a difference? Visit our [get involved page](/get-involved) to expl
 
 About the Organization: Businesses Beyond Borders is a 501(c)(3) nonprofit organization headquartered in Port Orange, Florida. Founded in 2022, the organization supports entrepreneurship development in Kazakhstan, Kyrgyzstan, and Tajikistan through financial literacy training, microfinance programs, and comprehensive business development support.`,
     author: "Jacken Holland",
-    date: "March 25, 2026",
+    date: "January 24, 2026",
     readTime: "16 min read",
     imageUrl: "https://images.unsplash.com/photo-1579621970795-87facc2f976d",
     tags: ["Financial Independence", "Wealth Building", "Economic Mobility"]
@@ -1418,7 +1418,7 @@ At **Businesses Beyond Borders**, we are committed to supporting this journey at
 
 **Keywords:** low-capital business ideas, scalable businesses developing economies, microenterprise Central Asia, women entrepreneurs Kyrgyzstan, financial literacy training, small business scaling strategies, agricultural value-add Tajikistan, artisan craft businesses, microfinance Central Asia, nonprofit entrepreneurship support, Businesses Beyond Borders, Port Orange Florida nonprofit`,
     author: "Jacken Holland",
-    date: "March 23, 2026",
+    date: "February 5, 2026",
     readTime: "14 min read",
     imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f",
     tags: ["Low Capital Startups", "Service Businesses", "Bootstrapping"]
@@ -1542,7 +1542,7 @@ Fourth, seek out training and support programs that prioritize network-building 
 
 **Keywords:** business networks isolated communities, rural entrepreneurship Central Asia, cooperative models developing economies, economic connectivity Kyrgyzstan Tajikistan, digital divide entrepreneurship, trade networks small business, social capital business development, Businesses Beyond Borders, community economic development`,
     author: "Jacken Holland",
-    date: "March 18, 2026",
+    date: "February 18, 2026",
     readTime: "20 min read",
     imageUrl: "https://images.unsplash.com/photo-1559223607-a43c990c692c",
     tags: ["Networking", "Rural Business", "Community Connections"]
