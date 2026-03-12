@@ -58,22 +58,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamically generate blog post URLs from blog-posts.json
   const blogPosts: MetadataRoute.Sitemap = blogData.posts.map((post) => {
-    // Determine priority based on recency and featured status
     const daysSincePublished =
       (Date.now() - new Date(post.date).getTime()) / (1000 * 60 * 60 * 24);
+    const isVeryRecent = daysSincePublished < 7;
     const isRecent = daysSincePublished < 30;
 
+    // Priority: featured > recent > standard
     let priority = 0.7;
     if (post.featured) priority = 0.85;
-    else if (isRecent) priority = 0.8;
+    else if (isVeryRecent) priority = 0.82;
+    else if (isRecent) priority = 0.78;
+
+    // Signal to crawlers how frequently to revisit
+    // New posts: weekly (will change as we update/add internal links)
+    // Posts under 30 days: weekly
+    // Older posts: monthly (stable)
+    const changeFrequency = isRecent
+      ? ("weekly" as const)
+      : ("monthly" as const);
 
     return {
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.date),
-      changeFrequency: "monthly" as const,
+      changeFrequency,
       priority,
     };
   });
+
+  // Update blog index lastModified to match most recent post publish date
+  const mostRecentPostDate = blogData.posts.length > 0
+    ? new Date(blogData.posts[0].date)
+    : new Date();
+  staticPages[1].lastModified = mostRecentPostDate;
 
   return [...staticPages, ...blogPosts];
 }

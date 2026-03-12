@@ -281,6 +281,7 @@ interface BlogPostingSchemaProps {
   url: string;
   keywords?: string[];
   wordCount?: number;
+  articleSection?: string;
 }
 
 export function BlogPostingSchema({
@@ -293,8 +294,9 @@ export function BlogPostingSchema({
   url,
   keywords,
   wordCount,
+  articleSection,
 }: BlogPostingSchemaProps) {
-  const schema = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline,
@@ -302,30 +304,119 @@ export function BlogPostingSchema({
     image,
     datePublished,
     dateModified: dateModified || datePublished,
+    inLanguage: "en-US",
     author: {
       "@type": "Person",
       name: author,
+      url: "https://hikewise.app/blog",
     },
     publisher: {
       "@type": "Organization",
       name: "HikeWise",
+      url: "https://hikewise.app",
       logo: {
         "@type": "ImageObject",
         url: "https://hikewise.app/images/app-icon.png",
+        width: 512,
+        height: 512,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
     },
+    isPartOf: {
+      "@type": "Blog",
+      "@id": "https://hikewise.app/blog",
+      name: "HikeWise Blog",
+      publisher: {
+        "@type": "Organization",
+        name: "HikeWise",
+        url: "https://hikewise.app",
+      },
+    },
     keywords: keywords?.join(", "),
     wordCount,
   };
+
+  if (articleSection) {
+    schema.articleSection = articleSection;
+  }
 
   return (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
+  );
+}
+
+interface BlogListSchemaProps {
+  posts: Array<{
+    slug: string;
+    title: string;
+    description: string;
+    date: string;
+    category: string;
+  }>;
+  totalCount: number;
+}
+
+export function BlogListSchema({ posts, totalCount }: BlogListSchemaProps) {
+  const baseUrl = "https://hikewise.app";
+  const mostRecentDate = posts[0]?.date ?? new Date().toISOString().split("T")[0];
+
+  // Blog entity — tells Google this page is the canonical blog with a known publisher
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${baseUrl}/blog`,
+    name: "HikeWise Blog",
+    description:
+      "Science-backed study strategies, productivity tips, and insights to help students study smarter and achieve their academic goals.",
+    url: `${baseUrl}/blog`,
+    inLanguage: "en-US",
+    dateModified: mostRecentDate,
+    publisher: {
+      "@type": "Organization",
+      name: "HikeWise",
+      url: baseUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/images/app-icon.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+  };
+
+  // ItemList — signals the full set of articles on this page to Google
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "HikeWise Blog Articles",
+    description: `${totalCount} science-backed study guides and productivity articles for students`,
+    url: `${baseUrl}/blog`,
+    numberOfItems: totalCount,
+    itemListElement: posts.slice(0, 20).map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${baseUrl}/blog/${post.slug}`,
+      name: post.title,
+      description: post.description,
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+    </>
   );
 }

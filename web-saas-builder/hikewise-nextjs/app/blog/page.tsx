@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/shared/section-header";
+import { BlogListSchema } from "@/components/seo/json-ld";
 import { ArrowRight, Calendar, Clock, BookOpen } from "lucide-react";
 import blogData from "@/data/blog-posts.json";
 import { NewsletterSignup } from "@/components/newsletter/newsletter-signup";
@@ -55,6 +56,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream via-white to-cream/30 pt-28 pb-20">
+      <BlogListSchema posts={sortedPosts} totalCount={blogData.posts.length} />
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">

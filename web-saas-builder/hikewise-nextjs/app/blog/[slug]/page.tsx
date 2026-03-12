@@ -110,6 +110,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         url={`https://hikewise.app/blog/${slug}`}
         keywords={post.tags}
         wordCount={wordCount}
+        articleSection={post.category}
       />
       <BreadcrumbSchema
         items={[
