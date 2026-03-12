@@ -1,11 +1,14 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-11",
+    "lastUpdated": "2026-03-12",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
-      "best-study-apps-for-college-2026"
+      "best-study-apps-for-college-2026",
+      "spaced-repetition-schedule-students",
+      "sleep-and-studying-connection",
+      "feynman-technique-explained"
     ]
   },
   "topics": [
@@ -31,7 +34,7 @@
         "memory",
         "flashcards"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "pomodoro-technique-college-students",
@@ -139,7 +142,7 @@
         "student health",
         "studying tips"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "exam-anxiety-tips-for-students",
@@ -187,7 +190,7 @@
         "understanding vs memorizing",
         "study strategies"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "procrastination-tips-for-students",
