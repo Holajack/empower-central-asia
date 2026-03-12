@@ -1,0 +1,1213 @@
+{
+  "meta": {
+    "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
+    "lastUpdated": "2026-03-11",
+    "usedSlugs": [
+      "active-recall-study-technique-guide",
+      "pomodoro-technique-college-students",
+      "best-study-apps-for-college-2026"
+    ]
+  },
+  "topics": [
+    {
+      "slug": "active-recall-study-technique-guide",
+      "title": "Active Recall: The Most Effective Study Technique Backed by Science",
+      "category": "Study Methods",
+      "tags": [
+        "active recall",
+        "study techniques",
+        "memory",
+        "learning science"
+      ],
+      "used": true
+    },
+    {
+      "slug": "spaced-repetition-schedule-students",
+      "title": "How to Build a Spaced Repetition Schedule That Actually Works",
+      "category": "Study Methods",
+      "tags": [
+        "spaced repetition",
+        "study schedule",
+        "memory",
+        "flashcards"
+      ],
+      "used": false
+    },
+    {
+      "slug": "pomodoro-technique-college-students",
+      "title": "The Pomodoro Technique for College Students: A Complete How-To",
+      "category": "Productivity",
+      "tags": [
+        "pomodoro technique",
+        "time management",
+        "focus",
+        "study sessions"
+      ],
+      "used": true
+    },
+    {
+      "slug": "how-to-take-better-notes-in-college",
+      "title": "How to Take Better Notes in College: 7 Systems That Work",
+      "category": "Study Methods",
+      "tags": [
+        "note-taking",
+        "cornell notes",
+        "college tips",
+        "lecture notes"
+      ],
+      "used": false
+    },
+    {
+      "slug": "cornell-notes-method-guide",
+      "title": "The Cornell Notes Method: A Step-by-Step Guide for Students",
+      "category": "Study Methods",
+      "tags": [
+        "cornell notes",
+        "note-taking systems",
+        "study organization",
+        "academic success"
+      ],
+      "used": false
+    },
+    {
+      "slug": "mind-mapping-for-studying",
+      "title": "Mind Mapping for Studying: How to Use Visual Notes to Retain More",
+      "category": "Study Methods",
+      "tags": [
+        "mind mapping",
+        "visual learning",
+        "study techniques",
+        "concept mapping"
+      ],
+      "used": false
+    },
+    {
+      "slug": "study-group-tips-that-actually-work",
+      "title": "Study Groups That Actually Work: How to Collaborate Without Wasting Time",
+      "category": "Study Methods",
+      "tags": [
+        "study groups",
+        "collaborative learning",
+        "group study",
+        "teamwork"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-focus-while-studying",
+      "title": "How to Focus While Studying: 12 Science-Backed Techniques",
+      "category": "Productivity",
+      "tags": [
+        "focus",
+        "concentration",
+        "distraction-free studying",
+        "deep work"
+      ],
+      "used": false
+    },
+    {
+      "slug": "best-study-apps-for-college-2026",
+      "title": "Best Study Apps for College Students in 2026 (Ranked and Reviewed)",
+      "category": "AI & Technology",
+      "tags": [
+        "study apps",
+        "college apps",
+        "productivity apps",
+        "student tools"
+      ],
+      "used": true
+    },
+    {
+      "slug": "how-to-make-a-study-schedule",
+      "title": "How to Make a Study Schedule That You'll Actually Stick To",
+      "category": "Study Methods",
+      "tags": [
+        "study schedule",
+        "time management",
+        "academic planning",
+        "study plan"
+      ],
+      "used": false
+    },
+    {
+      "slug": "sleep-and-studying-connection",
+      "title": "Why Sleep Is Your Most Powerful Study Tool (And How to Use It)",
+      "category": "Student Life",
+      "tags": [
+        "sleep",
+        "memory consolidation",
+        "student health",
+        "studying tips"
+      ],
+      "used": false
+    },
+    {
+      "slug": "exam-anxiety-tips-for-students",
+      "title": "Exam Anxiety: Evidence-Based Strategies to Calm Your Mind and Perform Better",
+      "category": "Student Life",
+      "tags": [
+        "exam anxiety",
+        "test anxiety",
+        "student stress",
+        "mental health"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-math-effectively",
+      "title": "How to Study Math Effectively: A Subject-by-Subject Breakdown",
+      "category": "Study Methods",
+      "tags": [
+        "math study tips",
+        "studying math",
+        "problem solving",
+        "calculus study"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-for-finals-week",
+      "title": "How to Survive Finals Week: A Day-by-Day Study Strategy",
+      "category": "Study Methods",
+      "tags": [
+        "finals week",
+        "exam prep",
+        "finals study guide",
+        "final exams"
+      ],
+      "used": false
+    },
+    {
+      "slug": "feynman-technique-explained",
+      "title": "The Feynman Technique: Learn Anything Faster by Teaching It Simply",
+      "category": "Study Methods",
+      "tags": [
+        "Feynman technique",
+        "learning methods",
+        "understanding vs memorizing",
+        "study strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "procrastination-tips-for-students",
+      "title": "Why Students Procrastinate (And the Psychology-Backed Fix)",
+      "category": "Productivity",
+      "tags": [
+        "procrastination",
+        "motivation",
+        "student productivity",
+        "time management"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-read-a-textbook-efficiently",
+      "title": "How to Read a Textbook Efficiently: The SQ3R Method and Beyond",
+      "category": "Study Methods",
+      "tags": [
+        "textbook reading",
+        "SQ3R",
+        "reading strategies",
+        "study methods"
+      ],
+      "used": false
+    },
+    {
+      "slug": "interleaving-practice-study-technique",
+      "title": "Interleaving: The Counterintuitive Study Technique That Beats Blocked Practice",
+      "category": "Study Methods",
+      "tags": [
+        "interleaving",
+        "mixed practice",
+        "learning science",
+        "study strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-track-study-hours-app",
+      "title": "How to Track Your Study Hours and Why It Improves Your Grades",
+      "category": "AI & Technology",
+      "tags": [
+        "study tracking",
+        "study hours",
+        "productivity tracking",
+        "hikewise"
+      ],
+      "used": false
+    },
+    {
+      "slug": "morning-study-routine-students",
+      "title": "The Ideal Morning Study Routine for Students (Based on Chronobiology)",
+      "category": "Productivity",
+      "tags": [
+        "morning routine",
+        "study routine",
+        "peak performance",
+        "student schedule"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-for-multiple-exams-same-week",
+      "title": "How to Study for Multiple Exams in the Same Week Without Losing Your Mind",
+      "category": "Study Methods",
+      "tags": [
+        "multiple exams",
+        "exam week",
+        "study planning",
+        "time management"
+      ],
+      "used": false
+    },
+    {
+      "slug": "digital-notes-vs-paper-notes",
+      "title": "Digital Notes vs. Paper Notes: What the Research Actually Says",
+      "category": "Study Methods",
+      "tags": [
+        "digital notes",
+        "handwritten notes",
+        "note-taking comparison",
+        "laptop notes"
+      ],
+      "used": false
+    },
+    {
+      "slug": "best-time-to-study-for-each-student",
+      "title": "The Best Time to Study: How to Find Your Personal Peak Focus Window",
+      "category": "Productivity",
+      "tags": [
+        "best time to study",
+        "chronotype",
+        "study timing",
+        "peak performance"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-improve-memory-for-studying",
+      "title": "How to Improve Your Memory for Studying: 10 Techniques That Actually Work",
+      "category": "Study Methods",
+      "tags": [
+        "memory improvement",
+        "memory techniques",
+        "retention",
+        "studying tips"
+      ],
+      "used": false
+    },
+    {
+      "slug": "student-productivity-system-2026",
+      "title": "The Ultimate Student Productivity System for 2026",
+      "category": "Productivity",
+      "tags": [
+        "student productivity",
+        "productivity system",
+        "study system",
+        "academic success"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-for-ap-exams",
+      "title": "How to Study for AP Exams: A Subject-by-Subject Strategy Guide",
+      "category": "Study Methods",
+      "tags": [
+        "AP exams",
+        "AP study guide",
+        "AP test prep",
+        "advanced placement"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-use-flashcards-correctly",
+      "title": "How to Use Flashcards Correctly (Most Students Are Doing It Wrong)",
+      "category": "Study Methods",
+      "tags": [
+        "flashcards",
+        "spaced repetition",
+        "anki",
+        "memorization"
+      ],
+      "used": false
+    },
+    {
+      "slug": "burnout-prevention-college-students",
+      "title": "Academic Burnout: How to Recognize It, Recover from It, and Prevent It",
+      "category": "Student Life",
+      "tags": [
+        "burnout",
+        "academic burnout",
+        "student wellbeing",
+        "mental health"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-write-a-research-paper-fast",
+      "title": "How to Write a Research Paper Without Panicking: A Step-by-Step Guide",
+      "category": "Study Methods",
+      "tags": [
+        "research paper",
+        "essay writing",
+        "academic writing",
+        "college papers"
+      ],
+      "used": false
+    },
+    {
+      "slug": "study-motivation-tips-students",
+      "title": "How to Stay Motivated to Study When You've Lost the Drive",
+      "category": "Student Life",
+      "tags": [
+        "study motivation",
+        "motivation tips",
+        "staying motivated",
+        "student mindset"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-abroad-and-keep-grades-up",
+      "title": "How to Study Abroad and Keep Your GPA Intact",
+      "category": "Student Life",
+      "tags": [
+        "study abroad",
+        "gpa abroad",
+        "international student",
+        "college abroad"
+      ],
+      "used": false
+    },
+    {
+      "slug": "ai-tools-for-students-2026",
+      "title": "The Best AI Tools for Students in 2026 (And How to Use Them Ethically)",
+      "category": "AI & Technology",
+      "tags": [
+        "AI tools for students",
+        "ChatGPT for students",
+        "AI study tools",
+        "student AI"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-build-a-second-brain-student",
+      "title": "How to Build a Second Brain as a Student: A Practical Guide",
+      "category": "Productivity",
+      "tags": [
+        "second brain",
+        "personal knowledge management",
+        "PKM",
+        "note-taking systems"
+      ],
+      "used": false
+    },
+    {
+      "slug": "deep-work-student-guide",
+      "title": "Deep Work for Students: How to Enter Flow State and Study Productively",
+      "category": "Productivity",
+      "tags": [
+        "deep work",
+        "flow state",
+        "focused study",
+        "Cal Newport"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-remember-what-you-read",
+      "title": "How to Actually Remember What You Read (Instead of Forgetting It Immediately)",
+      "category": "Study Methods",
+      "tags": [
+        "reading comprehension",
+        "retention",
+        "remember what you read",
+        "reading strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "chunking-information-study-technique",
+      "title": "Chunking: How to Learn More by Organizing Information Strategically",
+      "category": "Study Methods",
+      "tags": [
+        "chunking",
+        "information processing",
+        "cognitive load",
+        "study strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-with-adhd",
+      "title": "How to Study with ADHD: Strategies That Work With Your Brain, Not Against It",
+      "category": "Student Life",
+      "tags": [
+        "ADHD study tips",
+        "studying with ADHD",
+        "ADHD students",
+        "focus strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "study-streaks-habit-formation",
+      "title": "How Study Streaks Help You Build Unbreakable Academic Habits",
+      "category": "Productivity",
+      "tags": [
+        "study streaks",
+        "habit formation",
+        "consistency",
+        "study habits"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-stay-awake-while-studying",
+      "title": "How to Stay Awake While Studying Without Destroying Your Sleep Schedule",
+      "category": "Student Life",
+      "tags": [
+        "stay awake studying",
+        "alertness",
+        "caffeine study tips",
+        "energy for studying"
+      ],
+      "used": false
+    },
+    {
+      "slug": "pre-exam-routine-college-students",
+      "title": "The Pre-Exam Routine That Top Students Use the Night Before",
+      "category": "Study Methods",
+      "tags": [
+        "pre-exam routine",
+        "night before exam",
+        "test prep",
+        "exam day tips"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-set-study-goals-students",
+      "title": "How to Set (and Actually Achieve) Academic Goals This Semester",
+      "category": "Productivity",
+      "tags": [
+        "academic goals",
+        "study goals",
+        "goal setting",
+        "student planning"
+      ],
+      "used": false
+    },
+    {
+      "slug": "science-of-forgetting-and-how-to-stop-it",
+      "title": "The Science of Forgetting: Why Your Brain Erases What You Study (And How to Stop It)",
+      "category": "Study Methods",
+      "tags": [
+        "forgetting curve",
+        "memory decay",
+        "Ebbinghaus",
+        "retention strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-biology-effectively",
+      "title": "How to Study Biology: A Complete Guide for Every Level",
+      "category": "Study Methods",
+      "tags": [
+        "study biology",
+        "biology tips",
+        "life sciences",
+        "memorizing biology"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-history-effectively",
+      "title": "How to Study History and Actually Understand It (Not Just Memorize Dates)",
+      "category": "Study Methods",
+      "tags": [
+        "study history",
+        "history class tips",
+        "memorizing history",
+        "essay history"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-chemistry-effectively",
+      "title": "How to Study Chemistry: From Conceptual Understanding to Problem Sets",
+      "category": "Study Methods",
+      "tags": [
+        "study chemistry",
+        "chemistry tips",
+        "organic chemistry",
+        "chem study guide"
+      ],
+      "used": false
+    },
+    {
+      "slug": "time-blocking-for-students",
+      "title": "Time Blocking for Students: How to Design a Week That Maximizes Study Time",
+      "category": "Productivity",
+      "tags": [
+        "time blocking",
+        "weekly planning",
+        "student schedule",
+        "productivity"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-with-music",
+      "title": "Should You Study With Music? What the Research Says",
+      "category": "Study Methods",
+      "tags": [
+        "studying with music",
+        "background music studying",
+        "lofi study",
+        "focus music"
+      ],
+      "used": false
+    },
+    {
+      "slug": "retrieval-practice-guide-students",
+      "title": "Retrieval Practice: The Single Most Effective Studying Technique You're Probably Not Using",
+      "category": "Study Methods",
+      "tags": [
+        "retrieval practice",
+        "practice testing",
+        "self-testing",
+        "learning science"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-build-study-habits-in-college",
+      "title": "How to Build Lasting Study Habits in College (Before Bad Ones Set In)",
+      "category": "Student Life",
+      "tags": [
+        "study habits",
+        "habit building",
+        "college freshman",
+        "academic success"
+      ],
+      "used": false
+    },
+    {
+      "slug": "learning-styles-myth-what-works",
+      "title": "Learning Styles Are a Myth: Here's What the Science of Learning Actually Says",
+      "category": "Study Methods",
+      "tags": [
+        "learning styles myth",
+        "visual learner",
+        "learning science",
+        "effective studying"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-use-anki-for-students",
+      "title": "How to Use Anki: A Complete Beginner Guide for Students",
+      "category": "AI & Technology",
+      "tags": [
+        "Anki",
+        "spaced repetition software",
+        "flashcard app",
+        "study tools"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-english-literature",
+      "title": "How to Study English Literature: Analyzing Texts and Acing Essays",
+      "category": "Study Methods",
+      "tags": [
+        "study English lit",
+        "literary analysis",
+        "essay writing",
+        "close reading"
+      ],
+      "used": false
+    },
+    {
+      "slug": "stress-management-for-college-students",
+      "title": "Stress Management for College Students: A Practical Toolkit",
+      "category": "Student Life",
+      "tags": [
+        "stress management",
+        "college stress",
+        "student mental health",
+        "anxiety relief"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-economics",
+      "title": "How to Study Economics: Mastering Concepts, Models, and Essay Answers",
+      "category": "Study Methods",
+      "tags": [
+        "study economics",
+        "economics class",
+        "micro macro",
+        "econ study guide"
+      ],
+      "used": false
+    },
+    {
+      "slug": "college-study-space-setup-tips",
+      "title": "How to Set Up the Perfect Study Space (Room, Dorm, or Cafe)",
+      "category": "Productivity",
+      "tags": [
+        "study space",
+        "study environment",
+        "study setup",
+        "dorm studying"
+      ],
+      "used": false
+    },
+    {
+      "slug": "elaborative-interrogation-technique",
+      "title": "Elaborative Interrogation: The 'Why?' Technique That Deepens Understanding",
+      "category": "Study Methods",
+      "tags": [
+        "elaborative interrogation",
+        "deep learning",
+        "study strategies",
+        "conceptual learning"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-for-standardized-tests",
+      "title": "How to Prepare for Standardized Tests: SAT, ACT, GRE, and LSAT Strategies",
+      "category": "Study Methods",
+      "tags": [
+        "standardized tests",
+        "SAT prep",
+        "ACT prep",
+        "GRE study guide"
+      ],
+      "used": false
+    },
+    {
+      "slug": "weekly-review-system-students",
+      "title": "The Weekly Review: How Spending 30 Minutes on Sunday Fixes Your Entire Academic Week",
+      "category": "Productivity",
+      "tags": [
+        "weekly review",
+        "weekly planning",
+        "student review",
+        "academic planning"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-overcome-information-overload",
+      "title": "Information Overload in College: How to Stop Drowning in Coursework",
+      "category": "Study Methods",
+      "tags": [
+        "information overload",
+        "overwhelm",
+        "college coursework",
+        "study strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "growth-mindset-students-academic-success",
+      "title": "How a Growth Mindset Transforms Academic Performance (With Evidence)",
+      "category": "Student Life",
+      "tags": [
+        "growth mindset",
+        "fixed mindset",
+        "academic mindset",
+        "Carol Dweck"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-law-school-effectively",
+      "title": "How to Study in Law School: IRAC, Case Briefing, and Cold-Call Survival",
+      "category": "Study Methods",
+      "tags": [
+        "law school study",
+        "IRAC method",
+        "case briefing",
+        "law school tips"
+      ],
+      "used": false
+    },
+    {
+      "slug": "exercise-and-brain-study-performance",
+      "title": "How Exercise Boosts Your Brain and Makes Studying More Effective",
+      "category": "Student Life",
+      "tags": [
+        "exercise study",
+        "physical activity learning",
+        "BDNF",
+        "brain health"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-stay-organized-college",
+      "title": "How to Stay Organized in College: The Systems That Actually Work",
+      "category": "Productivity",
+      "tags": [
+        "college organization",
+        "stay organized",
+        "student planner",
+        "task management"
+      ],
+      "used": false
+    },
+    {
+      "slug": "kwl-chart-study-technique",
+      "title": "KWL Charts: A Simple 3-Column Tool That Transforms How You Approach Any Subject",
+      "category": "Study Methods",
+      "tags": [
+        "KWL chart",
+        "study techniques",
+        "prior knowledge",
+        "learning strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-get-better-grades-in-college",
+      "title": "How to Get Better Grades in College: 15 Proven Strategies",
+      "category": "Student Life",
+      "tags": [
+        "better grades",
+        "GPA improvement",
+        "college grades",
+        "academic tips"
+      ],
+      "used": false
+    },
+    {
+      "slug": "using-ai-for-studying-2026",
+      "title": "How to Use AI to Study Smarter in 2026 (Without It Doing Your Work for You)",
+      "category": "AI & Technology",
+      "tags": [
+        "AI studying",
+        "use AI for school",
+        "ChatGPT study",
+        "responsible AI"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-psychology",
+      "title": "How to Study Psychology: Key Concepts, Theories, and Exam Strategies",
+      "category": "Study Methods",
+      "tags": [
+        "study psychology",
+        "psychology class",
+        "psych exam",
+        "learning psychology"
+      ],
+      "used": false
+    },
+    {
+      "slug": "distributed-practice-vs-massed-practice",
+      "title": "Distributed Practice vs. Massed Practice: Why Cramming Fails You Every Time",
+      "category": "Study Methods",
+      "tags": [
+        "distributed practice",
+        "cramming",
+        "spaced learning",
+        "study science"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-improve-reading-speed-comprehension",
+      "title": "How to Read Faster Without Losing Comprehension: A Student's Guide",
+      "category": "Study Methods",
+      "tags": [
+        "reading speed",
+        "speed reading",
+        "reading comprehension",
+        "reading faster"
+      ],
+      "used": false
+    },
+    {
+      "slug": "end-of-semester-study-reset",
+      "title": "The End-of-Semester Reset: How to Review the Whole Term in 5 Days",
+      "category": "Study Methods",
+      "tags": [
+        "end of semester",
+        "semester review",
+        "cumulative exams",
+        "study reset"
+      ],
+      "used": false
+    },
+    {
+      "slug": "what-is-cognitive-load-theory-for-students",
+      "title": "Cognitive Load Theory: Why Your Brain Runs Out of Space and How to Fix It",
+      "category": "Study Methods",
+      "tags": [
+        "cognitive load",
+        "working memory",
+        "study strategies",
+        "learning science"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-for-oral-exams",
+      "title": "How to Prepare for Oral Exams and Viva Voce Assessments",
+      "category": "Study Methods",
+      "tags": [
+        "oral exam",
+        "viva voce",
+        "verbal exam",
+        "exam preparation"
+      ],
+      "used": false
+    },
+    {
+      "slug": "study-statistics-data-science-students",
+      "title": "How to Study Statistics: From Formulas to Real Intuition",
+      "category": "Study Methods",
+      "tags": [
+        "study statistics",
+        "stats class",
+        "data science",
+        "statistics study guide"
+      ],
+      "used": false
+    },
+    {
+      "slug": "best-note-taking-apps-students-2026",
+      "title": "The Best Note-Taking Apps for Students in 2026 (Compared Honestly)",
+      "category": "AI & Technology",
+      "tags": [
+        "note-taking apps",
+        "best apps for students",
+        "Notion",
+        "Obsidian students"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-improve-writing-speed-exams",
+      "title": "How to Write Faster in Exams: Speed, Clarity, and Strategy Combined",
+      "category": "Study Methods",
+      "tags": [
+        "exam writing speed",
+        "essay exams",
+        "timed writing",
+        "exam strategies"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-prioritize-tasks-college",
+      "title": "How to Prioritize Assignments and Tasks When Everything Feels Urgent",
+      "category": "Productivity",
+      "tags": [
+        "prioritization",
+        "task management",
+        "assignment priority",
+        "student productivity"
+      ],
+      "used": false
+    },
+    {
+      "slug": "importance-of-self-testing-studying",
+      "title": "Self-Testing: The Study Habit That Outperforms Every Other Technique",
+      "category": "Study Methods",
+      "tags": [
+        "self-testing",
+        "practice tests",
+        "testing effect",
+        "retrieval practice"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-without-getting-distracted",
+      "title": "How to Study Without Getting Distracted: Environment, Apps, and Mindset",
+      "category": "Productivity",
+      "tags": [
+        "distraction-free studying",
+        "no distractions",
+        "social media studying",
+        "focus apps"
+      ],
+      "used": false
+    },
+    {
+      "slug": "college-freshman-study-guide",
+      "title": "The College Freshman Study Guide: Everything Nobody Tells You About Studying in College",
+      "category": "Student Life",
+      "tags": [
+        "college freshman",
+        "first year college",
+        "freshman tips",
+        "college adjustment"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-take-lecture-notes-effectively",
+      "title": "How to Take Effective Lecture Notes (Even in Fast-Paced Classes)",
+      "category": "Study Methods",
+      "tags": [
+        "lecture notes",
+        "class notes",
+        "note-taking speed",
+        "college lectures"
+      ],
+      "used": false
+    },
+    {
+      "slug": "spaced-practice-schedule-example",
+      "title": "A Real Spaced Practice Schedule: Week-by-Week Guide for Any Course",
+      "category": "Study Methods",
+      "tags": [
+        "spaced practice schedule",
+        "study schedule template",
+        "repetition schedule",
+        "retention"
+      ],
+      "used": false
+    },
+    {
+      "slug": "studying-for-open-book-exams",
+      "title": "How to Study for Open-Book Exams (They're Harder Than You Think)",
+      "category": "Study Methods",
+      "tags": [
+        "open book exam",
+        "open notes test",
+        "open book strategy",
+        "exam preparation"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-use-past-papers-exam-prep",
+      "title": "How to Use Past Papers to Dramatically Improve Your Exam Performance",
+      "category": "Study Methods",
+      "tags": [
+        "past papers",
+        "practice exams",
+        "exam papers",
+        "past test prep"
+      ],
+      "used": false
+    },
+    {
+      "slug": "academic-planner-setup-students",
+      "title": "How to Set Up an Academic Planner That Actually Reduces Stress",
+      "category": "Productivity",
+      "tags": [
+        "academic planner",
+        "student planner",
+        "planning system",
+        "school organization"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-study-tracking-improves-grades",
+      "title": "The Surprising Reason Tracking Your Study Time Improves Your Grades",
+      "category": "AI & Technology",
+      "tags": [
+        "study tracking",
+        "study data",
+        "grade improvement",
+        "accountability"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-review-notes-effectively",
+      "title": "How to Review Your Notes So You Actually Retain the Information",
+      "category": "Study Methods",
+      "tags": [
+        "reviewing notes",
+        "note review strategies",
+        "retention",
+        "study notes"
+      ],
+      "used": false
+    },
+    {
+      "slug": "college-student-focus-strategies",
+      "title": "Attention Management for Students: How to Protect Your Focus in a Distracted World",
+      "category": "Productivity",
+      "tags": [
+        "attention management",
+        "student focus",
+        "deep focus",
+        "attention span"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-create-study-guides",
+      "title": "How to Create a Study Guide That's Actually Useful on Exam Day",
+      "category": "Study Methods",
+      "tags": [
+        "study guide",
+        "creating study guides",
+        "exam prep tool",
+        "review sheets"
+      ],
+      "used": false
+    },
+    {
+      "slug": "habit-stacking-for-students",
+      "title": "Habit Stacking: The Lazy-But-Smart Way to Build a Study Routine",
+      "category": "Productivity",
+      "tags": [
+        "habit stacking",
+        "study habits",
+        "routine building",
+        "behavioral change"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-study-when-stressed",
+      "title": "How to Study When You're Stressed: Regulating the Brain for Better Learning",
+      "category": "Student Life",
+      "tags": [
+        "studying when stressed",
+        "stress and learning",
+        "cortisol studying",
+        "exam stress"
+      ],
+      "used": false
+    },
+    {
+      "slug": "reading-comprehension-strategies-college",
+      "title": "Reading Comprehension Strategies Every College Student Should Know",
+      "category": "Study Methods",
+      "tags": [
+        "reading comprehension",
+        "college reading",
+        "textbook strategies",
+        "academic reading"
+      ],
+      "used": false
+    },
+    {
+      "slug": "group-vs-solo-studying-which-is-better",
+      "title": "Group Studying vs. Solo Studying: Which One Should You Be Doing?",
+      "category": "Study Methods",
+      "tags": [
+        "group study",
+        "solo study",
+        "study methods comparison",
+        "learning alone vs together"
+      ],
+      "used": false
+    },
+    {
+      "slug": "task-batching-college-students",
+      "title": "Task Batching: How to Get More Done by Grouping Similar Work Together",
+      "category": "Productivity",
+      "tags": [
+        "task batching",
+        "batch processing",
+        "student workflow",
+        "time management"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-write-better-college-essays",
+      "title": "How to Write Better College Essays Under Pressure",
+      "category": "Study Methods",
+      "tags": [
+        "college essays",
+        "essay writing skills",
+        "timed essays",
+        "academic writing"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-review-flashcards-correctly",
+      "title": "Are You Reviewing Flashcards Wrong? A Smarter Approach Using the Science of Memory",
+      "category": "Study Methods",
+      "tags": [
+        "flashcard review",
+        "flashcard strategy",
+        "memory techniques",
+        "study cards"
+      ],
+      "used": false
+    },
+    {
+      "slug": "why-asking-questions-helps-you-learn",
+      "title": "Why Asking Questions Is the Most Underrated Study Strategy",
+      "category": "Study Methods",
+      "tags": [
+        "questioning strategy",
+        "inquiry-based learning",
+        "self-questioning",
+        "curiosity learning"
+      ],
+      "used": false
+    },
+    {
+      "slug": "first-year-university-survival-guide",
+      "title": "The First-Year University Survival Guide: Academic, Social, and Mental Health Tips",
+      "category": "Student Life",
+      "tags": [
+        "university survival guide",
+        "first year university",
+        "college tips",
+        "student life"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-use-notion-for-students",
+      "title": "How to Use Notion as a Student: Setting Up the Perfect Study Dashboard",
+      "category": "AI & Technology",
+      "tags": [
+        "Notion for students",
+        "Notion study dashboard",
+        "student workspace",
+        "productivity app"
+      ],
+      "used": false
+    },
+    {
+      "slug": "how-to-take-notes-from-textbooks",
+      "title": "How to Take Notes from a Textbook (Without Copying It Out Word for Word)",
+      "category": "Study Methods",
+      "tags": [
+        "textbook notes",
+        "note-taking from books",
+        "reading notes",
+        "study notes"
+      ],
+      "used": false
+    },
+    {
+      "slug": "night-owl-vs-early-bird-studying",
+      "title": "Night Owl vs. Early Bird: When Should Students Study for Best Results?",
+      "category": "Productivity",
+      "tags": [
+        "night owl studying",
+        "morning studying",
+        "study timing",
+        "chronotype study"
+      ],
+      "used": false
+    }
+  ]
+}
