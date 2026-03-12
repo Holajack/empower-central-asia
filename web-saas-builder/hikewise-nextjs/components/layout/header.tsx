@@ -63,13 +63,9 @@ export function Header() {
         </ul>
 
         <div className="flex items-center gap-3 sm:gap-4">
-          <Button asChild className="hidden md:inline-flex rounded-full px-6">
-            <Link
-              href="https://testflight.apple.com/join/HIKEWISE"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download
+          <Button asChild className="hidden md:inline-flex rounded-full px-6 bg-forest hover:bg-forest/90 text-white">
+            <Link href="/#waitlist">
+              Join Waitlist
             </Link>
           </Button>
 
@@ -92,14 +88,12 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild className="mt-4 rounded-full">
+                <Button asChild className="mt-4 rounded-full bg-forest hover:bg-forest/90 text-white">
                   <Link
-                    href="https://testflight.apple.com/join/HIKEWISE"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/#waitlist"
                     onClick={() => setIsOpen(false)}
                   >
-                    Download
+                    Join Waitlist
                   </Link>
                 </Button>
               </nav>

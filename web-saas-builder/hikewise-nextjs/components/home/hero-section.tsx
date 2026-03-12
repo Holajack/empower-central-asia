@@ -1,6 +1,6 @@
 "use client";
 
-import { StoreButtons } from "@/components/shared/store-buttons";
+import { PreReleaseSignup } from "@/components/shared/pre-release-signup";
 import { PremiumPhoneMockup } from "@/components/shared/premium-phone-mockup";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown } from "lucide-react";
@@ -39,8 +39,8 @@ export function HeroSection() {
               variant="secondary"
               className="mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium glass-card border-0"
             >
-              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 inline-block animate-pulse" />
-              Now available on iOS &amp; Android
+              <span className="w-2 h-2 bg-teal rounded-full mr-2 inline-block animate-pulse" />
+              Pre-Release &mdash; Join the Waitlist
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6">
@@ -54,7 +54,7 @@ export function HeroSection() {
               friendly competition, and an AI companion that keeps you on track.
             </p>
 
-            <StoreButtons />
+            <PreReleaseSignup variant="hero" />
 
             {/* Scroll indicator - hidden on small mobile */}
             <button

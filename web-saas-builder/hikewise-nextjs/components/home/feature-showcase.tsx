@@ -259,10 +259,10 @@ function MobileShowcase() {
             <button
               key={feature.id}
               onClick={() => setActiveIndex(index)}
-              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-full whitespace-nowrap transition-all snap-start min-w-0 ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-full whitespace-nowrap transition-all snap-start shrink-0 ${
                 index === activeIndex
                   ? "bg-forest text-white"
-                  : "bg-muted text-muted-foreground active:bg-muted/80"
+                  : "bg-sage/30 text-muted-foreground active:bg-sage/50"
               }`}
             >
               <feature.icon className="w-4 h-4 shrink-0" />
