@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-13",
+    "lastUpdated": "2026-03-14",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -11,7 +11,10 @@
       "feynman-technique-explained",
       "procrastination-tips-for-students",
       "how-to-improve-memory-for-studying",
-      "exercise-and-brain-study-performance"
+      "exercise-and-brain-study-performance",
+      "exam-anxiety-tips-for-students",
+      "retrieval-practice-guide-students",
+      "morning-study-routine-students"
     ]
   },
   "topics": [
@@ -157,7 +160,7 @@
         "student stress",
         "mental health"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-math-effectively",
@@ -253,7 +256,7 @@
         "peak performance",
         "student schedule"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-for-multiple-exams-same-week",
@@ -589,7 +592,7 @@
         "self-testing",
         "learning science"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-build-study-habits-in-college",
