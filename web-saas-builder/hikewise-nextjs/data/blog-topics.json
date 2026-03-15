@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-14",
+    "lastUpdated": "2026-03-15",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -14,7 +14,10 @@
       "exercise-and-brain-study-performance",
       "exam-anxiety-tips-for-students",
       "retrieval-practice-guide-students",
-      "morning-study-routine-students"
+      "morning-study-routine-students",
+      "how-to-take-better-notes-in-college",
+      "how-to-focus-while-studying",
+      "burnout-prevention-college-students"
     ]
   },
   "topics": [
@@ -64,7 +67,7 @@
         "college tips",
         "lecture notes"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "cornell-notes-method-guide",
@@ -112,7 +115,7 @@
         "distraction-free studying",
         "deep work"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "best-study-apps-for-college-2026",
@@ -352,7 +355,7 @@
         "student wellbeing",
         "mental health"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-write-a-research-paper-fast",
