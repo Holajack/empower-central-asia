@@ -1,0 +1,239 @@
+{
+  "issues": [
+    {
+      "post": "ai-study-companions-benefits-risks",
+      "type": "description_too_short",
+      "current": 147,
+      "message": "Description too short (147 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "distraction-free-studying-techniques",
+      "type": "description_too_short",
+      "current": 142,
+      "message": "Description too short (142 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "spaced-repetition-technique",
+      "type": "description_too_short",
+      "current": 140,
+      "message": "Description too short (140 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "digital-minimalism-students",
+      "type": "description_too_short",
+      "current": 148,
+      "message": "Description too short (148 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "study-habits-successful-students",
+      "type": "description_too_short",
+      "current": 139,
+      "message": "Description too short (139 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "atomic-habits",
+      "type": "description_too_short",
+      "current": 143,
+      "message": "Description too short (143 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "pomodoro-technique-explained",
+      "type": "description_too_short",
+      "current": 135,
+      "message": "Description too short (135 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "study-room-benefits",
+      "type": "description_too_short",
+      "current": 129,
+      "message": "Description too short (129 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "ai-study-companions",
+      "type": "description_too_short",
+      "current": 133,
+      "message": "Description too short (133 chars). Optimal: 150-160 chars"
+    },
+    {
+      "post": "best-study-apps-for-students-2026",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 3.63,
+      "message": "Keyword 'study' appears too often (3.6%). Keep density 1-2%"
+    },
+    {
+      "post": "virtual-study-room-benefits",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 5.8,
+      "message": "Keyword 'study' appears too often (5.8%). Keep density 1-2%"
+    },
+    {
+      "post": "ai-study-companions-benefits-risks",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 3.03,
+      "message": "Keyword 'study' appears too often (3.0%). Keep density 1-2%"
+    },
+    {
+      "post": "deep-work-for-students",
+      "type": "keyword_stuffing",
+      "keyword": "deep",
+      "density": 4.36,
+      "message": "Keyword 'deep' appears too often (4.4%). Keep density 1-2%"
+    },
+    {
+      "post": "deep-work-for-students",
+      "type": "keyword_stuffing",
+      "keyword": "work",
+      "density": 5.2,
+      "message": "Keyword 'work' appears too often (5.2%). Keep density 1-2%"
+    },
+    {
+      "post": "time-blocking-for-college-students",
+      "type": "keyword_stuffing",
+      "keyword": "time",
+      "density": 4.27,
+      "message": "Keyword 'time' appears too often (4.3%). Keep density 1-2%"
+    },
+    {
+      "post": "study-with-me-videos-benefits",
+      "type": "keyword_stuffing",
+      "keyword": "with",
+      "density": 3.67,
+      "message": "Keyword 'with' appears too often (3.7%). Keep density 1-2%"
+    },
+    {
+      "post": "study-with-me-videos-benefits",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 5.9,
+      "message": "Keyword 'study' appears too often (5.9%). Keep density 1-2%"
+    },
+    {
+      "post": "how-to-create-study-schedule",
+      "type": "keyword_stuffing",
+      "keyword": "schedule",
+      "density": 3.5,
+      "message": "Keyword 'schedule' appears too often (3.5%). Keep density 1-2%"
+    },
+    {
+      "post": "study-habits-successful-students",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 3.79,
+      "message": "Keyword 'study' appears too often (3.8%). Keep density 1-2%"
+    },
+    {
+      "post": "atomic-habits",
+      "type": "keyword_placement",
+      "message": "Target keywords should appear in first paragraph"
+    },
+    {
+      "post": "atomic-habits",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 4.79,
+      "message": "Keyword 'study' appears too often (4.8%). Keep density 1-2%"
+    },
+    {
+      "post": "pomodoro-technique-explained",
+      "type": "keyword_placement",
+      "message": "Target keywords should appear in first paragraph"
+    },
+    {
+      "post": "pomodoro-technique-explained",
+      "type": "keyword_stuffing",
+      "keyword": "pomodoro",
+      "density": 5.3,
+      "message": "Keyword 'pomodoro' appears too often (5.3%). Keep density 1-2%"
+    },
+    {
+      "post": "study-room-benefits",
+      "type": "keyword_placement",
+      "message": "Target keywords should appear in first paragraph"
+    },
+    {
+      "post": "study-room-benefits",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 6.78,
+      "message": "Keyword 'study' appears too often (6.8%). Keep density 1-2%"
+    },
+    {
+      "post": "study-room-benefits",
+      "type": "keyword_stuffing",
+      "keyword": "rooms",
+      "density": 3.39,
+      "message": "Keyword 'rooms' appears too often (3.4%). Keep density 1-2%"
+    },
+    {
+      "post": "ai-study-companions",
+      "type": "keyword_stuffing",
+      "keyword": "study",
+      "density": 3.88,
+      "message": "Keyword 'study' appears too often (3.9%). Keep density 1-2%"
+    },
+    {
+      "post": "ai-study-companions-benefits-risks",
+      "type": "insufficient_internal_links",
+      "count": 2,
+      "message": "Only 2 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "time-blocking-for-college-students",
+      "type": "insufficient_internal_links",
+      "count": 1,
+      "message": "Only 1 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "spaced-repetition-technique",
+      "type": "insufficient_internal_links",
+      "count": 2,
+      "message": "Only 2 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "atomic-habits",
+      "type": "insufficient_internal_links",
+      "count": 0,
+      "message": "Only 0 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "pomodoro-technique-explained",
+      "type": "insufficient_internal_links",
+      "count": 0,
+      "message": "Only 0 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "study-room-benefits",
+      "type": "insufficient_internal_links",
+      "count": 0,
+      "message": "Only 0 internal links. Should have 3-5 for better SEO."
+    },
+    {
+      "post": "ai-study-companions",
+      "type": "insufficient_internal_links",
+      "count": 0,
+      "message": "Only 0 internal links. Should have 3-5 for better SEO."
+    }
+  ],
+  "recommendations": [
+    "\u2713 Add internal links to related blog posts (3-5 per post)",
+    "\u2713 Use descriptive anchor text (avoid 'click here')",
+    "\u2713 Include target keywords in first paragraph",
+    "\u2713 Add descriptive alt text to all images",
+    "\u2713 Ensure proper heading hierarchy (H1 > H2 > H3)",
+    "\u2713 Keep keyword density between 1-2%",
+    "\u2713 Use schema markup (BlogPosting, BreadcrumbList)",
+    "\u2713 Add FAQ schema where applicable",
+    "\u2713 Implement HowTo schema for tutorial posts",
+    "\u2713 Create topic clusters with pillar content",
+    "\u2713 Add 'Read Time' to all posts",
+    "\u2713 Include social share buttons",
+    "\u2713 Add newsletter signup CTAs",
+    "\u2713 Implement lazy loading for images",
+    "\u2713 Optimize images (WebP format, compressed)"
+  ],
+  "total_posts": 17,
+  "total_issues": 34
+}
