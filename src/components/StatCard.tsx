@@ -73,7 +73,7 @@ const StatCard = ({
       ref={ref}
       className="bg-white/40 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:scale-105 h-full flex flex-col justify-center"
     >
-      <div className="text-4xl font-bold text-terracotta-500 mb-2">
+      <div className="text-4xl font-bold text-[#C9922A] mb-2">
         {count}
         {suffix}
       </div>

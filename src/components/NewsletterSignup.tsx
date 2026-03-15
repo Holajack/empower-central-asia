@@ -4,6 +4,9 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Mail, User, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useRegion } from "@/contexts/RegionContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import { trackConversion } from "@/lib/analytics";
 
 // Google Apps Script web app URL - handles writing to Google Sheet
 // To set up: see NEWSLETTER_SETUP.md in project root
@@ -11,24 +14,28 @@ const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS4
 
 interface NewsletterSignupProps {
   className?: string;
-  variant?: "footer" | "popup";
 }
 
-const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSignupProps) => {
+const NewsletterSignup = ({ className = "" }: NewsletterSignupProps) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { isCentralAsia } = useRegion();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
       toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
+        title: isCentralAsia ? "Неверный email" : "Invalid Email",
+        description: isCentralAsia
+          ? "Пожалуйста, введите действительный адрес электронной почты."
+          : "Please enter a valid email address.",
         variant: "destructive",
       });
       return;
@@ -36,8 +43,10 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
 
     if (!firstName.trim()) {
       toast({
-        title: "First Name Required",
-        description: "Please enter your first name.",
+        title: isCentralAsia ? "Имя обязательно" : "First Name Required",
+        description: isCentralAsia
+          ? "Пожалуйста, введите ваше имя."
+          : "Please enter your first name.",
         variant: "destructive",
       });
       return;
@@ -46,31 +55,41 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(GOOGLE_SHEET_URL, {
+      await fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          formType: "newsletter",
           email: email.trim(),
           firstName: firstName.trim(),
           lastName: lastName.trim(),
           phone: phone.trim(),
+          whatsapp: whatsapp.trim(),
+          region: isCentralAsia ? "central-asia" : "us",
+          submittedAt: new Date().toISOString(),
         }),
       });
 
       // no-cors mode always returns opaque response, so we assume success
+      trackConversion("newsletter_signup", { method: "footer", form_type: "newsletter" });
       toast({
-        title: "Successfully Subscribed!",
-        description: "Thank you for joining our newsletter. You'll receive updates about our work in Central Asia.",
+        title: isCentralAsia ? "Подписка оформлена!" : "Successfully Subscribed!",
+        description: isCentralAsia
+          ? "Спасибо! Вы будете получать новости о нашей работе в Центральной Азии."
+          : "Thank you for joining our newsletter. You'll receive updates about our work in Central Asia.",
       });
       setEmail("");
       setFirstName("");
       setLastName("");
       setPhone("");
-    } catch (error) {
+      setWhatsapp("");
+    } catch {
       toast({
-        title: "Subscription Failed",
-        description: "Please try again later.",
+        title: isCentralAsia ? "Ошибка подписки" : "Subscription Failed",
+        description: isCentralAsia
+          ? "Пожалуйста, попробуйте позже."
+          : "Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -78,28 +97,16 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
     }
   };
 
-  const isPopup = variant === "popup";
-
   return (
     <div className={`${className}`}>
-      {isPopup ? (
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-            Stay Connected with Our Mission
-          </h3>
-          <p className="text-gray-600 mb-4">
-            Get inspiring updates about our work transforming lives in Central Asia.
-            Discover success stories, program updates, and ways to make a difference.
-          </p>
-        </div>
-      ) : (
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold mb-2 text-gray-800">Newsletter</h4>
-          <p className="text-gray-600 text-sm mb-4">
-            Stay updated on our impact in Central Asia with inspiring stories and program highlights.
-          </p>
-        </div>
-      )}
+      <div className="mb-4">
+        <h4 className="text-lg font-semibold mb-2 text-gray-800">
+          {t("footer.newsletter")}
+        </h4>
+        <p className="text-gray-600 text-sm mb-4">
+          {t("footer.newsletterDesc")}
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="flex flex-col gap-2">
@@ -108,7 +115,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="text"
-                placeholder="First name"
+                placeholder={t("common.firstName")}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="pl-10"
@@ -118,7 +125,7 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
             <div className="flex-1">
               <Input
                 type="text"
-                placeholder="Last name"
+                placeholder={t("common.lastName")}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -129,36 +136,49 @@ const NewsletterSignup = ({ className = "", variant = "footer" }: NewsletterSign
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="email"
-                placeholder="Email address"
+                placeholder={t("common.email")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-10"
                 required
               />
             </div>
-            <div className="relative flex-1">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                type="tel"
-                placeholder="Phone (optional)"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+            {isCentralAsia ? (
+              <div className="relative flex-1">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  type="tel"
+                  placeholder={t("common.whatsapp")}
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            ) : (
+              <div className="relative flex-1">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  type="tel"
+                  placeholder={isCentralAsia ? "Телефон (необязательно)" : "Phone (optional)"}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            )}
           </div>
           <div className="flex">
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-purple-500 hover:bg-purple-600 text-white px-6"
+              className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white px-6"
             >
-              {isSubmitting ? "Subscribing..." : "Subscribe"}
+              {isSubmitting ? t("common.subscribing") : t("common.subscribe")}
             </Button>
           </div>
           </div>
         <p className="text-xs text-gray-500">
-          We respect your privacy. Unsubscribe at any time.
+          {t("footer.privacyNote")}
         </p>
       </form>
     </div>

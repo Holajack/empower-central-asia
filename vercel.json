@@ -1,7 +1,17 @@
 {
   "framework": "vite",
-  "buildCommand": "npx vite build",
+  "buildCommand": "npm run build:prerender",
   "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.businessesbeyondborders.com" }],
+      "destination": "https://businessesbeyondborders.com/:path",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
@@ -39,6 +49,13 @@
       "source": "/sitemap.xml",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" },
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
       ]
     }
   ]

@@ -24,6 +24,7 @@ interface BlogPostData {
   author: string;
   imageUrl: string;
   tags: string[];
+  publishDate?: string;
 }
 
 // Parse date string to RFC822 format for RSS
@@ -62,6 +63,7 @@ function getBlogPosts(): BlogPostData[] {
     const dateMatches = Array.from(content.matchAll(/date:\s*"([^"]+)"/g));
     const imageMatches = Array.from(content.matchAll(/imageUrl:\s*"([^"]+)"/g));
     const tagsMatches = Array.from(content.matchAll(/tags:\s*\[([^\]]+)\]/g));
+    const publishDateMatches = Array.from(content.matchAll(/publishDate:\s*"([^"]+)"/g));
 
     const count = Math.min(
       idMatches.length,
@@ -77,6 +79,8 @@ function getBlogPosts(): BlogPostData[] {
       const tagsStr = tagsMatches[i][1];
       const tags = tagsStr.match(/"([^"]+)"/g)?.map(t => t.replace(/"/g, '')) || [];
 
+      const publishDate = publishDateMatches[i]?.[1] || '';
+
       posts.push({
         id: parseInt(idMatches[i][1], 10),
         title: titleMatches[i][1],
@@ -85,7 +89,8 @@ function getBlogPosts(): BlogPostData[] {
         date: dateMatches[i][1],
         author: authorMatches[i][1],
         imageUrl: imageMatches[i][1],
-        tags
+        tags,
+        publishDate
       });
     }
 
@@ -110,8 +115,19 @@ function escapeXml(text: string): string {
 function generateRSS(posts: BlogPostData[]): string {
   const now = new Date().toUTCString();
 
+  // Extract slugs for URL generation
+  const blogPostsPath2 = path.join(__dirname, '../src/data/blogPosts.ts');
+  const rawContent = fs.readFileSync(blogPostsPath2, 'utf-8');
+  const slugMatches = Array.from(rawContent.matchAll(/slug:\s*"([^"]+)"/g)).map(m => m[1]);
+  const idToSlug: Record<number, string> = {};
+  const idRegex = Array.from(rawContent.matchAll(/id:\s*(\d+)/g)).map(m => parseInt(m[1], 10));
+  for (let i = 0; i < idRegex.length && i < slugMatches.length; i++) {
+    idToSlug[idRegex[i]] = slugMatches[i];
+  }
+
   const items = posts.map(post => {
-    const postUrl = `${SITE_URL}/blog/${post.id}`;
+    const slug = idToSlug[post.id] || String(post.id);
+    const postUrl = `${SITE_URL}/blog/${slug}`;
     const pubDate = parseToRFC822(post.date);
     const categories = post.tags.map(tag => `    <category>${escapeXml(tag)}</category>`).join('\n');
 
@@ -167,21 +183,25 @@ function main() {
     process.exit(1);
   }
 
+  // Filter out scheduled (future) posts
+  const today = new Date().toISOString().split('T')[0];
+  const publishedPosts = posts.filter(p => !p.publishDate || p.publishDate <= today);
+
   // Sort by date (newest first)
-  posts.sort((a, b) => {
+  publishedPosts.sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     return dateB.getTime() - dateA.getTime();
   });
 
-  const rssXml = generateRSS(posts);
+  const rssXml = generateRSS(publishedPosts);
 
   // Write to public folder
   const outputPath = path.join(__dirname, '../public/rss.xml');
   fs.writeFileSync(outputPath, rssXml, 'utf-8');
 
   console.log(`RSS feed generated successfully!`);
-  console.log(`Total posts: ${posts.length}`);
+  console.log(`Total posts: ${publishedPosts.length} published (${posts.length - publishedPosts.length} scheduled)`);
   console.log(`Output: ${outputPath}`);
 }
 

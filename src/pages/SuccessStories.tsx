@@ -1,72 +1,25 @@
 import { useInView } from "react-intersection-observer";
 import { Helmet } from "react-helmet";
-import HeroSection from "@/components/success-stories/HeroSection";
+import { TrendingUp } from "lucide-react";
 import TestimonialCarousel from "@/components/success-stories/TestimonialCarousel";
 import CaseStudiesSection from "@/components/success-stories/CaseStudiesSection";
 import CtaSection from "@/components/success-stories/CtaSection";
 import { testimonials } from "@/data/testimonials";
+import { useRegion } from "@/contexts/RegionContext";
 
 import { successStories } from "@/data/successStories";
-
-const SuccessStoriesHeroHeader = () => (
-  <div 
-    className="relative h-[70vh] flex items-center justify-center"
-    style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
-    <div className="relative z-10 container mx-auto px-4 text-center text-white">
-      <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-        <span>📈</span>
-        Real Impact Stories from Central Asia
-      </div>
-      <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-        Transforming Lives Through 
-        <span className="text-yellow-400"> Entrepreneurship</span>
-      </h1>
-      <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed">
-        Meet the entrepreneurs who built thriving businesses with mentorship from 
-        <strong className="text-yellow-300"> our volunteer network</strong> and support from our team.
-      </p>
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-center">
-        <div className="animate-fade-up [--animation-delay:600ms]">
-          <div className="text-xl md:text-2xl font-bold text-yellow-400">Rising</div>
-          <div className="text-sm text-white/80">Entrepreneurs</div>
-        </div>
-        <div className="animate-fade-up [--animation-delay:700ms]">
-          <div className="text-xl md:text-2xl font-bold text-yellow-400">Growing</div>
-          <div className="text-sm text-white/80">Impact</div>
-        </div>
-        <div className="animate-fade-up [--animation-delay:800ms]">
-          <div className="text-xl md:text-2xl font-bold text-yellow-400">New</div>
-          <div className="text-sm text-white/80">Opportunities</div>
-        </div>
-        <div className="animate-fade-up [--animation-delay:900ms]">
-          <div className="text-xl md:text-2xl font-bold text-yellow-400">Global</div>
-          <div className="text-sm text-white/80">Vision</div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
 
 // Transform success stories into case study format for the existing component
 const caseStudies = successStories.map(story => ({
   title: story.title,
   description: story.excerpt,
   image: story.heroImage,
-  impact: story.impact[0], // Use first impact item
+  impact: story.impact[0],
   id: story.id
 }));
 
 const SuccessStories = () => {
-  const [heroRef, heroInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { isCentralAsia } = useRegion();
 
   const [testimonialsRef, testimonialsInView] = useInView({
     triggerOnce: true,
@@ -84,36 +37,44 @@ const SuccessStories = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Success Stories - Entrepreneurs Transforming Communities | Businesses Beyond Borders</title>
-        <meta 
-          name="description" 
-          content="Discover inspiring success stories from Businesses Beyond Borders. See how entrepreneurs in Central Asia and our dedicated volunteers create lasting impact through business development programs."
+        <title>
+          {isCentralAsia
+            ? "Истории успеха | Businesses Beyond Borders"
+            : "Entrepreneur Success Stories | BBB"}
+        </title>
+        <meta
+          name="description"
+          content={
+            isCentralAsia
+              ? "Вдохновляющие истории предпринимателей Центральной Азии. Узнайте, как участники BBB строят бизнес и меняют свои сообщества."
+              : "See how entrepreneurs in Central Asia build businesses and transform communities through BBB's training programs. Real stories of lasting impact."
+          }
         />
-        <meta 
-          name="keywords" 
+        <meta
+          name="keywords"
           content="entrepreneur success stories, business development results, Central Asia success stories, volunteer impact stories, nonprofit success stories, microfinance success stories, international development testimonials, global entrepreneurship impact"
         />
-        
+
         {/* Open Graph tags for social media sharing */}
-        <meta property="og:title" content="Success Stories - Entrepreneurs Creating Global Impact" />
-        <meta property="og:description" content="Real stories of transformation: How Businesses Beyond Borders helps entrepreneurs in Central Asia through volunteer-driven mentorship and business training programs." />
+        <meta property="og:title" content={isCentralAsia ? "Истории успеха — предприниматели, меняющие сообщества | Businesses Beyond Borders" : "Success Stories - Entrepreneurs Creating Global Impact"} />
+        <meta property="og:description" content={isCentralAsia ? "Реальные истории трансформации: как Businesses Beyond Borders помогает предпринимателям Центральной Азии через наставничество и программы делового развития." : "Real stories of transformation: How Businesses Beyond Borders helps entrepreneurs in Central Asia through volunteer-driven mentorship and business training programs."} />
         <meta property="og:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
         <meta property="og:url" content="https://businessesbeyondborders.com/success-stories" />
         <meta property="og:type" content="website" />
-        
+
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Success Stories - Global Impact Through Entrepreneurship" />
-        <meta name="twitter:description" content="Inspiring entrepreneurship success stories from Businesses Beyond Borders serving Central Asia." />
+        <meta name="twitter:title" content={isCentralAsia ? "Истории успеха — глобальное влияние через предпринимательство | Businesses Beyond Borders" : "Success Stories - Global Impact Through Entrepreneurship"} />
+        <meta name="twitter:description" content={isCentralAsia ? "Вдохновляющие истории успеха предпринимателей Businesses Beyond Borders в Центральной Азии." : "Inspiring entrepreneurship success stories from Businesses Beyond Borders serving Central Asia."} />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2" />
-        
+
         {/* Additional SEO tags */}
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Businesses Beyond Borders" />
         <link rel="canonical" href="https://businessesbeyondborders.com/success-stories" />
-        
+
         {/* Local business schema markup */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -138,20 +99,52 @@ const SuccessStories = () => {
           })}
         </script>
       </Helmet>
-      <SuccessStoriesHeroHeader />
-      <div ref={heroRef}>
-        <HeroSection inView={heroInView} />
+
+      {/* Hero */}
+      <div
+        className="relative h-[60vh] md:h-[70vh] flex items-center justify-center"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-up [--animation-delay:100ms]">
+            <TrendingUp className="w-4 h-4" />
+            {isCentralAsia ? "Реальные истории" : "Real Impact Stories"}
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
+            {isCentralAsia ? (
+              <>
+                Меняем жизни через
+                <span className="text-[#C9922A]"> предпринимательство</span>
+              </>
+            ) : (
+              <>
+                Transforming Lives Through
+                <span className="text-[#C9922A]"> Entrepreneurship</span>
+              </>
+            )}
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed">
+            {isCentralAsia
+              ? "Познакомьтесь с предпринимателями, которые создали процветающий бизнес при поддержке наших наставников и команды."
+              : "Meet the entrepreneurs who built thriving businesses with mentorship from our volunteer network and support from our team."}
+          </p>
+        </div>
       </div>
 
       <div ref={testimonialsRef}>
-        <TestimonialCarousel 
+        <TestimonialCarousel
           testimonials={testimonials}
           inView={testimonialsInView}
         />
       </div>
 
       <div ref={caseStudiesRef}>
-        <CaseStudiesSection 
+        <CaseStudiesSection
           caseStudies={caseStudies}
           inView={caseStudiesInView}
         />

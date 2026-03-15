@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { blogPosts, BlogPost } from "@/data/blogPosts";
+import { blogPosts, BlogPost, getLocalizedPost, getPublishedPosts } from "@/data/blogPosts";
 import { Calendar, Clock, ArrowRight, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useRegion } from "@/contexts/RegionContext";
 
 interface FeaturedPostsProps {
   featuredIds?: number[];
@@ -9,10 +10,12 @@ interface FeaturedPostsProps {
 }
 
 const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
-  // If specific IDs provided, use those. Otherwise, use the most recent posts
+  const { isCentralAsia } = useRegion();
+  // If specific IDs provided, use those (only if published). Otherwise, use the most recent published posts
+  const published = getPublishedPosts();
   const featuredPosts: BlogPost[] = featuredIds
-    ? featuredIds.map(id => blogPosts.find(post => post.id === id)).filter(Boolean) as BlogPost[]
-    : blogPosts.slice(0, maxPosts);
+    ? featuredIds.map(id => published.find(post => post.id === id)).filter(Boolean) as BlogPost[]
+    : published.slice(0, maxPosts);
 
   if (featuredPosts.length === 0) {
     return null;
@@ -23,8 +26,8 @@ const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
   return (
     <section className="mb-12">
       <div className="flex items-center gap-2 mb-6">
-        <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-        <h2 className="text-2xl font-bold text-gray-800">Featured Articles</h2>
+        <Star className="h-5 w-5 text-[#C9922A] fill-[#C9922A]" />
+        <h2 className="text-2xl font-bold text-gray-800">{isCentralAsia ? "Избранные статьи" : "Featured Articles"}</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -37,41 +40,47 @@ const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
             <img
               src={`${mainPost.imageUrl}?w=800&h=500&fit=crop`}
               alt={mainPost.title}
+              width={800}
+              height={500}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
+            {(() => { const loc = getLocalizedPost(mainPost, isCentralAsia); return (<>
             <div className="flex flex-wrap gap-2 mb-3">
-              {mainPost.tags.slice(0, 2).map((tag) => (
-                <Badge key={tag} className="bg-purple-600/80 text-white border-0">
+              {loc.displayTags.slice(0, 2).map((tag) => (
+                <Badge key={tag} className="bg-[#C9922A]/80 text-white border-0">
                   {tag}
                 </Badge>
               ))}
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors">
-              {mainPost.title}
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-[#C9922A]/80 transition-colors">
+              {loc.displayTitle}
             </h3>
             <p className="text-white/80 text-sm md:text-base line-clamp-2 mb-4">
-              {mainPost.excerpt}
+              {loc.displayExcerpt}
             </p>
             <div className="flex items-center text-white/70 gap-4 text-sm">
               <span className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                {mainPost.date}
+                {loc.displayDate}
               </span>
               <span className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                {mainPost.readTime}
+                {loc.displayReadTime}
               </span>
             </div>
+            </>); })()}
           </div>
         </Link>
 
         {/* Secondary Featured Posts */}
         {secondaryPosts.length > 0 && (
           <div className="flex flex-col gap-4">
-            {secondaryPosts.map((post) => (
+            {secondaryPosts.map((post) => {
+              const loc = getLocalizedPost(post, isCentralAsia);
+              return (
               <Link
                 key={post.id}
                 to={`/blog/${post.slug}`}
@@ -80,35 +89,39 @@ const FeaturedPosts = ({ featuredIds, maxPosts = 3 }: FeaturedPostsProps) => {
                 <div className="w-32 h-24 flex-shrink-0 overflow-hidden rounded-lg">
                   <img
                     src={`${post.imageUrl}?w=200&h=150&fit=crop`}
-                    alt={post.title}
+                    alt={loc.displayTitle}
+                    width={200}
+                    height={150}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap gap-1 mb-2">
-                    {post.tags.slice(0, 1).map((tag) => (
+                    {loc.displayTags.slice(0, 1).map((tag) => (
                       <Badge key={tag} variant="secondary" className="text-xs">
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <h4 className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors line-clamp-2 mb-2">
-                    {post.title}
+                  <h4 className="font-semibold text-gray-800 group-hover:text-[#C9922A] transition-colors line-clamp-2 mb-2">
+                    {loc.displayTitle}
                   </h4>
                   <div className="flex items-center text-sm text-gray-500 gap-3">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
-                      {post.date}
+                      {loc.displayDate}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
-                      {post.readTime}
+                      {loc.displayReadTime}
                     </span>
                   </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-purple-600 transition-colors self-center flex-shrink-0" />
+                <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[#C9922A] transition-colors self-center flex-shrink-0" />
               </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

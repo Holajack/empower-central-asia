@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRegion } from "@/contexts/RegionContext";
 
 interface ImageLightboxProps {
   src: string;
@@ -8,6 +9,7 @@ interface ImageLightboxProps {
 }
 
 const ImageLightbox = ({ src, alt, className = "" }: ImageLightboxProps) => {
+  const { isCentralAsia } = useRegion();
   const [isOpen, setIsOpen] = useState(false);
   const [scale, setScale] = useState(1);
 
@@ -69,7 +71,7 @@ const ImageLightbox = ({ src, alt, className = "" }: ImageLightboxProps) => {
             <button
               onClick={(e) => { e.stopPropagation(); zoomOut(); }}
               className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
-              aria-label="Zoom out"
+              aria-label={isCentralAsia ? "Уменьшить" : "Zoom out"}
             >
               <ZoomOut className="h-5 w-5" />
             </button>
@@ -77,14 +79,14 @@ const ImageLightbox = ({ src, alt, className = "" }: ImageLightboxProps) => {
             <button
               onClick={(e) => { e.stopPropagation(); zoomIn(); }}
               className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
-              aria-label="Zoom in"
+              aria-label={isCentralAsia ? "Увеличить" : "Zoom in"}
             >
               <ZoomIn className="h-5 w-5" />
             </button>
             <button
               onClick={closeLightbox}
               className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors ml-4"
-              aria-label="Close"
+              aria-label={isCentralAsia ? "Закрыть" : "Close"}
             >
               <X className="h-5 w-5" />
             </button>
@@ -114,7 +116,7 @@ const ImageLightbox = ({ src, alt, className = "" }: ImageLightboxProps) => {
 
           {/* Keyboard hints */}
           <div className="absolute bottom-4 right-4 text-white/50 text-xs hidden md:block">
-            Press ESC to close | +/- to zoom
+            {isCentralAsia ? "ESC — закрыть | +/- — масштаб" : "Press ESC to close | +/- to zoom"}
           </div>
         </div>
       )}

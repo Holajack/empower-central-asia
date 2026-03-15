@@ -51,36 +51,56 @@ const staticRoutes: SitemapEntry[] = [
   { loc: '/volunteer-opportunities/administrative-support', changefreq: 'monthly', priority: 0.6 },
   { loc: '/volunteer-opportunities/advocacy-outreach', changefreq: 'monthly', priority: 0.6 },
 
+  // Course pages
+  { loc: '/course/financial-literacy', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/course/business-creation', changefreq: 'monthly', priority: 0.8 },
+
+  // Tools & Resources
+  { loc: '/tools/debt-calculator', changefreq: 'monthly', priority: 0.7 },
+  { loc: '/resources', changefreq: 'monthly', priority: 0.6 },
+  { loc: '/cohort', changefreq: 'monthly', priority: 0.5 },
+
+  // Newsletter
+  { loc: '/newsletter', changefreq: 'monthly', priority: 0.5 },
+
   // Legal pages
   { loc: '/sms', changefreq: 'yearly', priority: 0.3 },
   { loc: '/privacy', changefreq: 'yearly', priority: 0.3 },
   { loc: '/mobile-terms', changefreq: 'yearly', priority: 0.3 },
 ];
 
-// Function to get blog posts from the data file
+// Function to get blog posts from the data file (only published posts)
 function getBlogPosts(): SitemapEntry[] {
+  const today = new Date().toISOString().split('T')[0];
   try {
     // Read the blogPosts data file
     const blogPostsPath = path.join(__dirname, '../src/data/blogPosts.ts');
     const content = fs.readFileSync(blogPostsPath, 'utf-8');
 
-    // Extract blog post IDs and dates using regex
-    const idMatches = content.matchAll(/id:\s*(\d+)/g);
-    const dateMatches = content.matchAll(/date:\s*"([^"]+)"/g);
-
-    const ids = Array.from(idMatches).map(m => m[1]);
-    const dates = Array.from(dateMatches).map(m => m[1]);
-
+    // Parse each blog post block to get slug, date, and publishDate
+    const postBlocks = content.split(/(?=\s{2}\{[\s\n]+id:)/);
     const blogPosts: SitemapEntry[] = [];
 
-    for (let i = 0; i < ids.length; i++) {
-      const date = dates[i] || '';
+    for (const block of postBlocks) {
+      const slugMatch = block.match(/slug:\s*"([^"]+)"/);
+      const dateMatch = block.match(/date:\s*"([^"]+)"/);
+      const publishDateMatch = block.match(/publishDate:\s*"([^"]+)"/);
+      if (!slugMatch) continue;
+
+      // Skip posts with future publish dates
+      const publishDate = publishDateMatch?.[1];
+      if (publishDate && publishDate > today) {
+        console.log(`  Skipping future post: ${slugMatch[1]} (publishes ${publishDate})`);
+        continue;
+      }
+
+      const date = dateMatch?.[1] || '';
       const isoDate = parseDate(date);
 
       blogPosts.push({
-        loc: `/blog/${ids[i]}`,
-        changefreq: 'yearly',
-        priority: 0.5,
+        loc: `/blog/${slugMatch[1]}`,
+        changefreq: 'monthly',
+        priority: 0.6,
         lastmod: isoDate
       });
     }

@@ -135,7 +135,7 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
               ) : (
                 <a
                   href={item.url}
-                  className="hover:text-purple-600 transition-colors"
+                  className="hover:text-[#C9922A] transition-colors"
                 >
                   {item.name}
                 </a>

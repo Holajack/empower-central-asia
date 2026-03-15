@@ -7,7 +7,7 @@
 export const siteConfig = {
   name: "Businesses Beyond Borders",
   url: "https://businessesbeyondborders.com",
-  description: "International nonprofit empowering entrepreneurs in Central Asia through proven business training, financial literacy, and leadership development programs",
+  description: "Bringing hope to the hopeless -- equipping diligent people to build dignified, sustainable lives through financial literacy, entrepreneurship, and opportunity in Central Asia",
   email: "donations@businessesbeyondborders.com",
   phone: "+1-386-517-1527",
   address: {
@@ -48,7 +48,7 @@ export function generateNonprofitSchema() {
       "@type": "ContactPoint",
       "telephone": siteConfig.phone,
       "contactType": "customer support",
-      "areaServed": ["US-FL", "KZ", "KG", "TJ"],
+      "areaServed": ["US-FL", "KZ", "KG", "UZ"],
       "availableLanguage": ["English", "Russian"]
     },
     "sameAs": Object.values(siteConfig.social),
@@ -58,7 +58,7 @@ export function generateNonprofitSchema() {
       { "@type": "Place", "name": "Volusia County, Florida" },
       { "@type": "Country", "name": "Kazakhstan" },
       { "@type": "Country", "name": "Kyrgyzstan" },
-      { "@type": "Country", "name": "Tajikistan" }
+      { "@type": "Country", "name": "Uzbekistan" }
     ],
     "knowsAbout": [
       "Financial Literacy Training",
@@ -363,12 +363,17 @@ export function generateMetaTags(meta: PageMeta) {
 
 // Local SEO keywords to include naturally
 export const localSEOKeywords = [
+  "nonprofit organizations Volusia County",
+  "donate to nonprofit Port Orange Florida",
+  "volunteer opportunities Daytona Beach",
+  "charity organizations Port Orange FL",
+  "community service Volusia County",
   "nonprofit organizations international development",
   "volunteer opportunities remote",
   "charity organizations entrepreneurship",
-  "community service Central Asia",
-  "corporate volunteer programs global",
-  "international nonprofit",
+  "corporate volunteer programs Central Florida",
+  "international nonprofit Port Orange",
   "Central Asia development nonprofit",
-  "remote volunteer mentoring"
+  "remote volunteer mentoring",
+  "501c3 nonprofit Volusia County Florida"
 ];

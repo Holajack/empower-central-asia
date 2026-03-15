@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { List, ChevronUp, ChevronDown } from "lucide-react";
+import { useRegion } from "@/contexts/RegionContext";
 
 interface TOCItem {
   id: string;
@@ -14,6 +15,7 @@ interface TableOfContentsProps {
 }
 
 const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: TableOfContentsProps) => {
+  const { isCentralAsia } = useRegion();
   const [isOpen, setIsOpen] = useState(variant === "sidebar");
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -26,7 +28,7 @@ const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: Table
       if (match) {
         const level = match[1].length;
         const text = match[2].replace(/\*\*/g, '').replace(/\*/g, '');
-        const id = `heading-${index}-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        const id = `heading-${index}-${text.toLowerCase().replace(/[^a-z0-9а-яё]+/g, '-')}`;
         items.push({ id, text, level });
       }
     });
@@ -83,7 +85,7 @@ const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: Table
       <nav className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
         <p className="flex items-center gap-2 font-medium text-gray-500 text-xs uppercase tracking-wider mb-2">
           <List className="h-3.5 w-3.5" />
-          Contents
+          {isCentralAsia ? "Содержание" : "Contents"}
         </p>
         <ul className="space-y-0.5 border-l border-gray-200">
           {headings.filter(h => h.level === 2).map((heading) => (
@@ -93,9 +95,9 @@ const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: Table
             >
               <button
                 onClick={() => scrollToHeading(heading.id)}
-                className={`text-left w-full text-xs leading-relaxed py-1 transition-colors hover:text-purple-600 ${
+                className={`text-left w-full text-xs leading-relaxed py-1 transition-colors hover:text-[#C9922A] ${
                   activeId === heading.id
-                    ? 'text-purple-600 font-medium'
+                    ? 'text-[#C9922A] font-medium'
                     : 'text-gray-400'
                 }`}
               >
@@ -117,7 +119,7 @@ const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: Table
       >
         <span className="flex items-center gap-2 font-semibold text-gray-800">
           <List className="h-5 w-5" />
-          Table of Contents
+          {isCentralAsia ? "Содержание" : "Table of Contents"}
         </span>
         {isOpen ? (
           <ChevronUp className="h-5 w-5 text-gray-500" />
@@ -135,9 +137,9 @@ const TableOfContents = ({ content, minHeadings = 3, variant = "inline" }: Table
             >
               <button
                 onClick={() => scrollToHeading(heading.id)}
-                className={`text-left w-full text-sm transition-colors hover:text-purple-600 ${
+                className={`text-left w-full text-sm transition-colors hover:text-[#C9922A] ${
                   activeId === heading.id
-                    ? 'text-purple-600 font-medium'
+                    ? 'text-[#C9922A] font-medium'
                     : 'text-gray-600'
                 }`}
               >

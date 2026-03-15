@@ -29,8 +29,21 @@ import Newsletter from "@/pages/Newsletter";
 import SmsOptIn from "@/pages/SmsOptIn";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import MobileTerms from "@/pages/MobileTerms";
+import DebtCalculator from "@/pages/tools/DebtCalculator";
+import FinancialLiteracyCourse from "@/pages/course/FinancialLiteracyCourse";
+import CourseWeek from "@/pages/course/CourseWeek";
+import BusinessCreationCourse from "@/pages/course/BusinessCreationCourse";
+import BusinessCourseWeek from "@/pages/course/BusinessCourseWeek";
+import LeadershipCourse from "@/pages/course/LeadershipCourse";
+import LeadershipCourseWeek from "@/pages/course/LeadershipCourseWeek";
+import Cohort from "@/pages/Cohort";
+import Resources from "@/pages/Resources";
+import ResourceDetail from "@/pages/ResourceDetail";
 import ScrollToTop from "@/components/ScrollToTop";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import NotFound from "@/pages/NotFound";
+import { RegionProvider } from "@/contexts/RegionContext";
 
 // Standalone pages that render without Nav/Footer (e.g. QR code landing pages)
 const STANDALONE_ROUTES = ["/newsletter"];
@@ -41,9 +54,13 @@ function AppContent() {
 
   return (
     <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:text-[#1B2A4A] focus:rounded focus:shadow-lg focus:text-sm focus:font-medium">
+        Skip to main content
+      </a>
       <ScrollToTop />
       {!isStandalone && <Navigation />}
-      <main>
+      <main id="main-content">
+        <ErrorBoundary>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
@@ -74,11 +91,33 @@ function AppContent() {
           {/* Newsletter Signup (QR code landing page) */}
           <Route path="/newsletter" element={<Newsletter />} />
 
+          {/* Interactive Tools */}
+          <Route path="/tools/debt-calculator" element={<DebtCalculator />} />
+
+          {/* Cohort Page */}
+          <Route path="/cohort" element={<Cohort />} />
+
+          {/* Free Resources / Lead Magnets */}
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/:slug" element={<ResourceDetail />} />
+
+          {/* Course Pages */}
+          <Route path="/course/financial-literacy" element={<FinancialLiteracyCourse />} />
+          <Route path="/course/financial-literacy/:week" element={<CourseWeek />} />
+          <Route path="/course/business-creation" element={<BusinessCreationCourse />} />
+          <Route path="/course/business-creation/:week" element={<BusinessCourseWeek />} />
+          <Route path="/course/leadership-development" element={<LeadershipCourse />} />
+          <Route path="/course/leadership-development/:week" element={<LeadershipCourseWeek />} />
+
           {/* Legal and Compliance Pages */}
           <Route path="/sms" element={<SmsOptIn />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/mobile-terms" element={<MobileTerms />} />
+
+          {/* 404 Catch-All */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
+        </ErrorBoundary>
       </main>
       {!isStandalone && <Footer />}
       <Toaster />
@@ -89,9 +128,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <RegionProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </RegionProvider>
   );
 }
 

@@ -1,232 +1,159 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Heart, Users2, ArrowRight, Star, Target, Phone, Clock, DollarSign, MapPin } from "lucide-react";
-import UpcomingEvents from "./UpcomingEvents";
+import { ArrowRight } from "lucide-react";
+import DonateButton from "@/components/DonateButton";
+import { useRegion } from "@/contexts/RegionContext";
 
 const CallToAction = () => {
+  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+
   return (
-    <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-sage-50 py-20">
+    <div className="bg-gradient-to-br from-gray-50 to-white py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          
-          {/* Main CTA Header */}
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-              <Star className="w-4 h-4" />
-              Ready to Create Global Impact?
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-              Your Skills Can 
-              <span className="text-purple-600"> Transform Lives</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+              {isCentralAsia ? "Начните свой путь" : "Two Ways In"}
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join <strong className="text-gray-800">50+ volunteers worldwide</strong> already making a difference. 
-              Your expertise becomes someone's breakthrough opportunity.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              {isCentralAsia
+                ? "Бесплатное обучение, поддержка наставников и сообщество людей, которые строят что-то настоящее."
+                : "Whether you want to start building something yourself or help someone else get their chance -- there's a place for you here."}
             </p>
-            
-            {/* Impact Statistics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
-              <div className="bg-white/80 backdrop-blur rounded-lg p-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold text-purple-600 mb-1">150+</div>
-                <div className="text-sm text-gray-600">Lives Transformed</div>
-              </div>
-              <div className="bg-white/80 backdrop-blur rounded-lg p-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">100%</div>
-                <div className="text-sm text-gray-600">Program Success Rate</div>
-              </div>
-              <div className="bg-white/80 backdrop-blur rounded-lg p-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1">6+</div>
-                <div className="text-sm text-gray-600">Communities Served</div>
-              </div>
-              <div className="bg-white/80 backdrop-blur rounded-lg p-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold text-orange-600 mb-1">2-4</div>
-                <div className="text-sm text-gray-600">Hours/Month</div>
-              </div>
-            </div>
           </div>
 
-          {/* Primary CTAs */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {/* Volunteer CTA - Primary for Programs Page */}
-            <Card className="relative p-8 bg-gradient-to-br from-purple-600 to-purple-700 text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="absolute top-4 right-4">
-                <div className="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
-                  MOST NEEDED
-                </div>
+          {/* Paths */}
+          <div className={`grid ${isRegionCentralAsia ? "md:grid-cols-1 max-w-2xl mx-auto" : "md:grid-cols-2"} gap-8 mb-12`}>
+            {/* For Participants */}
+            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
+                {isCentralAsia ? "ДЛЯ УЧАСТНИКОВ" : "FOR PARTICIPANTS"}
               </div>
-              <CardHeader className="space-y-4 pb-6">
-                <div className="flex justify-center">
-                  <div className="bg-white/20 p-4 rounded-full">
-                    <Users2 className="w-8 h-8 text-white" />
-                  </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {isCentralAsia
+                  ? "Я хочу учиться и строить."
+                  : "I want to learn and build."}
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                {isCentralAsia
+                  ? "Начните с бесплатного курса финансовой грамотности. Без заявки, без оплаты. Если вы его завершите и захотите идти дальше -- следующий этап ждёт вас."
+                  : "Start with the free financial literacy course. No application, no fee, no catch. If you complete it and want to go further, the next stage is waiting for you. Every step of the way, someone who has been where you are walks alongside you."}
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600 mb-8">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#C9922A] mt-0.5">--</span>
+                  {isCentralAsia
+                    ? "Курс финансовой грамотности: бесплатно, онлайн, начните в любое время"
+                    : "Financial literacy course: free, online, start anytime"}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#C9922A] mt-0.5">--</span>
+                  {isCentralAsia
+                    ? "Обучение созданию бизнеса для тех, кто завершил курс"
+                    : "Business creation training for those who complete the course"}
+                </li>
+                {!isRegionCentralAsia && (
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#C9922A] mt-0.5">--</span>
+                    {isCentralAsia
+                      ? "Стартовый капитал для выпускников с жизнеспособным бизнес-планом"
+                      : "Startup capital for graduates who build a viable plan"}
+                  </li>
+                )}
+                <li className="flex items-start gap-2">
+                  <span className="text-[#C9922A] mt-0.5">--</span>
+                  {isCentralAsia
+                    ? "Развитие лидерства в сообществе для выпускников"
+                    : "Community leadership development for graduates"}
+                </li>
+              </ul>
+              <Link to="/course/financial-literacy">
+                <Button
+                  size="lg"
+                  className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold py-4"
+                >
+                  {isCentralAsia ? "Начать бесплатный курс" : "Start the Free Course"}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* For Donors / Partners - Hidden for Central Asia */}
+            {!isRegionCentralAsia && (
+              <div className="bg-[#1B2A4A] rounded-xl p-8 text-white shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
+                  {isCentralAsia ? "ДЛЯ ДОНОРОВ И ПАРТНЁРОВ" : "FOR DONORS & PARTNERS"}
                 </div>
-                <CardTitle className="text-2xl font-bold text-center">Become a Program Volunteer</CardTitle>
-                <CardDescription className="text-purple-100 text-center text-lg">
-                  <strong className="text-white">2-4 hours per month</strong> of your expertise creates life-changing impact.
-                  <strong className="text-white"> Remote volunteering</strong> from anywhere.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-white/10 p-4 rounded-lg">
-                  <p className="text-sm text-purple-100 mb-2">Your volunteer role includes:</p>
-                  <ul className="text-sm text-white space-y-1">
-                    <li>• Business mentoring via video calls</li>
-                    <li>• Financial literacy training support</li>
-                    <li>• Program curriculum development</li>
-                    <li>• Success story documentation</li>
-                  </ul>
-                </div>
-                <Link to="/get-involved?type=volunteer">
-                  <Button 
+                <h3 className="text-2xl font-bold mb-4">
+                  {isCentralAsia ? "Я хочу дать кому-то шанс." : "I want to give someone their chance."}
+                </h3>
+                <p className="text-white/85 leading-relaxed mb-6">
+                  {isCentralAsia
+                    ? "Ваши вложения идут не организации -- они идут конкретному человеку, который уже проделал тяжёлую работу, чтобы быть готовым. Каждый доллар финансирует обучение, наставничество или стартовый капитал. Вы будете знать, куда он ушёл и что создал."
+                    : "Your investment doesn't go to an organization -- it goes to a specific person who has already done the hard work to be ready for it. Every dollar funds training, mentorship, or startup capital. You'll know exactly where it went and what it built."}
+                </p>
+                <ul className="space-y-2 text-sm text-white/80 mb-8">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#C9922A] mt-0.5">--</span>
+                    {isCentralAsia ? "$150 покрывает месяц работы программы" : "$150 covers one month of program operations"}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#C9922A] mt-0.5">--</span>
+                    {isCentralAsia ? "$400 обучает местного фасилитатора, который научит 20+ человек" : "$400 trains a local facilitator who teaches 20+ people"}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#C9922A] mt-0.5">--</span>
+                    {isCentralAsia ? "$2 000–$5 000 запускает настоящий бизнес для того, кто это заслужил" : "$2,000-$5,000 launches a real business for someone who earned it"}
+                  </li>
+                </ul>
+                <div className="space-y-3">
+                  <DonateButton
                     size="lg"
-                    className="w-full bg-white text-purple-600 hover:bg-purple-50 font-bold py-4 text-lg shadow-lg"
+                    className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold py-4"
                   >
-                    Start Volunteering Today
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Donation CTA - Secondary */}
-            <Card className="p-8 bg-white border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <CardHeader className="space-y-4 pb-6">
-                <div className="flex justify-center">
-                  <div className="bg-purple-100 p-4 rounded-full">
-                    <Heart className="w-8 h-8 text-purple-600" />
-                  </div>
+                    {isCentralAsia ? "Пожертвовать" : "Donate Now"}
+                  </DonateButton>
+                  <Link to="/partner-application" className="block">
+                    <Button
+                      size="lg"
+                      className="w-full bg-transparent border border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-medium py-4"
+                    >
+                      {isCentralAsia ? "Узнать о партнёрстве" : "Explore Partnership"}
+                    </Button>
+                  </Link>
                 </div>
-                <CardTitle className="text-2xl font-bold text-center text-gray-800">Fund Program Expansion</CardTitle>
-                <CardDescription className="text-gray-600 text-center text-lg">
-                  <strong>$50</strong> funds complete business training for one entrepreneur.
-                  <strong> $200</strong> sponsors an entire program cohort.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <p className="text-sm text-purple-700 mb-2 font-medium">Your donation provides:</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Training materials and resources</li>
-                    <li>• Technology platform access</li>
-                    <li>• Mentor-entrepreneur matching</li>
-                    <li>• Program evaluation and support</li>
-                  </ul>
-                </div>
-                <Link to="/get-involved">
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="w-full border-2 border-purple-300 text-purple-700 hover:bg-purple-50 font-bold py-4 text-lg"
-                  >
-                    Donate Now
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Secondary CTAs */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {/* Corporate Programs */}
-            <Card className="p-6 bg-white border border-gray-200 hover:shadow-lg transition-all duration-300">
-              <CardHeader className="pb-4">
-                <div className="flex justify-center">
-                  <Target className="w-6 h-6 text-blue-600" />
-                </div>
-                <CardTitle className="text-lg text-center">Corporate Training Partnership</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Engage your team in meaningful skills-based volunteering programs.
-                </p>
-                <Link to="/contact">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Partner With Us
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Program Updates */}
-            <Card className="p-6 bg-white border border-gray-200 hover:shadow-lg transition-all duration-300">
-              <CardHeader className="pb-4">
-                <div className="flex justify-center">
-                  <Clock className="w-6 h-6 text-green-600" />
-                </div>
-                <CardTitle className="text-lg text-center">Program Updates</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Get monthly reports on entrepreneur progress and program impact metrics.
-                </p>
-                <Link to="/get-involved?type=newsletter">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Subscribe to Updates
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Direct Contact */}
-            <Card className="p-6 bg-white border border-gray-200 hover:shadow-lg transition-all duration-300">
-              <CardHeader className="pb-4">
-                <div className="flex justify-center">
-                  <Phone className="w-6 h-6 text-orange-600" />
-                </div>
-                <CardTitle className="text-lg text-center">Questions About Programs?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Speak directly with our program team about volunteer opportunities.
-                </p>
-                <Link to="/contact">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Call (386) 517-1527
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Social Proof and Upcoming Events */}
-          <div className="bg-white rounded-2xl p-8 mb-8 border border-gray-200">
-            <div className="text-center mb-6">
-              <p className="text-lg text-gray-700 mb-4">
-                <strong className="text-purple-600">Next volunteer orientation:</strong> February 25, 2026 at 7:00 PM EST (Virtual)
-              </p>
-              <p className="text-sm text-gray-600 mb-6">
-                🌟 <strong>Training provided:</strong> Business mentoring techniques, cultural sensitivity, and program platforms
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link to="/get-involved?type=volunteer">
-                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3">
-                    Reserve Your Spot
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <Link to="/success-stories" className="text-purple-600 hover:text-purple-700 font-medium">
-                  See Success Stories →
-                </Link>
               </div>
-            </div>
-
-            {/* Local Focus */}
-            <div className="border-t border-gray-100 pt-6 text-center">
-              <div className="flex items-center justify-center gap-2 text-gray-600 mb-2">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">Serving globally - Remote volunteer opportunities open to everyone</span>
-              </div>
-              <p className="text-xs text-gray-500">
-                Virtual volunteer opportunities • Flexible scheduling • Full training provided • Ongoing support
-              </p>
-            </div>
+            )}
           </div>
 
-          {/* Keep existing upcoming events */}
-          <UpcomingEvents />
+          {/* Contact */}
+          <div className="text-center text-gray-500 text-sm">
+            {isCentralAsia ? (
+              <p>
+                Вопросы? Напишите в{" "}
+                <a href="https://wa.me/13865171527" target="_blank" rel="noopener noreferrer" className="text-[#1B2A4A] font-medium hover:underline">
+                  WhatsApp
+                </a>{" "}
+                или на{" "}
+                <a href="mailto:donations@businessesbeyondborders.com" className="text-[#1B2A4A] font-medium hover:underline">
+                  donations@businessesbeyondborders.com
+                </a>
+              </p>
+            ) : (
+              <p>
+                Questions? Call{" "}
+                <a href="tel:+13865171527" className="text-[#1B2A4A] font-medium hover:underline">
+                  (386) 517-1527
+                </a>{" "}
+                or email{" "}
+                <a href="mailto:donations@businessesbeyondborders.com" className="text-[#1B2A4A] font-medium hover:underline">
+                  donations@businessesbeyondborders.com
+                </a>
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

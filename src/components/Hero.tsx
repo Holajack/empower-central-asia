@@ -2,8 +2,11 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import DonateButton from "./DonateButton";
+import { useRegion } from "@/contexts/RegionContext";
 
 const Hero = () => {
+  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+
   const scrollToPrograms = () => {
     const programsSection = document.getElementById("programs-section");
     if (programsSection) {
@@ -17,7 +20,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1577962917302-cd874c4e31d2')",
+          backgroundImage: "url('/images/hero-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -28,25 +31,30 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms]">
-          Empowering Through Action
+          {isCentralAsia ? "Надежда, Которая Строит" : "Hope That Builds"}
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-          Explore our range of programs designed to create sustainable impact in Central Asia.
+          {isCentralAsia
+            ? "Чтобы потерявшие надежду могли её обрести — а обретшие надежду могли её приумножить."
+            : "So that the hopeless can find hope -- and the hopeful can multiply it."}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
-          <DonateButton
-            size="lg"
-            className="bg-purple-500 hover:bg-purple-400 text-white min-w-[200px]"
-          />
           <Button
-            variant="outline"
             size="lg"
-            className="bg-white/10 hover:bg-white/20 text-white border-white min-w-[200px] group"
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold min-w-[200px] group"
             onClick={scrollToPrograms}
           >
-            Learn More
+            {isCentralAsia ? "Начать обучение (бесплатно)" : "Start Learning (Free)"}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
+          {!isRegionCentralAsia && (
+            <DonateButton
+              size="lg"
+              className="bg-white/10 hover:bg-white/20 text-white border-white min-w-[200px]"
+            >
+              {isCentralAsia ? "Поддержать будущего предпринимателя" : "Support a Future Entrepreneur"}
+            </DonateButton>
+          )}
         </div>
       </div>
 

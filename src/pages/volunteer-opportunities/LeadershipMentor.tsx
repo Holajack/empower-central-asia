@@ -5,52 +5,62 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
+import { useRegion } from "@/contexts/RegionContext";
 
 const LeadershipMentor = () => {
+  const { isCentralAsia } = useRegion();
+
   return (
     <>
       <Helmet>
-        <title>Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders</title>
+        <title>Leadership Mentor Volunteer | BBB</title>
         <meta name="description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
         <meta name="keywords" content="leadership mentor volunteer, business mentorship opportunities, executive coaching volunteer, leadership development mentor, mentor volunteer Central Asia, nonprofit mentorship program, volunteer business advisor opportunities, remote volunteer mentoring" />
         <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/leadership-mentor" />
-        <meta property="og:title" content="Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders" />
-        <meta property="og:description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
+        <meta property="og:title" content={isCentralAsia ? "Ментор лидерства | BBB" : "Leadership Mentor Volunteer | BBB"} />
+        <meta property="og:description" content={isCentralAsia ? "Станьте наставником по развитию лидерства в Businesses Beyond Borders. Ведите начинающих лидеров через проверенную 12-месячную программу по модели 70-20-10. 4–6 часов в месяц. Глобальное влияние из любой точки мира." : "Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere."} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-opportunities/leadership-mentor" />
         <meta property="og:site_name" content="Businesses Beyond Borders" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders" />
-        <meta name="twitter:description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
+        <meta name="twitter:title" content={isCentralAsia ? "Ментор лидерства — волонтёрские возможности | Businesses Beyond Borders" : "Leadership Development Mentor - Volunteer Opportunity | Businesses Beyond Borders"} />
+        <meta name="twitter:description" content={isCentralAsia ? "Станьте наставником по развитию лидерства в Businesses Beyond Borders. Ведите начинающих лидеров через проверенную 12-месячную программу по модели 70-20-10. 4–6 часов в месяц. Глобальное влияние из любой точки мира." : "Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere."} />
       </Helmet>
 
       <div className="min-h-screen pt-20">
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-16">
+        <div className="bg-gradient-to-br from-blue-600 to-[#1B2A4A] text-white py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Target className="w-4 h-4" />
-                HIGH PRIORITY VOLUNTEER OPPORTUNITY
+                {isCentralAsia ? "ПРИОРИТЕТНАЯ ВОЛОНТЁРСКАЯ ВОЗМОЖНОСТЬ" : "HIGH PRIORITY VOLUNTEER OPPORTUNITY"}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Leadership Development
-                <span className="text-yellow-300"> Mentor</span>
+                {isCentralAsia ? "Наставник по развитию" : "Leadership Development"}
+                <span className="text-yellow-300"> {isCentralAsia ? "лидерства" : "Mentor"}</span>
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
-                Guide emerging leaders through our proven 12-month program. 
-                <strong className="text-white"> Your expertise becomes someone's breakthrough moment.</strong>
+                {isCentralAsia
+                  ? "Ведите начинающих лидеров через нашу проверенную 12-месячную программу."
+                  : "Guide emerging leaders through our proven 12-month program."}
+                {" "}
+                <strong className="text-white">
+                  {isCentralAsia
+                    ? "Ваш опыт становится переломным моментом для другого человека."
+                    : "Your expertise becomes someone's breakthrough moment."}
+                </strong>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#apply-now">
                   <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 text-lg">
-                    Apply to Mentor
+                    {isCentralAsia ? "Подать заявку наставника" : "Apply to Mentor"}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </a>
                 <Link to="/get-involved">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-700 font-bold px-8 py-4 text-lg">
-                    View All Opportunities
+                  <Button size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white hover:text-[#1B2A4A] font-bold px-8 py-4 text-lg">
+                    {isCentralAsia ? "Все возможности" : "View All Opportunities"}
                   </Button>
                 </Link>
               </div>
@@ -63,20 +73,20 @@ const LeadershipMentor = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
               <div className="bg-blue-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600 mb-2">4-6 hrs</div>
-                <div className="text-sm text-gray-600">Monthly Time Commitment</div>
+                <div className="text-2xl font-bold text-blue-600 mb-2">{isCentralAsia ? "4–6 ч." : "4-6 hrs"}</div>
+                <div className="text-sm text-gray-600">{isCentralAsia ? "Затраты в месяц" : "Monthly Time Commitment"}</div>
               </div>
               <div className="bg-green-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-green-600 mb-2">12 mo</div>
-                <div className="text-sm text-gray-600">Program Duration</div>
+                <div className="text-2xl font-bold text-green-600 mb-2">{isCentralAsia ? "12 мес." : "12 mo"}</div>
+                <div className="text-sm text-gray-600">{isCentralAsia ? "Длительность программы" : "Program Duration"}</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600 mb-2">85%</div>
-                <div className="text-sm text-gray-600">Career Advancement Rate</div>
+              <div className="bg-[#C9922A]/5 p-6 rounded-lg">
+                <div className="text-2xl font-bold text-[#C9922A] mb-2">85%</div>
+                <div className="text-sm text-gray-600">{isCentralAsia ? "Карьерный рост участников" : "Career Advancement Rate"}</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-orange-600 mb-2">1:1</div>
-                <div className="text-sm text-gray-600">Mentorship Format</div>
+              <div className="bg-[#C9922A]/5 p-6 rounded-lg">
+                <div className="text-2xl font-bold text-[#C9922A] mb-2">1:1</div>
+                <div className="text-sm text-gray-600">{isCentralAsia ? "Формат наставничества" : "Mentorship Format"}</div>
               </div>
             </div>
           </div>
@@ -87,33 +97,35 @@ const LeadershipMentor = () => {
           <section className="mb-16">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-                What You'll Do as a 
-                <span className="text-blue-600"> Leadership Mentor</span>
+                {isCentralAsia ? "Чем вы будете заниматься как" : "What You'll Do as a"}
+                <span className="text-blue-600"> {isCentralAsia ? "наставник по лидерству" : "Leadership Mentor"}</span>
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <Card className="border-l-4 border-blue-500 shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-blue-600">
                       <Compass className="w-6 h-6" />
-                      Guide Emerging Leaders
+                      {isCentralAsia ? "Направлять начинающих лидеров" : "Guide Emerging Leaders"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Work one-on-one with 2-3 emerging leaders in Central Asia, helping them develop essential leadership skills through our proven 70-20-10 development model.
+                      {isCentralAsia
+                        ? "Работайте один на один с 2–3 начинающими лидерами в Центральной Азии, помогая им развивать ключевые лидерские навыки с помощью нашей проверенной модели развития 70-20-10."
+                        : "Work one-on-one with 2-3 emerging leaders in Central Asia, helping them develop essential leadership skills through our proven 70-20-10 development model."}
                     </p>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Monthly virtual mentoring sessions (60-90 minutes each)
+                        {isCentralAsia ? "Ежемесячные виртуальные сессии наставничества (60–90 минут каждая)" : "Monthly virtual mentoring sessions (60-90 minutes each)"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Goal setting and progress tracking
+                        {isCentralAsia ? "Постановка целей и отслеживание прогресса" : "Goal setting and progress tracking"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Leadership challenge development
+                        {isCentralAsia ? "Разработка лидерских задач" : "Leadership challenge development"}
                       </li>
                     </ul>
                   </CardContent>
@@ -123,81 +135,87 @@ const LeadershipMentor = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-green-600">
                       <TrendingUp className="w-6 h-6" />
-                      Develop Core Skills
+                      {isCentralAsia ? "Развивать ключевые навыки" : "Develop Core Skills"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Focus on developing emotional intelligence, servant leadership principles, and transformational leadership skills in your mentees.
+                      {isCentralAsia
+                        ? "Сосредоточьтесь на развитии эмоционального интеллекта, принципов служащего лидерства и трансформационных лидерских навыков у своих подопечных."
+                        : "Focus on developing emotional intelligence, servant leadership principles, and transformational leadership skills in your mentees."}
                     </p>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Emotional intelligence coaching
+                        {isCentralAsia ? "Коучинг по эмоциональному интеллекту" : "Emotional intelligence coaching"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Communication and conflict resolution
+                        {isCentralAsia ? "Коммуникация и разрешение конфликтов" : "Communication and conflict resolution"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Strategic thinking and decision-making
+                        {isCentralAsia ? "Стратегическое мышление и принятие решений" : "Strategic thinking and decision-making"}
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card className="border-l-4 border-purple-500 shadow-lg">
+                <Card className="border-l-4 border-[#C9922A] shadow-lg">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-purple-600">
+                    <CardTitle className="flex items-center gap-2 text-[#C9922A]">
                       <Lightbulb className="w-6 h-6" />
-                      Share Real Experience
+                      {isCentralAsia ? "Делиться реальным опытом" : "Share Real Experience"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Draw from your professional experience to provide practical insights, case studies, and real-world applications of leadership principles.
+                      {isCentralAsia
+                        ? "Опирайтесь на свой профессиональный опыт, чтобы предлагать практические идеи, примеры из жизни и реальные приложения принципов лидерства."
+                        : "Draw from your professional experience to provide practical insights, case studies, and real-world applications of leadership principles."}
                     </p>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Share leadership challenges you've overcome
+                        {isCentralAsia ? "Рассказывать о преодолённых лидерских трудностях" : "Share leadership challenges you've overcome"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Provide industry-specific insights
+                        {isCentralAsia ? "Давать отраслевые инсайты" : "Provide industry-specific insights"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Connect mentees with your professional network
+                        {isCentralAsia ? "Знакомить подопечных со своей профессиональной сетью" : "Connect mentees with your professional network"}
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card className="border-l-4 border-orange-500 shadow-lg">
+                <Card className="border-l-4 border-[#C9922A] shadow-lg">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-orange-600">
+                    <CardTitle className="flex items-center gap-2 text-[#C9922A]">
                       <Crown className="w-6 h-6" />
-                      Build Future Leaders
+                      {isCentralAsia ? "Воспитывать будущих лидеров" : "Build Future Leaders"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Help mentees create their own leadership multiplication plans, ensuring the impact continues beyond your direct mentorship.
+                      {isCentralAsia
+                        ? "Помогайте подопечным создавать собственные планы умножения лидерства, чтобы влияние продолжалось и после вашего прямого наставничества."
+                        : "Help mentees create their own leadership multiplication plans, ensuring the impact continues beyond your direct mentorship."}
                     </p>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Leadership legacy planning
+                        {isCentralAsia ? "Планирование лидерского наследия" : "Leadership legacy planning"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Succession planning guidance
+                        {isCentralAsia ? "Руководство по планированию преемственности" : "Succession planning guidance"}
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        Community impact strategies
+                        {isCentralAsia ? "Стратегии воздействия на сообщество" : "Community impact strategies"}
                       </li>
                     </ul>
                   </CardContent>
@@ -210,55 +228,55 @@ const LeadershipMentor = () => {
           <section className="mb-16 bg-gray-50 p-8 rounded-2xl">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                Are You Our Next 
-                <span className="text-blue-600"> Leadership Mentor?</span>
+                {isCentralAsia ? "Вы — наш следующий" : "Are You Our Next"}
+                <span className="text-blue-600"> {isCentralAsia ? "наставник по лидерству?" : "Leadership Mentor?"}</span>
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <Users2 className="w-6 h-6 text-blue-600" />
-                    Ideal Background
+                    {isCentralAsia ? "Идеальный опыт" : "Ideal Background"}
                   </h3>
                   <ul className="space-y-3 text-gray-600">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      5+ years in executive or senior management roles
+                      {isCentralAsia ? "5+ лет в руководящих или старших управленческих ролях" : "5+ years in executive or senior management roles"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Experience leading teams of 10+ people
+                      {isCentralAsia ? "Опыт руководства командами от 10 человек" : "Experience leading teams of 10+ people"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Track record of developing other leaders
+                      {isCentralAsia ? "Подтверждённый опыт развития других лидеров" : "Track record of developing other leaders"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Entrepreneurial or business development experience
+                      {isCentralAsia ? "Предпринимательский или бизнес-опыт" : "Entrepreneurial or business development experience"}
                     </li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <Heart className="w-6 h-6 text-red-500" />
-                    Essential Qualities
+                    {isCentralAsia ? "Необходимые качества" : "Essential Qualities"}
                   </h3>
                   <ul className="space-y-3 text-gray-600">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Passion for developing others
+                      {isCentralAsia ? "Искреннее желание развивать других" : "Passion for developing others"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Cultural sensitivity and empathy
+                      {isCentralAsia ? "Культурная чуткость и эмпатия" : "Cultural sensitivity and empathy"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Excellent communication and listening skills
+                      {isCentralAsia ? "Отличные коммуникативные навыки и умение слушать" : "Excellent communication and listening skills"}
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      Commitment to 12-month mentoring relationship
+                      {isCentralAsia ? "Готовность к 12-месячным отношениям наставничества" : "Commitment to 12-month mentoring relationship"}
                     </li>
                   </ul>
                 </div>
@@ -270,30 +288,34 @@ const LeadershipMentor = () => {
           <section className="mb-16">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                12-Month Mentorship 
-                <span className="text-purple-600"> Program Structure</span>
+                {isCentralAsia ? "Структура 12-месячной программы" : "12-Month Mentorship"}
+                <span className="text-[#C9922A]"> {isCentralAsia ? "наставничества" : "Program Structure"}</span>
               </h2>
               <div className="space-y-6">
                 <Card className="border-l-4 border-blue-500">
                   <CardHeader>
-                    <CardTitle className="text-blue-600">Months 1-3: Foundation Building</CardTitle>
+                    <CardTitle className="text-blue-600">
+                      {isCentralAsia ? "Месяцы 1–3: Закладка фундамента" : "Months 1-3: Foundation Building"}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Establish trust, assess current leadership capacity, and set development goals.
+                      {isCentralAsia
+                        ? "Установите доверие, оцените текущий лидерский потенциал и поставьте цели развития."
+                        : "Establish trust, assess current leadership capacity, and set development goals."}
                     </p>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Assessment</div>
-                        <p className="text-sm text-gray-600">Leadership style evaluation</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Оценка" : "Assessment"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Оценка стиля лидерства" : "Leadership style evaluation"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Goal Setting</div>
-                        <p className="text-sm text-gray-600">12-month development plan</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Постановка целей" : "Goal Setting"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "12-месячный план развития" : "12-month development plan"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Trust Building</div>
-                        <p className="text-sm text-gray-600">Establish mentoring relationship</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Выстраивание доверия" : "Trust Building"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Установление отношений наставничества" : "Establish mentoring relationship"}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -301,49 +323,57 @@ const LeadershipMentor = () => {
 
                 <Card className="border-l-4 border-green-500">
                   <CardHeader>
-                    <CardTitle className="text-green-600">Months 4-8: Skill Development</CardTitle>
+                    <CardTitle className="text-green-600">
+                      {isCentralAsia ? "Месяцы 4–8: Развитие навыков" : "Months 4-8: Skill Development"}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Focus on core leadership competencies through real-world challenges and practice.
+                      {isCentralAsia
+                        ? "Сосредоточьтесь на ключевых лидерских компетенциях через реальные задачи и практику."
+                        : "Focus on core leadership competencies through real-world challenges and practice."}
                     </p>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">EQ Development</div>
-                        <p className="text-sm text-gray-600">Emotional intelligence training</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Развитие EQ" : "EQ Development"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Тренинг эмоционального интеллекта" : "Emotional intelligence training"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Communication</div>
-                        <p className="text-sm text-gray-600">Leadership communication skills</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Коммуникация" : "Communication"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Лидерские коммуникативные навыки" : "Leadership communication skills"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Team Building</div>
-                        <p className="text-sm text-gray-600">Team development strategies</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Командообразование" : "Team Building"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Стратегии развития команды" : "Team development strategies"}</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="border-l-4 border-purple-500">
+                <Card className="border-l-4 border-[#C9922A]">
                   <CardHeader>
-                    <CardTitle className="text-purple-600">Months 9-12: Mastery & Multiplication</CardTitle>
+                    <CardTitle className="text-[#C9922A]">
+                      {isCentralAsia ? "Месяцы 9–12: Мастерство и умножение" : "Months 9-12: Mastery & Multiplication"}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4">
-                      Apply learned skills in real leadership challenges and develop others.
+                      {isCentralAsia
+                        ? "Применяйте приобретённые навыки в реальных лидерских задачах и развивайте других."
+                        : "Apply learned skills in real leadership challenges and develop others."}
                     </p>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Leadership Project</div>
-                        <p className="text-sm text-gray-600">Lead significant initiative</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Лидерский проект" : "Leadership Project"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Руководство значимой инициативой" : "Lead significant initiative"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Mentoring Others</div>
-                        <p className="text-sm text-gray-600">Begin mentoring junior leaders</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Наставничество других" : "Mentoring Others"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Начало наставничества молодых лидеров" : "Begin mentoring junior leaders"}</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">Legacy Planning</div>
-                        <p className="text-sm text-gray-600">Sustainable impact strategy</p>
+                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Планирование наследия" : "Legacy Planning"}</div>
+                        <p className="text-sm text-gray-600">{isCentralAsia ? "Стратегия устойчивого воздействия" : "Sustainable impact strategy"}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -353,58 +383,58 @@ const LeadershipMentor = () => {
           </section>
 
           {/* Benefits Section */}
-          <section className="mb-16 bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl">
+          <section className="mb-16 bg-gradient-to-br from-[#C9922A]/5 to-[#C9922A]/10 p-8 rounded-2xl">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                Why Our Mentors 
-                <span className="text-orange-600"> Love What They Do</span>
+                {isCentralAsia ? "Почему наши наставники" : "Why Our Mentors"}
+                <span className="text-[#C9922A]"> {isCentralAsia ? "любят своё дело" : "Love What They Do"}</span>
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <Award className="w-6 h-6 text-yellow-500" />
-                    Professional Benefits
+                    {isCentralAsia ? "Профессиональные преимущества" : "Professional Benefits"}
                   </h3>
                   <ul className="space-y-3 text-gray-600">
                     <li className="flex items-start gap-2">
                       <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      Develop your own mentoring and coaching skills
+                      {isCentralAsia ? "Развивайте собственные навыки наставничества и коучинга" : "Develop your own mentoring and coaching skills"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      Gain cross-cultural leadership experience
+                      {isCentralAsia ? "Получайте межкультурный лидерский опыт" : "Gain cross-cultural leadership experience"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      Expand your global professional network
+                      {isCentralAsia ? "Расширяйте международную профессиональную сеть" : "Expand your global professional network"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      Professional references and recognition
+                      {isCentralAsia ? "Профессиональные рекомендации и признание" : "Professional references and recognition"}
                     </li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <Heart className="w-6 h-6 text-red-500" />
-                    Personal Rewards
+                    {isCentralAsia ? "Личное удовлетворение" : "Personal Rewards"}
                   </h3>
                   <ul className="space-y-3 text-gray-600">
                     <li className="flex items-start gap-2">
                       <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      Make transformational impact on emerging leaders
+                      {isCentralAsia ? "Оказывайте трансформирующее влияние на начинающих лидеров" : "Make transformational impact on emerging leaders"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      Build meaningful international relationships
+                      {isCentralAsia ? "Выстраивайте значимые международные отношения" : "Build meaningful international relationships"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      Create lasting legacy in communities
+                      {isCentralAsia ? "Создавайте долгосрочное наследие в сообществах" : "Create lasting legacy in communities"}
                     </li>
                     <li className="flex items-start gap-2">
                       <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      Personal fulfillment from giving back
+                      {isCentralAsia ? "Личное удовлетворение от помощи другим" : "Personal fulfillment from giving back"}
                     </li>
                   </ul>
                 </div>
@@ -416,35 +446,47 @@ const LeadershipMentor = () => {
           <section className="mb-16">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-                You Won't Be 
-                <span className="text-blue-600"> Mentoring Alone</span>
+                {isCentralAsia ? "Вы не будете" : "You Won't Be"}
+                <span className="text-blue-600"> {isCentralAsia ? "наставником в одиночку" : "Mentoring Alone"}</span>
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 <Card className="text-center p-6">
                   <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Target className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Comprehensive Training</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {isCentralAsia ? "Комплексное обучение" : "Comprehensive Training"}
+                  </h3>
                   <p className="text-sm text-gray-600">
-                    Complete mentor training program covering cross-cultural mentoring, our curriculum, and best practices
+                    {isCentralAsia
+                      ? "Полная программа обучения наставников, охватывающая межкультурное наставничество, нашу учебную программу и лучшие практики"
+                      : "Complete mentor training program covering cross-cultural mentoring, our curriculum, and best practices"}
                   </p>
                 </Card>
                 <Card className="text-center p-6">
                   <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Users2 className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Mentor Community</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {isCentralAsia ? "Сообщество наставников" : "Mentor Community"}
+                  </h3>
                   <p className="text-sm text-gray-600">
-                    Monthly peer learning sessions with other mentors to share challenges and best practices
+                    {isCentralAsia
+                      ? "Ежемесячные встречи по взаимному обучению с другими наставниками для обмена опытом и лучшими практиками"
+                      : "Monthly peer learning sessions with other mentors to share challenges and best practices"}
                   </p>
                 </Card>
                 <Card className="text-center p-6">
-                  <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Clock className="w-8 h-8 text-purple-600" />
+                  <div className="bg-[#C9922A]/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8 text-[#C9922A]" />
                   </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Ongoing Support</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {isCentralAsia ? "Постоянная поддержка" : "Ongoing Support"}
+                  </h3>
                   <p className="text-sm text-gray-600">
-                    Dedicated program coordinator and resources to ensure your mentoring success
+                    {isCentralAsia
+                      ? "Выделенный координатор программы и ресурсы для обеспечения успеха вашего наставничества"
+                      : "Dedicated program coordinator and resources to ensure your mentoring success"}
                   </p>
                 </Card>
               </div>
@@ -455,21 +497,61 @@ const LeadershipMentor = () => {
           <section id="apply-now" className="mb-16">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Ready to Become a 
-                <span className="text-blue-600"> Leadership Mentor?</span>
+                {isCentralAsia ? "Готовы стать" : "Ready to Become a"}
+                <span className="text-blue-600"> {isCentralAsia ? "наставником по лидерству?" : "Leadership Mentor?"}</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join our founding team of leadership mentors and help shape the future of emerging leaders in Central Asia.
+                {isCentralAsia
+                  ? "Присоединяйтесь к нашей команде наставников и помогите формировать будущее начинающих лидеров Центральной Азии."
+                  : "Join our founding team of leadership mentors and help shape the future of emerging leaders in Central Asia."}
               </p>
             </div>
             <GoHighLevelForm
               formType="volunteer"
-              title="Leadership Mentor Application"
-              description="Apply to become a leadership development mentor. We'll review your application and contact you within 48 hours."
-              submitButtonText="Submit Mentor Application"
+              title={isCentralAsia ? "Заявка наставника по лидерству" : "Leadership Mentor Application"}
+              description={isCentralAsia ? "Подайте заявку, чтобы стать наставником по развитию лидерства. Мы рассмотрим вашу заявку и свяжемся с вами в течение 48 часов." : "Apply to become a leadership development mentor. We'll review your application and contact you within 48 hours."}
+              submitButtonText={isCentralAsia ? "Отправить заявку наставника" : "Submit Mentor Application"}
               volunteerOpportunity="leadership-mentor"
             />
+            {isCentralAsia && (
+              <div className="mt-8 text-center">
+                <p className="text-sm text-gray-600 mb-4">
+                  Есть вопросы? Напишите нам напрямую:
+                </p>
+                <Button variant="outline" asChild>
+                  <a href="https://wa.me/13865171527" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    Написать в WhatsApp
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
+            )}
           </section>
+
+          {/* Other Opportunities */}
+          <div className="mt-12 border-t border-gray-200 pt-8 max-w-4xl mx-auto">
+            <h2 className="text-lg font-bold text-[#1B2A4A] mb-4">
+              {isCentralAsia ? "Другие возможности" : "Other Opportunities"}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link to="/volunteer-opportunities/community-organizer" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-[#C9922A]/50 transition-colors">
+                <p className="text-sm font-medium text-[#1B2A4A]">{isCentralAsia ? "Организатор сообщества" : "Community Organizer"}</p>
+                <p className="text-xs text-gray-500 mt-1">{isCentralAsia ? "Подробнее →" : "Learn more →"}</p>
+              </Link>
+              <Link to="/volunteer-opportunities/business-training" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-[#C9922A]/50 transition-colors">
+                <p className="text-sm font-medium text-[#1B2A4A]">{isCentralAsia ? "Бизнес-тренер" : "Business Training"}</p>
+                <p className="text-xs text-gray-500 mt-1">{isCentralAsia ? "Подробнее →" : "Learn more →"}</p>
+              </Link>
+              <Link to="/volunteer-opportunities/administrative-support" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-[#C9922A]/50 transition-colors">
+                <p className="text-sm font-medium text-[#1B2A4A]">{isCentralAsia ? "Административная поддержка" : "Administrative Support"}</p>
+                <p className="text-xs text-gray-500 mt-1">{isCentralAsia ? "Подробнее →" : "Learn more →"}</p>
+              </Link>
+              <Link to="/volunteer-opportunities/advocacy-outreach" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-[#C9922A]/50 transition-colors">
+                <p className="text-sm font-medium text-[#1B2A4A]">{isCentralAsia ? "Адвокация и продвижение" : "Advocacy & Outreach"}</p>
+                <p className="text-xs text-gray-500 mt-1">{isCentralAsia ? "Подробнее →" : "Learn more →"}</p>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -501,13 +501,13 @@ Kyle's business now employs 25 people:
     id: "carter-digital-bazaar-boutique",
     name: "Carter Mahmudov", 
     business: "Digital Bazaar Boutique",
-    location: "Dushanbe, Tajikistan",
-    title: "E-Commerce Pioneer: How Carter Built Tajikistan's First Sustainable Online Marketplace",
-    excerpt: "From a small Etsy shop to Tajikistan's leading online marketplace for traditional crafts, Carter's journey showcases the power of digital commerce in emerging markets.",
-    heroImage: "/images/cc50db34-68ba-4cbf-a1a9-d6cc73e9f753.png",
-    beforeStory: `Carter Mahmudov was a computer science graduate working as an IT technician in Dushanbe, Tajikistan, earning a modest salary while dreaming of entrepreneurship. Inspired by his mother's traditional textile work and the beautiful crafts made by local artisans, he started a small Etsy shop to sell these products internationally.
+    location: "Tashkent, Uzbekistan",
+    title: "E-Commerce Pioneer: How Carter Built Uzbekistan's First Sustainable Online Marketplace",
+    excerpt: "From a small Etsy shop to Uzbekistan's leading online marketplace for traditional crafts, Carter's journey showcases the power of digital commerce in emerging markets.",
+    heroImage: "/images/carter-digital-bazaar-tashkent.png",
+    beforeStory: `Carter Mahmudov was a computer science graduate working as an IT technician in Tashkent, Uzbekistan, earning a modest salary while dreaming of entrepreneurship. Inspired by his mother's suzani embroidery and the beautiful crafts made by local artisans -- ceramics from Rishtan, atlas silk from Margilan, and intricate woodcarving from the Fergana Valley -- he started a small Etsy shop to sell these products internationally.
 
-His initial attempts generated minimal sales due to poor product photography, limited marketing knowledge, and challenges with international shipping. Despite the rich cultural heritage and exceptional craftsmanship available in Tajikistan, Carter struggled to connect local artisans with global customers who would appreciate their work.
+His initial attempts generated minimal sales due to poor product photography, limited marketing knowledge, and challenges with international shipping. Despite the rich cultural heritage and exceptional craftsmanship available in Uzbekistan, Carter struggled to connect local artisans with global customers who would appreciate their work.
 
 *"I knew we had incredible products that people around the world would love, but I couldn't figure out how to present them professionally or reach the right customers,"* Carter recalls. *"My technical background helped with the website basics, but I was missing all the business and marketing skills needed to succeed."*`,
 
@@ -523,7 +523,7 @@ His initial attempts generated minimal sales due to poor product photography, li
 - No systematic approach to digital marketing or social media
 - Limited English language skills affecting international customer communication
 - No understanding of SEO, paid advertising, or content marketing
-- Inability to build trust with international customers unfamiliar with Tajikistan
+- Inability to build trust with international customers unfamiliar with Uzbekistan
 
 **Supply Chain Management:**
 - Inconsistent product quality and delivery times from local artisans
@@ -573,20 +573,20 @@ Carter immersed himself in digital marketing education while improving basic ope
 - Completed 40-hour online marketing certification program
 - Redesigned website with professional template and improved navigation
 - Learned product photography using natural lighting and simple backdrops
-- Established relationships with 8 skilled artisans across Tajikistan
+- Established relationships with 8 skilled artisans across Uzbekistan
 - Set up proper business banking and international payment processing
 
 **Phase 2: Content and Marketing (Months 4-6)**
 Focus shifted to building brand presence and customer trust:
 - Created comprehensive social media strategy showcasing artisan stories
-- Developed blog content explaining traditional Tajik craft techniques
+- Developed blog content explaining traditional Uzbek craft techniques
 - Implemented SEO optimization targeting "Central Asian handicrafts" and similar keywords
 - Launched email newsletter featuring artisan spotlights and new product announcements
 - Established partnership with international craft bloggers for product features
 
 **Phase 3: Product Line Expansion (Months 7-9)**
 With improved systems, Carter expanded product offerings:
-- Added traditional Tajik textiles, pottery, and jewelry to complement existing items
+- Added traditional Uzbek suzani textiles, Rishtan ceramics, and atlas silk items to complement existing offerings
 - Developed seasonal collections tied to international holidays and events
 - Created gift sets and bundles to increase average order values
 - Implemented pre-order system for custom and made-to-order items
@@ -606,7 +606,7 @@ Carter transformed his operation into a comprehensive marketplace:
 Digital Bazaar Boutique generated $180,000 in revenue during its first year post-program, growing from Carter's initial $200/month to $18,000+ monthly revenue with 42% profit margins.
 
 **Platform Development:**
-- **Vendor Network**: 45+ artisan vendors from across Tajikistan and Central Asia
+- **Vendor Network**: 45+ artisan vendors from across Uzbekistan and Central Asia
 - **Product Catalog**: 800+ unique products across 12 categories
 - **International Reach**: Customers in 35+ countries with 60% sales to USA/Europe
 - **Customer Base**: 3,200+ registered customers with 35% repeat purchase rate
@@ -619,17 +619,17 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
 
 **Social Impact:**
 - **Artisan Support**: Providing sustainable income to 45+ traditional craftspeople
-- **Cultural Preservation**: International promotion of traditional Tajik craft techniques
-- **Economic Development**: Contributing to Tajikistan's emerging digital economy
+- **Cultural Preservation**: International promotion of traditional Uzbek craft techniques
+- **Economic Development**: Contributing to Uzbekistan's growing digital economy
 - **Women's Empowerment**: 70% of vendor network consists of female artisans`,
 
     impact: [
-      "Created sustainable income for 45+ traditional artisans across Tajikistan",
+      "Created sustainable income for 45+ traditional artisans across Uzbekistan",
       "Generated $180,000+ in first-year revenue with 42% profit margins",
       "Preserved and promoted traditional Central Asian craft techniques internationally",
-      "Established Tajikistan's first comprehensive online marketplace for traditional crafts",
+      "Established Uzbekistan's first comprehensive online marketplace for traditional crafts",
       "Provided economic opportunities for 70% female artisan network",
-      "Achieved international recognition in 35+ countries for Tajik craftsmanship",
+      "Achieved international recognition in 35+ countries for Uzbek craftsmanship",
       "Created scalable e-commerce model replicable in other emerging markets",
       "Demonstrated successful integration of traditional crafts with modern digital commerce"
     ],
@@ -650,7 +650,7 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
       {
         label: "International Customers",
         value: "35 Countries", 
-        description: "Global reach promoting Tajik cultural heritage"
+        description: "Global reach promoting Uzbek cultural heritage"
       },
       {
         label: "Conversion Rate",
@@ -720,9 +720,9 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
 - **Michael Kim** (DeBary) - Financial Advisor: Multi-currency accounting and international payment processing
 - **Sarah Johnson** (Orange City) - Content Marketing Expert: Blog strategy and storytelling for cultural products
 
-*"The volunteer team from Florida brought world-class e-commerce expertise to my small business in Tajikistan,"* Carter explains. *"Their guidance helped me think like a global marketplace while staying true to our local cultural heritage. They didn't just teach me business skills - they helped me become a bridge between traditional Central Asian craftsmanship and modern international commerce."*`,
+*"The volunteer team from Florida brought world-class e-commerce expertise to my small business in Uzbekistan,"* Carter explains. *"Their guidance helped me think like a global marketplace while staying true to our local cultural heritage. They didn't just teach me business skills - they helped me become a bridge between traditional Central Asian craftsmanship and modern international commerce."*`,
 
-    tags: ["E-Commerce", "Traditional Crafts", "Digital Marketing", "Cultural Preservation", "Tajikistan", "International Trade"],
+    tags: ["E-Commerce", "Traditional Crafts", "Digital Marketing", "Cultural Preservation", "Uzbekistan", "International Trade"],
     date: "February 18, 2026", 
     readTime: "16 min read"
   },
@@ -733,7 +733,7 @@ Digital Bazaar Boutique generated $180,000 in revenue during its first year post
     location: "Samarkand, Uzbekistan", 
     title: "Heritage Tourism Success: Building Uzbekistan's Premier Cultural Guest House Experience",
     excerpt: "How Stephanie transformed a family home into Uzbekistan's most sought-after cultural tourism destination, combining traditional hospitality with modern business practices.",
-    heroImage: "/images/4ace87e0-dafe-4ed6-8fe9-26b1206c0725.png",
+    heroImage: "/images/stephanie-silk-road-guest-house.png",
     beforeStory: `Stephanie Karimova owned a beautiful traditional home in Samarkand, Uzbekistan, near the famous Registan Square. With tourism growing in Central Asia and her children grown and moved away, she dreamed of transforming her family home into a guest house that would showcase traditional Uzbek hospitality while providing sustainable income.
 
 However, Stephanie had no experience in the hospitality industry, tourism marketing, or business management. Her idea remained just a dream as she struggled with questions about licensing, international marketing, customer service standards, and financial planning for such a significant undertaking.

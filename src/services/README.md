@@ -165,7 +165,7 @@ The subagent provides comprehensive quality scoring:
 ### Regional Targeting
 - Kazakhstan-specific content
 - Kyrgyzstan-specific content  
-- Tajikistan-specific content
+- Uzbekistan-specific content
 - General Central Asia content
 - Global development content
 

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
+import { getPublishedPosts } from "@/data/blogPosts";
 import { Calendar, ChevronDown, ChevronRight } from "lucide-react";
+import { useRegion } from "@/contexts/RegionContext";
 
 interface ArchiveEntry {
   year: number;
@@ -10,10 +11,19 @@ interface ArchiveEntry {
   posts: typeof blogPosts;
 }
 
+const MONTH_NAMES_RU: { [key: string]: string } = {
+  'January': 'Январь', 'February': 'Февраль', 'March': 'Март', 'April': 'Апрель',
+  'May': 'Май', 'June': 'Июнь', 'July': 'Июль', 'August': 'Август',
+  'September': 'Сентябрь', 'October': 'Октябрь', 'November': 'Ноябрь', 'December': 'Декабрь'
+};
+
 const BlogArchive = () => {
+  const { isCentralAsia } = useRegion();
   const [expandedYears, setExpandedYears] = useState<Set<number>>(new Set());
 
   // Parse dates and group by year/month
+  const blogPosts = getPublishedPosts();
+
   const archive = useMemo(() => {
     const months: { [key: string]: number } = {
       'January': 1, 'February': 2, 'March': 3, 'April': 4,
@@ -93,8 +103,8 @@ const BlogArchive = () => {
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="flex items-center gap-2 mb-4">
-        <Calendar className="h-5 w-5 text-purple-600" />
-        <h3 className="text-lg font-semibold text-gray-800">Archive</h3>
+        <Calendar className="h-5 w-5 text-[#C9922A]" />
+        <h3 className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Архив" : "Archive"}</h3>
       </div>
 
       <div className="space-y-2">
@@ -111,7 +121,7 @@ const BlogArchive = () => {
               )}
               <span className="font-medium text-gray-700">{year}</span>
               <span className="text-sm text-gray-500 ml-auto">
-                ({months.reduce((sum, m) => sum + m.posts.length, 0)} posts)
+                ({months.reduce((sum, m) => sum + m.posts.length, 0)} {isCentralAsia ? "статей" : "posts"})
               </span>
             </button>
 
@@ -120,14 +130,14 @@ const BlogArchive = () => {
                 {months.map(({ month, posts }) => (
                   <div key={`${year}-${month}`} className="py-1 px-3">
                     <div className="text-sm text-gray-600 font-medium mb-1">
-                      {month} ({posts.length})
+                      {isCentralAsia ? MONTH_NAMES_RU[month] || month : month} ({posts.length})
                     </div>
                     <ul className="space-y-1 ml-3">
                       {posts.map(post => (
                         <li key={post.id}>
                           <Link
                             to={`/blog/${post.slug}`}
-                            className="text-sm text-gray-500 hover:text-purple-600 transition-colors line-clamp-1"
+                            className="text-sm text-gray-500 hover:text-[#C9922A] transition-colors line-clamp-1"
                           >
                             {post.title}
                           </Link>

@@ -1,73 +1,159 @@
 
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import { BookOpen, Users2, Lightbulb, Target } from "lucide-react";
 import ProgramCard from "./ProgramCard";
+import { useRegion } from "@/contexts/RegionContext";
 
-const programs = [
+const programsEn = [
   {
-    title: "Three-Thirds Financial Discipleship",
-    description: "Proven biblical financial education using the Three-Thirds method: Look Back → Look Up → Look Forward for lasting transformation and multiplication.",
-    icon: Target,
+    stage: "ACTIVATE",
+    title: "Financial Literacy Training",
+    tagline: "The starting line. Open to anyone willing to show up.",
+    description:
+      "This is where it begins. Free, practical financial education -- budgeting, saving, planning, managing debt. No prerequisites. No application. Just show up, do the work, and learn the skills that most people were never taught. The people who stay consistent are the ones who move forward.",
     details: [
-      "10-week comprehensive curriculum with 6-week and 4-week accelerated tracks",
-      "Biblical stewardship training with practical budgeting and debt elimination",
-      "Gospel integration tools (Two Kingdoms and Three Circles) for sharing faith",
-      "Multiplication focus: participants trained to facilitate new groups",
-      "100% completion success rate with ongoing accountability support"
+      "6-week and 10-week tracks covering real-world money management",
+      "Hands-on budgeting, debt elimination, and savings strategies",
+      "No bank account or income level required -- built for real life",
+      "Participants who complete the course can apply to facilitate future groups",
     ],
     cta: {
-      text: "Join Next Cohort",
-      link: "/programs/financial-literacy"
-    }
+      participantText: "Start the Free Course",
+      participantLink: "/programs/financial-literacy",
+      donorText: "Fund a Cohort",
+      donorLink: "/get-involved",
+    },
+    color: "navy" as const,
+    hideForCa: false,
   },
   {
+    stage: "EQUIP",
     title: "Business Creation Training",
-    description: "Comprehensive 12-week entrepreneurship program using Lean Startup methodology, Business Model Canvas, and hands-on MVP development for emerging market entrepreneurs.",
-    icon: BookOpen,
+    tagline: "For the ones who proved they're serious.",
+    description:
+      "Not everyone gets here. This stage is for people who completed financial literacy training and demonstrated they're ready for more. We walk alongside them to identify local opportunity, build a real business model, and develop the skills to execute. Twelve weeks. Hands-on. No shortcuts.",
     details: [
-      "4-module intensive program: Think Like Entrepreneur → Shape Business Model → Validate Assumptions → Build Traction",
-      "72 total hours over 3 months with hands-on workshops and real customer validation",
-      "Lean Startup methodology, Business Model Canvas, and MVP development using modern tools",
-      "Customer discovery, market validation, and investment-ready pitch creation",
-      "90% of participants launch viable businesses within 6 months with ongoing mentorship"
+      "12-week intensive: business planning, market validation, and launch preparation",
+      "Lean Startup methodology adapted for developing economies",
+      "Real customer discovery -- not theory, but talking to actual people",
+      "Mentorship from experienced entrepreneurs throughout the process",
     ],
     cta: {
-      text: "Join Next Cohort",
-      link: "/programs/business-creation"
-    }
+      participantText: "Start the Course",
+      participantLink: "/course/business-creation",
+      donorText: "Sponsor a Participant",
+      donorLink: "/get-involved",
+    },
+    color: "gold" as const,
+    hideForCa: false,
   },
   {
-    title: "Leadership Development & Mentorship",
-    description: "Launching comprehensive 12-month leadership program using the proven 70-20-10 model. VOLUNTEER MENTORS NEEDED to guide emerging leaders through transformational development.",
-    icon: Users2,
+    stage: "EMPOWER",
+    title: "Startup Capital",
+    tagline: "A real investment in a real person who earned it.",
+    description:
+      "This is not charity. This is a chance -- given to someone who completed the training, built the plan, and proved they can follow through. Startup capital to launch a real business. A $2,000 loan for materials becomes $4,000 in revenue within six months. A father stays instead of leaving. Children stay in school. A family stays whole.",
     details: [
-      "🚀 NEW PROGRAM - Currently recruiting experienced leaders as volunteer mentors",
-      "3-phase program: Foundation → Skill Development → Mastery & Multiplication",
-      "70% experiential learning, 20% mentorship, 10% formal training methodology",
-      "Emotional intelligence, servant leadership, and transformational leadership focus",
-      "Seeking executives, entrepreneurs, and senior leaders to mentor next generation"
+      "Startup capital for graduates who demonstrate readiness",
+      "3-year loan terms designed to set businesses up for success",
+      "Ongoing mentorship and accountability during the launch phase",
+      "Every dollar invested is tracked to real, measurable outcomes",
     ],
     cta: {
-      text: "Volunteer as Mentor",
-      link: "/programs/leadership-development"
-    }
+      participantText: "See What It Takes",
+      participantLink: "/programs/business-creation",
+      donorText: "Fund a Business Launch",
+      donorLink: "/get-involved",
+    },
+    color: "navy" as const,
+    hideForCa: true,
   },
   {
-    title: "Community Collaboration Network",
-    description: "Building volunteer-driven community partnerships to connect entrepreneurs, businesses, and organizations for sustainable local impact. VOLUNTEERS NEEDED to help launch this initiative.",
-    icon: Lightbulb,
+    stage: "MULTIPLY",
+    title: "Community Leadership",
+    tagline: "They build. They share. They become the ones who give.",
+    description:
+      "This is the part most organizations never get to. Graduates don't just build businesses -- they become the people who teach the next group. They facilitate financial literacy classes. They mentor new entrepreneurs. They hire from their own community. Hope stops being something they received and becomes something they give.",
     details: [
-      "🚀 NEW PROGRAM - Seeking volunteers to help build community partnerships",
-      "Volunteer coordinators needed for cross-sector partnership development",
-      "Community organizers wanted for resource sharing network facilitation",
-      "Looking for business professionals to lead collaborative project initiatives",
-      "Help us connect entrepreneurs with mentors, resources, and opportunities"
+      "Graduates trained to facilitate financial literacy courses in their community",
+      "Peer mentorship matching -- experienced builders guiding new participants",
+      "Local leadership development so programs sustain themselves",
+      "The goal: communities that no longer need BBB to keep going",
     ],
     cta: {
-      text: "Volunteer to Build Community",
-      link: "/programs/community-collaboration"
-    }
+      participantText: "See the Full Journey",
+      participantLink: "/programs/leadership-development",
+      donorText: "Invest in Multiplication",
+      donorLink: "/get-involved",
+    },
+    color: "gold" as const,
+    hideForCa: false,
+  },
+];
+
+const programsRu = [
+  {
+    stage: "АКТИВАЦИЯ",
+    title: "Обучение финансовой грамотности",
+    tagline: "Начальная точка. Открыто для всех, кто готов учиться.",
+    description:
+      "Здесь всё начинается. Бесплатное практическое финансовое образование -- бюджет, накопления, планирование, управление долгами. Без предварительных условий. Без заявки. Просто приходите, работайте и учитесь навыкам, которым большинство людей никогда не учили.",
+    details: [
+      "Курсы на 6 и 10 недель по управлению финансами в реальной жизни",
+      "Практические навыки бюджетирования, устранения долгов и стратегий накопления",
+      "Не требуется банковский счёт или определённый уровень дохода",
+      "Выпускники могут стать фасилитаторами будущих групп",
+    ],
+    cta: {
+      participantText: "Начать бесплатный курс",
+      participantLink: "/programs/financial-literacy",
+      donorText: "",
+      donorLink: "",
+    },
+    color: "navy" as const,
+    hideForCa: false,
+  },
+  {
+    stage: "ПОДГОТОВКА",
+    title: "Обучение созданию бизнеса",
+    tagline: "Для тех, кто доказал свою серьёзность.",
+    description:
+      "Не все доходят до этого этапа. Он для тех, кто завершил курс финансовой грамотности и готов к большему. Мы помогаем найти возможности, построить реальную бизнес-модель и развить навыки для реализации. Двенадцать недель. Практика. Без сокращений.",
+    details: [
+      "12-недельный интенсив: бизнес-планирование, проверка рынка и подготовка к запуску",
+      "Методология Lean Startup, адаптированная для развивающихся экономик",
+      "Реальное исследование клиентов -- не теория, а разговоры с людьми",
+      "Наставничество от опытных предпринимателей на протяжении всего процесса",
+    ],
+    cta: {
+      participantText: "Начать курс",
+      participantLink: "/course/business-creation",
+      donorText: "",
+      donorLink: "",
+    },
+    color: "gold" as const,
+    hideForCa: false,
+  },
+  {
+    stage: "УМНОЖЕНИЕ",
+    title: "Лидерство в сообществе",
+    tagline: "Они строят. Они делятся. Они становятся теми, кто помогает.",
+    description:
+      "Это то, до чего большинство организаций не доходит. Выпускники не просто строят бизнес -- они становятся теми, кто учит следующую группу. Они ведут курсы финансовой грамотности. Они наставляют новых предпринимателей. Они нанимают людей из своего сообщества.",
+    details: [
+      "Выпускники обучаются проводить курсы финансовой грамотности в своём сообществе",
+      "Менторство: опытные предприниматели помогают новым участникам",
+      "Развитие местного лидерства для устойчивости программ",
+      "Цель: сообщества, которым больше не нужна BBB для продолжения роста",
+    ],
+    cta: {
+      participantText: "Узнать весь путь",
+      participantLink: "/programs/leadership-development",
+      donorText: "",
+      donorLink: "",
+    },
+    color: "gold" as const,
+    hideForCa: false,
   },
 ];
 
@@ -76,34 +162,50 @@ const ProgramsSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+
+  const programs = isCentralAsia
+    ? programsRu
+    : programsEn.filter((p) => !(isCentralAsia && p.hideForCa));
+
+  // Re-index after filtering (so numbers stay sequential)
+  const filteredPrograms = isCentralAsia
+    ? programs
+    : programsEn.filter((p) => !p.hideForCa || !isRegionCentralAsia);
 
   return (
     <div className="container mx-auto px-4 py-16">
-      <div className="max-w-4xl mx-auto mb-12 text-center">
-        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-          <BookOpen className="w-4 h-4" />
-          Comprehensive Training Programs
-        </div>
+      <div className="max-w-4xl mx-auto mb-16 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-          Proven Programs Delivering 
-          <span className="text-blue-600"> 100% Success Rate</span>
+          {isCentralAsia ? "Как это работает" : "How It Works"}
         </h2>
-        <p className="text-lg text-gray-600 leading-relaxed">
-          <strong className="text-gray-800">Our dedicated volunteers</strong> deliver world-class business training programs
-          designed to empower entrepreneurs in Central Asia. Our <strong className="text-gray-800">remote-first team</strong> has
-          achieved measurable success through comprehensive, culturally-sensitive business education.
+        <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          {isCentralAsia
+            ? "BBB не раздаёт деньги. Мы даём возможность тем, кто доказал, что готов. Каждый этап заслужен. Каждый шаг вперёд — доказательство того, что человек строит что-то настоящее."
+            : "BBB does not give things away. We give opportunity to people who demonstrate they are ready for it. Each stage is earned. Each step forward is proof that someone is building something real."}
         </p>
       </div>
 
-      <div
-        ref={ref}
-        className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
-        {programs.map((program, index) => (
-          <ProgramCard key={index} {...program} />
-        ))}
+      {/* Journey Path Connector */}
+      <div className="relative">
+        {/* Vertical connector line (hidden on mobile) */}
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1B2A4A] via-[#C9922A] to-[#1B2A4A] -translate-x-1/2 z-0" />
+
+        <div
+          ref={ref}
+          className={`space-y-12 md:space-y-16 relative z-10 transition-all duration-700 ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          {filteredPrograms.map((program, index) => (
+            <ProgramCard
+              key={index}
+              {...program}
+              index={index}
+              hideDonorButton={isCentralAsia}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
