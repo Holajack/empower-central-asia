@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-15",
+    "lastUpdated": "2026-03-16",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -17,7 +17,10 @@
       "morning-study-routine-students",
       "how-to-take-better-notes-in-college",
       "how-to-focus-while-studying",
-      "burnout-prevention-college-students"
+      "burnout-prevention-college-students",
+      "cornell-notes-method-guide",
+      "deep-work-student-guide",
+      "how-to-study-with-adhd"
     ]
   },
   "topics": [
@@ -79,7 +82,7 @@
         "study organization",
         "academic success"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "mind-mapping-for-studying",
@@ -427,7 +430,7 @@
         "focused study",
         "Cal Newport"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-remember-what-you-read",
@@ -463,7 +466,7 @@
         "ADHD students",
         "focus strategies"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "study-streaks-habit-formation",
