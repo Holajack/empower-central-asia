@@ -62,7 +62,7 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>{isCentralAsia ? "Свяжитесь с нами | Businesses Beyond Borders" : "Contact Us | Businesses Beyond Borders"}</title>
+        <title>{isCentralAsia ? "Свяжитесь с нами | BBB" : "Contact Us | Businesses Beyond Borders"}</title>
         <meta
           name="description"
           content={isCentralAsia
