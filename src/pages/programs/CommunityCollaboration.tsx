@@ -9,6 +9,7 @@ import UpcomingEvents from "@/components/programs/UpcomingEvents";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { generateFAQSchema } from "@/lib/seo";
 
 const CommunityCollaboration = () => {
   const { isCentralAsia } = useRegion();
@@ -112,6 +113,30 @@ const CommunityCollaboration = () => {
             },
             "url": "https://businessesbeyondborders.com/programs/community-collaboration"
           })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema([
+            {
+              question: "What is the Community Collaboration Network?",
+              answer: "The Community Collaboration Network is a volunteer-driven initiative by Businesses Beyond Borders that connects entrepreneurs, businesses, and organizations to build sustainable local partnerships for economic development and social impact in Central Asia and beyond."
+            },
+            {
+              question: "How can I volunteer with the Community Collaboration Network?",
+              answer: "Volunteers are needed in several roles including community coordinators, partnership facilitators, business professionals, and event organizers. The program is designed to be run by volunteers with approximately 2 hours per week of commitment. Apply through the BBB website to get involved."
+            },
+            {
+              question: "When will the Community Collaboration Network launch?",
+              answer: "The program launches in three phases: Phase 1 (Foundation Building, Q2 2026) focuses on recruiting 15-20 volunteer coordinators and building infrastructure; Phase 2 (Program Launch, Q3 2026) includes the inaugural community forum and digital platform launch; Phase 3 (Growth and Impact, Q4 2026 onward) scales the network to 200+ members."
+            },
+            {
+              question: "What skills do I need to volunteer with the Community Collaboration Network?",
+              answer: "Useful skills include community organizing, partnership development, event planning, business networking, project coordination, and communication. The program welcomes volunteers from all professional backgrounds who share a passion for entrepreneurship and community development."
+            },
+            {
+              question: "Is the Community Collaboration Network only for Central Asia?",
+              answer: "While the network has a strong focus on Central Asia, it connects entrepreneurs, businesses, and organizations worldwide. The digital collaboration platform will enable global participation and partnership-building across geographic boundaries."
+            },
+          ]))}
         </script>
       </Helmet>
     <div className="min-h-screen bg-gray-50">

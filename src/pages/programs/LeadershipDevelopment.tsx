@@ -27,6 +27,7 @@ import {
 import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-course";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { generateFAQSchema } from "@/lib/seo";
 
 const LeadershipDevelopment = () => {
   const { isCentralAsia } = useRegion();
@@ -91,6 +92,34 @@ const LeadershipDevelopment = () => {
           rel="canonical"
           href="https://businessesbeyondborders.com/programs/leadership-development"
         />
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema([
+            {
+              question: "Is the Leadership Development Program free?",
+              answer: "Yes, the 12-week self-paced online course is 100% free. A mentored cohort-based program is also available for those who prefer guided group learning with one-on-one mentorship sessions."
+            },
+            {
+              question: "What are the prerequisites for the Leadership Development Program?",
+              answer: "The Leadership Development Program is designed to follow the 12-Week Business Creation Course, which provides the entrepreneurship foundation that leadership skills build upon."
+            },
+            {
+              question: "What leadership topics does the program cover?",
+              answer: "The 12-week program covers emotional intelligence and self-leadership, communication and influence skills, team building and management, conflict resolution, strategic thinking, change management, and organizational leadership — built on research by Covey, Goleman, Kotter, and other leading experts."
+            },
+            {
+              question: "How is the Leadership Development Program structured?",
+              answer: "The program is organized into four modules over 12 weeks: self-leadership (Weeks 1-3), leading others (Weeks 4-6), team leadership (Weeks 7-9), and organizational leadership (Weeks 10-12). Each module follows a Learn-Practice-Lead framework."
+            },
+            {
+              question: "What will I be able to do after completing the Leadership Development Program?",
+              answer: "Graduates develop emotional intelligence and self-leadership mastery, communication and influence skills, the ability to build and manage high-performance teams, values-based decision-making confidence, conflict resolution abilities, and a personal leadership legacy statement."
+            },
+            {
+              question: "Is there a cohort option for the Leadership Development Program?",
+              answer: "Yes. In addition to the self-paced online course, BBB offers a mentored leadership program with facilitator guidance, group discussions, one-on-one mentorship sessions, accountability partnerships, and a certificate of completion."
+            },
+          ]))}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

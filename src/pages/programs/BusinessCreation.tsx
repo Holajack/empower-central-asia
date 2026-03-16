@@ -9,6 +9,7 @@ import UpcomingEvents from "@/components/programs/UpcomingEvents";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { generateFAQSchema } from "@/lib/seo";
 
 const BusinessCreation = () => {
   const { isCentralAsia } = useRegion();
@@ -55,6 +56,34 @@ const BusinessCreation = () => {
             "educationalCredentialAwarded": "Certificate of Completion",
             "url": "https://businessesbeyondborders.com/programs/business-creation"
           })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema([
+            {
+              question: "What is the Business Creation Training Program?",
+              answer: "The Business Creation Training Program is a 12-week intensive entrepreneurship program that uses Lean Startup methodology and Business Model Canvas to take participants from a business idea to a market-ready venture. It includes 72 hours of training, 4 progressive modules, and 1:1 mentorship support."
+            },
+            {
+              question: "What does the 12-week Business Creation curriculum cover?",
+              answer: "The curriculum is divided into 4 modules: Module 1 (Weeks 1-3) covers entrepreneurial mindset and Lean Startup methodology; Module 2 (Weeks 4-6) covers Business Model Canvas and value proposition design; Module 3 (Weeks 7-9) covers customer validation and data-driven decision making; Module 4 (Weeks 10-12) covers MVP development, product-market fit, and investor pitch creation."
+            },
+            {
+              question: "What is the success rate of the Business Creation Program?",
+              answer: "90% of participants launch a viable business within 6 months of completing the program. Graduates have collectively generated over $2 million in revenue and created 100+ jobs. The program maintains an 85% completion rate."
+            },
+            {
+              question: "How much does the Business Creation Program cost?",
+              answer: "Scholarships are available to make the program accessible. Contact the BBB program team for details on current cohort costs and scholarship availability."
+            },
+            {
+              question: "What tools and resources are included in the Business Creation Program?",
+              answer: "Participants get access to professional tools including Miro/Mural for Business Model Canvas collaboration, Figma for MVP prototyping and design, Typeform for customer validation surveys, and financial modeling templates for projections."
+            },
+            {
+              question: "When does the next Business Creation cohort start?",
+              answer: "The next Business Creation cohort starts April 15, 2026. Cohorts meet Tuesday and Thursday evenings from 6-9 PM in a hybrid format (in-person and online), with 12-15 entrepreneurs per cohort. Apply through the BBB website to reserve your spot."
+            },
+          ]))}
         </script>
       </Helmet>
     <div className="min-h-screen bg-gray-50">

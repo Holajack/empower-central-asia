@@ -54,6 +54,31 @@ const staticRoutes: SitemapEntry[] = [
   // Course pages
   { loc: '/course/financial-literacy', changefreq: 'monthly', priority: 0.8 },
   { loc: '/course/business-creation', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/course/leadership-development', changefreq: 'monthly', priority: 0.8 },
+
+  // Course week pages - Financial Literacy (6 weeks)
+  ...Array.from({ length: 6 }, (_, i) => ({
+    loc: `/course/financial-literacy/week-${i + 1}`,
+    changefreq: 'monthly' as const,
+    priority: 0.5,
+    lastmod: '2026-03-15',
+  })),
+
+  // Course week pages - Business Creation (12 weeks)
+  ...Array.from({ length: 12 }, (_, i) => ({
+    loc: `/course/business-creation/week-${i + 1}`,
+    changefreq: 'monthly' as const,
+    priority: 0.5,
+    lastmod: '2026-03-15',
+  })),
+
+  // Course week pages - Leadership Development (12 weeks)
+  ...Array.from({ length: 12 }, (_, i) => ({
+    loc: `/course/leadership-development/week-${i + 1}`,
+    changefreq: 'monthly' as const,
+    priority: 0.5,
+    lastmod: '2026-03-15',
+  })),
 
   // Tools & Resources
   { loc: '/tools/debt-calculator', changefreq: 'monthly', priority: 0.7 },

@@ -26,6 +26,7 @@ import {
 import { courseWeeks } from "@/data/courseContent";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { generateFAQSchema } from "@/lib/seo";
 
 const FinancialLiteracy = () => {
   const { isCentralAsia } = useRegion();
@@ -90,6 +91,34 @@ const FinancialLiteracy = () => {
           rel="canonical"
           href="https://businessesbeyondborders.com/programs/financial-literacy"
         />
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema([
+            {
+              question: "Is the Financial Literacy Program really free?",
+              answer: "Yes, the program is 100% free with no login required. The self-paced 6-week online course and all interactive tools are available at no cost, forever."
+            },
+            {
+              question: "How long does the Financial Literacy Program take to complete?",
+              answer: "The self-paced online course is 6 weeks long. A more comprehensive cohort-based version runs 10 weeks with facilitator-led group sessions. Both options allow you to go at your own speed."
+            },
+            {
+              question: "What topics does the Financial Literacy Program cover?",
+              answer: "The program covers zero-based budgeting, debt elimination strategies (including snowball and avalanche methods), emergency fund planning, income diversification, saving strategies, and the principles of generous giving."
+            },
+            {
+              question: "Do I need any prior financial knowledge to join?",
+              answer: "No prerequisites are required. The program is open to all backgrounds and is designed to be accessible to anyone who wants to take control of their financial future."
+            },
+            {
+              question: "What is the difference between the 6-week course and the 10-week cohort program?",
+              answer: "The 6-week self-paced online course lets you start anytime and progress at your own speed. The 10-week cohort program includes facilitator-led group sessions, accountability partnerships, and a certificate of completion — ideal for those who thrive in a community setting."
+            },
+            {
+              question: "What interactive tools are included in the program?",
+              answer: "The program includes a Debt Payoff Calculator (comparing snowball vs. avalanche strategies), guided budget worksheets for building a zero-based budget, and a Financial Snapshot self-assessment tool available in Week 1."
+            },
+          ]))}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

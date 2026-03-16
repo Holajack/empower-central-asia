@@ -357,10 +357,17 @@ const BlogDetail = () => {
               {isCentralAsia ? "Об авторе" : "About the Author"}
             </h4>
             <p className="text-gray-600">
-              <strong>{post.author}</strong>{" "}
-              {isCentralAsia
-                ? "— основатель Businesses Beyond Borders, общественной организации, которая демонстрирует принципы, изложенные в этом руководстве, через программы поддержки предпринимателей в Центральной Азии."
-                : "is the founder of Businesses Beyond Borders, a community-based nonprofit demonstrating the principles outlined in this guide through programs empowering entrepreneurs in Central Asia. The organization serves as a real-world case study for community-based international development, engaging local volunteers remotely while creating measurable global impact."}
+              {post.authorBio
+                ? post.authorBio
+                : (
+                  <>
+                    <strong>{post.author}</strong>{" "}
+                    {isCentralAsia
+                      ? "— основатель Businesses Beyond Borders, общественной организации, которая демонстрирует принципы, изложенные в этом руководстве, через программы поддержки предпринимателей в Центральной Азии."
+                      : "is the founder of Businesses Beyond Borders, a community-based nonprofit demonstrating the principles outlined in this guide through programs empowering entrepreneurs in Central Asia. The organization serves as a real-world case study for community-based international development, engaging local volunteers remotely while creating measurable global impact."}
+                  </>
+                )
+              }
             </p>
           </div>
 
