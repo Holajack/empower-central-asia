@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Sun, 15 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 16 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/bbb-logo.png</url>
@@ -20,6 +20,36 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>What Is Compound Interest and Why It Matters</title>
+    <link>https://businessesbeyondborders.com/blog/what-is-compound-interest-and-why-it-matters</link>
+    <description>Compound interest is the most powerful force in personal finance. Understand the formula, the Rule of 72, and why two-thirds of adults globally can&apos;t answer a basic compound interest question.</description>
+    <pubDate>Mon, 16 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/what-is-compound-interest-and-why-it-matters</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>compound interest</category>
+    <category>financial literacy</category>
+    <category>investing</category>
+    <category>personal finance</category>
+    <category>wealth building</category>
+    <enclosure url="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>How to Set Financial Goals That Stick</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-set-financial-goals-that-stick</link>
+    <description>Most financial goals fail by February. Learn the behavioral science and SMART framework that actually makes financial goals stick — with data from 40,000+ studies.</description>
+    <pubDate>Mon, 16 Mar 2026 10:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-set-financial-goals-that-stick</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>financial goals</category>
+    <category>personal finance</category>
+    <category>SMART goals</category>
+    <category>financial planning</category>
+    <category>budgeting</category>
+    <enclosure url="https://images.unsplash.com/photo-1434626881859-194d67b2b86f" type="image/jpeg" />
+  </item>
 
   <item>
     <title>Micro Business Ideas for Developing Countries</title>
