@@ -120,7 +120,7 @@ export default function ResourceDetail() {
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
-        <title>{`${resource.title} - Free Download | Businesses Beyond Borders`}</title>
+        <title>{`${resource.title} - Free Download | BBB`}</title>
         <meta name="description" content={resource.description} />
         <meta name="keywords" content={resource.keywords.join(", ")} />
         <meta name="robots" content="index, follow" />

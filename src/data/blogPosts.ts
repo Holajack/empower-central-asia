@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     slug: "why-entrepreneurship-is-the-most-sustainable-form-of-foreign-aid",
-    title: "Why Entrepreneurship Is the Most Sustainable Form of Foreign Aid",
+    title: "Why Entrepreneurship Beats Foreign Aid",
     excerpt: "The world spends over $200 billion a year on foreign aid, yet poverty persists in the same places it always has. What if the most powerful intervention isn't a donation -- but a business plan?",
     summary: "Despite $214 billion in annual foreign aid, poverty persists because most aid addresses symptoms rather than root causes and often creates dependency. Research shows that bundled entrepreneurship programs combining training, mentoring, and startup capital produce 133-433% returns on investment and create self-sustaining economic growth that traditional aid cannot match. BBB's four-stage model in Central Asia demonstrates how teaching people to build businesses produces permanent income, local employment, and community resilience without requiring ongoing external funding.",
     summaryRu: "Несмотря на $214 миллиардов ежегодной иностранной помощи, бедность сохраняется, поскольку большая часть помощи устраняет симптомы, а не коренные причины, и часто создаёт зависимость. Исследования показывают, что комплексные программы предпринимательства, сочетающие обучение, наставничество и стартовый капитал, приносят 133-433% возврата на инвестиции и создают устойчивый экономический рост, недостижимый для традиционной помощи. Четырёхэтапная модель BBB в Центральной Азии демонстрирует, как обучение людей строить бизнес создаёт постоянный доход, местную занятость и устойчивость общества без необходимости в постоянном внешнем финансировании.",
@@ -197,7 +197,7 @@ The question isn't whether entrepreneurship is a better approach to development 
   {
     id: 2,
     slug: "what-central-asia-taught-us-about-resilience-and-business",
-    title: "What Central Asia Taught Us About Resilience and Business",
+    title: "Central Asia: Lessons in Resilience and Business",
     excerpt: "Most Americans couldn't find Kyrgyzstan on a map. But the people there have been building businesses under conditions that would break most entrepreneurs we know -- and they've been doing it for centuries.",
     summary: "Central Asia's entrepreneurs survived the Soviet collapse, civil wars, and currency crises by drawing on centuries of Silk Road trading heritage and community traditions like ashar (collective mutual aid). The region's bazaar culture teaches relationship-based commerce, radical adaptability, and resilience that formal business education rarely covers. BBB learned that effective development means equipping people with modern financial tools to complement deep entrepreneurial instincts that already exist -- not importing expertise from the outside.",
     summaryRu: "Предприниматели Центральной Азии пережили распад СССР, гражданские войны и валютные кризисы, опираясь на многовековые торговые традиции Шёлкового пути и общинные практики, такие как ашар (коллективная взаимопомощь). Базарная культура региона учит торговле, основанной на отношениях, радикальной адаптивности и стойкости, которые редко охватывает формальное бизнес-образование. BBB осознала, что эффективное развитие означает предоставление людям современных финансовых инструментов в дополнение к глубоким предпринимательским инстинктам, которые уже существуют, а не импорт экспертизы извне.",
@@ -299,7 +299,7 @@ If you want to be part of this -- as a donor, a mentor, or simply someone who be
   {
     id: 3,
     slug: "how-one-nonprofit-is-rethinking-poverty-without-handouts",
-    title: "How One Nonprofit Is Rethinking Poverty -- Without Handouts",
+    title: "Rethinking Poverty Without Handouts",
     excerpt: "Most charity creates dependency. BBB was built on a different premise: that the most powerful thing you can give someone isn't money -- it's the chance to earn their own way forward.",
     summary: "Founded by Jacken Holland, who grew up in a Haitian orphanage and saw firsthand how sustained aid creates dependency rather than independence, BBB uses a four-stage earned-opportunity model where each level -- financial literacy, business creation training, startup capital, and community leadership -- must be earned through demonstrated commitment. This filter-based approach ensures startup capital goes only to people who have already built the skills and track record to use it effectively, producing measurable outcomes instead of vague promises of impact.",
     summaryRu: "Основанная Джекеном Холландом, выросшим в гаитянском приюте и видевшим, как постоянная помощь создаёт зависимость вместо самостоятельности, BBB использует четырёхэтапную модель заработанных возможностей, где каждый уровень -- финансовая грамотность, обучение созданию бизнеса, стартовый капитал и лидерство в сообществе -- необходимо заслужить через продемонстрированную приверженность. Такой подход с фильтрацией гарантирует, что стартовый капитал получают только те, кто уже развил навыки и послужной список для его эффективного использования, обеспечивая измеримые результаты вместо расплывчатых обещаний.",
@@ -411,7 +411,7 @@ If you're tired of giving to organizations that can't tell you what your money a
   {
     id: 4,
     slug: "debt-snowball-vs-avalanche-which-actually-works",
-    title: "The Debt Snowball vs. Avalanche Method: Which Actually Works?",
+    title: "Debt Snowball vs. Avalanche: Which Works?",
     excerpt: "Two popular strategies for paying off debt. One saves you more money. The other might actually get you to the finish line. Here's how to figure out which one is right for you.",
     summary: "The debt snowball (smallest balance first) and debt avalanche (highest interest first) are both valid strategies, but they serve different psychological profiles. The avalanche saves more money mathematically, while the snowball's quick wins keep people motivated to finish -- and research confirms that behavioral momentum matters more than interest optimization for most borrowers. The best strategy is whichever one you will actually stick with month after month until the debt is gone.",
     summaryRu: "Метод «снежного кома» (начиная с наименьшего долга) и «лавины» (начиная с наибольшей процентной ставки) -- обе стратегии работают, но подходят разным психологическим типам. «Лавина» экономит больше денег математически, тогда как быстрые победы «снежного кома» поддерживают мотивацию -- и исследования подтверждают, что поведенческий импульс важнее оптимизации процентов для большинства заёмщиков. Лучшая стратегия -- та, которой вы действительно будете следовать месяц за месяцем, пока долг не будет погашен.",
@@ -550,7 +550,7 @@ If you want to go deeper -- if you want the full curriculum that covers budgetin
   {
     id: 5,
     slug: "5-financial-habits-first-generation-entrepreneurs",
-    title: "5 Financial Habits That Changed Everything for First-Generation Entrepreneurs",
+    title: "5 Financial Habits for New Entrepreneurs",
     excerpt: "You didn't grow up watching your parents run a business. Nobody taught you how to manage money that isn't a paycheck. Here are the five habits that separate first-generation entrepreneurs who make it from those who don't.",
     summary: "First-generation entrepreneurs lack the intergenerational business knowledge that family-business kids absorb passively, and 82% of small business failures cite poor cash flow management as a factor. The five critical habits are: separate personal and business finances from day one, pay yourself a fixed amount rather than whatever is left over, build an emergency fund before scaling, track every transaction obsessively, and learn to read basic financial statements. These practices close the knowledge gap that no single workshop can fill.",
     summaryRu: "Предприниматели в первом поколении не имеют межпоколенческих бизнес-знаний, которые дети из предпринимательских семей усваивают естественным образом, и 82% неудач малого бизнеса связаны с плохим управлением денежными потоками. Пять критических привычек: разделяйте личные и деловые финансы с первого дня, платите себе фиксированную сумму, а не остаток, создайте резервный фонд до масштабирования, отслеживайте каждую транзакцию и научитесь читать базовую финансовую отчётность. Эти практики закрывают пробел в знаниях, который не может восполнить ни один семинар.",
@@ -808,7 +808,7 @@ If you believe that everyone deserves a fair shot at financial independence, reg
   {
     id: 7,
     slug: "from-a-haitian-orphanage-to-founding-a-nonprofit-jackens-story",
-    title: "From a Haitian Orphanage to Founding a Nonprofit: Jacken's Story",
+    title: "From Orphanage to Nonprofit: Jacken's Story",
     excerpt: "BBB's founder grew up in an orphanage in Haiti, one of the poorest countries in the Western Hemisphere. That experience didn't just shape his worldview -- it became the blueprint for how Businesses Beyond Borders approaches poverty, entrepreneurship, and earned opportunity.",
     summary: "Jacken Holland grew up inside Haiti's aid system -- a country that received over $20 billion in aid yet remained among the poorest in the hemisphere -- and learned firsthand that poverty is a systems problem, not a character problem. Living on the receiving end of charity taught him that sustained aid without capacity-building erodes self-sufficiency, and that the people he grew up around had remarkable capability but were never given the tools to deploy it. That lived experience became the founding philosophy of BBB: earned opportunity over received charity.",
     summaryRu: "Джекен Холланд вырос внутри системы помощи Гаити -- страны, получившей более $20 миллиардов помощи, но оставшейся одной из беднейших в полушарии -- и на собственном опыте узнал, что бедность -- это системная проблема, а не проблема характера. Жизнь на принимающей стороне благотворительности научила его, что постоянная помощь без развития потенциала подрывает самостоятельность, а люди, среди которых он вырос, обладали выдающимися способностями, но никогда не получали инструментов для их реализации. Этот жизненный опыт стал основой философии BBB: заработанные возможности вместо полученной благотворительности.",
@@ -924,7 +924,7 @@ The experience of growing up poor doesn't automatically make someone an expert i
   {
     id: 8,
     slug: "bridging-two-worlds-how-yeva-brings-central-asian-insight-to-american-nonprofits",
-    title: "Bridging Two Worlds: How Yeva Brings Central Asian Insight to American Nonprofits",
+    title: "Bridging Two Worlds: Yeva's Nonprofit Story",
     excerpt: "Most nonprofits working in Central Asia are run by people who've never lived there. BBB's Co-Founder and COO grew up in Kyrgyzstan, experienced economic instability firsthand, and now uses that perspective to build programs that actually work on the ground.",
     summary: "International development programs frequently fail because they are designed by people who have never lived in the communities they serve, creating culturally tone-deaf curricula and approaches that participants politely ignore. Yeva Romanova, BBB's Co-Founder and COO, grew up in Kyrgyzstan during the post-Soviet economic collapse and brings the kind of deep cultural knowledge that no site visit or consultant review can replicate. Her insider perspective shapes every aspect of BBB's program design, from facilitation style to scheduling to how success is framed within family structures.",
     summaryRu: "Программы международного развития часто терпят неудачу, потому что разрабатываются людьми, никогда не жившими в обслуживаемых сообществах, создавая культурно неадекватные учебные планы, которые участники вежливо игнорируют. Ева Романова, сооснователь и операционный директор BBB, выросла в Кыргызстане во время постсоветского экономического кризиса и обладает глубоким культурным знанием, которое не может воспроизвести ни один визит или консультант. Её взгляд изнутри формирует каждый аспект программ BBB -- от стиля проведения занятий до расписания и того, как успех воспринимается в семейных структурах.",
@@ -1040,7 +1040,7 @@ If you're interested in supporting an organization that combines American nonpro
   {
     id: 9,
     slug: "understanding-the-post-soviet-economy-why-central-asia-needs-entrepreneurs",
-    title: "Understanding the Post-Soviet Economy: Why Central Asia Needs Entrepreneurs",
+    title: "Why Central Asia Needs Entrepreneurs",
     excerpt: "When the Soviet Union collapsed, Central Asia's entire economic framework vanished overnight. Three decades later, the region has massive GDP growth -- but youth unemployment, brain drain, and a missing generation of entrepreneurs threaten to leave millions behind.",
     summary: "Central Asia's GDP has grown tenfold since independence, from $47 billion to nearly $500 billion, but that growth is concentrated in extractive industries and capital cities while rural communities face high unemployment and mass labor migration. The Soviet system eliminated private enterprise for 70 years, so when it collapsed, 50 million people suddenly needed financial and business skills nobody had taught them. Youth unemployment sits at 15.7% officially but is much higher in practice, driving the region's most talented people to take dangerous, low-skill jobs in Russia instead of building businesses at home.",
     summaryRu: "ВВП Центральной Азии вырос в десять раз с момента обретения независимости -- с $47 миллиардов до почти $500 миллиардов, но этот рост сосредоточен в добывающих отраслях и столицах, тогда как сельские общины сталкиваются с высокой безработицей и массовой трудовой миграцией. Советская система ликвидировала частное предпринимательство на 70 лет, и когда она рухнула, 50 миллионов человек внезапно нуждались в финансовых и деловых навыках, которым их никто не учил. Молодёжная безработица официально составляет 15,7%, но на практике значительно выше, вынуждая самых талантливых уезжать на опасную низкоквалифицированную работу в Россию вместо создания бизнеса дома.",
@@ -1160,7 +1160,7 @@ The potential is there. The need is urgent. And the window of opportunity won't 
   {
     id: 10,
     slug: "the-untapped-potential-of-women-entrepreneurs-in-kyrgyzstan",
-    title: "The Untapped Potential of Women Entrepreneurs in Kyrgyzstan",
+    title: "Women Entrepreneurs in Kyrgyzstan",
     excerpt: "Women make up just 27% of entrepreneurs in Kyrgyzstan, yet they manage household finances, dominate microfinance borrowing, and run businesses in sectors where they outperform men. The gap isn't talent -- it's access, training, and cultural barriers that specific interventions can address.",
     summary: "Women in Kyrgyzstan manage most household budgets and make up over 70% of microfinance borrowers, yet they represent just 27% of entrepreneurs and earn 75 cents for every dollar men earn. The barriers are structural: women own only 29% of registered property (limiting their access to collateral for loans), face a widening digital divide in rural areas, and navigate cultural expectations that can resist their business ambitions. Programs that include family members, frame success as a household benefit, and address property and finance access gaps produce the strongest results.",
     summaryRu: "Женщины в Кыргызстане управляют большинством домашних бюджетов и составляют более 70% заёмщиков микрофинансирования, но представляют лишь 27% предпринимателей и зарабатывают 75 центов на каждый доллар, заработанный мужчинами. Барьеры структурные: женщины владеют только 29% зарегистрированной собственности (что ограничивает доступ к залогу для кредитов), сталкиваются с растущим цифровым разрывом в сельской местности и преодолевают культурные ожидания, которые могут противодействовать их деловым амбициям. Программы, вовлекающие членов семьи, представляющие успех как выгоду для всей семьи и устраняющие барьеры в доступе к собственности и финансам, дают наилучшие результаты.",
@@ -1514,7 +1514,7 @@ If this work resonates with you -- if you believe that connecting entrepreneurs 
   {
     id: 13,
     slug: "the-complete-guide-to-microfinance-small-loans-big-impact",
-    title: "The Complete Guide to Microfinance: Small Loans, Big Impact",
+    title: "Microfinance Guide: Small Loans, Big Impact",
     excerpt: "Microfinance has lifted millions out of poverty -- and trapped others in debt. The difference isn't the loans themselves but how they're used. Here's what you need to know about small-scale lending, how it works in Central Asia, and why financial education changes the equation.",
     summary: "Microfinance serves millions across Central Asia -- one in nine Kyrgyz adults took a microloan in 2025 alone -- but outcomes diverge sharply depending on whether borrowers have financial education. Loans used for productive investment (equipment, inventory, skills) with proper financial planning create lasting economic gains, while loans taken for consumption or without repayment planning trap borrowers in debt spirals. The evidence is clear that microcredit alone produces weak results, but when paired with savings services, business training, and financial literacy, it becomes one of the most powerful tools for poverty reduction available.",
     summaryRu: "Микрофинансирование обслуживает миллионы по всей Центральной Азии -- каждый девятый взрослый кыргызстанец взял микрокредит только в 2025 году -- но результаты резко различаются в зависимости от наличия финансового образования у заёмщиков. Займы, используемые для продуктивных инвестиций (оборудование, товары, навыки) с правильным финансовым планированием, создают устойчивый экономический рост, тогда как займы на потребление или без плана погашения загоняют заёмщиков в долговую спираль. Факты однозначны: микрокредит сам по себе даёт слабые результаты, но в сочетании со сберегательными услугами, бизнес-обучением и финансовой грамотностью он становится одним из мощнейших инструментов борьбы с бедностью.",
@@ -1630,7 +1630,7 @@ If you want to support an approach to economic development that puts financial e
   {
     id: 14,
     slug: "7-ways-to-support-global-entrepreneurs-from-your-living-room",
-    title: "7 Ways to Support Global Entrepreneurs From Your Living Room",
+    title: "7 Ways to Support Entrepreneurs From Home",
     excerpt: "You don't need a passport, a trust fund, or a gap year to make a real difference for entrepreneurs in developing countries. Here are seven specific, practical ways to support global entrepreneurship without leaving your house.",
     summary: "The most impactful ways to support global entrepreneurs do not require travel or large donations. Remote mentorship -- sharing professional skills in accounting, marketing, or operations via video calls -- creates compounding value that far exceeds one-time financial gifts. Other high-impact actions include becoming a small monthly donor ($25-$100/month provides predictable funding that matches program cadence), amplifying stories on social media, advocating for policy changes, purchasing from entrepreneur-made products, and connecting organizations with your professional network.",
     summaryRu: "Наиболее эффективные способы поддержки предпринимателей по всему миру не требуют путешествий или крупных пожертвований. Дистанционное наставничество -- обмен профессиональными навыками в бухгалтерии, маркетинге или операциях через видеозвонки -- создаёт накопительную ценность, которая значительно превышает разовые финансовые подарки. Другие высокоэффективные действия: стать небольшим ежемесячным донором ($25-$100/месяц обеспечивает предсказуемое финансирование), распространять истории в социальных сетях, выступать за изменения в политике, покупать товары предпринимателей и связывать организации со своей профессиональной сетью.",
@@ -1746,7 +1746,7 @@ If you're ready to take the first step -- or deepen your existing engagement -- 
   {
     id: 15,
     slug: "what-happens-when-you-sponsor-an-entrepreneur-a-real-impact-breakdown",
-    title: "What Happens When You Sponsor an Entrepreneur: A Real Impact Breakdown",
+    title: "What Happens When You Sponsor an Entrepreneur",
     excerpt: "Most nonprofits tell you your donation 'makes a difference.' We'd rather show you exactly where every dollar goes, what it pays for, and what it produces. Here's a transparent breakdown of what sponsoring an entrepreneur through BBB actually looks like.",
     summary: "Taking one entrepreneur through BBB's full four-stage program costs approximately $2,500-$5,500, broken down as: $75-$150 for financial literacy training (ACTIVATE), $180-$360 for business creation training (EQUIP), $2,000-$5,000 in startup capital (EMPOWER, structured as loans that get repaid and recycled), plus leadership training costs for MULTIPLY. Every dollar maps to specific, verifiable outcomes -- did the person start a business, is it still operating, how many people does it employ, is the loan being repaid -- replacing vague promises of impact with concrete accountability.",
     summaryRu: "Проведение одного предпринимателя через все четыре этапа программы BBB стоит примерно $2500-$5500: $75-$150 за обучение финансовой грамотности (ACTIVATE), $180-$360 за обучение созданию бизнеса (EQUIP), $2000-$5000 стартового капитала (EMPOWER, структурированного как займы с возвратом и рециркуляцией), плюс затраты на обучение лидерству (MULTIPLY). Каждый доллар привязан к конкретным проверяемым результатам -- начал ли человек бизнес, работает ли он, сколько людей нанято, возвращается ли займ -- заменяя расплывчатые обещания конкретной подотчётностью.",
@@ -1886,7 +1886,7 @@ Whatever form your support takes, visit our [get involved page](/get-involved) t
   {
     id: 16,
     slug: "community-cooperatives-the-future-of-sustainable-development",
-    title: "Community Cooperatives: The Future of Sustainable Development",
+    title: "Community Cooperatives and Sustainable Growth",
     excerpt: "The world has 3 million cooperatives with over a billion members. The UN declared 2025 the International Year of Cooperatives. Here's why this centuries-old business model might be the most powerful tool for sustainable development that most people have never heard of.",
     summary: "Cooperatives -- businesses owned and democratically governed by their members on a one-member-one-vote basis -- number 3 million worldwide, employ 280 million people, and keep wealth circulating locally instead of extracting it to distant shareholders. They solve the scale problem that kills small producers in developing economies: fifty farmers collectively can negotiate better prices, share transportation, and access markets that no individual farmer could reach alone. In Central Asia, where 741 agricultural cooperatives are already operating and cooperative traditions align with existing community mutual-aid structures, this model is especially promising for sustainable development.",
     summaryRu: "Кооперативы -- предприятия, принадлежащие и демократически управляемые членами по принципу «один участник -- один голос» -- насчитывают 3 миллиона по всему миру, обеспечивают занятость 280 миллионов человек и сохраняют богатство в местном обороте вместо его извлечения далёкими акционерами. Они решают проблему масштаба, которая губит мелких производителей в развивающихся экономиках: пятьдесят фермеров совместно могут договариваться о лучших ценах, делить транспортные расходы и выходить на рынки, недоступные одному фермеру. В Центральной Азии, где уже действуют 741 сельскохозяйственный кооператив и кооперативные традиции совпадают с существующими общинными структурами взаимопомощи, эта модель особенно перспективна для устойчивого развития.",
@@ -2006,7 +2006,7 @@ For Central Asia -- a region with deep traditions of communal cooperation, a pre
   {
     id: 17,
     slug: "nonprofit-organizations-near-me-how-to-find-and-support",
-    title: "Nonprofit Organizations Near Me: How to Find, Evaluate, and Support the Right Ones",
+    title: "Nonprofit Organizations Near Me: A Guide",
     excerpt: "There are over 1.9 million nonprofits in the United States, with 4,394 right here in Volusia County alone. Most people want to give -- they just don't know how to find organizations that actually deliver results. Here's a practical guide to finding nonprofits worth your time, money, and trust.",
     summary: "The U.S. has over 1.9 million registered nonprofits, yet most donors give based on emotional appeals rather than evidence of impact. This guide walks through exactly how to find local nonprofit organizations using tools like the IRS Tax Exempt Organization Search, GuideStar (Candid), Charity Navigator, and ProPublica's Nonprofit Explorer. It explains what to look for beyond overhead ratios -- including program outcomes, financial transparency, leadership stability, and community feedback. Using Volusia County, Florida as a case study (home to 4,394 nonprofits with $6.1 billion in assets), the article shows how to evaluate whether a nonprofit deserves your support and how to maximize the impact of your giving through volunteering, recurring donations, and skills-based contributions.",
     publishDate: "2026-03-03",
@@ -2168,7 +2168,7 @@ The nonprofit sector is vast, and navigating it takes effort. But the payoff -- 
   {
     id: 18,
     slug: "debt-snowball-method-complete-guide",
-    title: "The Debt Snowball Method: A Complete Guide to Paying Off What You Owe",
+    title: "The Debt Snowball Method: Complete Guide",
     excerpt: "Americans carry $18.8 trillion in consumer debt. The debt snowball method has helped millions get out -- not because it's mathematically optimal, but because it's psychologically brilliant. Here's exactly how it works, step by step.",
     summary: "The debt snowball method -- paying off debts from smallest balance to largest regardless of interest rate -- works because it exploits a behavioral economics principle: small wins create momentum that sustains long-term behavior change. Northwestern University research confirms that people who tackle small balances first are significantly more likely to eliminate their total debt than those who optimize for interest rates. This guide walks through the method step by step with real dollar amounts, explains the psychology behind why it works, compares it honestly to the debt avalanche approach, and shows how BBB uses the same principles in Central Asia where over 80% of Kazakhstanis carry consumer debt and microfinance interest rates can reach 44% or higher.",
     publishDate: "2026-03-05",
@@ -2308,7 +2308,7 @@ If you're ready to start your snowball, our free [financial literacy course](/co
   {
     id: 19,
     slug: "how-to-build-credit-with-no-history",
-    title: "How to Build Credit With No History: A Complete Guide for Beginners",
+    title: "How to Build Credit With No History",
     excerpt: "An estimated 26 million Americans are 'credit invisible' -- they have no credit file at all. Whether you're a young adult, a recent immigrant, or someone in a developing economy entering the formal financial system, this guide walks you through exactly how to build credit from zero.",
     summary: "Building credit with no history is one of the most common financial challenges facing young adults, immigrants, and people in developing economies worldwide. The CFPB estimates 26 million Americans are completely credit invisible, with millions more having files too thin to generate a score. This comprehensive guide explains how credit scores actually work (the five FICO factors and their weightings), then walks through every practical strategy for building credit from zero: secured credit cards, credit builder loans, authorized user status, Experian Boost for alternative data, and ITIN-based options for immigrants. It covers realistic timelines (3-6 months to reach 600, 12-24 months to reach 700), common mistakes that derail progress, and connects the topic to BBB's financial literacy work in Central Asia, where credit bureau systems are still maturing and most entrepreneurs operate outside formal credit channels.",
     publishDate: "2026-03-07",
@@ -2454,7 +2454,7 @@ If you're ready to start building your financial foundation, explore our free [c
   {
     id: 20,
     slug: "frugal-living-tips-that-actually-work",
-    title: "Frugal Living Tips That Actually Work: A Practical Guide to Spending Less and Building More",
+    title: "Frugal Living Tips That Actually Work",
     excerpt: "The average American household spends $78,535 per year, with housing and transportation alone consuming half of that. Most frugal living advice is superficial. This guide focuses on the high-impact strategies that actually move the needle -- the same financial discipline we teach entrepreneurs in Central Asia.",
     summary: "Most frugal living advice recycles the same tired tips about skipping lattes and canceling subscriptions. This guide goes deeper, focusing on the three expense categories that consume 67% of the average household budget: housing (33%), transportation (17%), and food (13%). Using data from the Bureau of Labor Statistics and real-world examples from BBB's financial literacy programs in Central Asia -- where families earning $411/month in Kyrgyzstan must practice extreme intentionality by necessity -- the article covers the mindset shift from deprivation to values-based spending, high-impact strategies for reducing the Big Three expenses, the connection between frugality and entrepreneurship, lessons from economies where every som counts, and common mistakes that derail frugal living efforts. Includes specific dollar amounts, percentage savings, and actionable steps.",
     publishDate: "2026-03-10",
@@ -2576,7 +2576,7 @@ At **Businesses Beyond Borders**, we see this principle validated constantly in 
   {
     id: 21,
     slug: "how-to-create-a-budget-step-by-step-guide",
-    title: "How to Create a Budget: A Step-by-Step Guide That Actually Works",
+    title: "How to Create a Budget: Step-by-Step Guide",
     displayTitle: "How to Create a Budget: A Step-by-Step Guide That Actually Works",
     excerpt: "Learn how to create a budget from scratch using zero-based budgeting, the envelope system, and proven strategies that work for individuals, couples, and irregular incomes.",
     metaDescription: "Learn how to create a budget step by step with zero-based budgeting, the envelope method, and strategies for couples and irregular income. Free guide from BBB.",
@@ -2762,7 +2762,7 @@ Your budget doesn't have to be perfect. It has to exist. Start this week. Write 
   {
     id: 22,
     slug: "how-to-stop-living-paycheck-to-paycheck",
-    title: "How to Stop Living Paycheck to Paycheck: A Step-by-Step Plan That Works",
+    title: "How to Stop Living Paycheck to Paycheck",
     excerpt: "Nearly 1 in 4 American households spend over 95% of their income on necessities. Learn how to break the paycheck-to-paycheck cycle with a proven step-by-step plan covering income audits, zero-based budgeting, and building your first emergency fund.",
     metaDescription: "Learn how to stop living paycheck to paycheck with a proven step-by-step plan. Build savings, cut hidden costs, and take control of your money starting today.",
     publishDate: "2026-03-11",
@@ -2974,7 +2974,7 @@ Ready to get started? Contact **Businesses Beyond Borders** at **donations@busin
   {
     id: 23,
     slug: "how-to-start-a-business-with-no-money",
-    title: "How to Start a Business with No Money: A Realistic Guide for 2026",
+    title: "How to Start a Business with No Money",
     excerpt: "Think you need thousands in savings to launch a business? A third of U.S. businesses started with under $5,000. Here is a realistic, step-by-step guide to building a business with little or no capital.",
     publishDate: "2026-03-11",
     content: `# How to Start a Business with No Money: A Realistic Guide for 2026
@@ -3213,7 +3213,7 @@ Ready to take the next step? Explore our [business creation course](/course/busi
   {
     id: 24,
     slug: "emergency-fund-how-much-do-you-need",
-    title: "Emergency Fund 101: How Much Do You Actually Need? (By Income Level)",
+    title: "Emergency Fund 101: How Much Do You Need?",
     excerpt: "The \"3-6 months\" rule is everywhere, but it's dangerously oversimplified. Here's how to calculate the exact emergency fund amount you need based on your income, stability, dependents, and real-world data.",
     publishDate: "2026-03-11",
     content: `How much emergency fund do you actually need? The standard advice -- save three to six months of expenses -- has been repeated so many times that it's become financial gospel. But like most one-size-fits-all rules, it oversimplifies a decision that depends on your income stability, your family size, your insurance coverage, and a dozen other variables that personal finance gurus rarely bother to address. According to [Bankrate's 2026 Annual Emergency Savings Report](https://www.bankrate.com/banking/savings/emergency-savings-report/), only 30% of Americans could cover a $1,000 emergency expense from savings alone, and 60% of Americans say they are uncomfortable with their current level of emergency savings. Those numbers suggest that the real question isn't whether three months or six months is the right target -- it's whether the way we talk about emergency funds is setting people up to fail before they even start.

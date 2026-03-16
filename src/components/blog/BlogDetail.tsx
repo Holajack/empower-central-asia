@@ -175,7 +175,7 @@ const BlogDetail = () => {
   return (
     <div className="min-h-screen pt-20 md:pt-28 bg-white">
       <Helmet>
-        <title>{localized.displayTitle} | Businesses Beyond Borders</title>
+        <title>{localized.displayTitle.length <= 54 ? `${localized.displayTitle} | BBB` : localized.displayTitle}</title>
         <meta name="description" content={localized.displayExcerpt} />
         <meta name="keywords" content={post.tags.join(", ")} />
         <meta name="author" content={post.author} />

@@ -100,7 +100,7 @@ const SuccessStoryDetail = () => {
   return (
     <div className="min-h-screen pt-20 md:pt-28 bg-white">
       <Helmet>
-        <title>{isCentralAsia ? `${story.title} | Истории успеха - Businesses Beyond Borders` : `${story.title} | Success Stories - Businesses Beyond Borders`}</title>
+        <title>{isCentralAsia ? `${story.title} | Истории успеха - BBB` : `${story.title} | Stories - BBB`}</title>
         <meta
           name="description"
           content={story.excerpt}
