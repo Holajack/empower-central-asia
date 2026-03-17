@@ -1,0 +1,43 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://businessesbeyondborders.com/sitemap.xml
+
+# Block access to admin or sensitive areas
+Disallow: /admin/
+
+# Allow search engines to crawl images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /assets/
+
+# AI Search Engines - Explicitly Allow
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
