@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-16",
+    "lastUpdated": "2026-03-17",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -20,7 +20,10 @@
       "burnout-prevention-college-students",
       "cornell-notes-method-guide",
       "deep-work-student-guide",
-      "how-to-study-with-adhd"
+      "how-to-study-with-adhd",
+      "interleaving-practice-study-technique",
+      "how-to-track-study-hours-app",
+      "science-of-forgetting-and-how-to-stop-it"
     ]
   },
   "topics": [
@@ -238,7 +241,7 @@
         "learning science",
         "study strategies"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-track-study-hours-app",
@@ -250,7 +253,7 @@
         "productivity tracking",
         "hikewise"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "morning-study-routine-students",
@@ -526,7 +529,7 @@
         "Ebbinghaus",
         "retention strategies"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-biology-effectively",
