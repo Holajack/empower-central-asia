@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-17",
+    "lastUpdated": "2026-03-18",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -23,7 +23,10 @@
       "how-to-study-with-adhd",
       "interleaving-practice-study-technique",
       "how-to-track-study-hours-app",
-      "science-of-forgetting-and-how-to-stop-it"
+      "science-of-forgetting-and-how-to-stop-it",
+      "how-to-study-for-finals-week",
+      "time-blocking-for-students",
+      "how-to-remember-what-you-read"
     ]
   },
   "topics": [
@@ -193,7 +196,7 @@
         "finals study guide",
         "final exams"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "feynman-technique-explained",
@@ -445,7 +448,7 @@
         "remember what you read",
         "reading strategies"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "chunking-information-study-technique",
@@ -577,7 +580,7 @@
         "student schedule",
         "productivity"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-with-music",
