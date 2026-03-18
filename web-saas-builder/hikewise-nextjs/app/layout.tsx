@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/analytics/analytics";
+
+const GA_ID = "G-1NSGDLEH0S";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -89,10 +92,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}
+      </Script>
       <body className={`${jakarta.variable} ${geistMono.variable} font-sans`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[999] focus:top-4 focus:left-4 focus:bg-forest focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm"
+        >
+          Skip to content
+        </a>
         <Analytics />
         <Header />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>
