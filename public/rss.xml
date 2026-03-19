@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Mon, 16 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 18 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/images/bbb-logo.png</url>
@@ -20,6 +20,28 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>Understanding Credit Scores: A Beginner Guide</title>
+    <link>https://businessesbeyondborders.com/blog/understanding-credit-scores-a-beginner-guide</link>
+    <description>Your credit score affects loans, housing, and more—yet most people don&apos;t understand how it works. Here&apos;s a complete, research-backed beginner guide covering FICO, VantageScore, and how to build credit from zero.</description>
+    <pubDate>Wed, 18 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/understanding-credit-scores-a-beginner-guide</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>Credit</category>
+    <category>Financial Literacy</category>
+  </item>
+
+  <item>
+    <title>How to Track Your Spending in 30 Days</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-track-your-spending-in-30-days</link>
+    <description>Most people can&apos;t say where their money went last month. This 30-day spending tracker framework fixes that with a proven, week-by-week method backed by behavioral research.</description>
+    <pubDate>Wed, 18 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-track-your-spending-in-30-days</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>Budgeting</category>
+    <category>Financial Literacy</category>
+  </item>
 
   <item>
     <title>What Is Compound Interest and Why It Matters</title>
