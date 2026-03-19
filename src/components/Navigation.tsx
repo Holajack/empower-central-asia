@@ -26,8 +26,6 @@ const Navigation = () => {
     { name: t("nav.home"), path: "/" },
     { name: t("nav.about"), path: "/about" },
     { name: t("nav.programs"), path: "/programs-and-impact" },
-    { name: t("nav.blog"), path: "/blog" },
-    { name: t("nav.successStories"), path: "/success-stories" },
     { name: t("nav.getInvolved"), path: "/get-involved" },
     { name: t("nav.contact"), path: "/contact" },
   ];
