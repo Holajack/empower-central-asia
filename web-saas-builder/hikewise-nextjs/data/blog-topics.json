@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-18",
+    "lastUpdated": "2026-03-19",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -26,7 +26,10 @@
       "science-of-forgetting-and-how-to-stop-it",
       "how-to-study-for-finals-week",
       "time-blocking-for-students",
-      "how-to-remember-what-you-read"
+      "how-to-remember-what-you-read",
+      "mind-mapping-for-studying",
+      "student-productivity-system-2026",
+      "ai-tools-for-students-2026"
     ]
   },
   "topics": [
@@ -100,7 +103,7 @@
         "study techniques",
         "concept mapping"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "study-group-tips-that-actually-work",
@@ -328,7 +331,7 @@
         "study system",
         "academic success"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-for-ap-exams",
@@ -412,7 +415,7 @@
         "AI study tools",
         "student AI"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-build-a-second-brain-student",
