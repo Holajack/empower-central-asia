@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 18 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 19 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/images/bbb-logo.png</url>
@@ -20,6 +20,30 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>Zero-Based Budgeting for Beginners</title>
+    <link>https://businessesbeyondborders.com/blog/zero-based-budgeting-for-beginners</link>
+    <description>Zero-based budgeting gives every dollar a purpose before the month begins. Learn the system that helps users find an average of $3,015 in hidden budget margin with step-by-step setup for regular and irregular income.</description>
+    <pubDate>Thu, 19 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/zero-based-budgeting-for-beginners</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>budgeting</category>
+    <category>personal finance</category>
+    <category>financial literacy</category>
+  </item>
+
+  <item>
+    <title>How to Negotiate Bills and Save Hundreds</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-negotiate-bills-and-save-hundreds</link>
+    <description>79% of Americans never negotiate their bills—yet those who do save an average of $5,218 annually. Research-backed guide to negotiating medical bills, cable, credit card rates, and insurance.</description>
+    <pubDate>Thu, 19 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-negotiate-bills-and-save-hundreds</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>budgeting</category>
+    <category>saving money</category>
+    <category>financial tips</category>
+  </item>
 
   <item>
     <title>Understanding Credit Scores: A Beginner Guide</title>
