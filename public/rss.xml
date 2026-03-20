@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Thu, 19 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 20 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/images/bbb-logo.png</url>
@@ -20,6 +20,36 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>Skills-Based Volunteering in Volusia County: How Professionals Create Real Impact</title>
+    <link>https://businessesbeyondborders.com/blog/skills-based-volunteering-how-to-make-an-impact-in-volusia-county</link>
+    <description>Discover how skills-based volunteering creates real impact. Learn how Volusia County residents can contribute professional expertise to communities locally and globally in Central Asia.</description>
+    <pubDate>Fri, 20 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/skills-based-volunteering-how-to-make-an-impact-in-volusia-county</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>volunteering</category>
+    <category>community service</category>
+    <category>Volusia County</category>
+    <category>skills-based volunteering</category>
+    <category>nonprofit</category>
+    <enclosure url="https://images.unsplash.com/photo-1559027615-cd4628902d4a" type="image/jpeg" />
+  </item>
+
+  <item>
+    <title>How to Start a Small Business with No Money: A Practical Guide</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-start-a-small-business-with-no-money</link>
+    <description>Learn how to start a small business with no money using service-based models, bootstrapping techniques, and microfinance. Practical strategies for aspiring entrepreneurs in Volusia County and beyond.</description>
+    <pubDate>Fri, 20 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-start-a-small-business-with-no-money</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+    <category>entrepreneurship</category>
+    <category>small business</category>
+    <category>startup</category>
+    <category>financial literacy</category>
+    <category>microfinance</category>
+    <enclosure url="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" type="image/jpeg" />
+  </item>
 
   <item>
     <title>Zero-Based Budgeting for Beginners</title>
