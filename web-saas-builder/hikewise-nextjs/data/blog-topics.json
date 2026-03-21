@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-20",
+    "lastUpdated": "2026-03-21",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -32,7 +32,10 @@
       "ai-tools-for-students-2026",
       "study-group-tips-that-actually-work",
       "best-time-to-study-for-each-student",
-      "digital-notes-vs-paper-notes"
+      "digital-notes-vs-paper-notes",
+      "study-streaks-habit-formation",
+      "how-to-make-a-study-schedule",
+      "how-to-study-math-effectively"
     ]
   },
   "topics": [
@@ -154,7 +157,7 @@
         "academic planning",
         "study plan"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "sleep-and-studying-connection",
@@ -190,7 +193,7 @@
         "problem solving",
         "calculus study"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-for-finals-week",
@@ -490,7 +493,7 @@
         "consistency",
         "study habits"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-stay-awake-while-studying",
