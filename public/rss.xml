@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Fri, 20 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 21 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/images/bbb-logo.png</url>
@@ -20,6 +20,24 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>Microfinance and Small Business Development in Kyrgyzstan: What International Programs Are Achieving</title>
+    <link>https://businessesbeyondborders.com/blog/microfinance-small-business-development-kyrgyzstan</link>
+    <description>Kyrgyzstan's economy presents unique opportunities and challenges for entrepreneurship. Learn what microfinance programs and international development work are actually accomplishing there.</description>
+    <pubDate>Sat, 21 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/microfinance-small-business-development-kyrgyzstan</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+  </item>
+
+  <item>
+    <title>How to Build Business Credit from Scratch: A Step-by-Step Guide for New Entrepreneurs</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-build-business-credit-from-scratch</link>
+    <description>Business credit and personal credit are separate systems. This step-by-step guide shows new entrepreneurs how to build a strong business credit profile from day one.</description>
+    <pubDate>Sat, 21 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-build-business-credit-from-scratch</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+  </item>
 
   <item>
     <title>Skills-Based Volunteering in Volusia County: How Professionals Create Real Impact</title>
