@@ -9,7 +9,7 @@
   <link>https://businessesbeyondborders.com/blog</link>
   <description>Empowering entrepreneurs in Central Asia through financial literacy, business training, and microfinance. Stories of impact from Port Orange, Florida to Kyrgyzstan, Kazakhstan, and Uzbekistan.</description>
   <language>en-us</language>
-  <lastBuildDate>Sat, 21 Mar 2026 12:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 22 Mar 2026 12:00:00 GMT</lastBuildDate>
   <atom:link href="https://businessesbeyondborders.com/rss.xml" rel="self" type="application/rss+xml"/>
   <image>
     <url>https://businessesbeyondborders.com/images/bbb-logo.png</url>
@@ -20,6 +20,24 @@
   <managingEditor>contact@businessesbeyondborders.com (Businesses Beyond Borders)</managingEditor>
   <webMaster>contact@businessesbeyondborders.com (Businesses Beyond Borders)</webMaster>
   <ttl>60</ttl>
+
+  <item>
+    <title>Entrepreneurship in Kazakhstan: Small Business Growth in Central Asia's Largest Economy</title>
+    <link>https://businessesbeyondborders.com/blog/entrepreneurship-in-kazakhstan-small-business-growth</link>
+    <description>Kazakhstan is transforming from oil dependence to a diversified economy. Here's how small business owners and entrepreneurs are driving that change.</description>
+    <pubDate>Sun, 22 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/entrepreneurship-in-kazakhstan-small-business-growth</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+  </item>
+
+  <item>
+    <title>How to Create a Debt Payoff Plan: Avalanche vs. Snowball Method Explained</title>
+    <link>https://businessesbeyondborders.com/blog/how-to-create-a-debt-payoff-plan</link>
+    <description>Learn the proven debt avalanche and snowball methods, understand the psychology behind each, and build a step-by-step debt payoff plan that actually works.</description>
+    <pubDate>Sun, 22 Mar 2026 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://businessesbeyondborders.com/blog/how-to-create-a-debt-payoff-plan</guid>
+    <author>contact@businessesbeyondborders.com (Businesses Beyond Borders)</author>
+  </item>
 
   <item>
     <title>Microfinance and Small Business Development in Kyrgyzstan: What International Programs Are Achieving</title>
