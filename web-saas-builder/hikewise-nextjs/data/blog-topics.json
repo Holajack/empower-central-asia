@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "HikeWise blog topic bank for automated daily publishing. 2-3 posts per day.",
-    "lastUpdated": "2026-03-21",
+    "lastUpdated": "2026-03-22",
     "usedSlugs": [
       "active-recall-study-technique-guide",
       "pomodoro-technique-college-students",
@@ -35,7 +35,10 @@
       "digital-notes-vs-paper-notes",
       "study-streaks-habit-formation",
       "how-to-make-a-study-schedule",
-      "how-to-study-math-effectively"
+      "how-to-study-math-effectively",
+      "how-to-read-a-textbook-efficiently",
+      "study-motivation-tips-students",
+      "how-to-use-anki-for-students"
     ]
   },
   "topics": [
@@ -241,7 +244,7 @@
         "reading strategies",
         "study methods"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "interleaving-practice-study-technique",
@@ -397,7 +400,7 @@
         "staying motivated",
         "student mindset"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-abroad-and-keep-grades-up",
@@ -649,7 +652,7 @@
         "flashcard app",
         "study tools"
       ],
-      "used": false
+      "used": true
     },
     {
       "slug": "how-to-study-english-literature",
