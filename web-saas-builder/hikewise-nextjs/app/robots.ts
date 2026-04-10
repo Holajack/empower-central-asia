@@ -10,10 +10,9 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         disallow: [
-          "/api/", // API routes
-          "/admin/", // Admin panel (if any)
-          "/_next/", // Next.js internals
-          "/private/", // Private content
+          "/api/",
+          "/admin/",
+          "/private/",
         ],
       },
       {
@@ -23,30 +22,57 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
       {
-        // Bing specific rules
+        // Bing (powers ChatGPT Search)
         userAgent: "Bingbot",
         allow: "/",
         disallow: ["/api/"],
       },
       {
-        // Block AI training crawlers
+        // AI Search crawlers — ALLOW for AEO visibility
         userAgent: "GPTBot",
-        disallow: "/",
+        allow: "/",
+        disallow: ["/api/"],
       },
       {
         userAgent: "ChatGPT-User",
-        disallow: "/",
+        allow: "/",
+        disallow: ["/api/"],
       },
       {
-        userAgent: "CCBot",
-        disallow: "/",
+        userAgent: "PerplexityBot",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+        disallow: ["/api/"],
       },
       {
         userAgent: "anthropic-ai",
-        disallow: "/",
+        allow: "/",
+        disallow: ["/api/"],
       },
       {
-        userAgent: "Claude-Web",
+        userAgent: "Applebot-Extended",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        // Google Gemini training crawler
+        userAgent: "Google-Extended",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        // TikTok crawler
+        userAgent: "Bytespider",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        // Block pure training scrapers (not search)
+        userAgent: "CCBot",
         disallow: "/",
       },
     ],

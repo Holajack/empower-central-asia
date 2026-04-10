@@ -21,7 +21,15 @@ export function OrganizationSchema({
     name,
     url,
     logo,
+    description:
+      "HikeWise is a smart study tracking app helping students build better focus habits through AI-powered insights, gamified progress, and virtual study rooms.",
     sameAs,
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "hello@hikewise.app",
+      contactType: "Customer Support",
+      availableLanguage: "English",
+    },
   };
 
   return (
@@ -38,14 +46,6 @@ export function WebsiteSchema({ name, url }: { name: string; url: string }) {
     "@type": "WebSite",
     name,
     url,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${url}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (
@@ -70,11 +70,6 @@ export function SoftwareApplicationSchema() {
     },
     description:
       "Transform your study habits with intelligent focus sessions, friendly competition, and an AI companion that keeps you on track.",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "1250",
-    },
   };
 
   return (
@@ -172,12 +167,18 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
+    itemListElement: items.map((item, index) => {
+      const entry: Record<string, unknown> = {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+      };
+      // Last item (current page) should not have an item URL per Google spec
+      if (index < items.length - 1) {
+        entry.item = item.url;
+      }
+      return entry;
+    }),
   };
 
   return (
@@ -308,7 +309,15 @@ export function BlogPostingSchema({
     author: {
       "@type": "Person",
       name: author,
-      url: "https://hikewise.app/blog",
+      url: "https://hikewise.app/about/nikolai",
+      jobTitle: "Founder & Lead Author",
+      description:
+        "Doctor of Chiropractic, paramedic, and collegiate educator who has taught over 3,000 students. Writes evidence-based study guides grounded in clinical and classroom experience.",
+      sameAs: ["https://hikewise.app/about/nikolai"],
+      alumniOf: {
+        "@type": "EducationalOrganization",
+        name: "Palmer College of Chiropractic",
+      },
     },
     publisher: {
       "@type": "Organization",

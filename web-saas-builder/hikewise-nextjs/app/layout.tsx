@@ -29,13 +29,21 @@ export const metadata: Metadata = {
     "Transform your study habits with HikeWise. Track focus sessions, compete with friends, and achieve your academic goals with AI-powered insights.",
   keywords: [
     "study app",
+    "study companion app",
+    "study tracker app",
+    "smart study planner",
+    "study habit tracker",
+    "AI study planner app",
+    "focus timer for students",
+    "study progress tracker",
+    "AI study companion",
     "focus timer",
-    "productivity",
-    "student",
-    "pomodoro",
+    "pomodoro technique",
     "study tracker",
     "academic goals",
-    "AI study companion",
+    "best study apps for students",
+    "study streak app",
+    "exam preparation tracker",
   ],
   authors: [{ name: "HikeWise Team" }],
   creator: "HikeWise",
@@ -92,6 +100,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="llms-txt" href="/llms.txt" />
+      </head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy="afterInteractive"

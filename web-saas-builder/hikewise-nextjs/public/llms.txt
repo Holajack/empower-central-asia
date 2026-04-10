@@ -1,0 +1,132 @@
+# HikeWise
+
+> HikeWise is a smart study companion app that helps students build better focus habits through AI-powered insights, gamified progress tracking, and virtual study rooms. Built by Dr. Nikolai Lee (educator, 3,000+ students taught) and Jacken Holland (developer). Available on iOS and Android.
+
+## Website
+
+- URL: https://hikewise.app
+- Full documentation: https://hikewise.app/llms-full.txt
+
+## Team
+
+### Dr. Nikolai Lee — Founder & Lead Author
+- Doctor of Chiropractic, Licensed Paramedic
+- Collegiate educator who has taught over 3,000 students
+- Author of all HikeWise blog content
+- Profile: https://hikewise.app/about/nikolai
+
+### Jacken Holland — Developer & Operator
+- University of Central Florida graduate
+- Full-stack developer, app developer
+- Has traveled to and built products in 20+ countries
+- Profile: https://hikewise.app/about/jacken
+
+## Key Features
+
+- Focus Sessions: Timed study intervals with Balanced (25/5 min), Sprint (15/3 min), and Deep Work (50/10 min) modes
+- Nora AI: AI study companion for personalized recommendations, concept explanations, and smart reminders
+- Virtual Study Rooms: Co-working spaces to study alongside friends with chat and presence
+- Leaderboards: Friendly competition to stay motivated with daily/weekly/monthly rankings
+- Progress Analytics: Track study habits, streaks, and identify improvement areas with detailed charts
+- Study Streaks: Build consistency with daily streak tracking and loss-aversion mechanics
+- Academic Goals: Set and track goals for study hours, sessions, and subject mastery
+
+## Key Topics & Expertise
+
+- Study techniques: active recall, spaced repetition, Pomodoro technique, Cornell notes, Feynman technique, interleaving, retrieval practice
+- Student productivity: time blocking, deep work, morning routines, study scheduling
+- AI-powered study tracking and personalized learning
+- Focus and concentration strategies for students (including ADHD)
+- Exam preparation: midterms, finals, multiple exams, practice testing
+- Study habit formation: streaks, routines, gamification
+- Study environment optimization and digital minimalism
+- Sleep, exercise, and academic performance
+- Metacognition and self-regulated learning
+
+## Pages
+
+- [Home](https://hikewise.app)
+- [About](https://hikewise.app/about)
+- [About Dr. Nikolai Lee](https://hikewise.app/about/nikolai)
+- [About Jacken Holland](https://hikewise.app/about/jacken)
+- [Blog](https://hikewise.app/blog)
+- [FAQ](https://hikewise.app/faq)
+- [Help Center](https://hikewise.app/help)
+- [Contact](https://hikewise.app/contact)
+- [Careers](https://hikewise.app/careers)
+- [Privacy Policy](https://hikewise.app/privacy)
+- [Terms of Service](https://hikewise.app/terms)
+
+## Blog Articles (64 posts)
+
+All articles written by Dr. Nikolai Lee.
+
+- [Your Study Routine Isn't Broken](https://hikewise.app/blog/study-routine-not-broken-recovery-is)
+- [The Data Behind Studying in Multiple Locations](https://hikewise.app/blog/study-multiple-locations-better-recall)
+- [The GPA Cost of Irregular Sleep](https://hikewise.app/blog/sleep-consistency-gpa-data)
+- [5 Study Break Mistakes That Kill Your Focus](https://hikewise.app/blog/study-break-mistakes-killing-your-focus)
+- [4 Study Myths That Are Costing You Grades](https://hikewise.app/blog/study-myths-costing-you-grades)
+- [How to Build a Study Routine That Sticks](https://hikewise.app/blog/build-study-routine-that-sticks)
+- [How to Read a Textbook Efficiently: The SQ3R Method and Beyond](https://hikewise.app/blog/how-to-read-a-textbook-efficiently)
+- [How to Stay Motivated to Study](https://hikewise.app/blog/study-motivation-tips-students)
+- [How to Use Anki: A Complete Beginner Guide](https://hikewise.app/blog/how-to-use-anki-for-students)
+- [Gamification and Studying: Why Points and Rewards Improve Grades](https://hikewise.app/blog/gamification-studying-points-badges-rewards)
+- [How Study Streaks Help You Build Unbreakable Academic Habits](https://hikewise.app/blog/study-streaks-habit-formation)
+- [How to Make a Study Schedule That You'll Actually Stick To](https://hikewise.app/blog/how-to-make-a-study-schedule)
+- [How to Study Math Effectively](https://hikewise.app/blog/how-to-study-math-effectively)
+- [How to Study for Multiple Exams at Once](https://hikewise.app/blog/how-to-study-for-multiple-exams-at-once)
+- [Study Groups That Actually Work](https://hikewise.app/blog/study-group-tips-that-actually-work)
+- [The Best Time to Study: Find Your Personal Peak Focus Window](https://hikewise.app/blog/best-time-to-study-for-each-student)
+- [Digital Notes vs. Paper Notes: What the Research Says](https://hikewise.app/blog/digital-notes-vs-paper-notes)
+- [Mind Mapping for Studying](https://hikewise.app/blog/mind-mapping-for-studying)
+- [The Ultimate Student Productivity System for 2026](https://hikewise.app/blog/student-productivity-system-2026)
+- [The Best AI Tools for Students in 2026](https://hikewise.app/blog/ai-tools-for-students-2026)
+- [How to Design Your Study Environment for Maximum Focus](https://hikewise.app/blog/best-study-environment-focus-retention)
+- [How to Survive Finals Week: A Day-by-Day Study Strategy](https://hikewise.app/blog/how-to-study-for-finals-week)
+- [Time Blocking for Students](https://hikewise.app/blog/time-blocking-for-students)
+- [How to Actually Remember What You Read](https://hikewise.app/blog/how-to-remember-what-you-read)
+- [The Science of Study Breaks](https://hikewise.app/blog/science-of-study-breaks-how-rest-helps-learning)
+- [Interleaving: The Counterintuitive Study Technique](https://hikewise.app/blog/interleaving-practice-study-technique)
+- [How to Track Your Study Hours and Why It Improves Grades](https://hikewise.app/blog/how-to-track-study-hours-app)
+- [The Science of Forgetting: Why Your Brain Erases What You Study](https://hikewise.app/blog/science-of-forgetting-and-how-to-stop-it)
+- [Smart Study Tracking: Complete Guide](https://hikewise.app/blog/smart-study-tracking-app-complete-guide)
+- [Cornell Notes Method: Student Guide](https://hikewise.app/blog/cornell-notes-method-guide)
+- [Deep Work for Students: Flow State](https://hikewise.app/blog/deep-work-student-guide)
+- [How to Study with ADHD: What Works](https://hikewise.app/blog/how-to-study-with-adhd)
+- [Better Notes in College: 7 Systems](https://hikewise.app/blog/how-to-take-better-notes-in-college)
+- [How to Focus While Studying (2026)](https://hikewise.app/blog/how-to-focus-while-studying)
+- [Academic Burnout: Signs & Recovery](https://hikewise.app/blog/burnout-prevention-college-students)
+- [Exam Anxiety: Calm Your Mind Fast](https://hikewise.app/blog/exam-anxiety-tips-for-students)
+- [Retrieval Practice: Study Smarter](https://hikewise.app/blog/retrieval-practice-guide-students)
+- [Morning Study Routine for Students](https://hikewise.app/blog/morning-study-routine-students)
+- [Why Students Procrastinate (+ Fix)](https://hikewise.app/blog/procrastination-tips-for-students)
+- [Improve Memory for Studying: 10 Tips](https://hikewise.app/blog/how-to-improve-memory-for-studying)
+- [Exercise & Studying: Brain Benefits](https://hikewise.app/blog/exercise-and-brain-study-performance)
+- [Feynman Technique: Learn Anything](https://hikewise.app/blog/feynman-technique-explained)
+- [Sleep & Studying: Why It Matters](https://hikewise.app/blog/sleep-and-studying-connection)
+- [Active Recall: #1 Study Technique](https://hikewise.app/blog/active-recall-study-technique-guide)
+- [Best Study Apps for College (2026)](https://hikewise.app/blog/best-study-apps-for-college-2026)
+- [Study for Midterms: 2-Week Plan](https://hikewise.app/blog/how-to-study-for-midterms)
+- [Metacognition: Learn How You Learn](https://hikewise.app/blog/metacognition-self-regulated-learning-guide)
+- [AI Study Tracking Apps (2026)](https://hikewise.app/blog/ai-study-tracking-app-student-productivity-2026)
+- [Time Blocking for College Students](https://hikewise.app/blog/time-blocking-for-college-students)
+- [Study Without Distractions: 12 Ways](https://hikewise.app/blog/distraction-free-studying-techniques)
+- [Spaced Repetition: The Research (2026)](https://hikewise.app/blog/spaced-repetition-technique)
+- [Study With Me Videos: Do They Work?](https://hikewise.app/blog/study-with-me-videos-benefits)
+- [Create a Study Schedule That Works](https://hikewise.app/blog/how-to-create-study-schedule)
+- [Digital Minimalism for Students](https://hikewise.app/blog/digital-minimalism-students)
+- [12 Habits of Successful Students](https://hikewise.app/blog/study-habits-successful-students)
+- [Atomic Habits for Students (2026)](https://hikewise.app/blog/atomic-habits)
+- [Pomodoro Technique Explained](https://hikewise.app/blog/pomodoro-technique-explained)
+- [Study Room Benefits: Why They Work](https://hikewise.app/blog/study-room-benefits)
+- [AI Study Companions Guide (2026)](https://hikewise.app/blog/ai-study-companions)
+- [How to Course-Correct Your Study Strategy Mid-Semester](https://hikewise.app/blog/how-to-course-correct-study-strategy-mid-semester)
+- [How Smart Tracking Technology Is Transforming Student Study](https://hikewise.app/blog/smart-study-tracking-technology-better-habits)
+- [How to Use Practice Tests to Ace Any Exam](https://hikewise.app/blog/how-to-use-practice-tests-ace-exams)
+- [You Bombed an Exam. Here's What to Do Next.](https://hikewise.app/blog/exam-wrapper-technique-learn-from-bad-grades)
+- [AI Study Tools Are Making You Dumber — Unless You Do This](https://hikewise.app/blog/ai-study-tools-critical-thinking)
+
+## Contact
+
+- Email: hello@hikewise.app
+- Support: support@hikewise.app

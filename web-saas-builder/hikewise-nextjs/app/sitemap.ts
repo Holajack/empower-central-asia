@@ -8,14 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date("2026-03-16"),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "daily", // Blog index updates with new posts
+      lastModified: new Date("2026-03-16"),
+      changeFrequency: "daily",
       priority: 0.9,
     },
     {
@@ -53,6 +53,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-02-09"),
       changeFrequency: "yearly",
       priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date("2026-04-08"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/about/nikolai`,
+      lastModified: new Date("2026-04-02"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about/jacken`,
+      lastModified: new Date("2026-04-02"),
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
   ];
 
@@ -94,6 +112,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [...staticPages, ...blogPosts];
 }
 
-// Enable dynamic rendering for sitemap to pick up new blog posts
-export const dynamic = "force-dynamic";
-export const revalidate = 3600; // Revalidate every hour
+// Revalidate sitemap hourly to pick up new blog posts
+export const revalidate = 3600;
