@@ -197,7 +197,7 @@ const GetInvolved = () => {
           {/* SECTION 1: FOR PARTICIPANTS    */}
           {/* ============================== */}
           <section id="for-participants" className="scroll-mt-24">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
                 {isCentralAsia ? "ДЛЯ УЧАСТНИКОВ" : "FOR PARTICIPANTS"}
               </div>
@@ -372,7 +372,7 @@ const GetInvolved = () => {
           {/* SECTION 2: FOR VOLUNTEERS      */}
           {/* ============================== */}
           <section id="for-volunteers" className="scroll-mt-24">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
                 {isCentralAsia ? "ДЛЯ ВОЛОНТЁРОВ" : "FOR VOLUNTEERS"}
               </div>
@@ -459,7 +459,7 @@ const GetInvolved = () => {
           {/* ============================== */}
           {!isRegionCentralAsia && (
             <section id="for-donors" className="scroll-mt-24">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
                   {isCentralAsia ? "ДЛЯ ДОНОРОВ И ПАРТНЁРОВ" : "FOR DONORS & PARTNERS"}
                 </div>
@@ -616,7 +616,7 @@ const GetInvolved = () => {
           {/* ============================== */}
           {/* SUCCESS STORIES                */}
           {/* ============================== */}
-          <section className="max-w-4xl mx-auto">
+          <section className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
               {isCentralAsia ? "Люди, прошедшие этот путь" : "People Who Walked This Path"}
             </h2>
@@ -639,7 +639,7 @@ const GetInvolved = () => {
           {/* ============================== */}
           {/* FAQ                            */}
           {/* ============================== */}
-          <section className="max-w-3xl mx-auto">
+          <section className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
               {isCentralAsia ? "Частые вопросы" : "Common Questions"}
             </h2>
@@ -671,7 +671,7 @@ const GetInvolved = () => {
           {/* ============================== */}
           {/* FINAL CTA                      */}
           {/* ============================== */}
-          <section className="bg-[#1B2A4A] rounded-2xl p-8 md:p-16 text-center text-white max-w-4xl mx-auto">
+          <section className="bg-[#1B2A4A] rounded-2xl p-8 md:p-16 text-center text-white max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               {isCentralAsia ? "Надежда, которая строит." : "Hope That Builds."}
             </h2>

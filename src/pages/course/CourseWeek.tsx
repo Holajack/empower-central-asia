@@ -105,11 +105,11 @@ const CourseWeek = () => {
   const [progress, setProgress] = useState<CourseProgress>(loadProgress);
   const [showReview, setShowReview] = useState(false);
 
-  // Day state
-  const dayFromUrl = parseInt(searchParams.get("day") || "0", 10);
+  // Day state — Day 0 is the intro for Week 1
+  const dayFromUrl = parseInt(searchParams.get("day") || "-1", 10);
   const [currentDay, setCurrentDay] = useState(() => {
-    if (dayFromUrl >= 1 && dayFromUrl <= DAYS_PER_WEEK) return dayFromUrl;
-    return progress.currentDay[weekNum] || 1;
+    if (dayFromUrl >= 0 && dayFromUrl <= DAYS_PER_WEEK) return dayFromUrl;
+    return progress.currentDay[weekNum] || (weekNum === 1 ? 0 : 1);
   });
 
   const [worksheetPercent, setWorksheetPercent] = useState(0);
@@ -139,9 +139,10 @@ const CourseWeek = () => {
 
   // Reset day when week changes
   useEffect(() => {
-    const day = dayFromUrl >= 1 && dayFromUrl <= DAYS_PER_WEEK
+    const minDay = weekNum === 1 ? 0 : 1;
+    const day = dayFromUrl >= minDay && dayFromUrl <= DAYS_PER_WEEK
       ? dayFromUrl
-      : progress.currentDay[weekNum] || 1;
+      : progress.currentDay[weekNum] || (weekNum === 1 ? 0 : 1);
     setCurrentDay(day);
   }, [weekNum]);
 
@@ -321,6 +322,126 @@ const CourseWeek = () => {
         onLeaveReview={() => setShowReview(true)}
         isCentralAsia={isCentralAsia}
       >
+        {/* Day 0: Intro — Week 1 only */}
+        {weekNum === 1 && currentDay === 0 ? (
+          <div className="space-y-8">
+            {/* Intro Video Placeholder */}
+            <div className="relative rounded-xl overflow-hidden bg-[#1B2A4A] aspect-video flex items-center justify-center">
+              <div className="absolute top-3 right-3 bg-[#C9922A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                {isCentralAsia ? "Скоро видео" : "Video Coming Soon"}
+              </div>
+              <div className="text-center text-white">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-3">
+                  <ArrowRight className="w-8 h-8 text-white ml-1" />
+                </div>
+                <p className="text-sm text-white/70">{isCentralAsia ? "Введение · Добро пожаловать" : "Introduction · Welcome"}</p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-4">
+                {isCentralAsia ? "Добро пожаловать на курс финансовой грамотности!" : "Welcome to the Financial Literacy Course!"}
+              </h2>
+              <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+                <p>
+                  {isCentralAsia
+                    ? "Мы рады, что вы здесь — независимо от того, пришли ли вы по рекомендации друга, нашли нас онлайн или просто решили взять свои финансы под контроль. Этот курс создан для вас."
+                    : "We're glad you're here — whether a friend told you about us, you found us online, or you just decided it's time to take control of your money. This course was built for you."}
+                </p>
+                <p>
+                  {isCentralAsia
+                    ? "В следующие 6 недель вы пройдёте практическое обучение финансовой грамотности, которое действительно работает. Никакого жаргона, никаких скрытых платежей — просто чёткие, понятные уроки, которые помогут вам строить прочный финансовый фундамент."
+                    : "Over the next 6 weeks, you'll go through practical financial education that actually works. No jargon, no hidden fees — just clear, actionable lessons that will help you build a stronger financial foundation."}
+                </p>
+              </div>
+            </div>
+
+            {/* What to Expect */}
+            <Card className="border-[#C9922A]/30 bg-gradient-to-br from-white to-[#C9922A]/5">
+              <CardContent className="py-6">
+                <h3 className="text-lg font-bold text-[#1B2A4A] mb-4">
+                  {isCentralAsia ? "Что вас ждёт" : "Here's What to Expect"}
+                </h3>
+                <div className="space-y-3">
+                  {[
+                    { week: 1, titleEn: "Your Money, Your Story", titleRu: "Ваши деньги, ваша история", descEn: "Honest self-assessment — see where you really stand.", descRu: "Честная самооценка — узнайте, где вы на самом деле." },
+                    { week: 2, titleEn: "Identity & Work", titleRu: "Идентичность и работа", descEn: "Build your worth on something deeper than your bank balance.", descRu: "Постройте свою ценность на чём-то более глубоком, чем баланс." },
+                    { week: 3, titleEn: "Building a Budget", titleRu: "Создание бюджета", descEn: "Tell your money where to go instead of wondering where it went.", descRu: "Направляйте деньги, а не гадайте, куда они делись." },
+                    { week: 4, titleEn: "Destroying Debt", titleRu: "Уничтожение долгов", descEn: "Break the chains that keep you from financial freedom.", descRu: "Разорвите цепи, мешающие финансовой свободе." },
+                    { week: 5, titleEn: "Saving & Giving", titleRu: "Накопления и щедрость", descEn: "Build margin so you can be generous when it matters.", descRu: "Создайте запас, чтобы быть щедрым, когда это важно." },
+                    { week: 6, titleEn: "Multiply Your Impact", titleRu: "Умножьте влияние", descEn: "Build a legacy of financial wisdom that ripples outward.", descRu: "Создайте наследие финансовой мудрости." },
+                  ].map((w) => (
+                    <div key={w.week} className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded-full bg-[#1B2A4A] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                        {w.week}
+                      </div>
+                      <div>
+                        <p className="font-medium text-[#1B2A4A] text-sm">{isCentralAsia ? w.titleRu : w.titleEn}</p>
+                        <p className="text-xs text-gray-500">{isCentralAsia ? w.descRu : w.descEn}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* How Each Week Works */}
+            <div>
+              <h3 className="text-lg font-bold text-[#1B2A4A] mb-3">
+                {isCentralAsia ? "Как устроена каждая неделя" : "How Each Week Works"}
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {[
+                  { dayEn: "Day 1", dayRu: "День 1", labelEn: "Overview & Introduction", labelRu: "Обзор и введение" },
+                  { dayEn: "Days 2-3", dayRu: "Дни 2-3", labelEn: "Lesson Deep Dives", labelRu: "Погружение в урок" },
+                  { dayEn: "Day 4", dayRu: "День 4", labelEn: "Worksheet", labelRu: "Рабочий лист" },
+                  { dayEn: "Day 5", dayRu: "День 5", labelEn: "Practice & Apply", labelRu: "Практика" },
+                  { dayEn: "Day 6", dayRu: "День 6", labelEn: "Week Wrap-Up", labelRu: "Итоги недели" },
+                ].map((d, i) => (
+                  <div key={i} className="bg-gray-50 rounded-lg p-3 text-center">
+                    <p className="text-xs font-bold text-[#C9922A]">{isCentralAsia ? d.dayRu : d.dayEn}</p>
+                    <p className="text-xs text-gray-600 mt-1">{isCentralAsia ? d.labelRu : d.labelEn}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Encouragement */}
+            <Card className="border-l-4 border-l-[#C9922A] bg-[#C9922A]/5">
+              <CardContent className="py-5">
+                <p className="text-gray-700 leading-relaxed">
+                  {isCentralAsia
+                    ? "Вам не нужен финансовый опыт. Вам не нужно ничего покупать. Единственное, что вам нужно — это готовность быть честным с собой о том, где вы сейчас, и готовность делать следующий шаг. Давайте начнём."
+                    : "You don't need financial experience. You don't need to buy anything. All you need is a willingness to be honest with yourself about where you are and a willingness to take the next step. Let's get started."}
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Start Button */}
+            <div className="text-center">
+              <Button
+                onClick={() => {
+                  // Mark intro as complete
+                  setProgress((prev) => {
+                    const currentDays = prev.completedDays[1] || [];
+                    if (!currentDays.includes(0)) {
+                      const updated = { ...prev, completedDays: { ...prev.completedDays, 1: [...currentDays, 0].sort((a, b) => a - b) } };
+                      saveProgress(updated);
+                      return updated;
+                    }
+                    return prev;
+                  });
+                  navigateDay(1);
+                }}
+                size="lg"
+                className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-10 py-4 text-lg"
+              >
+                {isCentralAsia ? "Начать День 1" : "Start Day 1"}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+        ) : (
         <DayContent
           weekNum={weekNum}
           dayNum={currentDay}
@@ -359,6 +480,7 @@ const CourseWeek = () => {
           onNavigateDay={navigateDay}
           isCentralAsia={isCentralAsia}
         />
+        )}
 
         {/* Cohort CTA and extras only on Day 6 */}
         {currentDay === DAYS_PER_WEEK && (

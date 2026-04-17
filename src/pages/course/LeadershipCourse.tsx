@@ -85,7 +85,7 @@ const moduleIconsRu = [
 const LeadershipCourse = () => {
   const { isCentralAsia } = useRegion();
   const [progress, setProgress] = useState<LeadershipProgress>(loadProgress);
-  const hasEmail = false;
+  const hasEmail = true;
   const user: { firstName?: string } | null = null;
   const bcComplete = checkBusinessCreationComplete();
 

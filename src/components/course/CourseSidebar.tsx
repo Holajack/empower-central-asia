@@ -94,7 +94,7 @@ export default function CourseSidebar({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Course Title */}
+      {/* Course Title + Progress + CTA Buttons */}
       <div className="p-4 border-b border-gray-200">
         <Link to={coursePath} className="flex items-center gap-2 text-[#1B2A4A] hover:text-[#C9922A] transition-colors">
           <BookOpen className="w-4 h-4 text-[#C9922A]" />
@@ -112,6 +112,26 @@ export default function CourseSidebar({
             <span>{progressPercent}%</span>
           </div>
           <Progress value={progressPercent} className="h-1.5 bg-gray-200" />
+        </div>
+
+        {/* Action Buttons — always visible at the top */}
+        <div className="mt-3 flex gap-2">
+          {onLeaveReview && (
+            <button
+              onClick={onLeaveReview}
+              className="flex-1 flex items-center justify-center gap-1 text-[10px] bg-[#C9922A]/10 text-[#C9922A] hover:bg-[#C9922A]/20 font-medium transition-colors rounded-md py-1.5"
+            >
+              <Star className="w-3 h-3" />
+              {isCentralAsia ? "Отзыв" : "Review"}
+            </button>
+          )}
+          <Link
+            to="/cohort"
+            className="flex-1 flex items-center justify-center gap-1 text-[10px] bg-[#1B2A4A] text-white hover:bg-[#1B2A4A]/90 font-medium transition-colors rounded-md py-1.5"
+          >
+            {isCentralAsia ? "Когорта" : "Live Cohort"}
+            <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </div>
 
@@ -167,6 +187,32 @@ export default function CourseSidebar({
                 {/* Day list */}
                 {isExpanded && status !== "locked" && (
                   <div className="pb-1 px-2">
+                    {/* Intro (Day 0) for Week 1 only */}
+                    {week.weekNum === 1 && (
+                      <button
+                        onClick={() => onSelectDay(1, 0)}
+                        className={`w-full flex items-center gap-2 px-3 py-1.5 rounded text-xs transition-colors ${
+                          currentWeek === 1 && currentDay === 0
+                            ? "bg-[#C9922A]/10 text-[#C9922A] font-medium"
+                            : completedDays[1]?.includes(0)
+                              ? "text-green-700 hover:bg-green-50"
+                              : "text-gray-600 hover:bg-gray-50"
+                        }`}
+                      >
+                        {completedDays[1]?.includes(0) ? (
+                          <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center">
+                            <Check className="w-2.5 h-2.5 text-green-600" />
+                          </span>
+                        ) : currentWeek === 1 && currentDay === 0 ? (
+                          <span className="w-4 h-4 rounded-full bg-[#C9922A] flex items-center justify-center">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                          </span>
+                        ) : (
+                          <span className="w-4 h-4 rounded-full border-2 border-[#C9922A]/40" />
+                        )}
+                        <span>{isCentralAsia ? "Введение" : "Intro"}</span>
+                      </button>
+                    )}
                     {Array.from({ length: totalDaysPerWeek }, (_, i) => i + 1).map((dayNum) => {
                       const dayStatus = getDayStatus(
                         week.weekNum,
@@ -226,25 +272,6 @@ export default function CourseSidebar({
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="border-t border-gray-200 p-4 space-y-2">
-        {onLeaveReview && (
-          <button
-            onClick={onLeaveReview}
-            className="flex items-center gap-1.5 text-xs text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors"
-          >
-            <Star className="w-3.5 h-3.5" />
-            {isCentralAsia ? "Оставить отзыв" : "Leave a Review"}
-          </button>
-        )}
-        <Link
-          to="/cohort"
-          className="flex items-center gap-1 text-xs text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors"
-        >
-          {isCentralAsia ? "Присоединиться к когорте" : "Join a Live Cohort"}
-          <ArrowRight className="w-3 h-3" />
-        </Link>
-      </div>
     </div>
   );
 }

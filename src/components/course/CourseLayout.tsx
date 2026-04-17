@@ -117,9 +117,9 @@ export default function CourseLayout({
       <div className="flex">
         {/* Desktop sidebar */}
         <aside className="hidden md:block w-72 flex-shrink-0 no-print relative">
-          <div className={`w-72 border-r border-gray-200 bg-white overflow-y-auto transition-all duration-200 ${
+          <div className={`w-72 border-r border-gray-200 bg-white ${
             footerVisible ? "absolute bottom-0" : "fixed top-20 bottom-0"
-          }`}>
+          }`} style={footerVisible ? { height: 'calc(100vh - 5rem)' } : undefined}>
             <CourseSidebar
               courseTitle={courseTitle}
               coursePath={coursePath}
@@ -138,7 +138,7 @@ export default function CourseLayout({
 
         {/* Main content area */}
         <main className="flex-1 min-w-0 pb-20 md:pb-8">
-          <div className="max-w-3xl mx-auto px-4 py-6 md:py-10">
+          <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 md:py-10">
             {children}
           </div>
         </main>

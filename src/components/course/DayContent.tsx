@@ -122,6 +122,53 @@ function getReflectionsForDay(
   return [];
 }
 
+/**
+ * Distributes objectives across days based on day type:
+ * - Day 1 (Overview): First objective (conceptual intro)
+ * - Days 2-3 (Lessons): Knowledge objectives
+ * - Day 4 (Worksheet): Hands-on/practical objectives
+ * - Day 5 (Practice): Application objectives
+ * - Day 6 (Wrap-Up): Reflection/goal-setting objectives
+ */
+function getObjectivesForDay(objectives: string[], dayNum: number): { objective: string; globalIndex: number }[] {
+  const total = objectives.length;
+  if (total === 0) return [];
+
+  // Map day ranges to objective index ranges
+  // Day 1: first objective
+  // Day 2-3: middle objectives (split between lesson days)
+  // Day 4: worksheet objective (practical/hands-on)
+  // Day 5-6: final objectives (application + reflection)
+  if (total <= 2) {
+    // Very few objectives — show all on day 1 and 6
+    if (dayNum === 1) return objectives.map((o, i) => ({ objective: o, globalIndex: i }));
+    return [];
+  }
+
+  // Distribute: roughly 1 for day 1, 1-2 for days 2-3 each, 1 for day 4, rest for 5-6
+  const perDay: Record<number, number[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+
+  if (total >= 4) {
+    perDay[1] = [0]; // First objective on intro/overview day
+    perDay[2] = [1]; // Second on lesson day 2
+    perDay[3] = total > 4 ? [2] : []; // Third on lesson day 3
+    perDay[4] = [total > 4 ? 3 : 2]; // Hands-on objective on worksheet day
+    const remaining = [];
+    for (let i = (total > 4 ? 4 : 3); i < total; i++) remaining.push(i);
+    // Split remaining between day 5 and 6
+    const mid = Math.ceil(remaining.length / 2);
+    perDay[5] = remaining.slice(0, mid);
+    perDay[6] = remaining.slice(mid);
+  } else {
+    // 3 objectives
+    perDay[1] = [0];
+    perDay[3] = [1];
+    perDay[5] = [2];
+  }
+
+  return (perDay[dayNum] || []).map(i => ({ objective: objectives[i], globalIndex: i }));
+}
+
 /** Day title descriptions */
 function getDayTitle(dayNum: number, weekTitle: string, isCentralAsia: boolean): string {
   const titles: Record<number, string> = {
@@ -172,6 +219,7 @@ export default function DayContent({
   const storyParagraphs = getStorySlice(activeStory.paragraphs, dayNum, totalDays);
   const dayLessonSections = getLessonForDay(lessonSections, dayNum);
   const dayReflections = getReflectionsForDay(reflectionQuestions, lessonSections, dayNum);
+  const dayObjectives = getObjectivesForDay(objectives, dayNum);
   const [lessonOpen, setLessonOpen] = useState(false);
 
   return (
@@ -209,39 +257,42 @@ export default function DayContent({
             <p className="text-gray-700 leading-relaxed text-base md:text-lg">{overview}</p>
           </section>
 
-          {/* Learning Objectives */}
-          <section>
-            <h2 className="text-lg font-bold text-[#1B2A4A] mb-3 flex items-center gap-2">
-              <Target className="w-5 h-5 text-[#C9922A]" />
-              {isCentralAsia ? "Цели обучения" : "Learning Objectives"}
-            </h2>
-            <div className="space-y-2">
-              {objectives.map((obj, index) => {
-                const checked = checkedObjectives.includes(index);
-                return (
-                  <button
-                    key={index}
-                    onClick={() => onToggleObjective(index)}
-                    className={`w-full flex items-start gap-3 p-3 rounded-lg text-left transition-colors ${
-                      checked
-                        ? "bg-green-50 border border-green-200"
-                        : "bg-white border border-gray-200 hover:border-[#C9922A]/50"
-                    }`}
-                  >
-                    {checked ? (
-                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    ) : (
-                      <Circle className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
-                    )}
-                    <span className={`text-sm ${checked ? "text-green-800 line-through" : "text-gray-700"}`}>
-                      {obj}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
         </>
+      )}
+
+      {/* ======= TODAY'S OBJECTIVES (shown on all days with relevant subset) ======= */}
+      {dayObjectives.length > 0 && (
+        <section>
+          <h2 className="text-lg font-bold text-[#1B2A4A] mb-3 flex items-center gap-2">
+            <Target className="w-5 h-5 text-[#C9922A]" />
+            {isCentralAsia ? "Цели на сегодня" : "Today's Goal"}
+          </h2>
+          <div className="space-y-2">
+            {dayObjectives.map(({ objective, globalIndex }) => {
+              const checked = checkedObjectives.includes(globalIndex);
+              return (
+                <button
+                  key={globalIndex}
+                  onClick={() => onToggleObjective(globalIndex)}
+                  className={`w-full flex items-start gap-3 p-3 rounded-lg text-left transition-colors ${
+                    checked
+                      ? "bg-green-50 border border-green-200"
+                      : "bg-white border border-gray-200 hover:border-[#C9922A]/50"
+                  }`}
+                >
+                  {checked ? (
+                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <Circle className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                  )}
+                  <span className={`text-sm ${checked ? "text-green-800 line-through" : "text-gray-700"}`}>
+                    {objective}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
       )}
 
       {/* ======= STORY EXCERPT (every day) ======= */}
@@ -277,18 +328,38 @@ export default function DayContent({
         <section>
           <div className="border-t-2 border-[#C9922A] pt-6">
             <Collapsible open={lessonOpen} onOpenChange={setLessonOpen}>
+              <div className="mb-4">
+                <h2 className="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-1">
+                  {isCentralAsia ? "Сегодняшний урок" : "Today's Lesson"}
+                </h2>
+                {dayLessonSections[0]?.title && (
+                  <p className="text-sm font-medium text-[#C9922A]">{dayLessonSections[0].title}</p>
+                )}
+              </div>
+
+              {/* Preview: show first paragraph when collapsed */}
+              {!lessonOpen && dayLessonSections[0]?.content && (
+                <div className="relative mb-4">
+                  <p className="text-gray-600 leading-relaxed line-clamp-3">
+                    {dayLessonSections[0].content[0]}
+                  </p>
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-50 to-transparent" />
+                </div>
+              )}
+
               <CollapsibleTrigger asChild>
-                <button className="w-full flex items-center justify-between group">
-                  <h2 className="text-xl md:text-2xl font-bold text-[#1B2A4A]">
-                    {isCentralAsia ? "Сегодняшний урок" : "Today's Lesson"}
-                  </h2>
-                  <span className="flex items-center gap-1.5 text-sm font-medium text-[#C9922A] group-hover:text-[#1B2A4A] transition-colors">
-                    {lessonOpen
-                      ? isCentralAsia ? "Свернуть" : "Collapse"
-                      : isCentralAsia ? "Читать урок" : "Read the lesson"}
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${lessonOpen ? "rotate-180" : ""}`} />
-                  </span>
-                </button>
+                <Button
+                  variant={lessonOpen ? "ghost" : "default"}
+                  className={lessonOpen
+                    ? "text-[#C9922A] hover:text-[#1B2A4A] px-0"
+                    : "bg-[#C9922A] hover:bg-[#C9922A]/90 text-white"
+                  }
+                >
+                  {lessonOpen
+                    ? isCentralAsia ? "Свернуть урок" : "Collapse Lesson"
+                    : isCentralAsia ? "Читать полный урок" : "Read Full Lesson"}
+                  <ChevronDown className={`ml-2 w-4 h-4 transition-transform duration-200 ${lessonOpen ? "rotate-180" : ""}`} />
+                </Button>
               </CollapsibleTrigger>
               <CollapsibleContent className="mt-6">
                 <LessonRenderer sections={dayLessonSections} />

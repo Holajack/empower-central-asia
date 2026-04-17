@@ -44,6 +44,11 @@ const NewsletterPopup = () => {
     if ((window as any).__PRERENDERING) return;
 
     const checkAndShowPopup = () => {
+      // Don't show popup on course pages — users are trying to learn
+      if (window.location.pathname.startsWith("/course")) {
+        return;
+      }
+
       const hasSeenPopup = localStorage.getItem("newsletter-popup-seen");
       const dontShowAgain = localStorage.getItem("newsletter-popup-dismissed");
 

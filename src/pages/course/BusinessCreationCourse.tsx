@@ -83,7 +83,7 @@ const moduleIconsRu = [
 const BusinessCreationCourse = () => {
   const { isCentralAsia } = useRegion();
   const [progress, setProgress] = useState<BusinessProgress>(loadProgress);
-  const hasEmail = false;
+  const hasEmail = true;
   const user: { firstName?: string } | null = null;
   const flComplete = checkFinancialLiteracyComplete();
 

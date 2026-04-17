@@ -51,7 +51,7 @@ function loadProgress(): CourseProgress {
 const FinancialLiteracyCourse = () => {
   const { isCentralAsia } = useRegion();
   const [progress, setProgress] = useState<CourseProgress>(loadProgress);
-  const hasEmail = false;
+  const hasEmail = true;
   const user: { firstName?: string } | null = null;
 
   useEffect(() => {
