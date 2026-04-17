@@ -91,3 +91,10 @@ temp/
 E3Funnel/
 web-saas-builder/
 Momentum - Milestone Tracking App/
+
+# Claude Code tooling (session state, not source)
+.claude/
+.lock-hash
+claude-progress.txt
+feature_list.json
+init.sh
