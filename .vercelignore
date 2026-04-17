@@ -1,0 +1,51 @@
+# Python tooling — not part of the Vite production build
+requirements-agents.txt
+requirements.txt
+pyproject.toml
+Pipfile
+Pipfile.lock
+*.py
+venv/
+.venv/
+__pycache__/
+
+# Agent/research workspaces
+Agent Workspace/
+seo-audit/
+utils/
+convex/
+
+# Sibling apps that happen to live in this repo
+web-saas-builder/
+E3Funnel/
+Momentum - Milestone Tracking App/
+App Development/
+
+# Docs, research, transcripts — not needed for deploy
+*.docx
+BUSINESS_CREATION_COURSE_RESEARCH.md
+LEAN_STARTUP_CURRICULUM_RESEARCH.md
+Comprehensive_Entrepreneurship_Curriculum_Central_Asia.md
+GoHighLevel_AI_Bot_Training_FAQ.md
+MORPHEUS_README.md
+BLOG_SCHEDULER_README.md
+MIGRATION_SUMMARY.md
+MIGRATION_PLAN.md
+NEXT_PHASES.md
+AGENTS_SUMMARY.md
+QUICK_START_GUIDE.md
+START_HERE.md
+SYSTEM_ARCHITECTURE.md
+DEPLOYMENT.md
+API_SETUP*.md
+API_INFRASTRUCTURE_PLAN.md
+GOOGLE_APIS_SETUP.md
+bbb-jacken-story-video-script.md
+
+# Local tooling
+.claude/
+.lock-hash
+claude-progress.txt
+feature_list.json
+init.sh
+blogSchedulerInit.js
