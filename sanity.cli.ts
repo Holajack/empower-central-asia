@@ -8,6 +8,11 @@ export default defineCliConfig({
     projectId: "55u2jb6b",
     dataset: "production",
   },
-  // Auto-update Studio without manual redeploy on minor bumps
-  autoUpdates: true,
+  // Studio is hosted at https://bbborders.sanity.studio
+  studioHost: "bbborders",
+  deployment: {
+    appId: "m0jnha6223cyjpcbxv1hf5tw",
+    // Auto-update Studio without manual redeploy on minor bumps
+    autoUpdates: true,
+  },
 });
