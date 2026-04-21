@@ -24,7 +24,14 @@ export default defineType({
       type: "text",
       rows: 3,
       description: "Shown on blog index + used as default meta description.",
-      validation: (Rule) => Rule.max(200),
+      validation: (Rule) => Rule.max(300),
+    }),
+    defineField({
+      name: "summary",
+      title: "Summary (TL;DR)",
+      type: "text",
+      rows: 5,
+      description: "Optional long-form summary shown on the article page before the body.",
     }),
     defineField({
       name: "featuredImage",
@@ -48,11 +55,31 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "authorBio",
+      title: "Author Bio Override",
+      type: "text",
+      rows: 3,
+      description:
+        "Optional — overrides the author's default bio just for this post.",
+    }),
+    defineField({
       name: "publishedAt",
       title: "Published Date",
       type: "datetime",
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "dateModified",
+      title: "Last Updated",
+      type: "datetime",
+      description: "Auto-used for BlogPosting schema freshness signal.",
+    }),
+    defineField({
+      name: "audioUrl",
+      title: "Audio Version URL",
+      type: "url",
+      description: "Optional — link to an audio file for podcast-style playback.",
     }),
     defineField({
       name: "tags",

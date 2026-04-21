@@ -16,7 +16,8 @@
     "studio": "sanity dev",
     "studio:build": "sanity build",
     "studio:deploy": "sanity deploy",
-    "studio:deploy:graphql": "sanity graphql deploy"
+    "studio:deploy:graphql": "sanity graphql deploy",
+    "migrate:blog": "tsx scripts/migrate-blog-posts.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
@@ -79,8 +80,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@sanity/block-tools": "^3.70.0",
+    "@sanity/schema": "^5.21.0",
     "@sanity/vision": "^4.22.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/jsdom": "^28.0.1",
     "@types/node": "^22.5.5",
     "@types/node-cron": "^3.0.11",
     "@types/react": "^18.3.3",
@@ -91,11 +95,14 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "jsdom": "^29.0.2",
     "lovable-tagger": "^1.1.13",
+    "marked": "^18.0.2",
     "postcss": "^8.4.47",
     "puppeteer": "^24.39.0",
     "sanity": "^4.22.0",
     "tailwindcss": "^3.4.11",
+    "tsx": "^4.21.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
