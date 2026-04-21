@@ -1,7 +1,7 @@
 
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { VisualEditing } from "@sanity/visual-editing/react-router";
+import { VisualEditing } from "@sanity/visual-editing/react";
 import Index from "@/pages/Index";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
