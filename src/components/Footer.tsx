@@ -1,13 +1,14 @@
-
 import { Link } from "react-router-dom";
 import { Facebook, Linkedin, Instagram } from "lucide-react";
 import NewsletterSignup from "./NewsletterSignup";
 import { useRegion } from "@/contexts/RegionContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Footer = () => {
   const { isCentralAsia } = useRegion();
   const { t } = useTranslation();
+  const { settings } = useSiteSettings();
 
   return (
     <footer className="bg-white py-12 mt-auto border-t">
@@ -16,15 +17,15 @@ const Footer = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
               <img
-                src="/images/bbb-logo.png"
-                alt="Businesses Beyond Borders logo"
+                src={settings.logoUrl}
+                alt={settings.logoAlt}
                 width={48}
                 height={48}
                 loading="lazy"
                 className="h-12 w-12 rounded-full"
               />
               <h3 className="text-xl font-semibold text-[#1B2A4A]">
-                Businesses Beyond Borders
+                {settings.siteName}
               </h3>
             </Link>
             <p className="text-gray-600 mb-4">
@@ -98,7 +99,7 @@ const Footer = () => {
               {isCentralAsia ? (
                 <li>
                   <a
-                    href="https://wa.me/13865171527"
+                    href={`https://wa.me/${settings.contactPhoneTel.replace(/\D/g, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
@@ -120,33 +121,39 @@ const Footer = () => {
             <div className="mt-4">
               <h5 className="text-md font-semibold mb-2 text-gray-800">{t("footer.followUs")}</h5>
               <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/Businesses.BB"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={isCentralAsia ? "Наша страница в Facebook" : "Visit our Facebook page"}
-                  className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
-                >
-                  <Facebook className="w-6 h-6" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/businesses-beyond-borders/?viewAsMember=true"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={isCentralAsia ? "Наша страница в LinkedIn" : "Visit our LinkedIn page"}
-                  className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a
-                  href="https://www.instagram.com/businessesbeyondborders/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={isCentralAsia ? "Наша страница в Instagram" : "Visit our Instagram page"}
-                  className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
-                >
-                  <Instagram className="w-6 h-6" />
-                </a>
+                {settings.social.facebook && (
+                  <a
+                    href={settings.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={isCentralAsia ? "Наша страница в Facebook" : "Visit our Facebook page"}
+                    className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
+                  >
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                )}
+                {settings.social.linkedin && (
+                  <a
+                    href={settings.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={isCentralAsia ? "Наша страница в LinkedIn" : "Visit our LinkedIn page"}
+                    className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
+                  >
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                )}
+                {settings.social.instagram && (
+                  <a
+                    href={settings.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={isCentralAsia ? "Наша страница в Instagram" : "Visit our Instagram page"}
+                    className="text-gray-400 hover:text-[#1B2A4A] transition-colors"
+                  >
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                )}
               </div>
             </div>
           </div>

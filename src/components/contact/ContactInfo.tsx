@@ -1,37 +1,39 @@
 
 import { Mail, Phone, MapPin, Clock, Globe } from "lucide-react";
 import { useRegion } from "@/contexts/RegionContext";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const ContactInfo = () => {
   const { isCentralAsia } = useRegion();
+  const { settings } = useSiteSettings();
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-semibold text-gray-900">{isCentralAsia ? "Свяжитесь с нами" : "Get in Touch"}</h2>
-      
+
       <div className="space-y-6">
         <div className="flex items-center gap-3 text-gray-600">
           <Mail className="h-5 w-5 text-[#C9922A]" aria-hidden="true" />
           <div>
-            <a 
-              href="mailto:donations@businessesbeyondborders.com" 
+            <a
+              href={`mailto:${settings.contactEmail}`}
               className="hover:text-[#C9922A] font-medium"
               aria-label={isCentralAsia ? "Написать нам" : "Email us"}
             >
-              donations@businessesbeyondborders.com
+              {settings.contactEmail}
             </a>
             <p className="text-sm text-gray-500">{isCentralAsia ? "Основной контакт для вопросов" : "Primary contact for inquiries"}</p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-3 text-gray-600">
           <Phone className="h-5 w-5 text-[#C9922A]" aria-hidden="true" />
           <div>
-            <a 
-              href="tel:+13865171527" 
+            <a
+              href={`tel:${settings.contactPhoneTel}`}
               className="hover:text-[#C9922A] font-medium"
               aria-label={isCentralAsia ? "Позвонить нам" : "Call us"}
             >
-              +1 (386) 517-1527
+              {settings.contactPhone}
             </a>
             <p className="text-sm text-gray-500">{isCentralAsia ? "Звонки и сообщения: понедельник — пятница" : "Text & Call Available Monday - Friday"}</p>
           </div>
@@ -79,8 +81,8 @@ const ContactInfo = () => {
           {isCentralAsia
             ? "По срочным вопросам, связанным с текущими программами, позвоните или напишите на нашу линию экстренной связи: "
             : "For urgent matters related to ongoing programs, please call or text our emergency line at "}
-          <a href="tel:+13865171527" className="font-medium hover:underline ml-1">
-            +1 (386) 517-1527
+          <a href={`tel:${settings.contactPhoneTel}`} className="font-medium hover:underline ml-1">
+            {settings.contactPhone}
           </a>
         </p>
       </div>
