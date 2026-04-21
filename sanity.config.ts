@@ -56,10 +56,6 @@ export default defineConfig({
     presentationTool({
       previewUrl: {
         origin: SITE_URL,
-        previewMode: {
-          enable: "/api/sanity/preview",
-          disable: "/api/sanity/preview/disable",
-        },
       },
       resolve: {
         // Map document types -> site URLs so "Open preview" opens the right page.
