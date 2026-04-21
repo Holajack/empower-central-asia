@@ -49,3 +49,11 @@ claude-progress.txt
 feature_list.json
 init.sh
 blogSchedulerInit.js
+
+# Sanity Studio source — NOT part of the Vite production build.
+# Studio is deployed separately via `npm run studio:deploy` to bbb.sanity.studio.
+sanity/
+sanity.config.ts
+sanity.cli.ts
+.sanity/
+dist-studio/

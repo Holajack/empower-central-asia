@@ -12,7 +12,11 @@
     "preview": "vite preview",
     "blog-scheduler": "node blogSchedulerInit.js",
     "blog-scheduler:test": "node blogSchedulerInit.js --test",
-    "blog-scheduler:help": "node blogSchedulerInit.js --help"
+    "blog-scheduler:help": "node blogSchedulerInit.js --help",
+    "studio": "sanity dev",
+    "studio:build": "sanity build",
+    "studio:deploy": "sanity deploy",
+    "studio:deploy:graphql": "sanity graphql deploy"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
@@ -44,6 +48,8 @@
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.4",
+    "@sanity/client": "^7.21.0",
+    "@sanity/image-url": "^2.1.1",
     "@tanstack/react-query": "^5.56.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

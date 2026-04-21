@@ -98,3 +98,7 @@ Momentum - Milestone Tracking App/
 claude-progress.txt
 feature_list.json
 init.sh
+
+# Sanity Studio local build artifacts
+.sanity/
+dist-studio/
