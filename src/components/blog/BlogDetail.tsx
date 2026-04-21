@@ -1,7 +1,8 @@
 
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { blogPosts, getLocalizedPost, getPublishedPosts } from "@/data/blogPosts";
+import { getLocalizedPost } from "@/data/blogPosts";
+import { useBlogPost } from "@/hooks/useBlogPosts";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import TableOfContents from "./TableOfContents";
@@ -14,11 +15,17 @@ const BlogDetail = () => {
   const { id } = useParams();
   const { isCentralAsia } = useRegion();
 
-  // Support both slug-based and numeric ID lookups, only show published posts
-  const publishedPosts = getPublishedPosts();
-  const post = publishedPosts.find(
-    (p) => p.slug === id || p.id === Number(id)
-  );
+  // Fetch post from Sanity; falls back to hardcoded data if Sanity is
+  // unreachable or the slug isn't in the CMS yet.
+  const { post, isLoading } = useBlogPost(id);
+
+  if (isLoading && !post) {
+    return (
+      <div className="container mx-auto px-4 py-24 text-center">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[#C9922A] border-t-transparent" aria-label="Loading" />
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -207,7 +214,11 @@ const BlogDetail = () => {
       {/* Hero Section with Featured Image */}
       <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <img
-          src={`${post.imageUrl}?w=1920&h=1080&fit=crop`}
+          src={
+            post.imageUrl.includes("?")
+              ? `${post.imageUrl}&w=1920&h=1080&fit=crop`
+              : `${post.imageUrl}?w=1920&h=1080&fit=crop`
+          }
           alt={localized.displayTitle}
           width={1200}
           height={630}
