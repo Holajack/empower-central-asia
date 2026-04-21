@@ -20,6 +20,12 @@ export const sanity = createClient({
   // useCdn=true serves content from Sanity's CDN (fast, ~60s cache).
   // Set to false only if you need real-time draft content.
   useCdn: true,
+  // Stega encoding — embeds edit metadata into content so `@sanity/visual-editing`
+  // can render click-to-edit overlays when the site is loaded inside the
+  // Sanity Studio Presentation tool iframe. Invisible to normal visitors.
+  stega: {
+    studioUrl: "https://bbborders.sanity.studio",
+  },
 });
 
 // Image URL builder — use to generate optimized image URLs with size/crop params.

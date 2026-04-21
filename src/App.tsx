@@ -1,6 +1,7 @@
 
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { VisualEditing } from "@sanity/visual-editing/react-router";
 import Index from "@/pages/Index";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -143,6 +144,9 @@ function AppContent() {
       {!isStandalone && <Footer />}
       <Toaster />
       {!isStandalone && <NewsletterPopup />}
+      {/* Click-to-edit overlays when rendered inside Sanity Studio's Presentation
+          iframe. No-op for normal visitors — safe to render unconditionally. */}
+      <VisualEditing />
     </>
   );
 }

@@ -10,8 +10,13 @@
  */
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { presentationTool } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemas";
+
+// Production site URL — used by the Presentation tool to iframe the live site.
+// Studio admins can see a live visual preview of their edits inside Studio.
+const SITE_URL = "https://businessesbeyondborders.com";
 
 export default defineConfig({
   name: "bbb-studio",
@@ -45,6 +50,67 @@ export default defineConfig({
             S.documentTypeListItem("heroSlide").title("Homepage Hero Slides"),
           ]),
     }),
+
+    // Presentation tool — live preview of the site with click-to-edit overlays.
+    // Admins get a side-by-side "Edit here → see change on the site" workflow.
+    presentationTool({
+      previewUrl: {
+        origin: SITE_URL,
+        previewMode: {
+          enable: "/api/sanity/preview",
+          disable: "/api/sanity/preview/disable",
+        },
+      },
+      resolve: {
+        // Map document types -> site URLs so "Open preview" opens the right page.
+        locations: {
+          blogPost: {
+            select: { title: "title", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                {
+                  title: doc?.title ?? "Untitled post",
+                  href: `/blog/${doc?.slug}`,
+                },
+                { title: "Blog index", href: "/blog" },
+              ],
+            }),
+          },
+          programPage: {
+            select: { title: "title", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                {
+                  title: doc?.title ?? "Untitled program",
+                  href: `/programs/${doc?.slug}`,
+                },
+              ],
+            }),
+          },
+          successStory: {
+            select: { name: "name", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                {
+                  title: doc?.name ?? "Story",
+                  href: `/success-stories/${doc?.slug}`,
+                },
+                { title: "Success stories", href: "/success-stories" },
+              ],
+            }),
+          },
+          siteSettings: {
+            resolve: () => ({
+              locations: [
+                { title: "Home", href: "/" },
+                { title: "Contact", href: "/contact" },
+              ],
+            }),
+          },
+        },
+      },
+    }),
+
     visionTool(),
   ],
 
