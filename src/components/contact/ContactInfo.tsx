@@ -42,10 +42,8 @@ const ContactInfo = () => {
         <div className="flex items-start gap-3 text-gray-600">
           <MapPin className="h-5 w-5 text-[#C9922A] mt-0.5" aria-hidden="true" />
           <div>
-            <address className="not-italic font-medium">
-              2570 Jasmine Rd.<br />
-              Port Orange, FL 32128<br />
-              United States
+            <address className="not-italic font-medium" style={{ whiteSpace: "pre-line" }}>
+              {settings.getAddress(isCentralAsia)}
             </address>
             <p className="text-sm text-gray-500 mt-1">{isCentralAsia ? "Штаб-квартира и операционный центр" : "Headquarters & Operations Center"}</p>
           </div>

@@ -29,7 +29,7 @@ const Footer = () => {
               </h3>
             </Link>
             <p className="text-gray-600 mb-4">
-              {t("footer.tagline")}
+              {settings.getTagline(isCentralAsia)}
             </p>
           </div>
           <div>
