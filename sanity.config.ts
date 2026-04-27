@@ -62,6 +62,18 @@ export default defineConfig({
             S.documentTypeListItem("impactStat").title("Impact Stats"),
             S.divider(),
 
+            // ── About page ──
+            S.listItem()
+              .title("About Page")
+              .id("aboutPage")
+              .child(
+                S.document()
+                  .schemaType("aboutPage")
+                  .documentId("aboutPage")
+              ),
+            S.documentTypeListItem("teamMember").title("Team Members"),
+            S.divider(),
+
             // ── Editorial ──
             S.documentTypeListItem("blogPost").title("Blog Posts"),
             S.documentTypeListItem("author").title("Authors"),
@@ -141,6 +153,16 @@ export default defineConfig({
               locations: [{ title: "Homepage impact stats", href: "/" }],
             }),
           },
+          aboutPage: {
+            resolve: () => ({
+              locations: [{ title: "About page", href: "/about" }],
+            }),
+          },
+          teamMember: {
+            resolve: () => ({
+              locations: [{ title: "About page (team section)", href: "/about" }],
+            }),
+          },
         },
       },
     }),
@@ -152,7 +174,7 @@ export default defineConfig({
     types: schemaTypes,
     // Block creation of additional singleton docs.
     templates: (prev) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage"];
       return prev.filter(({ schemaType }) => !singletons.includes(schemaType));
     },
   },
@@ -160,7 +182,7 @@ export default defineConfig({
   document: {
     // Hide 'Duplicate' and 'Delete' on singletons.
     actions: (prev, { schemaType }) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage"];
       return singletons.includes(schemaType)
         ? prev.filter(
             ({ action }) => !["duplicate", "delete"].includes(action || "")

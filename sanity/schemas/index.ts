@@ -7,12 +7,15 @@ import successStory from "./documents/successStory";
 import programPage from "./documents/programPage";
 import heroSlide from "./documents/heroSlide";
 import impactStat from "./documents/impactStat";
+import teamMember from "./documents/teamMember";
 import siteSettings from "./singletons/siteSettings";
 import homepageHero from "./singletons/homepageHero";
 import homepageMission from "./singletons/homepageMission";
+import aboutPage from "./singletons/aboutPage";
 import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
+import valueItem from "./objects/valueItem";
 
 export const schemaTypes = [
   // Documents
@@ -22,12 +25,15 @@ export const schemaTypes = [
   programPage,
   heroSlide,
   impactStat,
+  teamMember,
   // Singletons
   siteSettings,
   homepageHero,
   homepageMission,
+  aboutPage,
   // Objects (reusable)
   seoFields,
   cta,
   blockContent,
+  valueItem,
 ];
