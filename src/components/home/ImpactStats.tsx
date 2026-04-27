@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import { useRegion } from "@/contexts/RegionContext";
+import { useImpactStats, localizeStats } from "@/hooks/useHomepage";
 
 interface ImpactStatsProps {
   isMobile?: boolean;
@@ -16,33 +17,13 @@ interface ImpactStatsProps {
 
 const ImpactStats = ({ isMobile = false }: ImpactStatsProps) => {
   const { isCentralAsia } = useRegion();
+  const { stats: rawStats } = useImpactStats();
 
-  const stats = [
-    {
-      number: 150,
-      label: isCentralAsia ? "Предпринимателей обучено" : "Entrepreneurs Activated",
-      suffix: "+",
-      delay: 0,
-    },
-    {
-      number: 50,
-      label: isCentralAsia ? "Бизнесов запущено" : "Businesses Equipped",
-      suffix: "+",
-      delay: 200,
-    },
-    {
-      number: 100,
-      label: isCentralAsia ? "Успешность программы" : "Program Success Rate",
-      suffix: "%",
-      delay: 400,
-    },
-    {
-      number: 6,
-      label: isCentralAsia ? "Сообществ охвачено" : "Communities Empowered",
-      suffix: "+",
-      delay: 600,
-    },
-  ];
+  // Stats come from Sanity (with hardcoded fallback). Stagger animation by 200ms.
+  const stats = localizeStats(rawStats, isCentralAsia).map((s, i) => ({
+    ...s,
+    delay: i * 200,
+  }));
 
   // Auto-scroll functionality for mobile
   const [emblaRef, emblaApi] = useEmblaCarousel({

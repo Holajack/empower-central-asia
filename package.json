@@ -17,7 +17,8 @@
     "studio:build": "sanity build",
     "studio:deploy": "sanity deploy",
     "studio:deploy:graphql": "sanity graphql deploy",
-    "migrate:blog": "tsx scripts/migrate-blog-posts.mts"
+    "migrate:blog": "tsx scripts/migrate-blog-posts.mts",
+    "migrate:homepage": "tsx scripts/migrate-homepage.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",

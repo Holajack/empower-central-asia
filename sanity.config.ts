@@ -31,7 +31,7 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
-            // Singleton: Site Settings (only one doc allowed)
+            // ── Global / site-wide ──
             S.listItem()
               .title("Site Settings")
               .id("siteSettings")
@@ -42,12 +42,35 @@ export default defineConfig({
               ),
             S.divider(),
 
-            // Regular document types
+            // ── Homepage ──
+            S.listItem()
+              .title("Homepage Hero")
+              .id("homepageHero")
+              .child(
+                S.document()
+                  .schemaType("homepageHero")
+                  .documentId("homepageHero")
+              ),
+            S.listItem()
+              .title("Homepage Mission Section")
+              .id("homepageMission")
+              .child(
+                S.document()
+                  .schemaType("homepageMission")
+                  .documentId("homepageMission")
+              ),
+            S.documentTypeListItem("impactStat").title("Impact Stats"),
+            S.divider(),
+
+            // ── Editorial ──
             S.documentTypeListItem("blogPost").title("Blog Posts"),
             S.documentTypeListItem("author").title("Authors"),
             S.documentTypeListItem("successStory").title("Success Stories"),
+            S.divider(),
+
+            // ── Programs & legacy ──
             S.documentTypeListItem("programPage").title("Program Pages"),
-            S.documentTypeListItem("heroSlide").title("Homepage Hero Slides"),
+            S.documentTypeListItem("heroSlide").title("Hero Slides (legacy)"),
           ]),
     }),
 
@@ -103,6 +126,21 @@ export default defineConfig({
               ],
             }),
           },
+          homepageHero: {
+            resolve: () => ({
+              locations: [{ title: "Homepage hero", href: "/" }],
+            }),
+          },
+          homepageMission: {
+            resolve: () => ({
+              locations: [{ title: "Homepage mission section", href: "/" }],
+            }),
+          },
+          impactStat: {
+            resolve: () => ({
+              locations: [{ title: "Homepage impact stats", href: "/" }],
+            }),
+          },
         },
       },
     }),
@@ -112,18 +150,22 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
-    // Block the creation of additional siteSettings docs (singleton enforcement)
-    templates: (prev) =>
-      prev.filter(({ schemaType }) => schemaType !== "siteSettings"),
+    // Block creation of additional singleton docs.
+    templates: (prev) => {
+      const singletons = ["siteSettings", "homepageHero", "homepageMission"];
+      return prev.filter(({ schemaType }) => !singletons.includes(schemaType));
+    },
   },
 
   document: {
-    // Hide 'Duplicate' and 'Delete' on siteSettings singleton
-    actions: (prev, { schemaType }) =>
-      schemaType === "siteSettings"
+    // Hide 'Duplicate' and 'Delete' on singletons.
+    actions: (prev, { schemaType }) => {
+      const singletons = ["siteSettings", "homepageHero", "homepageMission"];
+      return singletons.includes(schemaType)
         ? prev.filter(
             ({ action }) => !["duplicate", "delete"].includes(action || "")
           )
-        : prev,
+        : prev;
+    },
   },
 });

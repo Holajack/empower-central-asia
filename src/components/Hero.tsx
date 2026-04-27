@@ -1,17 +1,25 @@
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import DonateButton from "./DonateButton";
 import { useRegion } from "@/contexts/RegionContext";
+import { useHomepageHero } from "@/hooks/useHomepage";
 
 const Hero = () => {
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
+  const { hero } = useHomepageHero();
 
-  const scrollToPrograms = () => {
-    const programsSection = document.getElementById("programs-section");
-    if (programsSection) {
-      programsSection.scrollIntoView({ behavior: "smooth" });
+  // Primary CTA URL can be a #anchor (scroll on page) or a path/URL (navigate).
+  const onPrimaryCtaClick = () => {
+    const url = hero.primaryCtaUrl;
+    if (url.startsWith("#")) {
+      const target = document.getElementById(url.slice(1));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
     }
+    // Otherwise treat as navigation
+    window.location.href = url;
   };
 
   return (
@@ -20,7 +28,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/images/hero-bg.webp')",
+          backgroundImage: `url('${hero.backgroundImageUrl}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -31,20 +39,18 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms]">
-          {isCentralAsia ? "Надежда, Которая Строит" : "Hope That Builds"}
+          {hero.getHeading(isCentralAsia)}
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-up [--animation-delay:400ms]">
-          {isCentralAsia
-            ? "Чтобы потерявшие надежду могли её обрести — а обретшие надежду могли её приумножить."
-            : "So that the hopeless can find hope -- and the hopeful can multiply it."}
+          {hero.getSubheading(isCentralAsia)}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [--animation-delay:600ms]">
           <Button
             size="lg"
             className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold min-w-[200px] group"
-            onClick={scrollToPrograms}
+            onClick={onPrimaryCtaClick}
           >
-            {isCentralAsia ? "Начать обучение (бесплатно)" : "Start Learning (Free)"}
+            {hero.getPrimaryCtaLabel(isCentralAsia)}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           {!isRegionCentralAsia && (
@@ -52,7 +58,7 @@ const Hero = () => {
               size="lg"
               className="bg-white/10 hover:bg-white/20 text-white border-white min-w-[200px]"
             >
-              {isCentralAsia ? "Поддержать будущего предпринимателя" : "Support a Future Entrepreneur"}
+              {hero.getSecondaryCtaLabel(isCentralAsia)}
             </DonateButton>
           )}
         </div>
