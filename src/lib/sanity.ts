@@ -13,13 +13,23 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || "55u2jb6b";
 const dataset = import.meta.env.VITE_SANITY_DATASET || "production";
 
+/**
+ * Detect whether the site is loaded inside Sanity Studio's Presentation
+ * iframe. If so, skip the CDN cache so edits appear instantly when admins
+ * publish in Studio. Public visitors keep the fast (~60s cached) CDN path.
+ *
+ * SSR-safe: `window` undefined during build → false → CDN on.
+ */
+const isInStudioIframe =
+  typeof window !== "undefined" && window.self !== window.top;
+
 export const sanity = createClient({
   projectId,
   dataset,
   apiVersion: "2024-01-01",
-  // useCdn=true serves content from Sanity's CDN (fast, ~60s cache).
-  // Set to false only if you need real-time draft content.
-  useCdn: true,
+  // CDN: fast + cached for public visitors. Disabled for Studio iframe so
+  // every fetch is fresh and edits appear within ~1s instead of 60s.
+  useCdn: !isInStudioIframe,
   // Stega encoding — embeds edit metadata into content so `@sanity/visual-editing`
   // can render click-to-edit overlays when the site is loaded inside the
   // Sanity Studio Presentation tool iframe. Invisible to normal visitors.
