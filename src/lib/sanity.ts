@@ -14,6 +14,22 @@ const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || "55u2jb6b";
 const dataset = import.meta.env.VITE_SANITY_DATASET || "production";
 
 /**
+ * Optional read token. Sanity's Growth-tier dataset ACL gates anonymous
+ * reads on most doc types (singletons like siteSettings work, but blog
+ * posts / programs / team members do not). Adding a Viewer-only token here
+ * bypasses that restriction.
+ *
+ * The token is shipped to the browser in this client bundle — that's
+ * acceptable ONLY for VIEWER permission tokens (read-only). Never put an
+ * Editor or Admin token in this env var, or anyone viewing the site can
+ * write to your dataset.
+ *
+ * Set in Vercel: Project → Settings → Environment Variables →
+ *   VITE_SANITY_API_TOKEN = <viewer token from sanity.io/manage>
+ */
+const apiToken = import.meta.env.VITE_SANITY_API_TOKEN;
+
+/**
  * Detect whether the site is loaded inside Sanity Studio's Presentation
  * iframe. If so, skip the CDN cache so edits appear instantly when admins
  * publish in Studio. Public visitors keep the fast (~60s cached) CDN path.
@@ -29,7 +45,10 @@ export const sanity = createClient({
   apiVersion: "2024-01-01",
   // CDN: fast + cached for public visitors. Disabled for Studio iframe so
   // every fetch is fresh and edits appear within ~1s instead of 60s.
-  useCdn: !isInStudioIframe,
+  // Note: useCdn must be false when a token is supplied (the CDN strips auth
+  // headers). With a token set, all requests hit the live API.
+  useCdn: !isInStudioIframe && !apiToken,
+  ...(apiToken ? { token: apiToken } : {}),
   // Stega encoding — embeds edit metadata into content so `@sanity/visual-editing`
   // can render click-to-edit overlays when the site is loaded inside the
   // Sanity Studio Presentation tool iframe. Invisible to normal visitors.
