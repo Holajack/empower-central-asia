@@ -28,25 +28,19 @@ import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-cour
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
+import { useProgram } from "@/hooks/usePrograms";
 
 const LeadershipDevelopment = () => {
   const { isCentralAsia } = useRegion();
+  const { program } = useProgram("leadership-development");
 
   return (
     <>
       <Helmet>
-        <title>
-          {isCentralAsia
-            ? "Развитие лидерства — обучение | BBB"
-            : "Leadership Development Program | BBB"}
-        </title>
+        <title>{`${program.getTitle(isCentralAsia)} | BBB`}</title>
         <meta
           name="description"
-          content={
-            isCentralAsia
-              ? "Развивайте навыки лидерства с нашей бесплатной 12-недельной программой. Эмоциональный интеллект, управление командами, стратегическое мышление и многое другое."
-              : "Develop your leadership skills with our free 12-week program. Emotional intelligence, team building, strategic thinking, and organizational leadership. Self-paced online course available."
-          }
+          content={program.getHeroDescription(isCentralAsia)}
         />
         <meta
           name="keywords"

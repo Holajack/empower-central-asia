@@ -10,25 +10,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
+import { useProgram } from "@/hooks/usePrograms";
 
 const CommunityCollaboration = () => {
   const { isCentralAsia } = useRegion();
+  const { program } = useProgram("community-collaboration");
   return (
     <>
       <Helmet>
-        <title>
-          {isCentralAsia
-            ? "Сотрудничество в сообществе | BBB"
-            : "Community Collaboration Network | BBB"}
-        </title>
-        <meta
-          name="description"
-          content={
-            isCentralAsia
-              ? "Присоединяйтесь к нашей сети сотрудничества в сообществе, основанной на волонтёрстве, которая соединяет предпринимателей, бизнес и организации по всему миру и в Центральной Азии. Нужны волонтёры для создания устойчивых партнёрств."
-              : "Join our volunteer-driven community collaboration network connecting entrepreneurs, businesses, and organizations worldwide and in Central Asia. Volunteers needed to help build sustainable partnerships for economic development and social impact."
-          }
-        />
+        <title>{`${program.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={program.getHeroDescription(isCentralAsia)} />
         <meta name="keywords" content="community collaboration network, volunteer opportunities, nonprofit partnerships, community development, volunteer coordinator positions, business networking, social enterprise collaboration, community organizing volunteers, nonprofit community partnerships, volunteer management programs, Central Asia partnerships" />
 
         <meta

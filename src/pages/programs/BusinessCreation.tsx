@@ -10,15 +10,17 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
+import { useProgram } from "@/hooks/usePrograms";
 
 const BusinessCreation = () => {
   const { isCentralAsia } = useRegion();
+  const { program } = useProgram("business-creation");
 
   return (
     <>
       <Helmet>
-        <title>{isCentralAsia ? "Создание бизнеса — обучение | BBB" : "Business Creation Training Program | BBB"}</title>
-        <meta name="description" content={isCentralAsia ? "Превратите вашу бизнес-идею в реальность с нашей 12-недельной комплексной программой предпринимательства. Методология Lean Startup, Business Model Canvas, разработка MVP и практическое обучение в Центральной Азии." : "Transform your business idea into reality with our 12-week comprehensive entrepreneurship program. Lean Startup methodology, Business Model Canvas, MVP development, and hands-on training serving Central Asia. 90% launch success rate."} />
+        <title>{`${program.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={program.getHeroDescription(isCentralAsia)} />
         <meta name="keywords" content="business creation training, entrepreneurship program, lean startup methodology, business model canvas training, MVP development course, startup accelerator program, business planning workshops, entrepreneur training nonprofit, business incubator, startup mentorship program, Central Asia entrepreneurship" />
         <meta property="og:title" content="Business Creation Training - Comprehensive Entrepreneurship Program" />
         <meta property="og:description" content="12-week intensive entrepreneurship program using Lean Startup methodology and Business Model Canvas. From idea to viable business with 90% success rate." />

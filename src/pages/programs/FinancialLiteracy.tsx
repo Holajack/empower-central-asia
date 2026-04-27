@@ -27,26 +27,17 @@ import { courseWeeks } from "@/data/courseContent";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
+import { useProgram } from "@/hooks/usePrograms";
 
 const FinancialLiteracy = () => {
   const { isCentralAsia } = useRegion();
+  const { program } = useProgram("financial-literacy");
 
   return (
     <>
       <Helmet>
-        <title>
-          {isCentralAsia
-            ? "Финансовая грамотность — обучение | BBB"
-            : "Financial Literacy Program | BBB"}
-        </title>
-        <meta
-          name="description"
-          content={
-            isCentralAsia
-              ? "Возьмите под контроль своё финансовое будущее с нашей бесплатной программой финансовой грамотности. Практическое образование по бюджетированию, устранению долгов и сбережениям."
-              : "Take control of your financial future with our free financial literacy program. Practical education covering budgeting, debt elimination, saving, and more. Self-paced online course and cohort-based programs available."
-          }
-        />
+        <title>{`${program.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={program.getHeroDescription(isCentralAsia)} />
         <meta
           name="keywords"
           content="financial education program, financial literacy course, free budgeting course, debt elimination program, money management education, nonprofit financial education, Central Asia financial training"
