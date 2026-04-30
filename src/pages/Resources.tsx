@@ -4,7 +4,7 @@ import { Map, Users, BarChart3, BookOpen, ArrowRight, Download, DollarSign, Calc
 import { Card, CardContent } from "@/components/ui/card";
 import { useRegion } from "@/contexts/RegionContext";
 import { siteConfig } from "@/lib/seo";
-import { resources } from "@/data/resources";
+import { useResources } from "@/hooks/useResources";
 
 const iconMap: Record<string, React.ElementType> = {
   Map,
@@ -17,6 +17,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Resources() {
   const { isCentralAsia } = useRegion();
+  const { resources } = useResources();
 
   const pageTitle = isCentralAsia
     ? "Бесплатные ресурсы | Businesses Beyond Borders"

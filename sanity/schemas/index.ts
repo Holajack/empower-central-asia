@@ -8,6 +8,8 @@ import programPage from "./documents/programPage";
 import heroSlide from "./documents/heroSlide";
 import impactStat from "./documents/impactStat";
 import teamMember from "./documents/teamMember";
+import faqItem from "./documents/faqItem";
+import resource from "./documents/resource";
 import siteSettings from "./singletons/siteSettings";
 import homepageHero from "./singletons/homepageHero";
 import homepageMission from "./singletons/homepageMission";
@@ -26,6 +28,8 @@ export const schemaTypes = [
   heroSlide,
   impactStat,
   teamMember,
+  faqItem,
+  resource,
   // Singletons
   siteSettings,
   homepageHero,

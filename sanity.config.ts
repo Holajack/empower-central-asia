@@ -80,8 +80,16 @@ export default defineConfig({
             S.documentTypeListItem("successStory").title("Success Stories"),
             S.divider(),
 
-            // ── Programs & legacy ──
+            // ── Programs ──
             S.documentTypeListItem("programPage").title("Program Pages"),
+            S.divider(),
+
+            // ── Get Involved / Resources ──
+            S.documentTypeListItem("faqItem").title("FAQ Items"),
+            S.documentTypeListItem("resource").title("Resources & Toolkits"),
+            S.divider(),
+
+            // ── Legacy ──
             S.documentTypeListItem("heroSlide").title("Hero Slides (legacy)"),
           ]),
     }),
@@ -161,6 +169,20 @@ export default defineConfig({
           teamMember: {
             resolve: () => ({
               locations: [{ title: "About page (team section)", href: "/about" }],
+            }),
+          },
+          faqItem: {
+            resolve: () => ({
+              locations: [{ title: "Get Involved (FAQ section)", href: "/get-involved" }],
+            }),
+          },
+          resource: {
+            select: { title: "title", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                { title: doc?.title ?? "Resource", href: `/resources/${doc?.slug}` },
+                { title: "Resources index", href: "/resources" },
+              ],
             }),
           },
         },

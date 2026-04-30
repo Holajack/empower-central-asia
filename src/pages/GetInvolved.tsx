@@ -15,66 +15,15 @@ import TestimonialCard from "@/components/success-stories/TestimonialCard";
 import { testimonials, getLocalizedTestimonial } from "@/data/testimonials";
 import { useRegion } from "@/contexts/RegionContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useFaqItems, localizeFaqs } from "@/hooks/useFaqItems";
 
 const GetInvolved = () => {
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
   const { t } = useTranslation();
-
-  const faqs = isCentralAsia
-    ? [
-        {
-          question: "Кто может участвовать в программе?",
-          answer:
-            "Курс по финансовой грамотности открыт для всех -- бесплатно, без заявки. Просто приходите, учитесь и применяйте знания. Те, кто покажет стабильность и серьёзность, могут продолжить обучение по программе создания бизнеса.",
-        },
-        {
-          question: "Сколько стоит участие?",
-          answer:
-            "Курс финансовой грамотности полностью бесплатный. Программа создания бизнеса также бесплатна для тех, кто успешно завершил первый этап. Мы не берём деньги за обучение.",
-        },
-        {
-          question: "Как проходит обучение?",
-          answer:
-            "Курс финансовой грамотности длится 6 или 10 недель. Каждую неделю -- новая тема: бюджет, накопления, управление долгами, планирование. Практические задания, рабочие тетради, и живые обсуждения.",
-        },
-        {
-          question: "Могу ли я стать волонтёром или фасилитатором?",
-          answer:
-            "Да! Выпускники программы обучаются проводить курсы, наставлять новых участников и развивать лидерство в своих сообществах. Если вы прошли обучение -- вы можете помогать другим.",
-        },
-        {
-          question: "Как связаться с нами?",
-          answer:
-            "Напишите нам в WhatsApp или по электронной почте. Мы всегда рады ответить на ваши вопросы и помочь вам начать.",
-        },
-      ]
-    : [
-        {
-          question: "How does BBB decide who receives startup capital?",
-          answer:
-            "Nobody walks in and gets funded. Every person who receives startup capital first completed the financial literacy course, then the business creation program, then built and validated a real business plan. By the time they receive capital, they've already demonstrated -- through months of showing up and doing the work -- that they're ready. The filter is the point. It protects the participants and produces real results.",
-        },
-        {
-          question: "Where exactly does my donation go?",
-          answer:
-            "Donations fund three things: training (financial literacy and business creation courses), local staff (facilitators in Central Asia who deliver programs on the ground), and startup capital (loans to graduates who have earned it). We don't have a fancy headquarters or a large administrative staff. The money goes to the work.",
-        },
-        {
-          question: "Can I participate if I don't live in Central Asia?",
-          answer:
-            "The financial literacy course is free and open to anyone, anywhere. The business creation program and startup capital stages are currently focused on communities in Kyrgyzstan, Kazakhstan, and Uzbekistan. We're building toward online group sessions -- sign up for our newsletter to be notified when those launch.",
-        },
-        {
-          question: "Is my donation tax-deductible?",
-          answer:
-            "Yes. Businesses Beyond Borders is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the full extent allowed by law. You'll receive a receipt for your records.",
-        },
-        {
-          question: "How is BBB different from Kiva or other microfinance organizations?",
-          answer:
-            "Most microfinance organizations provide loans. BBB provides a complete path: free financial education first, then business skills, then capital -- but only after someone has proven through the earlier stages that they're ready. We don't fund ideas. We fund people who have already done the work. And our graduates go on to teach others, which means the impact multiplies without requiring more funding.",
-        },
-      ];
+  // FAQs come from Sanity (faqItem docs) with a hardcoded fallback in the hook.
+  // BBB staff add/edit/reorder via Studio → Get Involved page updates within ~60s.
+  const { faqs: rawFaqs } = useFaqItems();
+  const faqs = localizeFaqs(rawFaqs, isCentralAsia);
 
   return (
     <>
