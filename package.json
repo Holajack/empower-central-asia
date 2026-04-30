@@ -23,6 +23,7 @@
     "migrate:programs": "tsx scripts/migrate-programs.mts",
     "migrate:about": "tsx scripts/migrate-about.mts",
     "migrate:success-stories": "tsx scripts/migrate-success-stories.mts",
+    "migrate:success-story-details": "tsx scripts/migrate-success-story-details.mts",
     "migrate:faqs": "tsx scripts/migrate-faqs.mts",
     "migrate:resources": "tsx scripts/migrate-resources.mts",
     "migrate:testimonials": "tsx scripts/migrate-testimonials.mts",
