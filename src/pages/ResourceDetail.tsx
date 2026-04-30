@@ -1,12 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ArrowLeft, Printer, Map, Users, BarChart3, BookOpen, DollarSign, Calculator } from "lucide-react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { Button } from "@/components/ui/button";
 import { useRegion } from "@/contexts/RegionContext";
 import { siteConfig } from "@/lib/seo";
-import { getResourceBySlug, resources } from "@/data/resources";
+import { resources } from "@/data/resources";
 import type { ResourceSection } from "@/data/resources";
 import ResourceGate from "@/components/resources/ResourceGate";
+import { useResource } from "@/hooks/useResources";
 
 const iconMap: Record<string, React.ElementType> = {
   Map,
@@ -15,6 +17,53 @@ const iconMap: Record<string, React.ElementType> = {
   BookOpen,
   DollarSign,
   Calculator,
+};
+
+// Portable Text renderer — matches the prose styling of the legacy
+// SectionRenderer so switching from hardcoded sections to Sanity body is
+// visually seamless.
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="text-gray-700 mb-4 leading-relaxed">{children}</p>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4 mt-8">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-lg font-bold text-[#1B2A4A] mb-3 mt-6">{children}</h3>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-[#1B2A4A]/20 pl-4 italic text-gray-600 my-4">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="space-y-3 mb-4">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="space-y-3 mb-4 list-decimal list-inside">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="flex gap-3 text-gray-700">
+        <span className="text-[#C9922A] font-bold mt-0.5 flex-shrink-0">-</span>
+        <span>{children}</span>
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className="text-gray-700">{children}</li>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-semibold text-gray-900">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
 };
 
 function SectionRenderer({ section }: { section: ResourceSection }) {
@@ -64,9 +113,13 @@ export default function ResourceDetail() {
   const { slug } = useParams();
   const { isCentralAsia } = useRegion();
 
-  const resource = getResourceBySlug(slug || "");
+  const { resource: sanityResource, isLoading } = useResource(slug || "");
 
-  if (!resource) {
+  // While Sanity is loading, attempt an immediate legacy lookup so we don't
+  // flash a 404 on the first render.
+  const legacyResource = resources.find((r) => r.slug === (slug || ""));
+
+  if (!isLoading && !sanityResource && !legacyResource) {
     return (
       <div className="min-h-screen pt-28 px-4 text-center">
         <h2 className="text-2xl font-bold mb-4">
@@ -79,10 +132,30 @@ export default function ResourceDetail() {
     );
   }
 
+  // Merge: prefer Sanity metadata when available, otherwise fall back to legacy.
+  const resource = sanityResource ?? (legacyResource ? {
+    ...legacyResource,
+    _id: `legacy.${legacyResource.slug}`,
+    order: 10,
+    body: [] as ReturnType<typeof Array>,
+    bodyRu: [] as ReturnType<typeof Array>,
+  } : null);
+
+  if (!resource) return null;
+
   const IconComponent = iconMap[resource.icon] || BookOpen;
-  const title = isCentralAsia ? resource.titleRu : resource.title;
-  const description = isCentralAsia ? resource.descriptionRu : resource.description;
-  const sections = isCentralAsia ? resource.sectionsRu : resource.sections;
+  const title = isCentralAsia ? (resource.titleRu ?? resource.title) : resource.title;
+  const description = isCentralAsia ? (resource.descriptionRu ?? resource.description) : resource.description;
+
+  // Portable Text body from Sanity (preferred when non-empty)
+  const ptBody: unknown[] = (isCentralAsia ? (resource as { bodyRu?: unknown[] }).bodyRu : (resource as { body?: unknown[] }).body) ?? [];
+  const hasPortableTextBody = ptBody.length > 0;
+
+  // Legacy sections fallback (from src/data/resources.ts)
+  const legacySections = legacyResource
+    ? (isCentralAsia ? legacyResource.sectionsRu : legacyResource.sections)
+    : [];
+
   const canonicalUrl = `${siteConfig.url}/resources/${resource.slug}`;
 
   const articleSchema = {
@@ -122,7 +195,7 @@ export default function ResourceDetail() {
       <Helmet>
         <title>{`${resource.title} - Free Download | BBB`}</title>
         <meta name="description" content={resource.description} />
-        <meta name="keywords" content={resource.keywords.join(", ")} />
+        <meta name="keywords" content={(resource.keywords ?? legacyResource?.keywords ?? []).join(", ")} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
 
@@ -188,11 +261,18 @@ export default function ResourceDetail() {
               <hr className="my-4" />
             </div>
 
-            {/* Resource sections */}
+            {/* Resource body — Sanity Portable Text (preferred) or legacy sections */}
             <div className="resource-content">
-              {sections.map((section, i) => (
-                <SectionRenderer key={i} section={section} />
-              ))}
+              {hasPortableTextBody ? (
+                <PortableText
+                  value={ptBody as Parameters<typeof PortableText>[0]["value"]}
+                  components={portableTextComponents}
+                />
+              ) : (
+                legacySections.map((section, i) => (
+                  <SectionRenderer key={i} section={section} />
+                ))
+              )}
             </div>
 
             {/* Footer attribution */}
