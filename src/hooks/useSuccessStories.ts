@@ -12,6 +12,26 @@ import { sanity, imageUrl } from "@/lib/sanity";
 import { getLocalized, getLocalizedArray } from "@/lib/localized";
 import { successStories as fallbackStories } from "@/data/successStories";
 
+// Portable Text — kept loose-typed; @portabletext/react accepts any[].
+export type PortableTextBlock = Record<string, unknown>;
+
+export interface StoryMetric {
+  label?: string;
+  labelRu?: string;
+  value?: string;
+  description?: string;
+  descriptionRu?: string;
+}
+
+export interface StoryTimelinePhase {
+  phase?: string;
+  phaseRu?: string;
+  duration?: string;
+  durationRu?: string;
+  description?: string;
+  descriptionRu?: string;
+}
+
 export interface SuccessStoryDoc {
   _id: string;
   slug?: string;
@@ -184,4 +204,151 @@ export function useSuccessStories(): {
     isLoading,
     source: "fallback",
   };
+}
+
+// ---------------------------------------------------------------------------
+// Single-story detail hook — used by SuccessStoryDetail.tsx
+// Includes the new long-form fields (metrics, timeline, challenge, solution,
+// results, story Portable Text) added in the round-3 schema extension.
+// ---------------------------------------------------------------------------
+
+export interface SuccessStoryDetailDoc extends SuccessStoryDoc {
+  story?: PortableTextBlock[];
+  storyRu?: PortableTextBlock[];
+  metrics?: StoryMetric[];
+  timeline?: StoryTimelinePhase[];
+  challenge?: string;
+  challengeRu?: string;
+  solution?: string;
+  solutionRu?: string;
+  results?: string;
+  resultsRu?: string;
+}
+
+interface RawStoryDetail extends RawStory {
+  story?: PortableTextBlock[];
+  storyRu?: PortableTextBlock[];
+  metrics?: StoryMetric[];
+  timeline?: StoryTimelinePhase[];
+  challenge?: string;
+  challengeRu?: string;
+  solution?: string;
+  solutionRu?: string;
+  results?: string;
+  resultsRu?: string;
+}
+
+const STORY_DETAIL_QUERY = /* groq */ `
+  *[_type == "successStory" && slug.current == $slug && (active == true || !defined(active))][0]{
+    _id,
+    "slug": slug.current,
+    name,
+    nameRu,
+    title,
+    titleRu,
+    business,
+    location,
+    locationRu,
+    excerpt,
+    excerptRu,
+    impact,
+    impactRu,
+    heroImageUrl,
+    "photo": photo{..., "alt": alt},
+    pullQuote,
+    pullQuoteRu,
+    year,
+    tags,
+    featured,
+    "order": coalesce(order, 99),
+    story,
+    storyRu,
+    metrics,
+    timeline,
+    challenge,
+    challengeRu,
+    solution,
+    solutionRu,
+    results,
+    resultsRu
+  }
+`;
+
+function shapeDetail(raw: RawStoryDetail): SuccessStoryDetailDoc {
+  return {
+    ...shape(raw),
+    story: raw.story,
+    storyRu: raw.storyRu,
+    metrics: raw.metrics,
+    timeline: raw.timeline,
+    challenge: raw.challenge,
+    challengeRu: raw.challengeRu,
+    solution: raw.solution,
+    solutionRu: raw.solutionRu,
+    results: raw.results,
+    resultsRu: raw.resultsRu,
+  };
+}
+
+/**
+ * Fetch a single success-story document by slug, including the extended
+ * detail fields (metrics, timeline, challenge / solution / results, story).
+ * Falls back to legacy hardcoded data in src/data/successStories.ts when
+ * Sanity is unreachable or has no doc with that slug.
+ */
+export function useSuccessStory(slug: string | undefined): {
+  story: SuccessStoryDetailDoc | null;
+  isLoading: boolean;
+  source: "sanity" | "fallback";
+} {
+  const { data, isLoading } = useQuery({
+    queryKey: ["successStories", "detail", slug],
+    queryFn: async () => {
+      if (!slug) return null;
+      try {
+        const raw = await sanity.fetch<RawStoryDetail | null>(
+          STORY_DETAIL_QUERY,
+          { slug }
+        );
+        return raw ? shapeDetail(raw) : null;
+      } catch {
+        return null;
+      }
+    },
+    enabled: Boolean(slug),
+  });
+
+  if (data) {
+    return { story: data, isLoading, source: "sanity" };
+  }
+
+  // Legacy fallback — only the listing-level fields exist here, not the
+  // extended ones. Those simply render as empty (graceful skip).
+  if (!slug) {
+    return { story: null, isLoading, source: "fallback" };
+  }
+
+  const legacy = fallbackStories.find((s) => s.id === slug);
+  if (!legacy) {
+    return { story: null, isLoading, source: "fallback" };
+  }
+
+  const base = legacyToShape(legacy);
+  const detail: SuccessStoryDetailDoc = {
+    ...base,
+    metrics: legacy.metrics?.map((m) => ({
+      label: m.label,
+      value: m.value,
+      description: m.description,
+    })),
+    timeline: legacy.timeline?.map((t) => ({
+      phase: t.phase,
+      duration: t.duration,
+      description: t.description,
+    })),
+    challenge: legacy.challenge,
+    solution: legacy.solution,
+    results: legacy.results,
+  };
+  return { story: detail, isLoading, source: "fallback" };
 }
