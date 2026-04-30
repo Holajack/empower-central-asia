@@ -82,6 +82,28 @@ export default defineType({
       options: { layout: "tags" },
     }),
     defineField({
+      name: "body",
+      title: "Body / Detail Sections (English)",
+      type: "blockContent",
+      group: "english",
+      description:
+        "Long-form content shown on the resource detail page. Headings, paragraphs, bullet lists, etc. The legacy nested table data still lives in src/data/resources.ts; this field is the editable replacement.",
+    }),
+    defineField({
+      name: "bodyRu",
+      title: "Body / Detail Sections (Русский)",
+      type: "blockContent",
+      group: "russian",
+    }),
+    defineField({
+      name: "downloadUrl",
+      title: "Direct Download URL",
+      type: "string",
+      group: "meta",
+      description:
+        "Optional — direct link to the toolkit PDF or zip if hosted externally.",
+    }),
+    defineField({
       name: "active",
       title: "Active?",
       type: "boolean",

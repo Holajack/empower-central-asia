@@ -57,6 +57,15 @@ export default defineType({
       initialValue: "general",
     }),
     defineField({
+      name: "program",
+      title: "Program (optional)",
+      type: "reference",
+      group: "meta",
+      to: [{ type: "programPage" }],
+      description:
+        "If set, this FAQ shows on that program's page (e.g. /programs/financial-literacy). Leave empty for general FAQs that show only on /get-involved.",
+    }),
+    defineField({
       name: "order",
       title: "Display Order",
       type: "number",

@@ -19,6 +19,8 @@ import homepageHero from "./singletons/homepageHero";
 import homepageMission from "./singletons/homepageMission";
 import aboutPage from "./singletons/aboutPage";
 import footerSettings from "./singletons/footerSettings";
+import formSettings from "./singletons/formSettings";
+import programsAndImpactPage from "./singletons/programsAndImpactPage";
 import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
@@ -46,6 +48,8 @@ export const schemaTypes = [
   homepageMission,
   aboutPage,
   footerSettings,
+  formSettings,
+  programsAndImpactPage,
   // Objects (reusable)
   seoFields,
   cta,
