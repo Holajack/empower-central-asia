@@ -157,19 +157,11 @@ const CommunityCollaboration = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-            {isCentralAsia ? (
-              <>Создавайте партнёрства<span className="text-yellow-400"> в сообществе, которые имеют значение</span></>
-            ) : (
-              <>Build Community<span className="text-yellow-400"> Partnerships That Matter</span></>
-            )}
+            {program.getTagline(isCentralAsia)}
           </h1>
 
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-            {isCentralAsia ? (
-              <><strong className="text-yellow-300">Помогите нам запустить</strong> сеть на основе волонтёрства, соединяющую предпринимателей, бизнес и организации для <strong className="text-yellow-300"> устойчивого влияния на сообщество</strong> в Центральной Азии и за её пределами.</>
-            ) : (
-              <><strong className="text-yellow-300">Help us launch</strong> a volunteer-driven network connecting entrepreneurs, businesses, and organizations for <strong className="text-yellow-300"> sustainable community impact</strong> across Central Asia and beyond.</>
-            )}
+            {program.getHeroDescription(isCentralAsia)}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center mb-8">
@@ -192,9 +184,9 @@ const CommunityCollaboration = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:900ms]">
-            <Link to="/get-involved?type=volunteer&program=community-collaboration">
+            <Link to={program.primaryCtaUrl}>
               <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 text-lg">
-                {isCentralAsia ? "Стать волонтёром для развития сообщества" : "Volunteer to Build Community"}
+                {program.getPrimaryCtaLabel(isCentralAsia)}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
