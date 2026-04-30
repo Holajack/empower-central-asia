@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Helmet } from "react-helmet";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useInView } from "react-intersection-observer";
@@ -18,6 +19,33 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useRegion } from "@/contexts/RegionContext";
 import { useAboutPage, useTeamMembers, localizeTeam } from "@/hooks/useAbout";
+
+// PortableText components — styled to match the existing class names used
+// in the narrative sections so the visual look is preserved.
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="leading-relaxed text-gray-700">{children}</p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-[#1B2A4A]/20 pl-4 italic text-gray-600 my-4">
+        {children}
+      </blockquote>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-2xl font-bold text-gray-800 mt-6 mb-2">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-xl font-semibold text-gray-800 mt-4 mb-1">{children}</h3>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-medium text-gray-800">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
+};
 
 // Map Sanity-stored icon names to actual lucide components.
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -182,36 +210,10 @@ const About = () => {
                     : "From a Haitian Orphanage to Founding a Nonprofit"}
                 </h2>
                 <div className="prose max-w-none text-gray-700 space-y-4">
-                  <p className="leading-relaxed text-lg">
-                    {isCentralAsia
-                      ? "Джакен Холланд родился на Гаити и был брошен при рождении. Его нашли в одной из самых опасных деревень страны — месте, где иностранцев похищали ради выкупа. Женщина, владевшая приютом в трёх часах езды, приехала в эту деревню по причинам, которые она до сих пор не может объяснить. Она нашла его больным и одиноким и сделала две вещи, которых никогда не делала ни для одного ребёнка: достала лекарства и обратилась в полицию — оба поступка, ставившие под угрозу её собственное дело."
-                      : "Jacken Holland was born in Haiti and abandoned at birth. He was found in one of the most dangerous villages in the country -- a place where foreigners were routinely kidnapped for ransom. A woman who ran an orphanage three hours away traveled to that village for reasons she still can't explain. She found him sick and alone and did two things she had never done for any child: she got him medicine, and she went to the police -- both acts that put her own operation at risk."}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "Приют означал выживание, а не заботу. Детей кормили раз в несколько дней. Они пили из стоячей реки, где купали животных. Не было обуви, кроватей, чистой воды. Название деревни в переводе означает «меньше, чем ничто». Джакен провёл там три с половиной года."
-                      : "The orphanage was survival, not care. Children were fed every few days. They drank from a stagnant river where animals bathed. There were no shoes, no beds, no clean water. The village's name, when translated, means \"less than nothing.\" Jacken spent three and a half years there."}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "Американская пара приехала в гуманитарную поездку. Отец — мастер-электрик — зашёл в приют и увидел толпу детей. В стороне сидел злой, замкнутый мальчик. Он прошёл мимо всех остальных, опустился на колени и взял его на руки. Впервые в жизни Джакен почувствовал себя в безопасности. Он уснул на руках незнакомца. Мужчина повернулся к жене со слезами: «Это наш ребёнок». Им было за сорок, дочери выросли, впереди была пенсия. Они решили начать всё сначала."
-                      : "An American couple arrived on a humanitarian trip. The father -- a master electrician -- walked into the orphanage and saw a crowd of children. Off to the side sat one angry, resistant boy, alone. He walked straight past every other child, knelt down, and picked him up. For the first time in his life, Jacken felt safe. He fell asleep in the stranger's arms. The man turned to his wife with tears in his eyes and said, \"This is our child.\" They were in their mid-40s with grown daughters, heading toward retirement. They chose to start over."}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "Усыновление заняло два года на фоне политических потрясений. Когда Джакен прибыл в Америку, всё было новым: язык, культура, электричество, первый полёт. Но адаптация была тяжёлой — годы гнева, боли и горя. Приёмные родители никогда не требовали благодарности. Они встречали его там, где он был, и давали горевать столько, сколько нужно. Он поступил в Университет Центральной Флориды и получил степень в области бизнеса. Побывал в девяти странах и в каждой видел одно: люди с амбициями, но без доступа к финансовому образованию."
-                      : "The adoption took two years through political upheaval. When Jacken arrived in America, everything was new: language, culture, electricity, his first plane ride. But the adjustment was brutal -- years of anger, loss, and grief. His adoptive parents never forced gratitude. They met him where he was and let him grieve as long as he needed. He studied business at the University of Central Florida. He traveled to nine countries and found the same gap in every one: people with drive but no access to financial education or business training."}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "В 23 года он основал Businesses Beyond Borders. Люди называли его сумасшедшим — молодой парень без денег создаёт организацию, собираясь уехать из страны. Он переехал в Кыргызстан с походным рюкзаком и начал сначала — снова. В Центральной Азии он увидел свою историю повсюду: семьи, разлучённые потому, что родители не могли найти работу, дети без отцов и матерей. BBB существует потому, что Джакен знает, каково это — получить настоящий шанс. И что происходит, когда ты его получаешь."
-                      : "At 23, he founded Businesses Beyond Borders. People called him crazy -- a kid with no money starting a nonprofit while leaving the country. He moved to Kyrgyzstan with a hiking backpack and started over, again. In Central Asia, he saw his own story everywhere: families torn apart because parents couldn't find work, children growing up without fathers or mothers. BBB exists because Jacken knows what it's like to be given a real chance -- and what happens when you are."}
-                  </p>
-                  <p className="leading-relaxed font-medium text-gray-800">
-                    {isCentralAsia
-                      ? "«Я знаю, каково это — не иметь ничего и слышать, что ты — ничто. Но я также знаю, что происходит, когда один человек решает, что ты стоишь того, чтобы начать всё сначала. Это и есть BBB. Мы приходим и даём людям настоящий шанс.»"
-                      : "\"I know what it's like to have nothing and to be told you are nothing. I also know what happens when one person decides you're worth starting over for. That's what BBB is. We show up, and we give people a real chance.\""}
-                  </p>
+                  <PortableText
+                    value={about.getFoundingStory(isCentralAsia)}
+                    components={portableTextComponents}
+                  />
                 </div>
               </div>
               <div className="md:col-span-2">
@@ -304,21 +306,10 @@ const About = () => {
                   {isCentralAsia ? "Мост между двумя мирами" : "Bridging Two Worlds"}
                 </h2>
                 <div className="prose max-w-none text-gray-700 space-y-4">
-                  <p className="leading-relaxed text-lg">
-                    {isCentralAsia
-                      ? "Йева выросла в Кыргызстане и построила восьмилетнюю карьеру в престижной бухгалтерской фирме в Вашингтоне, специализируясь на обслуживании некоммерческих организаций. В 2016 году она приняла решение, лишённое всякой практической логики: попросила работать удалённо из Центральной Азии. Каждый руководитель был против. Тогда фирма обратилась ко всем пяти её клиентам, ожидая возражений. Каждый из них ответил: «Нам нужна Йева. Как угодно.»"
-                      : "Yeva grew up in Kyrgyzstan and built an eight-year career at a prestigious DC accounting firm, specializing in serving nonprofits. In 2016, she made a decision that made no practical sense: she asked to work remotely from Central Asia. Every manager opposed it. Then the firm contacted all five of her clients expecting pushback. Every single one said: \"We want Yeva. However she can work.\""}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "Пять лет она жила между двумя мирами — обслуживая клиентов из Вашингтона удалённо, одновременно строя программы микрокредитования на месте в Кыргызстане. Шестнадцатичасовые дни. Два часовых пояса. Две жизни. Она делала это, потому что понимала то, что упускают большинство организаций по развитию: устойчивые перемены в Центральной Азии приходят не от внешних программ. Они приходят от людей внутри сообщества, которые становятся теми, у кого есть ресурсы, навыки и авторитет."
-                      : "For five years she lived between two worlds -- serving DC clients remotely while building microloan programs on the ground in Kyrgyzstan. Sixteen-hour days. Two time zones. Two lives. She did it because she understood something most development organizations miss: lasting change in Central Asia doesn't come from outside programs. It comes from people inside the community becoming the ones with resources, skills, and standing."}
-                  </p>
-                  <p className="leading-relaxed">
-                    {isCentralAsia
-                      ? "Заём в $2,000 на материалы превращается в $4,000 дохода за шесть месяцев. Отец остаётся вместо того, чтобы уехать в Россию. Дети остаются в школе. Семья остаётся целой. Йева видела это своими глазами — и у неё есть бухгалтерский опыт, культурные корни и связи на месте, чтобы это продолжало работать."
-                      : "A $2,000 loan for materials becomes $4,000 in revenue within six months. A father stays instead of leaving for Russia. Children stay in school. A family stays whole. Yeva has seen it happen -- and she has the accounting expertise, the cultural roots, and the on-the-ground relationships to make it keep happening."}
-                  </p>
+                  <PortableText
+                    value={about.getMissionText(isCentralAsia)}
+                    components={portableTextComponents}
+                  />
                 </div>
               </div>
             </div>

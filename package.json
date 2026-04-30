@@ -26,11 +26,14 @@
     "migrate:resources": "tsx scripts/migrate-resources.mts",
     "migrate:testimonials": "tsx scripts/migrate-testimonials.mts",
     "migrate:courses": "tsx scripts/migrate-courses.mts",
-    "migrate:footer": "tsx scripts/migrate-footer.mts"
+    "migrate:footer": "tsx scripts/migrate-footer.mts",
+    "migrate:about-narrative": "tsx scripts/migrate-about-narrative.mts",
+    "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
     "@hookform/resolvers": "^3.9.0",
+    "@portabletext/react": "^6.0.3",
     "@portabletext/toolkit": "^5.0.2",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
