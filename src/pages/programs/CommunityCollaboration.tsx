@@ -11,10 +11,13 @@ import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
 import { useProgram } from "@/hooks/usePrograms";
+import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
 
 const CommunityCollaboration = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("community-collaboration");
+  const { faqs: rawFaqs } = useFaqItemsForProgram("community-collaboration");
+  const faqItems = localizeFaqs(rawFaqs, isCentralAsia);
   return (
     <>
       <Helmet>
@@ -805,6 +808,32 @@ const CommunityCollaboration = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-4">
+            {isCentralAsia ? "Часто задаваемые вопросы" : "Frequently Asked Questions"}
+          </h2>
+          <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+            {isCentralAsia
+              ? "Ответы на самые распространённые вопросы о сети сотрудничества в сообществе."
+              : "Answers to the most common questions about the Community Collaboration Network."}
+          </p>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, i) => (
+                <AccordionItem key={i} value={`faq-${i}`}>
+                  <AccordionTrigger className="text-left font-semibold text-gray-800">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 leading-relaxed">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
 
