@@ -11,6 +11,34 @@ import { useQuery } from "@tanstack/react-query";
 import { sanity, imageUrl } from "@/lib/sanity";
 import { getLocalized } from "@/lib/localized";
 
+/**
+ * One row in the program-page "What You'll Learn" accordion.
+ * For Business Creation these are 4 modules; for the other programs they're
+ * individual weeks. Source of truth lives on programPage.weeks in Sanity;
+ * pages fall back to a hardcoded constant if Sanity is empty.
+ */
+export interface ProgramWeek {
+  weekNumber: number;
+  title: string;
+  titleRu?: string;
+  summary?: string;
+  summaryRu?: string;
+}
+
+/** One stat card in a program-page hero (e.g. "90%" / "Launch Success Rate"). */
+export interface ProgramStat {
+  value: string;
+  label: string;
+  labelRu?: string;
+}
+
+/** One small trust badge under a program-page hero. `icon` is a lucide-react name. */
+export interface ProgramTrustBadge {
+  icon: string;
+  label: string;
+  labelRu?: string;
+}
+
 export interface ProgramHero {
   /** Sanity slug, e.g. "financial-literacy" */
   slug: string;
@@ -29,6 +57,15 @@ export interface ProgramHero {
   secondaryCtaLabel?: string;
   secondaryCtaLabelRu?: string;
   secondaryCtaUrl?: string;
+  /**
+   * Curriculum rows — empty array if Sanity hasn't been seeded.
+   * Pages should fall back to a hardcoded const when this is empty.
+   */
+  weeks: ProgramWeek[];
+  /** Hero stat cards — empty array if Sanity hasn't been seeded. */
+  stats: ProgramStat[];
+  /** Hero trust badges — empty array if Sanity hasn't been seeded. */
+  trustBadges: ProgramTrustBadge[];
   /** Localized helpers — call with isCentralAsia. */
   getTitle: (isCentralAsia: boolean) => string;
   getTagline: (isCentralAsia: boolean) => string;
@@ -38,9 +75,19 @@ export interface ProgramHero {
   getSecondaryCtaLabel: (isCentralAsia: boolean) => string;
 }
 
+type ProgramHeroData = Omit<
+  ProgramHero,
+  | "getTitle"
+  | "getTagline"
+  | "getHeroDescription"
+  | "getDuration"
+  | "getPrimaryCtaLabel"
+  | "getSecondaryCtaLabel"
+>;
+
 // Hardcoded fallbacks for the 4 programs — ensures the site renders even
 // before Sanity is seeded, and during outages.
-const PROGRAM_FALLBACKS: Record<string, Omit<ProgramHero, keyof { getTitle: never; getTagline: never; getHeroDescription: never; getDuration: never; getPrimaryCtaLabel: never; getSecondaryCtaLabel: never }>> = {
+const PROGRAM_FALLBACKS: Record<string, ProgramHeroData> = {
   "financial-literacy": {
     slug: "financial-literacy",
     title: "Financial Literacy Program",
@@ -59,6 +106,9 @@ const PROGRAM_FALLBACKS: Record<string, Omit<ProgramHero, keyof { getTitle: neve
     secondaryCtaLabel: "Learn More",
     secondaryCtaLabelRu: "Подробнее",
     secondaryCtaUrl: "#program-details",
+    weeks: [],
+    stats: [],
+    trustBadges: [],
   },
   "business-creation": {
     slug: "business-creation",
@@ -78,6 +128,9 @@ const PROGRAM_FALLBACKS: Record<string, Omit<ProgramHero, keyof { getTitle: neve
     secondaryCtaLabel: "Learn More",
     secondaryCtaLabelRu: "Подробнее",
     secondaryCtaUrl: "#program-details",
+    weeks: [],
+    stats: [],
+    trustBadges: [],
   },
   "leadership-development": {
     slug: "leadership-development",
@@ -97,6 +150,9 @@ const PROGRAM_FALLBACKS: Record<string, Omit<ProgramHero, keyof { getTitle: neve
     secondaryCtaLabel: "Learn More",
     secondaryCtaLabelRu: "Подробнее",
     secondaryCtaUrl: "#program-details",
+    weeks: [],
+    stats: [],
+    trustBadges: [],
   },
   "community-collaboration": {
     slug: "community-collaboration",
@@ -117,6 +173,9 @@ const PROGRAM_FALLBACKS: Record<string, Omit<ProgramHero, keyof { getTitle: neve
     secondaryCtaLabel: "Learn More",
     secondaryCtaLabelRu: "Подробнее",
     secondaryCtaUrl: "#program-details",
+    weeks: [],
+    stats: [],
+    trustBadges: [],
   },
 };
 
@@ -136,7 +195,24 @@ const PROGRAM_QUERY_FIELDS = /* groq */ `
   primaryCtaUrl,
   secondaryCtaLabel,
   secondaryCtaLabelRu,
-  secondaryCtaUrl
+  secondaryCtaUrl,
+  weeks[]{
+    weekNumber,
+    title,
+    titleRu,
+    summary,
+    summaryRu
+  },
+  stats[]{
+    value,
+    label,
+    labelRu
+  },
+  trustBadges[]{
+    icon,
+    label,
+    labelRu
+  }
 `;
 
 interface RawProgram {
@@ -156,9 +232,12 @@ interface RawProgram {
   secondaryCtaLabel?: string;
   secondaryCtaLabelRu?: string;
   secondaryCtaUrl?: string;
+  weeks?: ProgramWeek[] | null;
+  stats?: ProgramStat[] | null;
+  trustBadges?: ProgramTrustBadge[] | null;
 }
 
-function attachHelpers(p: Omit<ProgramHero, "getTitle" | "getTagline" | "getHeroDescription" | "getDuration" | "getPrimaryCtaLabel" | "getSecondaryCtaLabel">): ProgramHero {
+function attachHelpers(p: ProgramHeroData): ProgramHero {
   return {
     ...p,
     getTitle: (isCA) => getLocalized(p.title, p.titleRu, isCA),
@@ -196,6 +275,9 @@ function mergeProgram(slug: string, raw: RawProgram | null): ProgramHero {
     secondaryCtaLabel: raw.secondaryCtaLabel || fallback.secondaryCtaLabel,
     secondaryCtaLabelRu: raw.secondaryCtaLabelRu || fallback.secondaryCtaLabelRu,
     secondaryCtaUrl: raw.secondaryCtaUrl || fallback.secondaryCtaUrl,
+    weeks: Array.isArray(raw.weeks) ? raw.weeks : [],
+    stats: Array.isArray(raw.stats) ? raw.stats : [],
+    trustBadges: Array.isArray(raw.trustBadges) ? raw.trustBadges : [],
   });
 }
 

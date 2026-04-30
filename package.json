@@ -28,6 +28,7 @@
     "migrate:courses": "tsx scripts/migrate-courses.mts",
     "migrate:footer": "tsx scripts/migrate-footer.mts",
     "migrate:about-narrative": "tsx scripts/migrate-about-narrative.mts",
+    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts",
     "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts"
   },
   "dependencies": {

@@ -2,6 +2,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { ArrowRight, Briefcase, BarChart2, Users, Globe, Download, Calendar, BookOpen, Target, Star, TrendingUp, DollarSign, Shield, Heart, CheckCircle2, Clock, Users2, Lightbulb, Rocket, PieChart, Zap, Settings } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -10,11 +11,33 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
-import { useProgram } from "@/hooks/usePrograms";
+import { useProgram, type ProgramStat, type ProgramTrustBadge } from "@/hooks/usePrograms";
+
+// Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
+// the migration script (scripts/migrate-program-deep-sections.mts) so editor
+// and code stay aligned.
+const FALLBACK_STATS: ProgramStat[] = [
+  { value: "90%", label: "Launch Success Rate", labelRu: "Успешных запусков" },
+  { value: "72", label: "Hours of Training", labelRu: "Часов обучения" },
+  { value: "4", label: "Progressive Modules", labelRu: "Последовательных модуля" },
+  { value: "1:1", label: "Mentorship Support", labelRu: "Поддержка наставника" },
+];
+
+const FALLBACK_BADGES: ProgramTrustBadge[] = [
+  { icon: "Star", label: "Proven Lean Startup Methodology", labelRu: "Проверенная методология Lean Startup" },
+];
 
 const BusinessCreation = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("business-creation");
+
+  const stats = program.stats.length > 0 ? program.stats : FALLBACK_STATS;
+  const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  // Headline trust badge (single chip above H1) — first badge in the array.
+  const headlineBadge = badges[0];
+  const HeadlineIconResolved =
+    ((LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[headlineBadge.icon]) ??
+    LucideIcons.Sparkles;
 
   return (
     <>
@@ -103,8 +126,10 @@ const BusinessCreation = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Star className="w-4 h-4 text-yellow-400" />
-            {isCentralAsia ? "Проверенная методология Lean Startup" : "Proven Lean Startup Methodology"}
+            <HeadlineIconResolved className="w-4 h-4 text-yellow-400" />
+            {isCentralAsia
+              ? headlineBadge.labelRu ?? headlineBadge.label
+              : headlineBadge.label}
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
             {program.getTagline(isCentralAsia)}
@@ -113,22 +138,24 @@ const BusinessCreation = () => {
             {program.getHeroDescription(isCentralAsia)}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center mb-8">
-            <div className="animate-fade-up [--animation-delay:600ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">90%</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Успешных запусков" : "Launch Success Rate"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:700ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">72</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Часов обучения" : "Hours of Training"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:800ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">4</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Последовательных модуля" : "Progressive Modules"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:900ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">1:1</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Поддержка наставника" : "Mentorship Support"}</div>
-            </div>
+            {stats.map((stat, i) => {
+              // Preserve the original staggered reveal animation (600ms, 700ms, 800ms, 900ms).
+              const delay = 600 + i * 100;
+              return (
+                <div
+                  key={`${stat.value}-${stat.label}`}
+                  className="animate-fade-up bg-white/10 backdrop-blur rounded-lg p-4"
+                  style={{ ["--animation-delay" as string]: `${delay}ms` }}
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-white/80">
+                    {isCentralAsia ? stat.labelRu ?? stat.label : stat.label}
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:900ms]">
             <Link to={program.primaryCtaUrl}>

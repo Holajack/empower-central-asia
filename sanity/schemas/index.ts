@@ -26,6 +26,9 @@ import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
 import valueItem from "./objects/valueItem";
 import videoEmbed from "./objects/videoEmbed";
+import weekOverview from "./objects/weekOverview";
+import programStat from "./objects/programStat";
+import trustBadge from "./objects/trustBadge";
 
 export const schemaTypes = [
   // Documents
@@ -56,4 +59,7 @@ export const schemaTypes = [
   blockContent,
   valueItem,
   videoEmbed,
+  weekOverview,
+  programStat,
+  trustBadge,
 ];

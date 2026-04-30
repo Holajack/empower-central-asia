@@ -11,6 +11,7 @@ export default defineType({
     { name: "russian", title: "Русский (Russian)" },
     { name: "media", title: "Media" },
     { name: "marketing", title: "CTAs & SEO" },
+    { name: "deepSections", title: "Curriculum / Stats / Badges" },
   ],
   fields: [
     defineField({
@@ -95,6 +96,33 @@ export default defineType({
       group: "english",
       description:
         "Full-page descriptive content. Currently informational only — will be wired into program pages in a follow-up phase.",
+    }),
+    defineField({
+      name: "weeks",
+      title: "Curriculum Weeks / Modules",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Rows in the program-page curriculum accordion ('What You'll Learn'). For Business Creation these are 4 modules; for Financial Literacy / Leadership Development they're individual weeks. Leave empty to fall through to the hardcoded list.",
+      of: [{ type: "weekOverview" }],
+    }),
+    defineField({
+      name: "stats",
+      title: "Hero Stats",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Stat cards shown in the program-page hero (e.g. '90% Launch Success Rate'). Leave empty to fall through to the hardcoded values.",
+      of: [{ type: "programStat" }],
+    }),
+    defineField({
+      name: "trustBadges",
+      title: "Hero Trust Badges",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Small badges under the hero ('100% Free', 'Self-Paced', etc.). Each has a lucide icon name + label. Leave empty to fall through to the hardcoded list.",
+      of: [{ type: "trustBadge" }],
     }),
     defineField({
       name: "primaryCtaLabel",
