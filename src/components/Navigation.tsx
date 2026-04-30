@@ -6,12 +6,14 @@ import DonateButton from "./DonateButton";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useRegion } from "@/contexts/RegionContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
   const { t } = useTranslation();
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,8 +47,8 @@ const Navigation = () => {
             className="flex items-center gap-3 transition-opacity hover:opacity-80"
           >
             <img
-              src="/images/bbb-logo.png"
-              alt="Businesses Beyond Borders logo"
+              src={settings.logoUrl}
+              alt={settings.logoAlt}
               width={40}
               height={40}
               className="h-10 w-10 rounded-full"
@@ -56,7 +58,7 @@ const Navigation = () => {
                 ? "text-[#1B2A4A]"
                 : "text-white"
             }`}>
-              Businesses Beyond Borders
+              {settings.siteName}
             </span>
           </Link>
 
