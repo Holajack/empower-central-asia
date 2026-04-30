@@ -1,13 +1,16 @@
-
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { testimonials, getLocalizedTestimonial } from "@/data/testimonials";
+import { getLocalizedTestimonial } from "@/data/testimonials";
 import { useRegion } from "@/contexts/RegionContext";
-
-const featured = testimonials[0];
+import { useTestimonials } from "@/hooks/useTestimonials";
 
 const SuccessStoryFeature = () => {
   const { isCentralAsia } = useRegion();
+  const { testimonials } = useTestimonials();
+
+  // Featured = first testimonial. Editors can reorder in Studio (lower
+  // `order` number wins) to change which story appears here.
+  const featured = testimonials[0];
 
   if (!featured) return null;
 
