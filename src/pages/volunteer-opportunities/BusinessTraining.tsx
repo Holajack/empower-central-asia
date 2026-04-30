@@ -6,26 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
+import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
 
 const BusinessTraining = () => {
   const { isCentralAsia } = useRegion();
+  const { opportunity } = useVolunteerOpportunity("business-training");
 
   return (
     <>
       <Helmet>
-        <title>
-          {isCentralAsia
-            ? "Волонтёр бизнес-обучения | BBB"
-            : "Business Training Volunteer | BBB"}
-        </title>
-        <meta
-          name="description"
-          content={
-            isCentralAsia
-              ? "Поддержите наши проверенные программы финансовой грамотности и создания бизнеса как волонтёр бизнес-обучения. Помогайте предпринимателям Центральной Азии развивать ключевые навыки. Гибкий удалённый график."
-              : "Support our proven Financial Literacy and Business Creation programs as a Business Training Volunteer. Help entrepreneurs in Central Asia develop essential business skills. Flexible remote scheduling."
-          }
-        />
+        <title>{`${opportunity.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={opportunity.getSummary(isCentralAsia) || opportunity.getTagline(isCentralAsia)} />
         <meta
           name="keywords"
           content="business training volunteer, financial literacy volunteer, entrepreneurship education volunteer, business mentor volunteer, nonprofit training volunteer, volunteer business instructor opportunities, remote business training"
@@ -81,34 +72,10 @@ const BusinessTraining = () => {
                   : "PROVEN PROGRAM SUPPORT"}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                {isCentralAsia ? (
-                  <>
-                    Волонтёр
-                    <span className="text-yellow-300"> бизнес-обучения</span>
-                  </>
-                ) : (
-                  <>
-                    Business Training
-                    <span className="text-yellow-300"> Volunteer</span>
-                  </>
-                )}
+                {opportunity.getTitle(isCentralAsia)}
               </h1>
-              <p className="text-xl md:text-2xl text-[#C9922A]/10 max-w-3xl mx-auto leading-relaxed mb-8">
-                {isCentralAsia ? (
-                  <>
-                    Поддержите наши проверенные программы финансовой грамотности и создания бизнеса.{" "}
-                    <strong className="text-white">
-                      Помогайте предпринимателям строить устойчивые предприятия.
-                    </strong>
-                  </>
-                ) : (
-                  <>
-                    Support our proven Financial Literacy and Business Creation programs.{" "}
-                    <strong className="text-white">
-                      Help entrepreneurs build sustainable businesses.
-                    </strong>
-                  </>
-                )}
+              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8">
+                {opportunity.getTagline(isCentralAsia)}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#apply-now">

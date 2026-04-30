@@ -6,15 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
+import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
 
 const AdministrativeSupport = () => {
   const { isCentralAsia } = useRegion();
+  const { opportunity } = useVolunteerOpportunity("administrative-support");
 
   return (
     <>
       <Helmet>
-        <title>Admin Support Volunteer | BBB</title>
-        <meta name="description" content="Support essential operations as an Administrative Support Volunteer with Businesses Beyond Borders. Help with communications, events, and program coordination. Flexible remote work from anywhere." />
+        <title>{`${opportunity.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={opportunity.getSummary(isCentralAsia) || opportunity.getTagline(isCentralAsia)} />
         <meta name="keywords" content="administrative support volunteer, nonprofit admin volunteer, virtual assistant volunteer, event coordination volunteer, communications volunteer, database management volunteer opportunities, remote nonprofit volunteer" />
         <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/administrative-support" />
         <meta property="og:title" content={isCentralAsia ? "Административная поддержка | BBB" : "Admin Support Volunteer | BBB"} />
@@ -37,19 +39,10 @@ const AdministrativeSupport = () => {
                 {isCentralAsia ? "ПОДДЕРЖКА ОСНОВНЫХ ОПЕРАЦИЙ" : "ESSENTIAL OPERATIONS SUPPORT"}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                {isCentralAsia ? "Административная" : "Administrative"}
-                <span className="text-yellow-300"> {isCentralAsia ? "поддержка" : "Support"}</span>
+                {opportunity.getTitle(isCentralAsia)}
               </h1>
-              <p className="text-xl md:text-2xl text-[#C9922A]/10 max-w-3xl mx-auto leading-relaxed mb-8">
-                {isCentralAsia
-                  ? "Станьте опорой наших операций. Помогайте с коммуникациями, мероприятиями и координацией программ."
-                  : "Be the backbone of our operations. Help with communications, events, and program coordination."}
-                {" "}
-                <strong className="text-white">
-                  {isCentralAsia
-                    ? "Ваши организаторские способности делают всё возможным."
-                    : "Your organizational skills make everything possible."}
-                </strong>
+              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8">
+                {opportunity.getTagline(isCentralAsia)}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#apply-now">
