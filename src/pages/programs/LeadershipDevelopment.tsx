@@ -179,23 +179,11 @@ const LeadershipDevelopment = () => {
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              {isCentralAsia ? (
-                <>
-                  Развивайте свои
-                  <span className="text-[#C9922A]"> лидерские навыки</span>
-                </>
-              ) : (
-                <>
-                  Develop Your
-                  <span className="text-[#C9922A]"> Leadership Skills</span>
-                </>
-              )}
+              {program.getTagline(isCentralAsia)}
             </h1>
 
             <p className="text-lg md:text-xl text-white/85 max-w-3xl mx-auto leading-relaxed mb-8">
-              {isCentralAsia
-                ? "Бесплатное, практическое обучение лидерству. От самоуправления до руководства организациями. Основано на исследованиях Ковия, Големана, Коттера и других ведущих экспертов."
-                : "Free, practical leadership education. From self-leadership to organizational impact. Built on research by Covey, Goleman, Kotter, and other leading experts."}
+              {program.getHeroDescription(isCentralAsia)}
             </p>
 
             {/* Trust Badges */}
@@ -223,12 +211,12 @@ const LeadershipDevelopment = () => {
 
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link to="/course/leadership-development">
+              <Link to={program.primaryCtaUrl}>
                 <Button
                   size="lg"
                   className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8 py-4 text-lg"
                 >
-                  {isCentralAsia ? "Начать бесплатный курс" : "Start the Free Course"}
+                  {program.getPrimaryCtaLabel(isCentralAsia)}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>

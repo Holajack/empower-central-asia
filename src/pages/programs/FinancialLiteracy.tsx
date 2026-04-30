@@ -176,23 +176,11 @@ const FinancialLiteracy = () => {
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              {isCentralAsia ? (
-                <>
-                  Возьмите под контроль своё
-                  <span className="text-[#C9922A]"> финансовое будущее</span>
-                </>
-              ) : (
-                <>
-                  Take Control of Your
-                  <span className="text-[#C9922A]"> Financial Future</span>
-                </>
-              )}
+              {program.getTagline(isCentralAsia)}
             </h1>
 
             <p className="text-lg md:text-xl text-white/85 max-w-3xl mx-auto leading-relaxed mb-8">
-              {isCentralAsia
-                ? "Бесплатное, практическое финансовое образование. Без жаргона, без платы, без уловок. Только инструменты и знания, необходимые для создания прочного финансового фундамента."
-                : "Free, practical financial education. No jargon, no fees, no catch. Just the tools and knowledge you need to build a stronger financial foundation."}
+              {program.getHeroDescription(isCentralAsia)}
             </p>
 
             {/* Trust Badges */}
@@ -230,12 +218,12 @@ const FinancialLiteracy = () => {
 
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link to="/course/financial-literacy">
+              <Link to={program.primaryCtaUrl}>
                 <Button
                   size="lg"
                   className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8 py-4 text-lg"
                 >
-                  {isCentralAsia ? "Начать бесплатный курс" : "Start the Free Course"}
+                  {program.getPrimaryCtaLabel(isCentralAsia)}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>

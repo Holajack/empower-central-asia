@@ -107,10 +107,10 @@ const BusinessCreation = () => {
             {isCentralAsia ? "Проверенная методология Lean Startup" : "Proven Lean Startup Methodology"}
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-            {isCentralAsia ? <>От бизнес-идеи до <span className="text-yellow-400">готового к рынку предприятия</span></> : <>From Business Idea to <span className="text-yellow-400">Market-Ready Venture</span></>}
+            {program.getTagline(isCentralAsia)}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-            {isCentralAsia ? <><strong className="text-yellow-300">12-недельная интенсивная программа</strong> с использованием методологии Lean Startup и Business Model Canvas: <strong className="text-yellow-300">Думай → Формируй → Проверяй → Запускай</strong> свой успешный бизнес.</> : <><strong className="text-yellow-300">12-week intensive program</strong> using Lean Startup methodology and Business Model Canvas: <strong className="text-yellow-300">Think → Shape → Validate → Launch</strong> your successful business.</>}
+            {program.getHeroDescription(isCentralAsia)}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center mb-8">
             <div className="animate-fade-up [--animation-delay:600ms] bg-white/10 backdrop-blur rounded-lg p-4">
@@ -131,9 +131,9 @@ const BusinessCreation = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:900ms]">
-            <Link to="/get-involved?type=program&program=business-creation">
+            <Link to={program.primaryCtaUrl}>
               <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 text-lg">
-                {isCentralAsia ? "Присоединиться к следующей группе" : "Join Our Next Cohort"}
+                {program.getPrimaryCtaLabel(isCentralAsia)}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
