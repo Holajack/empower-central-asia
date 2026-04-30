@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import { useRegion } from "@/contexts/RegionContext";
 import { trackConversion } from "@/lib/analytics";
+import { useFormSettings } from "@/hooks/useFormSettings";
 
 const GOOGLE_SHEET_URL =
   "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS46eygrXMNATbNLGTjQ5UofInsBuSrrBJ6_J8PlSr_WdCoIgfW6bEFNBw/exec";
@@ -56,6 +57,7 @@ type VolunteerFormData = z.infer<typeof volunteerSchema>;
 const VolunteerApplication = () => {
   const { toast } = useToast();
   const { isCentralAsia } = useRegion();
+  const { forms } = useFormSettings();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -198,22 +200,10 @@ const VolunteerApplication = () => {
               {isCentralAsia ? "Возможности для волонтёров" : "Volunteer Opportunities"}
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-              {isCentralAsia ? (
-                <>
-                  Ваши навыки могут изменить
-                  <span className="text-[#C9922A]"> чьё-то будущее</span>
-                </>
-              ) : (
-                <>
-                  Your Skills Can Change
-                  <span className="text-[#C9922A]"> Someone's Future</span>
-                </>
-              )}
+              {forms.volunteer.getHeading(isCentralAsia)}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed">
-              {isCentralAsia
-                ? "Несколько часов вашего опыта в неделю помогут предпринимателю из Центральной Азии построить бизнес, который преобразит его сообщество."
-                : "A few hours a week of your experience can help an entrepreneur in Central Asia build a business that transforms their community."}
+              {forms.volunteer.getSubheading(isCentralAsia)}
             </p>
           </div>
         </div>
@@ -352,9 +342,7 @@ const VolunteerApplication = () => {
                   {isCentralAsia ? "Заявка получена" : "Application Received"}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  {isCentralAsia
-                    ? "Спасибо за желание стать волонтёром BBB. Мы рассмотрим вашу заявку и свяжемся с вами в течение нескольких рабочих дней."
-                    : "Thank you for wanting to volunteer with BBB. We'll review your application and reach out within a few business days."}
+                  {forms.volunteer.getSuccessMessage(isCentralAsia)}
                 </p>
                 <Button
                   onClick={() => setIsSubmitted(false)}
@@ -616,9 +604,7 @@ const VolunteerApplication = () => {
                         ? isCentralAsia
                           ? "Отправка..."
                           : "Submitting..."
-                        : isCentralAsia
-                        ? "Подать заявку на волонтёрство"
-                        : "Submit Volunteer Application"}
+                        : forms.volunteer.getButtonLabel(isCentralAsia)}
                       {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
                     </Button>
 
