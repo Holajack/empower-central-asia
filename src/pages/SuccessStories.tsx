@@ -6,20 +6,14 @@ import CaseStudiesSection from "@/components/success-stories/CaseStudiesSection"
 import CtaSection from "@/components/success-stories/CtaSection";
 import { testimonials } from "@/data/testimonials";
 import { useRegion } from "@/contexts/RegionContext";
-
-import { successStories } from "@/data/successStories";
-
-// Transform success stories into case study format for the existing component
-const caseStudies = successStories.map(story => ({
-  title: story.title,
-  description: story.excerpt,
-  image: story.heroImage,
-  impact: story.impact[0],
-  id: story.id
-}));
+import { useSuccessStories, toCaseStudyCard } from "@/hooks/useSuccessStories";
 
 const SuccessStories = () => {
   const { isCentralAsia } = useRegion();
+  const { stories } = useSuccessStories();
+
+  // CaseStudiesSection consumes a flat shape — convert + localize per-story.
+  const caseStudies = stories.map((s) => toCaseStudyCard(s, isCentralAsia));
 
   const [testimonialsRef, testimonialsInView] = useInView({
     triggerOnce: true,

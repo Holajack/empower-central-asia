@@ -20,7 +20,8 @@
     "migrate:blog": "tsx scripts/migrate-blog-posts.mts",
     "migrate:homepage": "tsx scripts/migrate-homepage.mts",
     "migrate:programs": "tsx scripts/migrate-programs.mts",
-    "migrate:about": "tsx scripts/migrate-about.mts"
+    "migrate:about": "tsx scripts/migrate-about.mts",
+    "migrate:success-stories": "tsx scripts/migrate-success-stories.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
