@@ -21,10 +21,12 @@ import {
 } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
 import { useFormSettings } from "@/hooks/useFormSettings";
+import { useContactPage, getContactCopy } from "@/hooks/useContactPage";
 
 const Contact = () => {
   const { isCentralAsia } = useRegion();
   const { forms } = useFormSettings();
+  const { data: contactPage } = useContactPage();
 
   const faqs = [
     {
@@ -146,10 +148,10 @@ const Contact = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-              {forms.contact.getHeading(isCentralAsia)}
+              {getContactCopy(contactPage, "heroHeading", isCentralAsia)}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-              {forms.contact.getSubheading(isCentralAsia)}
+              {getContactCopy(contactPage, "heroSubheading", isCentralAsia)}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:600ms]">
