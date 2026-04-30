@@ -28,7 +28,8 @@
     "migrate:courses": "tsx scripts/migrate-courses.mts",
     "migrate:footer": "tsx scripts/migrate-footer.mts",
     "migrate:about-narrative": "tsx scripts/migrate-about-narrative.mts",
-    "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts"
+    "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts",
+    "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",

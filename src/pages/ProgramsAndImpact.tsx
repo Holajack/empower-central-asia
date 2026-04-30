@@ -3,15 +3,46 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { Button } from "@/components/ui/button";
 import StatCard from "@/components/StatCard";
 import SpotlightStories from "@/components/programs/SpotlightStories";
 import ProgramsSection from "@/components/programs/ProgramsSection";
 import CallToAction from "@/components/programs/CallToAction";
 import { useRegion } from "@/contexts/RegionContext";
+import { useProgramsAndImpactPage } from "@/hooks/useProgramsAndImpactPage";
+
+// PortableText components — white text on dark background for the
+// "Our Difference" section, matching the existing prose styling.
+const differencePortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="text-white/90 text-lg leading-relaxed">{children}</p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-white/30 pl-4 italic text-white/70 my-4">
+        {children}
+      </blockquote>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-2xl font-bold text-white mt-6 mb-2">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-xl font-semibold text-white mt-4 mb-1">{children}</h3>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-semibold text-white">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
+};
 
 const ProgramsAndImpact = () => {
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
+  const { page } = useProgramsAndImpactPage();
+
   const { ref: metricsRef, inView: metricsInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -22,15 +53,22 @@ const ProgramsAndImpact = () => {
     threshold: 0.1,
   });
 
+  const heroHeading = page.getHeroHeading(isCentralAsia);
+  const heroSubheading = page.getHeroSubheading(isCentralAsia);
+  const differenceHeading = page.getDifferenceHeading(isCentralAsia);
+  const differenceBody = page.getDifferenceBody(isCentralAsia);
+  const metricsHeading = page.getMetricsHeading(isCentralAsia);
+  const metricsLocalized = page.getMetricsLocalized(isCentralAsia);
+
   return (
     <>
       <Helmet>
-        <title>{isCentralAsia
+        <title>{heroHeading ? `${heroHeading} | Businesses Beyond Borders` : (isCentralAsia
           ? "Наши программы | Businesses Beyond Borders"
-          : "Free Business & Finance Programs | BBB"}</title>
-        <meta name="description" content={isCentralAsia
+          : "Free Business & Finance Programs | BBB")}</title>
+        <meta name="description" content={heroSubheading || (isCentralAsia
           ? "Бесплатные курсы финансовой грамотности, мастер-классы по созданию бизнеса и стартовый капитал. Четырёхэтапная модель BBB."
-          : "Free financial literacy training, business creation workshops, and startup capital for people who earn it. BBB's four-stage model turns learners into community leaders."} />
+          : "Free financial literacy training, business creation workshops, and startup capital for people who earn it. BBB's four-stage model turns learners into community leaders.")} />
         <meta name="keywords" content={isCentralAsia
           ? "бесплатный курс финансовой грамотности, обучение предпринимательству Центральная Азия, программы развития бизнеса, микрофинансирование, стартовый капитал, бизнес-обучение Кыргызстан"
           : "free financial literacy course, entrepreneurship training Central Asia, business development programs, microfinance nonprofit, startup capital nonprofit, Kyrgyzstan business training, financial education developing countries"} />
@@ -115,13 +153,10 @@ const ProgramsAndImpact = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-              {isCentralAsia ? "Не благотворительность." : "Not Charity."}
-              <span className="text-[#C9922A]">{isCentralAsia ? " Возможность." : " A Chance."}</span>
+              {heroHeading}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-              {isCentralAsia
-                ? "Бесплатное обучение финансовой грамотности для каждого, кто готов учиться. Путь от знаний — к собственному делу."
-                : "Four stages. Every step earned. Free financial literacy training for anyone willing to show up -- and a path from there to owning a real business."}
+              {heroSubheading}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:600ms]">
@@ -162,24 +197,13 @@ const ProgramsAndImpact = () => {
         >
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-              {isCentralAsia ? "Чем мы отличаемся" : "What Makes This Different"}
+              {differenceHeading}
             </h2>
-            <div className="space-y-6 text-white/90 text-lg leading-relaxed">
-              <p>
-                {isCentralAsia
-                  ? "Большинство организаций помогают людям получать. BBB превращает получателей в строителей — а строителей в людей, которые дают кому-то другому первый шанс."
-                  : "Most organizations help people receive. BBB turns receivers into builders -- and builders into people who give someone else their first opportunity."}
-              </p>
-              <p>
-                {isCentralAsia
-                  ? "Мы не конкурируем с микрокредитными организациями, образовательными проектами или благотворительными фондами. Мы — следующая глава того, что они начинают. Когда курс заканчивается, когда кредит погашен, когда первая помощь иссякает — BBB — это то, что приходит дальше."
-                  : "We are not competing with micro-lenders, curriculum organizations, or relief organizations. We are the next chapter of what they start. When the class ends, when the loan is repaid, when the initial help runs out -- BBB is what comes next."}
-              </p>
-              <p>
-                {isCentralAsia
-                  ? "Не каждый проходит все этапы. В этом и суть. Фильтр защищает участников и даёт реальные результаты. Когда кто-то получает стартовый капитал от BBB, он уже доказал — месяцами усердной работы, присутствия и создания бизнес-плана — что он готов. Поэтому это работает."
-                  : "Not everyone advances through every stage. That's the point. The filter protects participants and produces real results. When someone receives startup capital from BBB, they've already proven -- through months of showing up, doing the work, and building the plan -- that they're ready. That's why it works."}
-              </p>
+            <div className="space-y-6">
+              <PortableText
+                value={differenceBody}
+                components={differencePortableTextComponents}
+              />
             </div>
           </div>
         </div>
@@ -193,13 +217,18 @@ const ProgramsAndImpact = () => {
         >
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">
-              {isCentralAsia ? "Наши результаты" : "Where We Are So Far"}
+              {metricsHeading}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <StatCard number={50} label={isCentralAsia ? "Обучены финансовой грамотности" : "People Trained in Financial Literacy"} suffix="+" delay={0} />
-              <StatCard number={6} label={isCentralAsia ? "Охвачено сообществ" : "Communities Reached"} suffix="+" delay={200} />
-              <StatCard number={150} label={isCentralAsia ? "Жизней затронуто напрямую" : "Lives Directly Affected"} suffix="+" delay={400} />
-              <StatCard number={3} label={isCentralAsia ? "Стран обслуживается" : "Countries Served"} delay={600} />
+              {metricsLocalized.map((metric, index) => (
+                <StatCard
+                  key={index}
+                  number={metric.value}
+                  label={metric.label}
+                  suffix={metric.suffix}
+                  delay={index * 200}
+                />
+              ))}
             </div>
           </div>
         </div>
