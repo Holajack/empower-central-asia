@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useRegion } from "@/contexts/RegionContext";
 import { trackConversion } from "@/lib/analytics";
+import { useFormSettings } from "@/hooks/useFormSettings";
 
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS46eygrXMNATbNLGTjQ5UofInsBuSrrBJ6_J8PlSr_WdCoIgfW6bEFNBw/exec";
 
@@ -20,6 +21,7 @@ const Newsletter = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
   const { isCentralAsia } = useRegion();
+  const { forms } = useFormSettings();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,9 +144,7 @@ const Newsletter = () => {
                 {isCentralAsia ? "Вы подписались!" : "You're Subscribed!"}
               </h1>
               <p className="text-gray-600 mb-6">
-                {isCentralAsia
-                  ? "Спасибо, что присоединились к нашему сообществу. Вы будете получать новости о нашей работе по поддержке предпринимателей в Центральной Азии."
-                  : "Thank you for joining our community. You'll receive updates about our work empowering entrepreneurs in Central Asia."}
+                {forms.newsletter.getSuccessMessage(isCentralAsia)}
               </p>
               <Link
                 to="/"
@@ -160,12 +160,10 @@ const Newsletter = () => {
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="text-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                  {isCentralAsia ? "Оставайтесь на связи" : "Stay Connected"}
+                  {forms.newsletter.getHeading(isCentralAsia)}
                 </h1>
                 <p className="text-gray-600">
-                  {isCentralAsia
-                    ? "Получайте вдохновляющие новости о нашей работе по развитию предпринимательства в Центральной Азии. Истории успеха, обновления программ и возможности для участия."
-                    : "Get inspiring updates about our work empowering entrepreneurs in Central Asia. Success stories, program updates, and ways to make a difference."}
+                  {forms.newsletter.getSubheading(isCentralAsia)}
                 </p>
               </div>
 
@@ -269,9 +267,7 @@ const Newsletter = () => {
                     ? isCentralAsia
                       ? "Подписываемся..."
                       : "Subscribing..."
-                    : isCentralAsia
-                    ? "Подписаться"
-                    : "Subscribe"}
+                    : forms.newsletter.getButtonLabel(isCentralAsia)}
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">

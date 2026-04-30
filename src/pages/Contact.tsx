@@ -20,9 +20,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
+import { useFormSettings } from "@/hooks/useFormSettings";
 
 const Contact = () => {
   const { isCentralAsia } = useRegion();
+  const { forms } = useFormSettings();
 
   const faqs = [
     {
@@ -144,12 +146,10 @@ const Contact = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-              {isCentralAsia ? "Свяжитесь с нами" : "Get in Touch"}
+              {forms.contact.getHeading(isCentralAsia)}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed mb-8">
-              {isCentralAsia
-                ? "Хотите стать волонтёром, установить партнёрство или узнать о наших программах? Мы будем рады услышать вас."
-                : "Whether you're interested in volunteering, partnerships, or learning about our programs -- we'd love to hear from you."}
+              {forms.contact.getSubheading(isCentralAsia)}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:600ms]">
