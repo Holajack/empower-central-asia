@@ -48,6 +48,14 @@ export default defineConfig({
                   .schemaType("footerSettings")
                   .documentId("footerSettings")
               ),
+            S.listItem()
+              .title("Form Copy")
+              .id("formSettings")
+              .child(
+                S.document()
+                  .schemaType("formSettings")
+                  .documentId("formSettings")
+              ),
             S.divider(),
 
             // ── Homepage ──
@@ -89,6 +97,14 @@ export default defineConfig({
             S.divider(),
 
             // ── Programs ──
+            S.listItem()
+              .title("Programs & Impact Page")
+              .id("programsAndImpactPage")
+              .child(
+                S.document()
+                  .schemaType("programsAndImpactPage")
+                  .documentId("programsAndImpactPage")
+              ),
             S.documentTypeListItem("programPage").title("Program Pages"),
             S.divider(),
 
@@ -165,6 +181,23 @@ export default defineConfig({
             resolve: () => ({
               locations: [
                 { title: "Footer (every page)", href: "/" },
+              ],
+            }),
+          },
+          formSettings: {
+            resolve: () => ({
+              locations: [
+                { title: "Newsletter", href: "/newsletter" },
+                { title: "Contact", href: "/contact" },
+                { title: "Volunteer Application", href: "/volunteer-application" },
+                { title: "Partner Application", href: "/partner-application" },
+              ],
+            }),
+          },
+          programsAndImpactPage: {
+            resolve: () => ({
+              locations: [
+                { title: "Programs & Impact", href: "/programs-and-impact" },
               ],
             }),
           },
@@ -263,7 +296,7 @@ export default defineConfig({
     types: schemaTypes,
     // Block creation of additional singleton docs.
     templates: (prev) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage"];
       return prev.filter(({ schemaType }) => !singletons.includes(schemaType));
     },
   },
@@ -271,7 +304,7 @@ export default defineConfig({
   document: {
     // Hide 'Duplicate' and 'Delete' on singletons.
     actions: (prev, { schemaType }) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage"];
       return singletons.includes(schemaType)
         ? prev.filter(
             ({ action }) => !["duplicate", "delete"].includes(action || "")
