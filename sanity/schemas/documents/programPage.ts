@@ -135,6 +135,66 @@ export default defineType({
       group: "marketing",
     }),
     defineField({
+      name: "weeks",
+      title: "Curriculum Weeks (overview cards)",
+      type: "array",
+      group: "english",
+      of: [
+        {
+          type: "object",
+          name: "weekOverview",
+          fields: [
+            { name: "weekNumber", type: "number", title: "Week Number" },
+            { name: "title", type: "string", title: "Title (English)" },
+            { name: "titleRu", type: "string", title: "Title (Русский)" },
+            { name: "summary", type: "text", rows: 2, title: "Summary (English)" },
+            { name: "summaryRu", type: "text", rows: 2, title: "Summary (Русский)" },
+          ],
+          preview: { select: { week: "weekNumber", title: "title" }, prepare: ({ week, title }) => ({ title: `Week ${week}: ${title}` }) },
+        },
+      ],
+      description:
+        "Week-by-week curriculum cards. For deeper week content (lessons, worksheets), see the Course Weeks section.",
+    }),
+    defineField({
+      name: "stats",
+      title: "Program Stats (cards)",
+      type: "array",
+      group: "english",
+      of: [
+        {
+          type: "object",
+          name: "programStat",
+          fields: [
+            { name: "value", type: "string", title: "Value (e.g. '90%')" },
+            { name: "label", type: "string", title: "Label (English)" },
+            { name: "labelRu", type: "string", title: "Label (Русский)" },
+          ],
+          preview: { select: { title: "value", subtitle: "label" } },
+        },
+      ],
+      description: "Hero-section stat cards (Launch Success Rate, Hours of Training, etc.).",
+    }),
+    defineField({
+      name: "trustBadges",
+      title: "Trust Badges",
+      type: "array",
+      group: "english",
+      of: [
+        {
+          type: "object",
+          name: "trustBadge",
+          fields: [
+            { name: "icon", type: "string", title: "Icon (lucide name)", initialValue: "Zap" },
+            { name: "label", type: "string", title: "Label (English)" },
+            { name: "labelRu", type: "string", title: "Label (Русский)" },
+          ],
+          preview: { select: { title: "label", subtitle: "icon" } },
+        },
+      ],
+      description: "Small badges shown under the hero (e.g. '100% Free', 'Self-Paced', 'No Login Required').",
+    }),
+    defineField({
       name: "seo",
       title: "SEO",
       type: "seoFields",

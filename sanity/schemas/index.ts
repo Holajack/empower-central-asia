@@ -21,11 +21,14 @@ import aboutPage from "./singletons/aboutPage";
 import footerSettings from "./singletons/footerSettings";
 import formSettings from "./singletons/formSettings";
 import programsAndImpactPage from "./singletons/programsAndImpactPage";
+import contactPage from "./singletons/contactPage";
+import homepageHowToHelp from "./singletons/homepageHowToHelp";
 import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
 import valueItem from "./objects/valueItem";
 import videoEmbed from "./objects/videoEmbed";
+import helpCard from "./objects/helpCard";
 
 export const schemaTypes = [
   // Documents
@@ -50,10 +53,13 @@ export const schemaTypes = [
   footerSettings,
   formSettings,
   programsAndImpactPage,
+  contactPage,
+  homepageHowToHelp,
   // Objects (reusable)
   seoFields,
   cta,
   blockContent,
   valueItem,
   videoEmbed,
+  helpCard,
 ];
