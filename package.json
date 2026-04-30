@@ -18,6 +18,7 @@
     "studio:deploy": "sanity deploy",
     "studio:deploy:graphql": "sanity graphql deploy",
     "migrate:blog": "tsx scripts/migrate-blog-posts.mts",
+    "migrate:contact-page": "tsx scripts/migrate-contact-page.mts",
     "migrate:homepage": "tsx scripts/migrate-homepage.mts",
     "migrate:programs": "tsx scripts/migrate-programs.mts",
     "migrate:about": "tsx scripts/migrate-about.mts",
