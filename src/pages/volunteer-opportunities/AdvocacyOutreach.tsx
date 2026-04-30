@@ -7,15 +7,17 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
+import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
 
 const AdvocacyOutreach = () => {
   const { isCentralAsia } = useRegion();
+  const { opportunity } = useVolunteerOpportunity("advocacy-outreach");
 
   return (
     <>
       <Helmet>
-        <title>Advocacy & Outreach Volunteer | BBB</title>
-        <meta name="description" content="Become an Advocacy & Outreach volunteer with Businesses Beyond Borders. Help amplify our mission to empower entrepreneurs in Central Asia through communications and advocacy." />
+        <title>{`${opportunity.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={opportunity.getSummary(isCentralAsia) || opportunity.getTagline(isCentralAsia)} />
         <meta name="keywords" content="advocacy volunteer, nonprofit outreach, communications volunteer, mission advocacy, nonprofit advocacy opportunities, remote advocacy volunteer" />
         <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/advocacy-outreach" />
         <meta property="og:title" content={isCentralAsia ? "Адвокация и продвижение — волонтёрские возможности | Businesses Beyond Borders" : "Advocacy & Outreach Volunteer - Amplify Our Mission | Businesses Beyond Borders"} />
@@ -36,12 +38,10 @@ const AdvocacyOutreach = () => {
               {isCentralAsia ? "Возможности для адвокации и охвата" : "Advocacy & Outreach Opportunities"}
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {isCentralAsia ? "Усильте нашу миссию" : "Amplify Our Mission"}
+              {opportunity.getTitle(isCentralAsia)}
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              {isCentralAsia
-                ? "Помогите нам распространять информацию, выстраивать партнёрства и отстаивать экономическое развитие по всей Центральной Азии"
-                : "Help us spread awareness, build partnerships, and advocate for economic empowerment across Central Asia"}
+              {opportunity.getTagline(isCentralAsia)}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="flex items-center gap-2">

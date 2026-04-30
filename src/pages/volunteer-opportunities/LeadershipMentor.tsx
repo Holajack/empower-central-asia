@@ -6,15 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
+import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
 
 const LeadershipMentor = () => {
   const { isCentralAsia } = useRegion();
+  const { opportunity } = useVolunteerOpportunity("leadership-mentor");
 
   return (
     <>
       <Helmet>
-        <title>Leadership Mentor Volunteer | BBB</title>
-        <meta name="description" content="Become a Leadership Development Mentor with Businesses Beyond Borders. Guide emerging leaders through our proven 12-month program using the 70-20-10 model. 4-6 hours monthly commitment. Make global impact from anywhere." />
+        <title>{`${opportunity.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={opportunity.getSummary(isCentralAsia) || opportunity.getTagline(isCentralAsia)} />
         <meta name="keywords" content="leadership mentor volunteer, business mentorship opportunities, executive coaching volunteer, leadership development mentor, mentor volunteer Central Asia, nonprofit mentorship program, volunteer business advisor opportunities, remote volunteer mentoring" />
         <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/leadership-mentor" />
         <meta property="og:title" content={isCentralAsia ? "Ментор лидерства | BBB" : "Leadership Mentor Volunteer | BBB"} />
@@ -37,19 +39,10 @@ const LeadershipMentor = () => {
                 {isCentralAsia ? "ПРИОРИТЕТНАЯ ВОЛОНТЁРСКАЯ ВОЗМОЖНОСТЬ" : "HIGH PRIORITY VOLUNTEER OPPORTUNITY"}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                {isCentralAsia ? "Наставник по развитию" : "Leadership Development"}
-                <span className="text-yellow-300"> {isCentralAsia ? "лидерства" : "Mentor"}</span>
+                {opportunity.getTitle(isCentralAsia)}
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
-                {isCentralAsia
-                  ? "Ведите начинающих лидеров через нашу проверенную 12-месячную программу."
-                  : "Guide emerging leaders through our proven 12-month program."}
-                {" "}
-                <strong className="text-white">
-                  {isCentralAsia
-                    ? "Ваш опыт становится переломным моментом для другого человека."
-                    : "Your expertise becomes someone's breakthrough moment."}
-                </strong>
+                {opportunity.getTagline(isCentralAsia)}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#apply-now">

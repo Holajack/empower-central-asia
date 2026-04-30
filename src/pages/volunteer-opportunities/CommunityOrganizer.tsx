@@ -6,15 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
+import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
 
 const CommunityOrganizer = () => {
   const { isCentralAsia } = useRegion();
+  const { opportunity } = useVolunteerOpportunity("community-organizer");
 
   return (
     <>
       <Helmet>
-        <title>Community Organizer Volunteer | BBB</title>
-        <meta name="description" content="Join our founding team as a Community Organizer with Businesses Beyond Borders. Build volunteer-driven community collaboration networks connecting entrepreneurs. 2 hours/week commitment. Make global impact from anywhere." />
+        <title>{`${opportunity.getTitle(isCentralAsia)} | BBB`}</title>
+        <meta name="description" content={opportunity.getSummary(isCentralAsia) || opportunity.getTagline(isCentralAsia)} />
         <meta name="keywords" content="community organizer volunteer, volunteer coordinator opportunities, nonprofit community organizing, volunteer program coordinator, community development volunteer, nonprofit outreach volunteer opportunities, remote community organizer" />
         <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-opportunities/community-organizer" />
         <meta property="og:title" content={isCentralAsia ? "Организатор сообщества | BBB" : "Community Organizer Volunteer | BBB"} />
@@ -37,19 +39,10 @@ const CommunityOrganizer = () => {
                 {isCentralAsia ? "ВОЗМОЖНОСТЬ ВОЙТИ В КОМАНДУ-ОСНОВАТЕЛЕЙ" : "FOUNDING TEAM OPPORTUNITY"}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                {isCentralAsia ? "Организатор" : "Community"}
-                <span className="text-yellow-300"> {isCentralAsia ? "сообщества" : "Organizer"}</span>
+                {opportunity.getTitle(isCentralAsia)}
               </h1>
               <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed mb-8">
-                {isCentralAsia
-                  ? "Выстраивайте нашу сеть взаимодействия сообщества с нуля."
-                  : "Build our volunteer-driven community collaboration network from the ground up."}
-                {" "}
-                <strong className="text-white">
-                  {isCentralAsia
-                    ? "Помогайте предпринимателям находить нужные ресурсы."
-                    : "Help connect entrepreneurs with the resources they need."}
-                </strong>
+                {opportunity.getTagline(isCentralAsia)}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#apply-now">
