@@ -2,6 +2,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { ArrowRight, Users, Building, Handshake, Heart, Star, CheckCircle2, Calendar, Download, UserPlus, Network, Target, TrendingUp, Award, Settings } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -10,14 +11,39 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
-import { useProgram } from "@/hooks/usePrograms";
+import {
+  useProgram,
+  type ProgramStat,
+  type ProgramTrustBadge,
+} from "@/hooks/usePrograms";
 import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
+
+// Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
+// the migration script (scripts/migrate-program-deep-sections.mts).
+const FALLBACK_STATS: ProgramStat[] = [
+  { value: "NEW", label: "Program Launch", labelRu: "Запуск программы" },
+  { value: "2hrs", label: "Weekly Commitment", labelRu: "Еженедельная нагрузка" },
+  { value: "$31.80", label: "Volunteer Hour Value", labelRu: "Ценность часа волонтёра" },
+  { value: "10+", label: "Volunteer Roles", labelRu: "Волонтёрских ролей" },
+];
+
+const FALLBACK_BADGES: ProgramTrustBadge[] = [
+  { icon: "Star", label: "Volunteers Needed to Launch", labelRu: "Нужны волонтёры для запуска" },
+];
 
 const CommunityCollaboration = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("community-collaboration");
   const { faqs: rawFaqs } = useFaqItemsForProgram("community-collaboration");
   const faqItems = localizeFaqs(rawFaqs, isCentralAsia);
+
+  const stats = program.stats.length > 0 ? program.stats : FALLBACK_STATS;
+  const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  const headlineBadge = badges[0];
+  const HeadlineIcon =
+    ((LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[headlineBadge.icon]) ??
+    LucideIcons.Sparkles;
+
   return (
     <>
       <Helmet>
@@ -155,8 +181,10 @@ const CommunityCollaboration = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Star className="w-4 h-4 text-yellow-400" />
-            {isCentralAsia ? "Нужны волонтёры для запуска" : "Volunteers Needed to Launch"}
+            <HeadlineIcon className="w-4 h-4 text-yellow-400" />
+            {isCentralAsia
+              ? headlineBadge.labelRu ?? headlineBadge.label
+              : headlineBadge.label}
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
@@ -168,22 +196,23 @@ const CommunityCollaboration = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center mb-8">
-            <div className="animate-fade-up [--animation-delay:600ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">{isCentralAsia ? "НОВОЕ" : "NEW"}</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Запуск программы" : "Program Launch"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:700ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">2{isCentralAsia ? "ч" : "hrs"}</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Еженедельная нагрузка" : "Weekly Commitment"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:800ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">$31.80</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Ценность часа волонтёра" : "Volunteer Hour Value"}</div>
-            </div>
-            <div className="animate-fade-up [--animation-delay:900ms] bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">10+</div>
-              <div className="text-sm text-white/80">{isCentralAsia ? "Волонтёрских ролей" : "Volunteer Roles"}</div>
-            </div>
+            {stats.map((stat, i) => {
+              const delay = 600 + i * 100;
+              return (
+                <div
+                  key={`${stat.value}-${stat.label}`}
+                  className="animate-fade-up bg-white/10 backdrop-blur rounded-lg p-4"
+                  style={{ ["--animation-delay" as string]: `${delay}ms` }}
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-white/80">
+                    {isCentralAsia ? stat.labelRu ?? stat.label : stat.label}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [--animation-delay:900ms]">

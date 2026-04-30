@@ -14,6 +14,7 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -27,14 +28,40 @@ import { courseWeeks } from "@/data/courseContent";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
-import { useProgram } from "@/hooks/usePrograms";
+import {
+  useProgram,
+  type ProgramTrustBadge,
+  type ProgramWeek,
+} from "@/hooks/usePrograms";
 import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
+
+// Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
+// the migration script (scripts/migrate-program-deep-sections.mts).
+const FALLBACK_BADGES: ProgramTrustBadge[] = [
+  { icon: "Zap", label: "100% Free", labelRu: "100% бесплатно" },
+  { icon: "Clock", label: "Self-Paced", labelRu: "В своём темпе" },
+  { icon: "Users", label: "No Login Required", labelRu: "Без регистрации" },
+  { icon: "Shield", label: "Evidence-Based", labelRu: "Научно обоснован" },
+];
+
+// Curriculum weeks fallback — derived from courseWeeks (the rich source still
+// lives in src/data/courseContent.ts). The Sanity weeks array, when seeded,
+// holds only title + short summary per week; deeper data (topics, objectives)
+// is rendered from the courseWeeks lookup below.
+const FALLBACK_WEEKS: ProgramWeek[] = courseWeeks.map((w) => ({
+  weekNumber: w.week,
+  title: w.title,
+  summary: w.overview.substring(0, 200),
+}));
 
 const FinancialLiteracy = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("financial-literacy");
   const { faqs: rawFaqs } = useFaqItemsForProgram("financial-literacy");
   const faqItems = localizeFaqs(rawFaqs, isCentralAsia);
+
+  const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  const weeks = program.weeks.length > 0 ? program.weeks : FALLBACK_WEEKS;
 
   return (
     <>
@@ -188,35 +215,18 @@ const FinancialLiteracy = () => {
 
             {/* Trust Badges */}
             <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 text-white/70">
-              {isCentralAsia ? (
-                <>
-                  {[
-                    { icon: Zap, label: "100% бесплатно" },
-                    { icon: Clock, label: "В своём темпе" },
-                    { icon: Users, label: "Без регистрации" },
-                    { icon: Shield, label: "Научно обоснован" },
-                  ].map((badge) => (
-                    <div key={badge.label} className="flex items-center gap-2 text-sm">
-                      <badge.icon className="w-4 h-4 text-[#C9922A]" />
-                      <span className="font-medium">{badge.label}</span>
-                    </div>
-                  ))}
-                </>
-              ) : (
-                <>
-                  {[
-                    { icon: Zap, label: "100% Free" },
-                    { icon: Clock, label: "Self-Paced" },
-                    { icon: Users, label: "No Login Required" },
-                    { icon: Shield, label: "Evidence-Based" },
-                  ].map((badge) => (
-                    <div key={badge.label} className="flex items-center gap-2 text-sm">
-                      <badge.icon className="w-4 h-4 text-[#C9922A]" />
-                      <span className="font-medium">{badge.label}</span>
-                    </div>
-                  ))}
-                </>
-              )}
+              {badges.map((badge) => {
+                const Icon =
+                  ((LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[badge.icon]) ??
+                  LucideIcons.Sparkles;
+                const label = isCentralAsia ? badge.labelRu ?? badge.label : badge.label;
+                return (
+                  <div key={`${badge.icon}-${label}`} className="flex items-center gap-2 text-sm">
+                    <Icon className="w-4 h-4 text-[#C9922A]" />
+                    <span className="font-medium">{label}</span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Dual CTAs */}
@@ -528,52 +538,67 @@ const FinancialLiteracy = () => {
 
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
-              {courseWeeks.map((week) => (
-                <AccordionItem key={week.week} value={`week-${week.week}`}>
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-[#1B2A4A] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                        {week.week}
+              {weeks.map((week) => {
+                // Sanity-driven title/summary; courseWeeks supplies subtitle + keyTopics.
+                const detail = courseWeeks.find((w) => w.week === week.weekNumber);
+                const displayTitle = isCentralAsia ? week.titleRu ?? week.title : week.title;
+                const displaySummary = isCentralAsia
+                  ? week.summaryRu ?? week.summary ?? detail?.overview.substring(0, 200) ?? ""
+                  : week.summary ?? detail?.overview.substring(0, 200) ?? "";
+                return (
+                  <AccordionItem key={week.weekNumber} value={`week-${week.weekNumber}`}>
+                    <AccordionTrigger className="text-left">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#1B2A4A] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                          {week.weekNumber}
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-800">
+                            {displayTitle}
+                          </span>
+                          {detail?.subtitle && (
+                            <span className="text-sm text-gray-500 ml-2 hidden sm:inline">
+                              -- {detail.subtitle}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <span className="font-semibold text-gray-800">
-                          {week.title}
-                        </span>
-                        <span className="text-sm text-gray-500 ml-2 hidden sm:inline">
-                          -- {week.subtitle}
-                        </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-gray-50 p-4 rounded-lg mt-2">
+                        <p className="text-gray-700 mb-3 text-sm">
+                          {displaySummary}
+                          {displaySummary && !displaySummary.endsWith("...") && "..."}
+                        </p>
+                        {detail?.keyTopics && detail.keyTopics.length > 0 && (
+                          <div className="mb-3">
+                            <h4 className="font-semibold text-gray-800 text-sm mb-2">
+                              {isCentralAsia ? "Ключевые темы:" : "Key Topics:"}
+                            </h4>
+                            <ul className="text-sm text-gray-600 space-y-1">
+                              {detail.keyTopics.map((topic, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-[#C9922A] mt-0.5 flex-shrink-0" />
+                                  {topic.title}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        <Link
+                          to={`/course/financial-literacy/${week.weekNumber}`}
+                          className="text-sm text-[#C9922A] hover:text-[#1B2A4A] font-medium flex items-center gap-1"
+                        >
+                          {isCentralAsia
+                            ? `Перейти к неделе ${week.weekNumber}`
+                            : `Go to Week ${week.weekNumber}`}
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="bg-gray-50 p-4 rounded-lg mt-2">
-                      <p className="text-gray-700 mb-3 text-sm">
-                        {week.overview.substring(0, 200)}...
-                      </p>
-                      <div className="mb-3">
-                        <h4 className="font-semibold text-gray-800 text-sm mb-2">
-                          {isCentralAsia ? "Ключевые темы:" : "Key Topics:"}
-                        </h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                          {week.keyTopics.map((topic, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#C9922A] mt-0.5 flex-shrink-0" />
-                              {topic.title}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <Link
-                        to={`/course/financial-literacy/${week.week}`}
-                        className="text-sm text-[#C9922A] hover:text-[#1B2A4A] font-medium flex items-center gap-1"
-                      >
-                        {isCentralAsia ? `Перейти к неделе ${week.week}` : `Go to Week ${week.week}`}
-                        <ArrowRight className="w-3 h-3" />
-                      </Link>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              })}
             </Accordion>
           </div>
         </div>

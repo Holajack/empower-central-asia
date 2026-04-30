@@ -15,6 +15,7 @@ import {
   HeartHandshake,
   Target,
 } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -28,14 +29,38 @@ import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-cour
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
-import { useProgram } from "@/hooks/usePrograms";
+import {
+  useProgram,
+  type ProgramTrustBadge,
+  type ProgramWeek,
+} from "@/hooks/usePrograms";
 import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
+
+// Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
+// the migration script (scripts/migrate-program-deep-sections.mts).
+const FALLBACK_BADGES: ProgramTrustBadge[] = [
+  { icon: "Zap", label: "100% Free", labelRu: "100% бесплатно" },
+  { icon: "Clock", label: "Self-Paced", labelRu: "В своём темпе" },
+  { icon: "Users", label: "12 Weeks", labelRu: "12 недель" },
+  { icon: "Shield", label: "Evidence-Based", labelRu: "Научно обоснован" },
+];
+
+// Curriculum modules fallback — encoded as ProgramWeek rows (one per module).
+// The deeper week breakdown still comes from leadershipCourseWeeks below.
+const FALLBACK_WEEKS: ProgramWeek[] = leadershipModules.map((mod, i) => ({
+  weekNumber: i + 1,
+  title: mod.title,
+  summary: `Weeks ${mod.weeks[0]}-${mod.weeks[mod.weeks.length - 1]}`,
+}));
 
 const LeadershipDevelopment = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("leadership-development");
   const { faqs: rawFaqs } = useFaqItemsForProgram("leadership-development");
   const faqItems = localizeFaqs(rawFaqs, isCentralAsia);
+
+  const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  const moduleRows = program.weeks.length > 0 ? program.weeks : FALLBACK_WEEKS;
 
   return (
     <>
@@ -191,25 +216,18 @@ const LeadershipDevelopment = () => {
 
             {/* Trust Badges */}
             <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 text-white/70">
-              {(isCentralAsia
-                ? [
-                    { icon: Zap, label: "100% бесплатно" },
-                    { icon: Clock, label: "В своём темпе" },
-                    { icon: Users, label: "12 недель" },
-                    { icon: Shield, label: "Научно обоснован" },
-                  ]
-                : [
-                    { icon: Zap, label: "100% Free" },
-                    { icon: Clock, label: "Self-Paced" },
-                    { icon: Users, label: "12 Weeks" },
-                    { icon: Shield, label: "Evidence-Based" },
-                  ]
-              ).map((badge) => (
-                <div key={badge.label} className="flex items-center gap-2 text-sm">
-                  <badge.icon className="w-4 h-4 text-[#C9922A]" />
-                  <span className="font-medium">{badge.label}</span>
-                </div>
-              ))}
+              {badges.map((badge) => {
+                const Icon =
+                  ((LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[badge.icon]) ??
+                  LucideIcons.Sparkles;
+                const label = isCentralAsia ? badge.labelRu ?? badge.label : badge.label;
+                return (
+                  <div key={`${badge.icon}-${label}`} className="flex items-center gap-2 text-sm">
+                    <Icon className="w-4 h-4 text-[#C9922A]" />
+                    <span className="font-medium">{label}</span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Dual CTAs */}
@@ -430,51 +448,68 @@ const LeadershipDevelopment = () => {
 
             <div className="max-w-3xl mx-auto">
               <Accordion type="single" collapsible className="w-full">
-                {leadershipModules.map((mod, mi) => (
-                  <AccordionItem key={mod.title} value={`module-${mi}`}>
-                    <AccordionTrigger className="text-left">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-[#1B2A4A] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                          {mi + 1}
+                {moduleRows.map((row, mi) => {
+                  // Sanity-driven title/summary; leadershipModules supplies the
+                  // underlying week numbers so we can render the per-week list.
+                  const detail = leadershipModules[mi];
+                  const displayTitle = isCentralAsia ? row.titleRu ?? row.title : row.title;
+                  const summarySanity = isCentralAsia
+                    ? row.summaryRu ?? row.summary
+                    : row.summary;
+                  const summaryFallback = detail
+                    ? isCentralAsia
+                      ? `Недели ${detail.weeks[0]}-${detail.weeks[detail.weeks.length - 1]}`
+                      : `Weeks ${detail.weeks[0]}-${detail.weeks[detail.weeks.length - 1]}`
+                    : "";
+                  const displaySummary = summarySanity ?? summaryFallback;
+                  return (
+                    <AccordionItem key={`${row.weekNumber}-${row.title}`} value={`module-${mi}`}>
+                      <AccordionTrigger className="text-left">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-[#1B2A4A] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            {row.weekNumber}
+                          </div>
+                          <div>
+                            <span className="font-semibold text-gray-800">
+                              {displayTitle}
+                            </span>
+                            {displaySummary && (
+                              <span className="text-sm text-gray-500 ml-2 hidden sm:inline">
+                                -- {displaySummary}
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        <div>
-                          <span className="font-semibold text-gray-800">
-                            {mod.title}
-                          </span>
-                          <span className="text-sm text-gray-500 ml-2 hidden sm:inline">
-                            -- {isCentralAsia ? `Недели ${mod.weeks[0]}-${mod.weeks[mod.weeks.length - 1]}` : `Weeks ${mod.weeks[0]}-${mod.weeks[mod.weeks.length - 1]}`}
-                          </span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-gray-50 p-4 rounded-lg mt-2 space-y-3">
+                          {detail?.weeks.map((weekNum) => {
+                            const week = leadershipCourseWeeks.find((w) => w.week === weekNum);
+                            if (!week) return null;
+                            return (
+                              <div key={weekNum} className="flex items-start gap-3">
+                                <div className="bg-[#C9922A]/10 text-[#C9922A] w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                                  {weekNum}
+                                </div>
+                                <div>
+                                  <p className="font-medium text-gray-800 text-sm">{week.title}</p>
+                                  <p className="text-xs text-gray-500">{week.subtitle}</p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                          <Link
+                            to="/course/leadership-development"
+                            className="text-sm text-[#C9922A] hover:text-[#1B2A4A] font-medium flex items-center gap-1 mt-2"
+                          >
+                            {isCentralAsia ? "Начать курс" : "Start the Course"}
+                            <ArrowRight className="w-3 h-3" />
+                          </Link>
                         </div>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="bg-gray-50 p-4 rounded-lg mt-2 space-y-3">
-                        {mod.weeks.map((weekNum) => {
-                          const week = leadershipCourseWeeks.find((w) => w.week === weekNum);
-                          if (!week) return null;
-                          return (
-                            <div key={weekNum} className="flex items-start gap-3">
-                              <div className="bg-[#C9922A]/10 text-[#C9922A] w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                                {weekNum}
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-800 text-sm">{week.title}</p>
-                                <p className="text-xs text-gray-500">{week.subtitle}</p>
-                              </div>
-                            </div>
-                          );
-                        })}
-                        <Link
-                          to="/course/leadership-development"
-                          className="text-sm text-[#C9922A] hover:text-[#1B2A4A] font-medium flex items-center gap-1 mt-2"
-                        >
-                          {isCentralAsia ? "Начать курс" : "Start the Course"}
-                          <ArrowRight className="w-3 h-3" />
-                        </Link>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
               </Accordion>
             </div>
           </div>

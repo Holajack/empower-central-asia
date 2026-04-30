@@ -11,6 +11,7 @@ export default defineType({
     { name: "russian", title: "Русский (Russian)" },
     { name: "media", title: "Media" },
     { name: "marketing", title: "CTAs & SEO" },
+    { name: "deepSections", title: "Curriculum / Stats / Badges" },
   ],
   fields: [
     defineField({
@@ -97,6 +98,33 @@ export default defineType({
         "Full-page descriptive content. Currently informational only — will be wired into program pages in a follow-up phase.",
     }),
     defineField({
+      name: "weeks",
+      title: "Curriculum Weeks / Modules",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Rows in the program-page curriculum accordion ('What You'll Learn'). For Business Creation these are 4 modules; for Financial Literacy / Leadership Development they're individual weeks. Leave empty to fall through to the hardcoded list.",
+      of: [{ type: "weekOverview" }],
+    }),
+    defineField({
+      name: "stats",
+      title: "Hero Stats",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Stat cards shown in the program-page hero (e.g. '90% Launch Success Rate'). Leave empty to fall through to the hardcoded values.",
+      of: [{ type: "programStat" }],
+    }),
+    defineField({
+      name: "trustBadges",
+      title: "Hero Trust Badges",
+      type: "array",
+      group: "deepSections",
+      description:
+        "Small badges under the hero ('100% Free', 'Self-Paced', etc.). Each has a lucide icon name + label. Leave empty to fall through to the hardcoded list.",
+      of: [{ type: "trustBadge" }],
+    }),
+    defineField({
       name: "primaryCtaLabel",
       title: "Primary CTA Label (English)",
       type: "string",
@@ -133,66 +161,6 @@ export default defineType({
       title: "Secondary CTA URL",
       type: "string",
       group: "marketing",
-    }),
-    defineField({
-      name: "weeks",
-      title: "Curriculum Weeks (overview cards)",
-      type: "array",
-      group: "english",
-      of: [
-        {
-          type: "object",
-          name: "weekOverview",
-          fields: [
-            { name: "weekNumber", type: "number", title: "Week Number" },
-            { name: "title", type: "string", title: "Title (English)" },
-            { name: "titleRu", type: "string", title: "Title (Русский)" },
-            { name: "summary", type: "text", rows: 2, title: "Summary (English)" },
-            { name: "summaryRu", type: "text", rows: 2, title: "Summary (Русский)" },
-          ],
-          preview: { select: { week: "weekNumber", title: "title" }, prepare: ({ week, title }) => ({ title: `Week ${week}: ${title}` }) },
-        },
-      ],
-      description:
-        "Week-by-week curriculum cards. For deeper week content (lessons, worksheets), see the Course Weeks section.",
-    }),
-    defineField({
-      name: "stats",
-      title: "Program Stats (cards)",
-      type: "array",
-      group: "english",
-      of: [
-        {
-          type: "object",
-          name: "programStat",
-          fields: [
-            { name: "value", type: "string", title: "Value (e.g. '90%')" },
-            { name: "label", type: "string", title: "Label (English)" },
-            { name: "labelRu", type: "string", title: "Label (Русский)" },
-          ],
-          preview: { select: { title: "value", subtitle: "label" } },
-        },
-      ],
-      description: "Hero-section stat cards (Launch Success Rate, Hours of Training, etc.).",
-    }),
-    defineField({
-      name: "trustBadges",
-      title: "Trust Badges",
-      type: "array",
-      group: "english",
-      of: [
-        {
-          type: "object",
-          name: "trustBadge",
-          fields: [
-            { name: "icon", type: "string", title: "Icon (lucide name)", initialValue: "Zap" },
-            { name: "label", type: "string", title: "Label (English)" },
-            { name: "labelRu", type: "string", title: "Label (Русский)" },
-          ],
-          preview: { select: { title: "label", subtitle: "icon" } },
-        },
-      ],
-      description: "Small badges shown under the hero (e.g. '100% Free', 'Self-Paced', 'No Login Required').",
     }),
     defineField({
       name: "seo",
