@@ -15,6 +15,7 @@ import { getBusinessWeekContent, businessWeekContents } from "@/data/business-co
 import { businessCreationRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
+import { useCourseWeek } from "@/hooks/useCourse";
 
 // Lazy-load worksheet components
 const AssumptionMapper = lazy(() => import("@/components/business-course/worksheets/AssumptionMapper"));
@@ -126,6 +127,17 @@ const BusinessCourseWeek = () => {
   const weekNum = parseInt(weekParam || "1", 10);
   const weekData = getBusinessWeekContent(weekNum);
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
+
+  // Sanity overlay — falls back to hardcoded weekData when null.
+  const { week: sanityWeek } = useCourseWeek("business-creation", weekNum);
+  const weekTitle = sanityWeek ? sanityWeek.getTitle(isCentralAsia) : (weekData?.title ?? "");
+  const weekSubtitle = sanityWeek ? sanityWeek.getSubtitle(isCentralAsia) : (weekData?.subtitle ?? "");
+  const weekKeyQuote = sanityWeek ? sanityWeek.getKeyQuote(isCentralAsia) : (weekData?.keyQuote ?? "");
+  const weekQuoteAuthor = sanityWeek?.quoteAuthor ?? weekData?.quoteAuthor ?? "";
+  const weekOverview = sanityWeek ? sanityWeek.getOverview(isCentralAsia) : (weekData?.overview ?? "");
+  const weekObjectives = sanityWeek ? sanityWeek.getObjectives(isCentralAsia) : (weekData?.objectives ?? []);
+  const weekActionItems = sanityWeek ? sanityWeek.getActionItems(isCentralAsia) : (weekData?.actionItems ?? []);
+  const weekModuleTitle = sanityWeek ? sanityWeek.getModuleTitle(isCentralAsia) : "";
 
   const [progress, setProgress] = useState<BusinessProgress>(loadProgress);
   const [showReview, setShowReview] = useState(false);
@@ -319,24 +331,26 @@ const BusinessCourseWeek = () => {
     <FourHatsCheckpoint weekNum={weekNum} checkpoint={weekData.fourHatsCheckpoint} />
   ) : null;
 
-  const moduleBadge = isCentralAsia
-    ? `Модуль ${weekData.module.number}: ${weekData.module.title}`
-    : `Module ${weekData.module.number}: ${weekData.module.title}`;
+  const moduleBadge = weekModuleTitle
+    ? weekModuleTitle
+    : isCentralAsia
+      ? `Модуль ${weekData.module.number}: ${weekData.module.title}`
+      : `Module ${weekData.module.number}: ${weekData.module.title}`;
 
   return (
     <>
       <Helmet>
         <title>
           {isCentralAsia
-            ? `Неделя ${weekNum}, День ${currentDay}: ${weekData.title} - Курс создания бизнеса | Businesses Beyond Borders`
-            : `Week ${weekNum}, Day ${currentDay}: ${weekData.title} - Business Creation Course | Businesses Beyond Borders`}
+            ? `Неделя ${weekNum}, День ${currentDay}: ${weekTitle} - Курс создания бизнеса | Businesses Beyond Borders`
+            : `Week ${weekNum}, Day ${currentDay}: ${weekTitle} - Business Creation Course | Businesses Beyond Borders`}
         </title>
         <meta
           name="description"
           content={
             isCentralAsia
-              ? `${weekData.subtitle}. Бесплатный онлайн-курс создания бизнеса от Businesses Beyond Borders.`
-              : `${weekData.subtitle}. Free online business creation course from Businesses Beyond Borders.`
+              ? `${weekSubtitle || weekOverview}. Бесплатный онлайн-курс создания бизнеса от Businesses Beyond Borders.`
+              : `${weekSubtitle || weekOverview}. Free online business creation course from Businesses Beyond Borders.`
           }
         />
         <link
@@ -362,16 +376,16 @@ const BusinessCourseWeek = () => {
           weekNum={weekNum}
           dayNum={currentDay}
           totalDays={DAYS_PER_WEEK}
-          weekTitle={weekData.title}
+          weekTitle={weekTitle}
           lessonSections={weekData.lessonSections}
           story={weekData.story}
           storyCentralAsia={weekData.storyCentralAsia}
           reflectionQuestions={weekData.reflectionQuestions}
-          actionItems={weekData.actionItems}
-          objectives={weekData.objectives}
-          keyQuote={weekData.keyQuote}
-          quoteAuthor={weekData.quoteAuthor}
-          overview={weekData.overview}
+          actionItems={weekActionItems.length > 0 ? weekActionItems : weekData.actionItems}
+          objectives={weekObjectives.length > 0 ? weekObjectives : weekData.objectives}
+          keyQuote={weekKeyQuote || weekData.keyQuote}
+          quoteAuthor={weekQuoteAuthor || weekData.quoteAuthor}
+          overview={weekOverview || weekData.overview}
           worksheetComponent={worksheetNode}
           fourHatsComponent={fourHatsNode}
           realWorldActivity={weekData.realWorldActivity}
