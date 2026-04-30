@@ -101,6 +101,7 @@ export default defineConfig({
             S.documentTypeListItem("faqItem").title("FAQ Items"),
             S.documentTypeListItem("resource").title("Resources & Toolkits"),
             S.documentTypeListItem("testimonial").title("Testimonials"),
+            S.documentTypeListItem("volunteerOpportunity").title("Volunteer Opportunities"),
             S.divider(),
 
             // ── Legacy ──
@@ -219,6 +220,18 @@ export default defineConfig({
             resolve: (doc) => ({
               locations: [
                 { title: doc?.title ?? "Course", href: `/course/${doc?.slug}` },
+              ],
+            }),
+          },
+          volunteerOpportunity: {
+            select: { title: "title", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                {
+                  title: doc?.title ?? "Volunteer role",
+                  href: `/volunteer-opportunities/${doc?.slug}`,
+                },
+                { title: "Get Involved", href: "/get-involved" },
               ],
             }),
           },
