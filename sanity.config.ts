@@ -84,6 +84,11 @@ export default defineConfig({
             S.documentTypeListItem("programPage").title("Program Pages"),
             S.divider(),
 
+            // ── Courses ──
+            S.documentTypeListItem("course").title("Courses"),
+            S.documentTypeListItem("courseWeek").title("Course Weeks"),
+            S.divider(),
+
             // ── Get Involved / Resources ──
             S.documentTypeListItem("faqItem").title("FAQ Items"),
             S.documentTypeListItem("resource").title("Resources & Toolkits"),
@@ -192,6 +197,31 @@ export default defineConfig({
                 { title: "Success Stories (carousel)", href: "/success-stories" },
                 { title: "Get Involved (testimonials)", href: "/get-involved" },
               ],
+            }),
+          },
+          course: {
+            select: { title: "title", slug: "slug.current" },
+            resolve: (doc) => ({
+              locations: [
+                { title: doc?.title ?? "Course", href: `/course/${doc?.slug}` },
+              ],
+            }),
+          },
+          courseWeek: {
+            select: {
+              week: "weekNumber",
+              title: "title",
+              courseSlug: "course->slug.current",
+            },
+            resolve: (doc) => ({
+              locations: doc?.courseSlug && doc?.week
+                ? [
+                    {
+                      title: `Week ${doc.week}: ${doc.title ?? ""}`,
+                      href: `/course/${doc.courseSlug}/week-${doc.week}`,
+                    },
+                  ]
+                : [],
             }),
           },
         },

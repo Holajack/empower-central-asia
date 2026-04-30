@@ -11,6 +11,8 @@ import teamMember from "./documents/teamMember";
 import faqItem from "./documents/faqItem";
 import resource from "./documents/resource";
 import testimonial from "./documents/testimonial";
+import course from "./documents/course";
+import courseWeek from "./documents/courseWeek";
 import siteSettings from "./singletons/siteSettings";
 import homepageHero from "./singletons/homepageHero";
 import homepageMission from "./singletons/homepageMission";
@@ -19,6 +21,7 @@ import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
 import valueItem from "./objects/valueItem";
+import videoEmbed from "./objects/videoEmbed";
 
 export const schemaTypes = [
   // Documents
@@ -32,6 +35,8 @@ export const schemaTypes = [
   faqItem,
   resource,
   testimonial,
+  course,
+  courseWeek,
   // Singletons
   siteSettings,
   homepageHero,
@@ -42,4 +47,5 @@ export const schemaTypes = [
   cta,
   blockContent,
   valueItem,
+  videoEmbed,
 ];

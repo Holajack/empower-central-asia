@@ -47,12 +47,19 @@ export const sanity = createClient({
   // every fetch is fresh and edits appear within ~1s instead of 60s.
   // Note: useCdn must be false when a token is supplied (the CDN strips auth
   // headers). With a token set, all requests hit the live API.
+  // Note 2: stega encoding REQUIRES useCdn=false (CDN strips the encoding).
   useCdn: !isInStudioIframe && !apiToken,
   ...(apiToken ? { token: apiToken } : {}),
   // Stega encoding — embeds edit metadata into content so `@sanity/visual-editing`
-  // can render click-to-edit overlays when the site is loaded inside the
-  // Sanity Studio Presentation tool iframe. Invisible to normal visitors.
+  // can render click-to-edit overlays AND populate the "Documents on this page"
+  // sidebar when the site is loaded inside the Sanity Studio Presentation iframe.
+  //
+  // We ONLY enable stega when in the Studio iframe so:
+  //  - Production visitors get clean responses (no invisible Unicode chars
+  //    polluting copy-paste, slight bandwidth saving)
+  //  - Studio Presentation gets the encoded data it needs to wire up its panels
   stega: {
+    enabled: isInStudioIframe,
     studioUrl: "https://bbborders.sanity.studio",
   },
 });
