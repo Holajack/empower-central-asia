@@ -12,10 +12,11 @@ import {
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import TestimonialCard from "@/components/success-stories/TestimonialCard";
-import { testimonials, getLocalizedTestimonial } from "@/data/testimonials";
+import { getLocalizedTestimonial } from "@/data/testimonials";
 import { useRegion } from "@/contexts/RegionContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useFaqItems, localizeFaqs } from "@/hooks/useFaqItems";
+import { useTestimonials } from "@/hooks/useTestimonials";
 
 const GetInvolved = () => {
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
@@ -24,6 +25,8 @@ const GetInvolved = () => {
   // BBB staff add/edit/reorder via Studio → Get Involved page updates within ~60s.
   const { faqs: rawFaqs } = useFaqItems();
   const faqs = localizeFaqs(rawFaqs, isCentralAsia);
+  // Testimonials come from Sanity (testimonial docs) with hardcoded fallback.
+  const { testimonials } = useTestimonials();
 
   return (
     <>

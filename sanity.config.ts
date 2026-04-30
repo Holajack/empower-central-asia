@@ -87,6 +87,7 @@ export default defineConfig({
             // ── Get Involved / Resources ──
             S.documentTypeListItem("faqItem").title("FAQ Items"),
             S.documentTypeListItem("resource").title("Resources & Toolkits"),
+            S.documentTypeListItem("testimonial").title("Testimonials"),
             S.divider(),
 
             // ── Legacy ──
@@ -182,6 +183,14 @@ export default defineConfig({
               locations: [
                 { title: doc?.title ?? "Resource", href: `/resources/${doc?.slug}` },
                 { title: "Resources index", href: "/resources" },
+              ],
+            }),
+          },
+          testimonial: {
+            resolve: () => ({
+              locations: [
+                { title: "Success Stories (carousel)", href: "/success-stories" },
+                { title: "Get Involved (testimonials)", href: "/get-involved" },
               ],
             }),
           },

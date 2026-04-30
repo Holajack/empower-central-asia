@@ -10,6 +10,7 @@ import impactStat from "./documents/impactStat";
 import teamMember from "./documents/teamMember";
 import faqItem from "./documents/faqItem";
 import resource from "./documents/resource";
+import testimonial from "./documents/testimonial";
 import siteSettings from "./singletons/siteSettings";
 import homepageHero from "./singletons/homepageHero";
 import homepageMission from "./singletons/homepageMission";
@@ -30,6 +31,7 @@ export const schemaTypes = [
   teamMember,
   faqItem,
   resource,
+  testimonial,
   // Singletons
   siteSettings,
   homepageHero,
