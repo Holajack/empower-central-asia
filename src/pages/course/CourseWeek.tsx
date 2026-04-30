@@ -14,6 +14,7 @@ import { getWeekFullContent, weekFullContents } from "@/data/course";
 import { financialLiteracyRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
+import { useCourseWeek } from "@/hooks/useCourse";
 
 // Lazy-load worksheet components
 const FinancialSnapshot = lazy(() => import("@/components/course/worksheets/FinancialSnapshot"));
@@ -101,6 +102,16 @@ const CourseWeek = () => {
   const weekNum = parseInt(weekParam || "1", 10);
   const weekData = getWeekFullContent(weekNum);
   const { isCentralAsia, isRegionCentralAsia } = useRegion();
+
+  // Sanity overlay — falls back to hardcoded weekData when null.
+  const { week: sanityWeek } = useCourseWeek("financial-literacy", weekNum);
+  const weekTitle = sanityWeek ? sanityWeek.getTitle(isCentralAsia) : (weekData?.title ?? "");
+  const weekSubtitle = sanityWeek ? sanityWeek.getSubtitle(isCentralAsia) : (weekData?.subtitle ?? "");
+  const weekKeyQuote = sanityWeek ? sanityWeek.getKeyQuote(isCentralAsia) : (weekData?.keyQuote ?? "");
+  const weekQuoteAuthor = sanityWeek?.quoteAuthor ?? weekData?.quoteAuthor ?? "";
+  const weekOverview = sanityWeek ? sanityWeek.getOverview(isCentralAsia) : (weekData?.overview ?? "");
+  const weekObjectives = sanityWeek ? sanityWeek.getObjectives(isCentralAsia) : (weekData?.objectives ?? []);
+  const weekActionItems = sanityWeek ? sanityWeek.getActionItems(isCentralAsia) : (weekData?.actionItems ?? []);
 
   const [progress, setProgress] = useState<CourseProgress>(loadProgress);
   const [showReview, setShowReview] = useState(false);
@@ -292,15 +303,15 @@ const CourseWeek = () => {
       <Helmet>
         <title>
           {isCentralAsia
-            ? `Неделя ${weekNum}, День ${currentDay}: ${weekData.title} - Курс финансовой грамотности | Businesses Beyond Borders`
-            : `Week ${weekNum}, Day ${currentDay}: ${weekData.title} - Financial Literacy Course | Businesses Beyond Borders`}
+            ? `Неделя ${weekNum}, День ${currentDay}: ${weekTitle} - Курс финансовой грамотности | Businesses Beyond Borders`
+            : `Week ${weekNum}, Day ${currentDay}: ${weekTitle} - Financial Literacy Course | Businesses Beyond Borders`}
         </title>
         <meta
           name="description"
           content={
             isCentralAsia
-              ? `${weekData.subtitle}. Бесплатный онлайн-курс финансовой грамотности от Businesses Beyond Borders.`
-              : `${weekData.subtitle}. Free online financial literacy course from Businesses Beyond Borders.`
+              ? `${weekSubtitle || weekOverview}. Бесплатный онлайн-курс финансовой грамотности от Businesses Beyond Borders.`
+              : `${weekSubtitle || weekOverview}. Free online financial literacy course from Businesses Beyond Borders.`
           }
         />
         <link
@@ -446,16 +457,16 @@ const CourseWeek = () => {
           weekNum={weekNum}
           dayNum={currentDay}
           totalDays={DAYS_PER_WEEK}
-          weekTitle={weekData.title}
+          weekTitle={weekTitle}
           lessonSections={weekData.lessonSections}
           story={weekData.story}
           storyCentralAsia={weekData.storyCentralAsia}
           reflectionQuestions={weekData.reflectionQuestions}
-          actionItems={weekData.actionItems}
-          objectives={weekData.objectives}
-          keyQuote={weekData.keyQuote}
-          quoteAuthor={weekData.quoteAuthor}
-          overview={weekData.overview}
+          actionItems={weekActionItems.length > 0 ? weekActionItems : weekData.actionItems}
+          objectives={weekObjectives.length > 0 ? weekObjectives : weekData.objectives}
+          keyQuote={weekKeyQuote || weekData.keyQuote}
+          quoteAuthor={weekQuoteAuthor || weekData.quoteAuthor}
+          overview={weekOverview || weekData.overview}
           worksheetComponent={worksheetNode}
           toolLink={weekData.toolLink}
           toolLabel={weekData.toolLabel}
