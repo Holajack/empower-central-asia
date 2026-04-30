@@ -331,6 +331,13 @@ Beyond technology, his work sparked the first online businesses in the area, sch
     "Моя главная гордость — не технические достижения, а то, что соседи, которые когда-то чувствовали себя изолированными, теперь сами обучают других и запускают собственные предприятия.",
 };
 
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 interface ExistingDoc {
   _id: string;
 }
@@ -368,7 +375,12 @@ async function upsertSuccessStory(seed: StorySeed): Promise<void> {
     impactRu: seed.impactRu,
     pullQuote: seed.pullQuote,
     pullQuoteRu: seed.pullQuoteRu,
-    metrics: seed.metrics.map((m) => ({
+    // Sanity requires a unique `_key` on every array-of-object item. Without
+    // it Studio shows "Some items in the list are missing their keys" and
+    // editors can't reorder. We derive a stable, human-readable key from the
+    // item's primary label so re-running the migration produces the same keys.
+    metrics: seed.metrics.map((m, i) => ({
+      _key: `metric-${slugify(m.label) || i}`,
       _type: "metric",
       label: m.label,
       labelRu: m.labelRu,
@@ -376,7 +388,8 @@ async function upsertSuccessStory(seed: StorySeed): Promise<void> {
       description: m.description,
       descriptionRu: m.descriptionRu,
     })),
-    timeline: seed.timeline.map((t) => ({
+    timeline: seed.timeline.map((t, i) => ({
+      _key: `phase-${slugify(t.phase) || i}`,
       _type: "timelinePhase",
       phase: t.phase,
       phaseRu: t.phaseRu,

@@ -20,48 +20,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
-import { useFormSettings } from "@/hooks/useFormSettings";
 import { useContactPage, getContactCopy } from "@/hooks/useContactPage";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { getLocalized } from "@/lib/localized";
 
 const Contact = () => {
   const { isCentralAsia } = useRegion();
-  const { forms } = useFormSettings();
   const { data: contactPage } = useContactPage();
+  const { settings } = useSiteSettings();
 
-  const faqs = [
-    {
-      question: isCentralAsia
-        ? "Как быстро вы отвечаете на запросы?"
-        : "How quickly do you respond to inquiries?",
-      answer: isCentralAsia
-        ? "Как правило, мы отвечаем в течение 24–48 часов в рабочие дни. По срочным вопросам вы можете написать нам в WhatsApp или позвонить напрямую по номеру (386) 517-1527."
-        : "We typically respond within 24-48 hours during business days. For urgent matters, call us directly at (386) 517-1527.",
-    },
-    {
-      question: isCentralAsia
-        ? "Могу ли я записаться на консультацию?"
-        : "Can I schedule a consultation?",
-      answer: isCentralAsia
-        ? "Да. Мы предлагаем бесплатные первичные консультации для обсуждения возможностей волонтёрства, корпоративного партнёрства или того, как наши программы могут принести пользу вашей организации. Воспользуйтесь формой обратной связи, свяжитесь с нами через WhatsApp или позвоните нам для записи."
-        : "Yes. We offer free initial consultations to discuss volunteer opportunities, corporate partnerships, or how our programs can benefit your organization. Use the contact form or call us to schedule.",
-    },
-    {
-      question: isCentralAsia
-        ? "Работаете ли вы с международными партнёрами?"
-        : "Do you work with international partners?",
-      answer: isCentralAsia
-        ? "Безусловно. Мы сотрудничаем с организациями в Центральной Азии и по всему миру. Наши программы реализуются в Казахстане, Кыргызстане и Узбекистане, а удалённые консультации доступны в глобальном масштабе."
-        : "Absolutely. We collaborate with organizations in Central Asia and worldwide. Our programs operate in Kazakhstan, Kyrgyzstan, and Uzbekistan, with remote consultations available globally.",
-    },
-    {
-      question: isCentralAsia
-        ? "На каких языках вы работаете?"
-        : "What languages do you support?",
-      answer: isCentralAsia
-        ? "Наша команда общается на английском и русском языках. Программы в Центральной Азии проводятся на местных языках с двуязычным сопровождением."
-        : "Our team communicates in English and Russian. Programs in Central Asia are delivered in local languages with bilingual facilitation.",
-    },
-  ];
+  // Localized FAQ list — pulled from contactPage.faqs (or fallback).
+  const faqs = contactPage.faqs.map((f) => ({
+    _key: f._key,
+    question: getLocalized(f.question, f.questionRu, isCentralAsia),
+    answer: getLocalized(f.answer, f.answerRu, isCentralAsia),
+  }));
 
   return (
     <>
@@ -161,27 +134,27 @@ const Contact = () => {
                   className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8 py-4 text-lg"
                 >
                   <MessageSquare className="mr-2 w-5 h-5" />
-                  {isCentralAsia ? "Написать нам" : "Send a Message"}
+                  {getContactCopy(contactPage, "heroPrimaryCtaLabel", isCentralAsia)}
                 </Button>
               </a>
               {isCentralAsia ? (
-                <a href="https://wa.me/13865171527" target="_blank" rel="noopener noreferrer">
+                <a href={contactPage.whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <Button
                     size="lg"
                     className="bg-white/20 backdrop-blur border border-white text-white hover:bg-white hover:text-[#1B2A4A] font-bold px-8 py-4 text-lg"
                   >
                     <Phone className="mr-2 w-5 h-5" />
-                    WhatsApp
+                    {getContactCopy(contactPage, "heroWhatsappCtaLabel", isCentralAsia)}
                   </Button>
                 </a>
               ) : (
-                <a href="tel:+13865171527">
+                <a href={`tel:${settings.contactPhoneTel}`}>
                   <Button
                     size="lg"
                     className="bg-white/20 backdrop-blur border border-white text-white hover:bg-white hover:text-[#1B2A4A] font-bold px-8 py-4 text-lg"
                   >
                     <Phone className="mr-2 w-5 h-5" />
-                    (386) 517-1527
+                    {contactPage.heroSecondaryCtaLabel || settings.contactPhone}
                   </Button>
                 </a>
               )}
@@ -198,12 +171,10 @@ const Contact = () => {
                 <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
                   <div className="mb-6">
                     <h2 className="text-2xl font-bold text-[#1B2A4A] mb-2">
-                      {isCentralAsia ? "Напишите нам" : "Send Us a Message"}
+                      {getContactCopy(contactPage, "formHeading", isCentralAsia)}
                     </h2>
                     <p className="text-gray-600">
-                      {isCentralAsia
-                        ? "Как правило, мы отвечаем в течение 24–48 часов."
-                        : "We typically respond within 24-48 hours."}
+                      {getContactCopy(contactPage, "formSubheading", isCentralAsia)}
                     </p>
                   </div>
                   <ContactForm />
@@ -214,55 +185,53 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
                   <h3 className="text-xl font-bold text-[#1B2A4A] mb-6">
-                    {isCentralAsia ? "Контактная информация" : "Contact Information"}
+                    {getContactCopy(contactPage, "infoHeading", isCentralAsia)}
                   </h3>
                   <div className="space-y-5">
                     <a
-                      href="mailto:donations@businessesbeyondborders.com"
+                      href={`mailto:${settings.contactEmail}`}
                       className="flex items-start gap-3 text-gray-600 hover:text-[#C9922A] transition-colors"
                     >
                       <Mail className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-gray-800">
-                          {isCentralAsia ? "Электронная почта" : "Email"}
+                          {getContactCopy(contactPage, "emailLabel", isCentralAsia)}
                         </div>
-                        <div className="text-sm">
-                          donations@businessesbeyondborders.com
-                        </div>
+                        <div className="text-sm">{settings.contactEmail}</div>
                       </div>
                     </a>
 
                     <a
-                      href="tel:+13865171527"
+                      href={`tel:${settings.contactPhoneTel}`}
                       className="flex items-start gap-3 text-gray-600 hover:text-[#C9922A] transition-colors"
                     >
                       <Phone className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-gray-800">
-                          {isCentralAsia ? "Телефон" : "Phone"}
+                          {getContactCopy(contactPage, "phoneLabel", isCentralAsia)}
                         </div>
-                        <div className="text-sm">+1 (386) 517-1527</div>
+                        <div className="text-sm">{settings.contactPhone}</div>
                         <div className="text-xs text-gray-400">
-                          {isCentralAsia
-                            ? "Звонки и SMS, понедельник – пятница"
-                            : "Call or text, Monday - Friday"}
+                          {getContactCopy(contactPage, "phoneCallNote", isCentralAsia)}
                         </div>
                       </div>
                     </a>
 
                     {isCentralAsia && (
                       <a
-                        href="https://wa.me/13865171527"
+                        href={contactPage.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-start gap-3 text-gray-600 hover:text-[#C9922A] transition-colors"
                       >
                         <Phone className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                         <div>
-                          <div className="font-medium text-gray-800">WhatsApp</div>
-                          <div className="text-sm">+1 (386) 517-1527</div>
+                          <div className="font-medium text-gray-800">
+                            {getContactCopy(contactPage, "heroWhatsappCtaLabel", isCentralAsia)}
+                          </div>
+                          <div className="text-sm">{settings.contactPhone}</div>
                           <div className="text-xs text-gray-400">
-                            Напишите нам в WhatsApp
+                            {contactPage.whatsappBlockNote}
                           </div>
                         </div>
                       </a>
@@ -272,12 +241,13 @@ const Contact = () => {
                       <MapPin className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-gray-800">
-                          {isCentralAsia ? "Адрес" : "Address"}
+                          {getContactCopy(contactPage, "addressBlockLabel", isCentralAsia)}
                         </div>
-                        <address className="text-sm not-italic">
-                          2570 Jasmine Rd.
-                          <br />
-                          Port Orange, FL 32128
+                        <address
+                          className="text-sm not-italic"
+                          style={{ whiteSpace: "pre-line" }}
+                        >
+                          {settings.getAddress(isCentralAsia)}
                         </address>
                       </div>
                     </div>
@@ -286,20 +256,28 @@ const Contact = () => {
                       <Clock className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-gray-800">
-                          {isCentralAsia ? "Часы работы" : "Hours"}
+                          {getContactCopy(contactPage, "hoursBlockLabel", isCentralAsia)}
                         </div>
                         <div className="text-sm space-y-0.5">
-                          {isCentralAsia ? (
-                            <>
-                              <p>Пн – Пт: 9:00 – 18:00 EST</p>
-                              <p>Сб: 10:00 – 14:00 EST</p>
-                            </>
-                          ) : (
-                            <>
-                              <p>Mon - Fri: 9:00 AM - 6:00 PM EST</p>
-                              <p>Sat: 10:00 AM - 2:00 PM EST</p>
-                            </>
-                          )}
+                          {contactPage.businessHours
+                            .filter((row) => {
+                              const hours = isCentralAsia
+                                ? row.hoursRu || row.hours
+                                : row.hours;
+                              // Hide "Closed" rows from the compact info card.
+                              return (
+                                hours &&
+                                !/closed/i.test(hours) &&
+                                !/выходной/i.test(hours)
+                              );
+                            })
+                            .map((row, i) => (
+                              <p key={i}>
+                                {isCentralAsia
+                                  ? `${row.labelRu || row.label}: ${row.hoursRu || row.hours}`
+                                  : `${row.label}: ${row.hours}`}
+                              </p>
+                            ))}
                         </div>
                       </div>
                     </div>
@@ -308,17 +286,13 @@ const Contact = () => {
                       <Globe className="h-5 w-5 text-[#C9922A] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-gray-800">
-                          {isCentralAsia ? "Регионы присутствия" : "Service Areas"}
+                          {getContactCopy(contactPage, "serviceAreasBlockLabel", isCentralAsia)}
                         </div>
                         <div className="text-sm">
-                          {isCentralAsia
-                            ? "Казахстан, Кыргызстан, Узбекистан"
-                            : "Kazakhstan, Kyrgyzstan, Uzbekistan"}
+                          {getContactCopy(contactPage, "serviceAreasBlockShort", isCentralAsia)}
                         </div>
                         <div className="text-xs text-gray-400">
-                          {isCentralAsia
-                            ? "Удалённые консультации по всему миру"
-                            : "Remote consultations worldwide"}
+                          {getContactCopy(contactPage, "serviceAreasBlockNote", isCentralAsia)}
                         </div>
                       </div>
                     </div>
@@ -335,11 +309,14 @@ const Contact = () => {
             {/* FAQ */}
             <div className="max-w-3xl mx-auto mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] text-center mb-8">
-                {isCentralAsia ? "Частые вопросы" : "Common Questions"}
+                {getContactCopy(contactPage, "faqsHeading", isCentralAsia)}
               </h2>
               <Accordion type="single" collapsible>
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionItem
+                    key={faq._key ?? index}
+                    value={`item-${faq._key ?? index}`}
+                  >
                     <AccordionTrigger className="text-left text-gray-800">
                       {faq.question}
                     </AccordionTrigger>
@@ -354,29 +331,27 @@ const Contact = () => {
             {/* Bottom CTA */}
             <div className="bg-[#1B2A4A] rounded-2xl p-8 md:p-12 text-center text-white max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                {isCentralAsia ? "Готовы изменить жизни?" : "Ready to Make an Impact?"}
+                {getContactCopy(contactPage, "bottomCtaHeading", isCentralAsia)}
               </h2>
               <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-                {isCentralAsia
-                  ? "Узнайте о наших программах, станьте волонтёром-наставником или поддержите предпринимателей, строящих бизнес в Центральной Азии."
-                  : "Learn about our programs, become a volunteer mentor, or support entrepreneurs building businesses in Central Asia."}
+                {getContactCopy(contactPage, "bottomCtaSubheading", isCentralAsia)}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link to="/get-involved">
+                <Link to={contactPage.bottomCtaPrimaryUrl}>
                   <Button
                     size="lg"
                     className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8"
                   >
-                    {isCentralAsia ? "Принять участие" : "Get Involved"}
+                    {getContactCopy(contactPage, "bottomCtaPrimaryLabel", isCentralAsia)}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link to="/programs-and-impact">
+                <Link to={contactPage.bottomCtaSecondaryUrl}>
                   <Button
                     size="lg"
                     className="bg-white/20 backdrop-blur border border-white text-white hover:bg-white hover:text-[#1B2A4A] font-bold px-8"
                   >
-                    {isCentralAsia ? "Наши программы" : "Explore Our Programs"}
+                    {getContactCopy(contactPage, "bottomCtaSecondaryLabel", isCentralAsia)}
                   </Button>
                 </Link>
               </div>
