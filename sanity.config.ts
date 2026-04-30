@@ -40,6 +40,14 @@ export default defineConfig({
                   .schemaType("siteSettings")
                   .documentId("siteSettings")
               ),
+            S.listItem()
+              .title("Footer")
+              .id("footerSettings")
+              .child(
+                S.document()
+                  .schemaType("footerSettings")
+                  .documentId("footerSettings")
+              ),
             S.divider(),
 
             // ── Homepage ──
@@ -152,6 +160,13 @@ export default defineConfig({
               ],
             }),
           },
+          footerSettings: {
+            resolve: () => ({
+              locations: [
+                { title: "Footer (every page)", href: "/" },
+              ],
+            }),
+          },
           homepageHero: {
             resolve: () => ({
               locations: [{ title: "Homepage hero", href: "/" }],
@@ -235,7 +250,7 @@ export default defineConfig({
     types: schemaTypes,
     // Block creation of additional singleton docs.
     templates: (prev) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings"];
       return prev.filter(({ schemaType }) => !singletons.includes(schemaType));
     },
   },
@@ -243,7 +258,7 @@ export default defineConfig({
   document: {
     // Hide 'Duplicate' and 'Delete' on singletons.
     actions: (prev, { schemaType }) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings"];
       return singletons.includes(schemaType)
         ? prev.filter(
             ({ action }) => !["duplicate", "delete"].includes(action || "")

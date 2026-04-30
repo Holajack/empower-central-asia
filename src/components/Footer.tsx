@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 import { Facebook, Linkedin, Instagram } from "lucide-react";
 import NewsletterSignup from "./NewsletterSignup";
 import { useRegion } from "@/contexts/RegionContext";
-import { useTranslation } from "@/hooks/useTranslation";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useFooterSettings } from "@/hooks/useFooterSettings";
 
 const Footer = () => {
   const { isCentralAsia } = useRegion();
-  const { t } = useTranslation();
   const { settings } = useSiteSettings();
+  const { footer } = useFooterSettings();
+
+  const quickLinks = footer.getQuickLinks(isCentralAsia);
+  const legalLinks = footer.getLegalLinks(isCentralAsia);
 
   return (
     <footer className="bg-white py-12 mt-auto border-t">
@@ -33,67 +36,33 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800">{t("footer.quickLinks")}</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-800">
+              {footer.getQuickLinksHeading(isCentralAsia)}
+            </h4>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/about"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {t("nav.about")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/programs-and-impact"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {t("nav.programs")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/success-stories"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {t("nav.successStories")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blog"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {isCentralAsia ? "Блог" : "Blog"}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/resources"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {isCentralAsia ? "Бесплатные ресурсы" : "Free Resources"}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
-                >
-                  {t("nav.contact")}
-                </Link>
-              </li>
+              {quickLinks.map((link) => (
+                <li key={`${link.label}-${link.url}`}>
+                  <Link
+                    to={link.url}
+                    className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800">{t("footer.contactUs")}</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-800">
+              {footer.getContactHeading(isCentralAsia)}
+            </h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   to="/contact"
                   className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
                 >
-                  {t("footer.emailUs")}
+                  {footer.getEmailUsLabel(isCentralAsia)}
                 </Link>
               </li>
               {isCentralAsia ? (
@@ -104,7 +73,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
                   >
-                    WhatsApp
+                    {footer.whatsAppLabel}
                   </a>
                 </li>
               ) : (
@@ -113,13 +82,15 @@ const Footer = () => {
                     to="/contact"
                     className="text-gray-600 hover:text-[#1B2A4A] transition-colors"
                   >
-                    {t("footer.textUs")}
+                    {footer.getTextUsLabel(isCentralAsia)}
                   </Link>
                 </li>
               )}
             </ul>
             <div className="mt-4">
-              <h5 className="text-md font-semibold mb-2 text-gray-800">{t("footer.followUs")}</h5>
+              <h5 className="text-md font-semibold mb-2 text-gray-800">
+                {footer.getFollowUsHeading(isCentralAsia)}
+              </h5>
               <div className="flex space-x-4">
                 {settings.social.facebook && (
                   <a
@@ -164,27 +135,18 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-600 mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} {t("footer.copyright")}
+              &copy; {new Date().getFullYear()} {footer.getCopyright(isCentralAsia)}
             </p>
             <div className="flex space-x-6">
-              <Link
-                to="/privacy"
-                className="text-gray-600 hover:text-[#1B2A4A] transition-colors text-sm"
-              >
-                {isCentralAsia ? "Политика конфиденциальности" : "Privacy Policy"}
-              </Link>
-              <Link
-                to="/mobile-terms"
-                className="text-gray-600 hover:text-[#1B2A4A] transition-colors text-sm"
-              >
-                {isCentralAsia ? "Условия мобильного использования" : "Mobile Terms"}
-              </Link>
-              <Link
-                to="/sms"
-                className="text-gray-600 hover:text-[#1B2A4A] transition-colors text-sm"
-              >
-                {isCentralAsia ? "SMS-уведомления" : "SMS Notifications"}
-              </Link>
+              {legalLinks.map((link) => (
+                <Link
+                  key={`${link.label}-${link.url}`}
+                  to={link.url}
+                  className="text-gray-600 hover:text-[#1B2A4A] transition-colors text-sm"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

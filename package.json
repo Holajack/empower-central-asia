@@ -25,7 +25,8 @@
     "migrate:faqs": "tsx scripts/migrate-faqs.mts",
     "migrate:resources": "tsx scripts/migrate-resources.mts",
     "migrate:testimonials": "tsx scripts/migrate-testimonials.mts",
-    "migrate:courses": "tsx scripts/migrate-courses.mts"
+    "migrate:courses": "tsx scripts/migrate-courses.mts",
+    "migrate:footer": "tsx scripts/migrate-footer.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
