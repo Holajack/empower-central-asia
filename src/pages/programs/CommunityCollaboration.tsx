@@ -15,11 +15,12 @@ import {
   useProgram,
   type ProgramStat,
   type ProgramTrustBadge,
+  type ProgramWeek,
 } from "@/hooks/usePrograms";
 import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
 
 // Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
-// the migration script (scripts/migrate-program-deep-sections.mts).
+// the migration script (scripts/migrate-program-curriculum-deep.mts).
 const FALLBACK_STATS: ProgramStat[] = [
   { value: "NEW", label: "Program Launch", labelRu: "Запуск программы" },
   { value: "2hrs", label: "Weekly Commitment", labelRu: "Еженедельная нагрузка" },
@@ -31,6 +32,94 @@ const FALLBACK_BADGES: ProgramTrustBadge[] = [
   { icon: "Star", label: "Volunteers Needed to Launch", labelRu: "Нужны волонтёры для запуска" },
 ];
 
+// 3-phase Launch Roadmap fallback. Each phase has a left + right column of
+// bullets (e.g. "Volunteer Recruitment" / "Infrastructure Development").
+// Stays in code so the page renders before the deep migration runs.
+const FALLBACK_PHASES: ProgramWeek[] = [
+  {
+    weekNumber: 1,
+    title: "Phase 1: Foundation Building (Months 1-3) - Q2 2026",
+    titleRu: "Этап 1: Закладка фундамента (месяцы 1–3) — 2-й квартал 2026",
+    summary:
+      "Recruit and train volunteer coordinators, establish partnerships, and create initial network infrastructure.",
+    summaryRu:
+      "Набор и обучение координаторов-волонтёров, создание партнёрств и разработка начальной сетевой инфраструктуры.",
+    keyTopicsHeading: "Volunteer Recruitment",
+    keyTopicsHeadingRu: "Набор волонтёров",
+    keyTopics: [
+      { label: "Recruit 15-20 volunteer coordinators", labelRu: "Набрать 15–20 координаторов-волонтёров" },
+      { label: "Volunteer training and orientation program", labelRu: "Обучение и ориентация волонтёров" },
+      { label: "Establish volunteer management system", labelRu: "Создать систему управления волонтёрами" },
+      { label: "Create volunteer recognition program", labelRu: "Разработать программу признания волонтёров" },
+    ],
+    deliverablesHeading: "Infrastructure Development",
+    deliverablesHeadingRu: "Развитие инфраструктуры",
+    deliverables: [
+      { label: "Develop digital collaboration platform", labelRu: "Разработать цифровую платформу для сотрудничества" },
+      { label: "Establish partnership agreements", labelRu: "Заключить партнёрские соглашения" },
+      { label: "Create resource library and tools", labelRu: "Создать библиотеку ресурсов и инструменты" },
+      { label: "Design program brand and materials", labelRu: "Разработать бренд и материалы программы" },
+    ],
+  },
+  {
+    weekNumber: 2,
+    title: "Phase 2: Program Launch (Months 4-6) - Q3 2026",
+    titleRu: "Этап 2: Запуск программы (месяцы 4–6) — 3-й квартал 2026",
+    summary:
+      "Host inaugural community forum, launch digital platform, and begin facilitating collaboration projects.",
+    summaryRu:
+      "Проведение первого форума сообщества, запуск цифровой платформы и начало реализации совместных проектов.",
+    keyTopicsHeading: "Community Engagement",
+    keyTopicsHeadingRu: "Вовлечение сообщества",
+    keyTopics: [
+      { label: "First Quarterly Community Forum", labelRu: "Первый ежеквартальный форум сообщества" },
+      { label: "Launch outreach campaign", labelRu: "Запустить кампанию по охвату" },
+      { label: "Form initial working groups", labelRu: "Сформировать первые рабочие группы" },
+      { label: "Begin partnership matching", labelRu: "Начать подбор партнёров" },
+    ],
+    deliverablesHeading: "Platform Activation",
+    deliverablesHeadingRu: "Активация платформы",
+    deliverables: [
+      { label: "Digital platform public launch", labelRu: "Публичный запуск цифровой платформы" },
+      { label: "First collaborative projects", labelRu: "Первые совместные проекты" },
+      { label: "Volunteer coordination system", labelRu: "Система координации волонтёров" },
+      { label: "Impact measurement baseline", labelRu: "Базовый уровень измерения результатов" },
+    ],
+  },
+  {
+    weekNumber: 3,
+    title: "Phase 3: Growth & Impact (Months 7-12) - Q4 2026 & Beyond",
+    titleRu: "Этап 3: Рост и влияние (месяцы 7–12) — 4-й квартал 2026 и далее",
+    summary:
+      "Scale network operations, measure impact, and establish sustainable volunteer-driven model for long-term success.",
+    summaryRu:
+      "Масштабирование работы сети, измерение результатов и создание устойчивой волонтёрской модели для долгосрочного успеха.",
+    keyTopicsHeading: "Network Expansion",
+    keyTopicsHeadingRu: "Расширение сети",
+    keyTopics: [
+      { label: "Scale to 200+ network members", labelRu: "Расширить до 200+ участников сети" },
+      { label: "Expand to additional communities", labelRu: "Выйти в новые сообщества" },
+      { label: "Launch specialized working groups", labelRu: "Запустить специализированные рабочие группы" },
+      { label: "Develop leadership pipeline", labelRu: "Развить канал лидеров" },
+    ],
+    deliverablesHeading: "Impact Measurement",
+    deliverablesHeadingRu: "Измерение результатов",
+    deliverables: [
+      { label: "Quarterly impact reports", labelRu: "Ежеквартальные отчёты о результатах" },
+      { label: "Success story documentation", labelRu: "Документирование историй успеха" },
+      { label: "Volunteer recognition events", labelRu: "Мероприятия по признанию волонтёров" },
+      { label: "Program sustainability planning", labelRu: "Планирование устойчивости программы" },
+    ],
+  },
+];
+
+// Visual styling per phase index — matches the original 3-phase design.
+const PHASE_BADGE_STYLES = [
+  "bg-blue-100 text-blue-600",
+  "bg-green-100 text-green-600",
+  "bg-[#C9922A]/10 text-[#C9922A]",
+] as const;
+
 const CommunityCollaboration = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("community-collaboration");
@@ -39,6 +128,19 @@ const CommunityCollaboration = () => {
 
   const stats = program.stats.length > 0 ? program.stats : FALLBACK_STATS;
   const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  // Launch Roadmap phases — only use Sanity rows if they include the rich
+  // keyTopics + deliverables detail, otherwise fall back to the constant.
+  const phaseRows: ProgramWeek[] =
+    program.weeks.length > 0 &&
+    program.weeks.every(
+      (w) =>
+        Array.isArray(w.keyTopics) &&
+        w.keyTopics.length > 0 &&
+        Array.isArray(w.deliverables) &&
+        w.deliverables.length > 0,
+    )
+      ? program.weeks
+      : FALLBACK_PHASES;
   const headlineBadge = badges[0];
   const HeadlineIcon =
     ((LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[headlineBadge.icon]) ??
@@ -455,137 +557,80 @@ const CommunityCollaboration = () => {
                 {isCentralAsia ? "Сроки запуска и ключевые этапы" : "Launch Timeline & Milestones"}
               </h2>
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="phase1">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                      {isCentralAsia
-                        ? "Этап 1: Закладка фундамента (месяцы 1–3) — 2-й квартал 2026"
-                        : "Phase 1: Foundation Building (Months 1-3) - Q2 2026"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">
-                        {isCentralAsia
-                          ? "Набор и обучение координаторов-волонтёров, создание партнёрств и разработка начальной сетевой инфраструктуры."
-                          : "Recruit and train volunteer coordinators, establish partnerships, and create initial network infrastructure."}
-                      </p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Набор волонтёров" : "Volunteer Recruitment"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Набрать 15–20 координаторов-волонтёров" : "Recruit 15-20 volunteer coordinators"}</li>
-                            <li>• {isCentralAsia ? "Обучение и ориентация волонтёров" : "Volunteer training and orientation program"}</li>
-                            <li>• {isCentralAsia ? "Создать систему управления волонтёрами" : "Establish volunteer management system"}</li>
-                            <li>• {isCentralAsia ? "Разработать программу признания волонтёров" : "Create volunteer recognition program"}</li>
-                          </ul>
+                {phaseRows.map((phase, i) => {
+                  const badgeClass =
+                    PHASE_BADGE_STYLES[i % PHASE_BADGE_STYLES.length];
+                  const phaseTitle = isCentralAsia
+                    ? phase.titleRu ?? phase.title
+                    : phase.title;
+                  const phaseSummary = isCentralAsia
+                    ? phase.summaryRu ?? phase.summary ?? ""
+                    : phase.summary ?? "";
+                  const leftHeading = isCentralAsia
+                    ? phase.keyTopicsHeadingRu ?? phase.keyTopicsHeading ?? ""
+                    : phase.keyTopicsHeading ?? "";
+                  const rightHeading = isCentralAsia
+                    ? phase.deliverablesHeadingRu ??
+                      phase.deliverablesHeading ??
+                      ""
+                    : phase.deliverablesHeading ?? "";
+                  const leftBullets = phase.keyTopics ?? [];
+                  const rightBullets = phase.deliverables ?? [];
+                  return (
+                    <AccordionItem
+                      key={`phase-${phase.weekNumber}`}
+                      value={`phase${phase.weekNumber}`}
+                    >
+                      <AccordionTrigger className="text-left">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`${badgeClass} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold`}
+                          >
+                            {phase.weekNumber}
+                          </div>
+                          {phaseTitle}
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Развитие инфраструктуры" : "Infrastructure Development"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Разработать цифровую платформу для сотрудничества" : "Develop digital collaboration platform"}</li>
-                            <li>• {isCentralAsia ? "Заключить партнёрские соглашения" : "Establish partnership agreements"}</li>
-                            <li>• {isCentralAsia ? "Создать библиотеку ресурсов и инструменты" : "Create resource library and tools"}</li>
-                            <li>• {isCentralAsia ? "Разработать бренд и материалы программы" : "Design program brand and materials"}</li>
-                          </ul>
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-4">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          {phaseSummary && (
+                            <p className="text-gray-700 mb-4">{phaseSummary}</p>
+                          )}
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              {leftHeading && (
+                                <h4 className="font-semibold text-gray-800 mb-2">
+                                  {leftHeading}
+                                </h4>
+                              )}
+                              <ul className="text-sm text-gray-600 space-y-1">
+                                {leftBullets.map((b, j) => (
+                                  <li key={`${phase.weekNumber}-l-${j}`}>
+                                    • {isCentralAsia ? b.labelRu ?? b.label : b.label}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              {rightHeading && (
+                                <h4 className="font-semibold text-gray-800 mb-2">
+                                  {rightHeading}
+                                </h4>
+                              )}
+                              <ul className="text-sm text-gray-600 space-y-1">
+                                {rightBullets.map((b, j) => (
+                                  <li key={`${phase.weekNumber}-r-${j}`}>
+                                    • {isCentralAsia ? b.labelRu ?? b.label : b.label}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="phase2">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                      {isCentralAsia
-                        ? "Этап 2: Запуск программы (месяцы 4–6) — 3-й квартал 2026"
-                        : "Phase 2: Program Launch (Months 4-6) - Q3 2026"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">
-                        {isCentralAsia
-                          ? "Проведение первого форума сообщества, запуск цифровой платформы и начало реализации совместных проектов."
-                          : "Host inaugural community forum, launch digital platform, and begin facilitating collaboration projects."}
-                      </p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Вовлечение сообщества" : "Community Engagement"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Первый ежеквартальный форум сообщества" : "First Quarterly Community Forum"}</li>
-                            <li>• {isCentralAsia ? "Запустить кампанию по охвату" : "Launch outreach campaign"}</li>
-                            <li>• {isCentralAsia ? "Сформировать первые рабочие группы" : "Form initial working groups"}</li>
-                            <li>• {isCentralAsia ? "Начать подбор партнёров" : "Begin partnership matching"}</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Активация платформы" : "Platform Activation"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Публичный запуск цифровой платформы" : "Digital platform public launch"}</li>
-                            <li>• {isCentralAsia ? "Первые совместные проекты" : "First collaborative projects"}</li>
-                            <li>• {isCentralAsia ? "Система координации волонтёров" : "Volunteer coordination system"}</li>
-                            <li>• {isCentralAsia ? "Базовый уровень измерения результатов" : "Impact measurement baseline"}</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="phase3">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-[#C9922A]/10 text-[#C9922A] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                      {isCentralAsia
-                        ? "Этап 3: Рост и влияние (месяцы 7–12) — 4-й квартал 2026 и далее"
-                        : "Phase 3: Growth & Impact (Months 7-12) - Q4 2026 & Beyond"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">
-                        {isCentralAsia
-                          ? "Масштабирование работы сети, измерение результатов и создание устойчивой волонтёрской модели для долгосрочного успеха."
-                          : "Scale network operations, measure impact, and establish sustainable volunteer-driven model for long-term success."}
-                      </p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Расширение сети" : "Network Expansion"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Расширить до 200+ участников сети" : "Scale to 200+ network members"}</li>
-                            <li>• {isCentralAsia ? "Выйти в новые сообщества" : "Expand to additional communities"}</li>
-                            <li>• {isCentralAsia ? "Запустить специализированные рабочие группы" : "Launch specialized working groups"}</li>
-                            <li>• {isCentralAsia ? "Развить канал лидеров" : "Develop leadership pipeline"}</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {isCentralAsia ? "Измерение результатов" : "Impact Measurement"}
-                          </h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Ежеквартальные отчёты о результатах" : "Quarterly impact reports"}</li>
-                            <li>• {isCentralAsia ? "Документирование историй успеха" : "Success story documentation"}</li>
-                            <li>• {isCentralAsia ? "Мероприятия по признанию волонтёров" : "Volunteer recognition events"}</li>
-                            <li>• {isCentralAsia ? "Планирование устойчивости программы" : "Program sustainability planning"}</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
               </Accordion>
             </section>
 

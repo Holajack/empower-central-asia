@@ -11,11 +11,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
 import { generateFAQSchema } from "@/lib/seo";
-import { useProgram, type ProgramStat, type ProgramTrustBadge } from "@/hooks/usePrograms";
+import { useProgram, type ProgramStat, type ProgramTrustBadge, type ProgramWeek } from "@/hooks/usePrograms";
 import { useFaqItemsForProgram, localizeFaqs } from "@/hooks/useFaqItems";
 
 // Hardcoded fallbacks — used if Sanity returns empty arrays. Keep in sync with
-// the migration script (scripts/migrate-program-deep-sections.mts) so editor
+// the migration script (scripts/migrate-program-curriculum-deep.mts) so editor
 // and code stay aligned.
 const FALLBACK_STATS: ProgramStat[] = [
   { value: "90%", label: "Launch Success Rate", labelRu: "Успешных запусков" },
@@ -28,6 +28,128 @@ const FALLBACK_BADGES: ProgramTrustBadge[] = [
   { icon: "Star", label: "Proven Lean Startup Methodology", labelRu: "Проверенная методология Lean Startup" },
 ];
 
+// 4-module curriculum fallback — matches scripts/migrate-program-curriculum-deep.mts.
+// Used when Sanity hasn't been seeded or returns empty `weeks`.
+const FALLBACK_MODULES: ProgramWeek[] = [
+  {
+    weekNumber: 1,
+    title: "Module 1: Think Like an Entrepreneur (Weeks 1-3)",
+    titleRu: "Модуль 1: Думай как предприниматель (Недели 1–3)",
+    summary:
+      "Build entrepreneurial mindset, master Lean Startup methodology, and develop personal productivity systems for business success.",
+    summaryRu:
+      "Сформируйте предпринимательское мышление, освойте методологию Lean Startup и разработайте системы личной продуктивности для успеха в бизнесе.",
+    keyTopicsHeading: "Key Topics:",
+    keyTopicsHeadingRu: "Ключевые темы:",
+    keyTopics: [
+      { label: "Introduction to Entrepreneurship & Growth Mindset", labelRu: "Введение в предпринимательство и установка на рост" },
+      { label: "Lean Startup Methodology & Build-Measure-Learn", labelRu: "Методология Lean Startup и цикл «Создавай-Измеряй-Учись»" },
+      { label: "Personal Productivity & Time Management", labelRu: "Личная продуктивность и управление временем" },
+      { label: "Identifying Business Opportunities", labelRu: "Выявление бизнес-возможностей" },
+      { label: "Better World Business Models", labelRu: "Бизнес-модели для лучшего мира" },
+      { label: "Market Research Fundamentals", labelRu: "Основы исследования рынка" },
+    ],
+    deliverablesHeading: "Deliverables:",
+    deliverablesHeadingRu: "Результаты:",
+    deliverables: [
+      { label: "Personal vision statement", labelRu: "Личное заявление о видении" },
+      { label: "Productivity system implementation", labelRu: "Внедрение системы продуктивности" },
+      { label: "Opportunity evaluation matrix", labelRu: "Матрица оценки возможностей" },
+      { label: "Market research plan", labelRu: "План исследования рынка" },
+    ],
+  },
+  {
+    weekNumber: 2,
+    title: "Module 2: Shape Your Business Model (Weeks 4-6)",
+    titleRu: "Модуль 2: Формируй бизнес-модель (Недели 4–6)",
+    summary:
+      "Master Business Model Canvas, design compelling value propositions, and develop customer discovery processes.",
+    summaryRu:
+      "Освойте Business Model Canvas, разработайте убедительные ценностные предложения и процессы выявления потребностей клиентов.",
+    keyTopicsHeading: "Key Topics:",
+    keyTopicsHeadingRu: "Ключевые темы:",
+    keyTopics: [
+      { label: "Business Model Canvas Deep Dive", labelRu: "Глубокое погружение в Business Model Canvas" },
+      { label: "Value Proposition Design", labelRu: "Дизайн ценностного предложения" },
+      { label: "Customer Discovery Process", labelRu: "Процесс выявления потребностей клиентов" },
+      { label: "Problem-Solution Fit Validation", labelRu: "Проверка соответствия проблемы и решения" },
+      { label: "Pitching and Presentation Skills", labelRu: "Навыки питча и презентации" },
+      { label: "Channel Strategy & Customer Relationships", labelRu: "Стратегия каналов и отношения с клиентами" },
+    ],
+    deliverablesHeading: "Deliverables:",
+    deliverablesHeadingRu: "Результаты:",
+    deliverables: [
+      { label: "Complete Business Model Canvas", labelRu: "Полный Business Model Canvas" },
+      { label: "Value Proposition Canvas", labelRu: "Canvas ценностного предложения" },
+      { label: "Customer interview reports", labelRu: "Отчёты о клиентских интервью" },
+      { label: "Problem-solution fit presentation", labelRu: "Презентация соответствия проблемы и решения" },
+    ],
+  },
+  {
+    weekNumber: 3,
+    title: "Module 3: Validate Your Assumptions (Weeks 7-9)",
+    titleRu: "Модуль 3: Проверяй гипотезы (Недели 7–9)",
+    summary:
+      "Learn data-driven decision making, test value propositions systematically, and achieve customer validation milestones.",
+    summaryRu:
+      "Изучите принятие решений на основе данных, систематически тестируйте ценностные предложения и достигайте контрольных точек проверки клиентов.",
+    keyTopicsHeading: "Key Topics:",
+    keyTopicsHeadingRu: "Ключевые темы:",
+    keyTopics: [
+      { label: "Business Metrics & KPI Tracking", labelRu: "Бизнес-показатели и отслеживание KPI" },
+      { label: "Value Proposition Testing Methods", labelRu: "Методы тестирования ценностного предложения" },
+      { label: "Feedback System Design", labelRu: "Дизайн системы обратной связи" },
+      { label: "Customer Validation Frameworks", labelRu: "Фреймворки проверки клиентов" },
+      { label: "Business Model Iteration", labelRu: "Итерация бизнес-модели" },
+      { label: "Competitive Analysis & Positioning", labelRu: "Конкурентный анализ и позиционирование" },
+    ],
+    deliverablesHeading: "Deliverables:",
+    deliverablesHeadingRu: "Результаты:",
+    deliverables: [
+      { label: "KPI dashboard and tracking system", labelRu: "Панель KPI и система отслеживания" },
+      { label: "Validation experiment results", labelRu: "Результаты экспериментов по проверке" },
+      { label: "Customer validation report", labelRu: "Отчёт о проверке клиентов" },
+      { label: "Competitive analysis matrix", labelRu: "Матрица конкурентного анализа" },
+    ],
+  },
+  {
+    weekNumber: 4,
+    title: "Module 4: Build Traction - The First Milestone (Weeks 10-12)",
+    titleRu: "Модуль 4: Набирай обороты - Первый рубеж (Недели 10–12)",
+    summary:
+      "Develop functional MVP, achieve product-market fit, and create investor-ready pitches for successful business launch.",
+    summaryRu:
+      "Разработайте функциональный MVP, достигните соответствия продукта рынку и создайте убедительный питч для успешного запуска бизнеса.",
+    keyTopicsHeading: "Key Topics:",
+    keyTopicsHeadingRu: "Ключевые темы:",
+    keyTopics: [
+      { label: "MVP Design & Development Workshop", labelRu: "Воркшоп по разработке MVP" },
+      { label: "Product-Market Fit Measurement", labelRu: "Измерение соответствия продукта рынку" },
+      { label: "Investment-Ready Pitch Creation", labelRu: "Создание питча для инвесторов" },
+      { label: "Financial Modeling & Projections", labelRu: "Финансовое моделирование и прогнозы" },
+      { label: "Launch Strategy & Go-to-Market", labelRu: "Стратегия запуска и выхода на рынок" },
+      { label: "Graduation & Next Steps Planning", labelRu: "Выпуск и планирование следующих шагов" },
+    ],
+    deliverablesHeading: "Deliverables:",
+    deliverablesHeadingRu: "Результаты:",
+    deliverables: [
+      { label: "Functional MVP prototype", labelRu: "Функциональный прототип MVP" },
+      { label: "Product-market fit analysis", labelRu: "Анализ соответствия продукта рынку" },
+      { label: "Investor pitch deck", labelRu: "Питч-дек для инвесторов" },
+      { label: "Financial model & projections", labelRu: "Финансовая модель и прогнозы" },
+    ],
+  },
+];
+
+// Visual styling per module index — the 4-module accordion uses a different
+// color per row. Stays in code so editors don't have to choose colors.
+const MODULE_BADGE_STYLES = [
+  "bg-[#C9922A]/10 text-[#C9922A]",
+  "bg-blue-100 text-blue-600",
+  "bg-green-100 text-green-600",
+  "bg-[#C9922A]/10 text-[#C9922A]",
+] as const;
+
 const BusinessCreation = () => {
   const { isCentralAsia } = useRegion();
   const { program } = useProgram("business-creation");
@@ -36,6 +158,19 @@ const BusinessCreation = () => {
 
   const stats = program.stats.length > 0 ? program.stats : FALLBACK_STATS;
   const badges = program.trustBadges.length > 0 ? program.trustBadges : FALLBACK_BADGES;
+  // 4 curriculum modules — only use Sanity rows that include the rich
+  // keyTopics + deliverables detail, otherwise fall back to the constant.
+  const moduleRows: ProgramWeek[] =
+    program.weeks.length > 0 &&
+    program.weeks.every(
+      (w) =>
+        Array.isArray(w.keyTopics) &&
+        w.keyTopics.length > 0 &&
+        Array.isArray(w.deliverables) &&
+        w.deliverables.length > 0,
+    )
+      ? program.weeks
+      : FALLBACK_MODULES;
   // Headline trust badge (single chip above H1) — first badge in the array.
   const headlineBadge = badges[0];
   const HeadlineIconResolved =
@@ -372,146 +507,76 @@ const BusinessCreation = () => {
             <section>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">{isCentralAsia ? "Программа 12 недель" : "12-Week Curriculum Breakdown"}</h2>
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="module1">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-[#C9922A]/10 text-[#C9922A] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                      {isCentralAsia ? "Модуль 1: Думай как предприниматель (Недели 1–3)" : "Module 1: Think Like an Entrepreneur (Weeks 1-3)"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">{isCentralAsia ? "Сформируйте предпринимательское мышление, освойте методологию Lean Startup и разработайте системы личной продуктивности для успеха в бизнесе." : "Build entrepreneurial mindset, master Lean Startup methodology, and develop personal productivity systems for business success."}</p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Ключевые темы:" : "Key Topics:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Введение в предпринимательство и установка на рост" : "Introduction to Entrepreneurship & Growth Mindset"}</li>
-                            <li>• {isCentralAsia ? "Методология Lean Startup и цикл «Создавай-Измеряй-Учись»" : "Lean Startup Methodology & Build-Measure-Learn"}</li>
-                            <li>• {isCentralAsia ? "Личная продуктивность и управление временем" : "Personal Productivity & Time Management"}</li>
-                            <li>• {isCentralAsia ? "Выявление бизнес-возможностей" : "Identifying Business Opportunities"}</li>
-                            <li>• {isCentralAsia ? "Бизнес-модели для лучшего мира" : "Better World Business Models"}</li>
-                            <li>• {isCentralAsia ? "Основы исследования рынка" : "Market Research Fundamentals"}</li>
-                          </ul>
+                {moduleRows.map((mod, i) => {
+                  const badgeClass =
+                    MODULE_BADGE_STYLES[i % MODULE_BADGE_STYLES.length];
+                  const moduleTitle = isCentralAsia
+                    ? mod.titleRu ?? mod.title
+                    : mod.title;
+                  const moduleSummary = isCentralAsia
+                    ? mod.summaryRu ?? mod.summary ?? ""
+                    : mod.summary ?? "";
+                  const keyHeading = isCentralAsia
+                    ? mod.keyTopicsHeadingRu ??
+                      mod.keyTopicsHeading ??
+                      "Ключевые темы:"
+                    : mod.keyTopicsHeading ?? "Key Topics:";
+                  const delHeading = isCentralAsia
+                    ? mod.deliverablesHeadingRu ??
+                      mod.deliverablesHeading ??
+                      "Результаты:"
+                    : mod.deliverablesHeading ?? "Deliverables:";
+                  const keyTopics = mod.keyTopics ?? [];
+                  const deliverables = mod.deliverables ?? [];
+                  return (
+                    <AccordionItem
+                      key={`module-${mod.weekNumber}`}
+                      value={`module${mod.weekNumber}`}
+                    >
+                      <AccordionTrigger className="text-left">
+                        <div className="flex items-center gap-3">
+                          <div className={`${badgeClass} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold`}>
+                            {mod.weekNumber}
+                          </div>
+                          {moduleTitle}
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Результаты:" : "Deliverables:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Личное заявление о видении" : "Personal vision statement"}</li>
-                            <li>• {isCentralAsia ? "Внедрение системы продуктивности" : "Productivity system implementation"}</li>
-                            <li>• {isCentralAsia ? "Матрица оценки возможностей" : "Opportunity evaluation matrix"}</li>
-                            <li>• {isCentralAsia ? "План исследования рынка" : "Market research plan"}</li>
-                          </ul>
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-4">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          {moduleSummary && (
+                            <p className="text-gray-700 mb-4">{moduleSummary}</p>
+                          )}
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <h4 className="font-semibold text-gray-800 mb-2">
+                                {keyHeading}
+                              </h4>
+                              <ul className="text-sm text-gray-600 space-y-1">
+                                {keyTopics.map((topic, j) => (
+                                  <li key={`${mod.weekNumber}-key-${j}`}>
+                                    • {isCentralAsia ? topic.labelRu ?? topic.label : topic.label}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-gray-800 mb-2">
+                                {delHeading}
+                              </h4>
+                              <ul className="text-sm text-gray-600 space-y-1">
+                                {deliverables.map((d, j) => (
+                                  <li key={`${mod.weekNumber}-del-${j}`}>
+                                    • {isCentralAsia ? d.labelRu ?? d.label : d.label}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="module2">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                      {isCentralAsia ? "Модуль 2: Формируй бизнес-модель (Недели 4–6)" : "Module 2: Shape Your Business Model (Weeks 4-6)"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">{isCentralAsia ? "Освойте Business Model Canvas, разработайте убедительные ценностные предложения и процессы выявления потребностей клиентов." : "Master Business Model Canvas, design compelling value propositions, and develop customer discovery processes."}</p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Ключевые темы:" : "Key Topics:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Глубокое погружение в Business Model Canvas" : "Business Model Canvas Deep Dive"}</li>
-                            <li>• {isCentralAsia ? "Дизайн ценностного предложения" : "Value Proposition Design"}</li>
-                            <li>• {isCentralAsia ? "Процесс выявления потребностей клиентов" : "Customer Discovery Process"}</li>
-                            <li>• {isCentralAsia ? "Проверка соответствия проблемы и решения" : "Problem-Solution Fit Validation"}</li>
-                            <li>• {isCentralAsia ? "Навыки питча и презентации" : "Pitching and Presentation Skills"}</li>
-                            <li>• {isCentralAsia ? "Стратегия каналов и отношения с клиентами" : "Channel Strategy & Customer Relationships"}</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Результаты:" : "Deliverables:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Полный Business Model Canvas" : "Complete Business Model Canvas"}</li>
-                            <li>• {isCentralAsia ? "Canvas ценностного предложения" : "Value Proposition Canvas"}</li>
-                            <li>• {isCentralAsia ? "Отчёты о клиентских интервью" : "Customer interview reports"}</li>
-                            <li>• {isCentralAsia ? "Презентация соответствия проблемы и решения" : "Problem-solution fit presentation"}</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="module3">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                      {isCentralAsia ? "Модуль 3: Проверяй гипотезы (Недели 7–9)" : "Module 3: Validate Your Assumptions (Weeks 7-9)"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">{isCentralAsia ? "Изучите принятие решений на основе данных, систематически тестируйте ценностные предложения и достигайте контрольных точек проверки клиентов." : "Learn data-driven decision making, test value propositions systematically, and achieve customer validation milestones."}</p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Ключевые темы:" : "Key Topics:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Бизнес-показатели и отслеживание KPI" : "Business Metrics & KPI Tracking"}</li>
-                            <li>• {isCentralAsia ? "Методы тестирования ценностного предложения" : "Value Proposition Testing Methods"}</li>
-                            <li>• {isCentralAsia ? "Дизайн системы обратной связи" : "Feedback System Design"}</li>
-                            <li>• {isCentralAsia ? "Фреймворки проверки клиентов" : "Customer Validation Frameworks"}</li>
-                            <li>• {isCentralAsia ? "Итерация бизнес-модели" : "Business Model Iteration"}</li>
-                            <li>• {isCentralAsia ? "Конкурентный анализ и позиционирование" : "Competitive Analysis & Positioning"}</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Результаты:" : "Deliverables:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Панель KPI и система отслеживания" : "KPI dashboard and tracking system"}</li>
-                            <li>• {isCentralAsia ? "Результаты экспериментов по проверке" : "Validation experiment results"}</li>
-                            <li>• {isCentralAsia ? "Отчёт о проверке клиентов" : "Customer validation report"}</li>
-                            <li>• {isCentralAsia ? "Матрица конкурентного анализа" : "Competitive analysis matrix"}</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="module4">
-                  <AccordionTrigger className="text-left">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-[#C9922A]/10 text-[#C9922A] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</div>
-                      {isCentralAsia ? "Модуль 4: Набирай обороты - Первый рубеж (Недели 10–12)" : "Module 4: Build Traction - The First Milestone (Weeks 10-12)"}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-gray-700 mb-4">{isCentralAsia ? "Разработайте функциональный MVP, достигните соответствия продукта рынку и создайте убедительный питч для успешного запуска бизнеса." : "Develop functional MVP, achieve product-market fit, and create investor-ready pitches for successful business launch."}</p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Ключевые темы:" : "Key Topics:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Воркшоп по разработке MVP" : "MVP Design & Development Workshop"}</li>
-                            <li>• {isCentralAsia ? "Измерение соответствия продукта рынку" : "Product-Market Fit Measurement"}</li>
-                            <li>• {isCentralAsia ? "Создание питча для инвесторов" : "Investment-Ready Pitch Creation"}</li>
-                            <li>• {isCentralAsia ? "Финансовое моделирование и прогнозы" : "Financial Modeling & Projections"}</li>
-                            <li>• {isCentralAsia ? "Стратегия запуска и выхода на рынок" : "Launch Strategy & Go-to-Market"}</li>
-                            <li>• {isCentralAsia ? "Выпуск и планирование следующих шагов" : "Graduation & Next Steps Planning"}</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">{isCentralAsia ? "Результаты:" : "Deliverables:"}</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
-                            <li>• {isCentralAsia ? "Функциональный прототип MVP" : "Functional MVP prototype"}</li>
-                            <li>• {isCentralAsia ? "Анализ соответствия продукта рынку" : "Product-market fit analysis"}</li>
-                            <li>• {isCentralAsia ? "Питч-дек для инвесторов" : "Investor pitch deck"}</li>
-                            <li>• {isCentralAsia ? "Финансовая модель и прогнозы" : "Financial model & projections"}</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
               </Accordion>
             </section>
 

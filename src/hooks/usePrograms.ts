@@ -12,10 +12,25 @@ import { sanity, imageUrl } from "@/lib/sanity";
 import { getLocalized } from "@/lib/localized";
 
 /**
+ * Bilingual bullet used in the rich `weekOverview` shape (Business Creation
+ * modules and Community Collaboration phases). One entry = one bullet point
+ * in the left or right column under the accordion heading.
+ */
+export interface ProgramWeekBullet {
+  label: string;
+  labelRu?: string;
+}
+
+/**
  * One row in the program-page "What You'll Learn" accordion.
  * For Business Creation these are 4 modules; for the other programs they're
  * individual weeks. Source of truth lives on programPage.weeks in Sanity;
  * pages fall back to a hardcoded constant if Sanity is empty.
+ *
+ * `keyTopics`/`deliverables` are optional and carry the side-by-side bullet
+ * lists for Business Creation modules and Community Collaboration phases.
+ * Simple-shape rows (Financial Literacy, Leadership Development) leave them
+ * undefined.
  */
 export interface ProgramWeek {
   weekNumber: number;
@@ -23,6 +38,12 @@ export interface ProgramWeek {
   titleRu?: string;
   summary?: string;
   summaryRu?: string;
+  keyTopicsHeading?: string;
+  keyTopicsHeadingRu?: string;
+  keyTopics?: ProgramWeekBullet[];
+  deliverablesHeading?: string;
+  deliverablesHeadingRu?: string;
+  deliverables?: ProgramWeekBullet[];
 }
 
 /** One stat card in a program-page hero (e.g. "90%" / "Launch Success Rate"). */
@@ -201,7 +222,19 @@ const PROGRAM_QUERY_FIELDS = /* groq */ `
     title,
     titleRu,
     summary,
-    summaryRu
+    summaryRu,
+    keyTopicsHeading,
+    keyTopicsHeadingRu,
+    keyTopics[]{
+      label,
+      labelRu
+    },
+    deliverablesHeading,
+    deliverablesHeadingRu,
+    deliverables[]{
+      label,
+      labelRu
+    }
   },
   stats[]{
     value,
