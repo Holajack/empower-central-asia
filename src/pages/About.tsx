@@ -180,12 +180,10 @@ const About = () => {
           <div className="absolute inset-0 bg-black/50" />
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-up [--animation-delay:200ms]">
-              {isCentralAsia ? "Кто мы" : "Who We Are"}
+              {about.getHeroTitle(isCentralAsia)}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms]">
-              {isCentralAsia
-                ? "Два человека, знающих, каково начинать с нуля, — строящих организацию, чтобы другим не пришлось оставаться там."
-                : "Two people who know what it's like to start with nothing -- building an organization so others don't have to stay there."}
+              {about.getHeroSubtitle(isCentralAsia)}
             </p>
           </div>
         </div>
@@ -202,12 +200,10 @@ const About = () => {
             <div className="grid md:grid-cols-5 gap-8 items-start">
               <div className="md:col-span-3 space-y-6">
                 <div className="inline-flex items-center gap-2 bg-[#1B2A4A]/5 text-[#1B2A4A] px-4 py-1.5 rounded-full text-sm font-medium">
-                  {isCentralAsia ? "История основателя" : "Founder's Story"}
+                  {about.getFounderBadge(isCentralAsia)}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-                  {isCentralAsia
-                    ? "Из гаитянского детского дома — к основанию некоммерческой организации"
-                    : "From a Haitian Orphanage to Founding a Nonprofit"}
+                  {about.getFounderHeading(isCentralAsia)}
                 </h2>
                 <div className="prose max-w-none text-gray-700 space-y-4">
                   <PortableText
@@ -225,38 +221,16 @@ const About = () => {
                   <div className="text-center">
                     <h3 className="text-xl font-bold text-gray-800">Jacken Holland</h3>
                     <p className="text-[#1B2A4A] font-medium">
-                      {isCentralAsia ? "Основатель и CEO" : "Founder & CEO"}
+                      {about.getFounderRoleLabel(isCentralAsia)}
                     </p>
                   </div>
                   <div className="text-sm text-gray-600 space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Родился на Гаити, брошен при рождении" : "Born in Haiti, abandoned at birth"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "3,5 года в приюте на выживание" : "Survived 3.5 years in an orphanage"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Усыновлён американской семьёй" : "Adopted by American family"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Степень по бизнесу, UCF" : "UCF Integrated Business degree"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Побывал в 9 странах" : "Traveled to 9 countries"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Основал BBB в 23 года" : "Founded BBB at age 23"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
-                      {isCentralAsia ? "Живёт в Центральной Азии" : "Based in Central Asia"}
-                    </div>
+                    {about.getFounderBio(isCentralAsia).map((bullet, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#1B2A4A]" />
+                        {bullet}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -275,35 +249,25 @@ const About = () => {
                   <div className="text-center">
                     <h3 className="text-xl font-bold text-gray-800">Yeva Romanova</h3>
                     <p className="text-[#C9922A] font-medium">
-                      {isCentralAsia ? "Сооснователь и COO" : "Co-Founder & COO"}
+                      {about.getCoFounderRoleLabel(isCentralAsia)}
                     </p>
                   </div>
                   <div className="text-sm text-gray-600 space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#C9922A]" />
-                      {isCentralAsia ? "Родилась в Кыргызстане" : "Born in Kyrgyzstan"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#C9922A]" />
-                      {isCentralAsia ? "8 лет в бухгалтерской фирме Вашингтона" : "8 years at DC accounting firm"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#C9922A]" />
-                      {isCentralAsia ? "5 лет строила программы микрокредитования на месте" : "5 years building microloan programs on the ground"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#C9922A]" />
-                      {isCentralAsia ? "Мост между двумя мирами" : "Bridge between two worlds"}
-                    </div>
+                    {about.getCoFounderBio(isCentralAsia).map((bullet, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#C9922A]" />
+                        {bullet}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
               <div className="md:col-span-3 md:order-2 order-1 space-y-6">
                 <div className="inline-flex items-center gap-2 bg-[#C9922A]/10 text-[#C9922A] px-4 py-1.5 rounded-full text-sm font-medium">
-                  {isCentralAsia ? "История сооснователя" : "Co-Founder's Story"}
+                  {about.getCoFounderBadge(isCentralAsia)}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-                  {isCentralAsia ? "Мост между двумя мирами" : "Bridging Two Worlds"}
+                  {about.getCoFounderHeading(isCentralAsia)}
                 </h2>
                 <div className="prose max-w-none text-gray-700 space-y-4">
                   <PortableText
@@ -325,67 +289,29 @@ const About = () => {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
                 <Globe className="w-4 h-4" />
-                {isCentralAsia ? "Региональный фокус" : "Regional Focus"}
+                {about.getWhyBadge(isCentralAsia)}
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                {isCentralAsia ? "Почему Центральная Азия?" : "Why Central Asia?"}
+                {about.getWhyHeading(isCentralAsia)}
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                {isCentralAsia
-                  ? "Казахстан, Кыргызстан и Узбекистан — дом для миллионов людей с предпринимательским духом, но с ограниченным доступом к обучению, капиталу и инфраструктуре."
-                  : "Kazakhstan, Kyrgyzstan, and Uzbekistan are home to millions of people with entrepreneurial spirit but limited access to training, capital, and infrastructure."}
+                {about.getWhyIntro(isCentralAsia)}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="border-green-200 hover:shadow-lg transition-all">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {isCentralAsia ? "Постсоветские экономические вызовы" : "Post-Soviet Economic Challenges"}
-                  </h3>
-                  <p className="text-gray-600">
-                    {isCentralAsia
-                      ? "После распада Советского Союза экономики Центральной Азии в одночасье лишились своей промышленной базы. Спустя десятилетия многие общины по-прежнему не имеют инфраструктуры для развития малого бизнеса. Молодёжь нередко видит эмиграцию как единственный выход."
-                      : "After the collapse of the Soviet Union, Central Asian economies lost their industrial base overnight. Decades later, many communities still lack the infrastructure for small business development. Young people often see emigration as their only option."}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-green-200 hover:shadow-lg transition-all">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {isCentralAsia ? "Высокая молодёжная безработица" : "High Youth Unemployment"}
-                  </h3>
-                  <p className="text-gray-600">
-                    {isCentralAsia
-                      ? "В отдельных районах Кыргызстана и Узбекистана молодёжная безработица превышает 17%. Это образованные, мотивированные люди, которым не хватает доступа к бизнес-подготовке, финансовой грамотности и стартовому капиталу — но не амбиций."
-                      : "In parts of Kyrgyzstan and Uzbekistan, youth unemployment exceeds 17%. These are educated, motivated people who lack access to business training, financial literacy, and startup capital -- not ambition."}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-green-200 hover:shadow-lg transition-all">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {isCentralAsia ? "Предпринимательский дух существует" : "Entrepreneurial Spirit Exists"}
-                  </h3>
-                  <p className="text-gray-600">
-                    {isCentralAsia
-                      ? "Центральная Азия имеет глубокую традицию торговли и коммерции, уходящую корнями в эпоху Шёлкового пути. Предпринимательский инстинкт здесь есть — не хватает современного обучения и системы поддержки, чтобы направить его на создание устойчивого бизнеса."
-                      : "Central Asia has a deep tradition of trade and commerce stretching back to the Silk Road. The entrepreneurial instinct is there -- what's missing is the modern training and support system to channel it into sustainable businesses."}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-green-200 hover:shadow-lg transition-all">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {isCentralAsia ? "BBB заполняет этот пробел" : "BBB Bridges the Gap"}
-                  </h3>
-                  <p className="text-gray-600">
-                    {isCentralAsia
-                      ? "Мы предоставляем то, чего не хватает: обучение финансовой грамотности на основе доказательств, практические мастер-классы по созданию бизнеса, менторство в области лидерства и микрокредитование. Наши программы разработаны для местного контекста людьми, которые знают его изнутри."
-                      : "We provide what's missing: evidence-based financial literacy training, hands-on business creation workshops, leadership mentorship, and micro-lending. Our programs are designed for the local context by people who understand it firsthand."}
-                  </p>
-                </CardContent>
-              </Card>
+              {about.getWhyCards(isCentralAsia).map((card, i) => (
+                <Card key={i} className="border-green-200 hover:shadow-lg transition-all">
+                  <CardContent className="p-6 space-y-3">
+                    <h3 className="text-xl font-bold text-gray-800">
+                      {card.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {card.body}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </section>
 
@@ -398,12 +324,10 @@ const About = () => {
           >
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                {isCentralAsia ? "Наш подход" : "Our Approach"}
+                {about.getApproachHeading(isCentralAsia)}
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                {isCentralAsia
-                  ? "Всё, что мы делаем, основано на этих принципах."
-                  : "Everything we do is grounded in these principles."}
+                {about.getApproachIntro(isCentralAsia)}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -437,7 +361,7 @@ const About = () => {
             }`}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
-              {isCentralAsia ? "Наша команда" : "Our Team"}
+              {about.getTeamHeading(isCentralAsia)}
             </h2>
             <div className="w-full mx-auto flex flex-wrap justify-center gap-8">
               {teamMembers.map((member, index) => (
@@ -472,23 +396,21 @@ const About = () => {
           {/* CTA Section */}
           <section className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#1B2A4A] to-[#1B2A4A]/90 text-white p-10 rounded-2xl">
             <h2 className="text-3xl font-bold mb-4">
-              {isCentralAsia ? "Присоединяйтесь к миссии" : "Join the Mission"}
+              {about.getCtaHeading(isCentralAsia)}
             </h2>
             <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-              {isCentralAsia
-                ? "Посвятите своё время волонтёрству, пожертвуйте на поддержку будущего предпринимателя или просто поделитесь нашей историей — и вы станете частью чего-то долговечного."
-                : "Whether you volunteer your time, donate to fund a future entrepreneur, or simply share our story -- you become part of something that lasts."}
+              {about.getCtaBody(isCentralAsia)}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/get-involved">
+              <Link to={about.ctaPrimaryUrl}>
                 <Button size="lg" className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8">
-                  {isCentralAsia ? "Принять участие" : "Get Involved"}
+                  {about.getCtaPrimaryLabel(isCentralAsia)}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link to="/programs-and-impact">
+              <Link to={about.ctaSecondaryUrl}>
                 <Button size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white hover:text-[#1B2A4A] px-8">
-                  {isCentralAsia ? "Наши программы" : "See Our Programs"}
+                  {about.getCtaSecondaryLabel(isCentralAsia)}
                 </Button>
               </Link>
             </div>

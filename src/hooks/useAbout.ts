@@ -361,34 +361,246 @@ const MISSION_TEXT_FALLBACK_RU: PortableTextBlock[] = [
 
 // ─── About page (singleton) ───────────────────────────────────────────
 
+export interface BioBullet {
+  text: string;
+  textRu?: string;
+}
+
+export interface WhyCard {
+  title: string;
+  titleRu?: string;
+  body: string;
+  bodyRu?: string;
+}
+
 export interface AboutPage {
+  // Hero
   heroTitle: string;
   heroTitleRu?: string;
   heroSubtitle: string;
   heroSubtitleRu?: string;
-  values: ValueItem[];
+
+  // Founder section
+  founderBadge: string;
+  founderBadgeRu?: string;
+  founderHeading: string;
+  founderHeadingRu?: string;
+  founderRoleLabel: string;
+  founderRoleLabelRu?: string;
+  founderBio: BioBullet[];
   foundingStory: PortableTextBlock[];
   foundingStoryRu: PortableTextBlock[];
+
+  // Co-founder section
+  coFounderBadge: string;
+  coFounderBadgeRu?: string;
+  coFounderHeading: string;
+  coFounderHeadingRu?: string;
+  coFounderRoleLabel: string;
+  coFounderRoleLabelRu?: string;
+  coFounderBio: BioBullet[];
   missionText: PortableTextBlock[];
   missionTextRu: PortableTextBlock[];
+
+  // Why Central Asia
+  whyBadge: string;
+  whyBadgeRu?: string;
+  whyHeading: string;
+  whyHeadingRu?: string;
+  whyIntro: string;
+  whyIntroRu?: string;
+  whyCards: WhyCard[];
+
+  // Approach
+  approachHeading: string;
+  approachHeadingRu?: string;
+  approachIntro: string;
+  approachIntroRu?: string;
+  values: ValueItem[];
+
+  // Team
+  teamHeading: string;
+  teamHeadingRu?: string;
+
+  // Bottom CTA
+  ctaHeading: string;
+  ctaHeadingRu?: string;
+  ctaBody: string;
+  ctaBodyRu?: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryLabelRu?: string;
+  ctaPrimaryUrl: string;
+  ctaSecondaryLabel: string;
+  ctaSecondaryLabelRu?: string;
+  ctaSecondaryUrl: string;
+
+  // Localized getters
   getHeroTitle: (isCentralAsia: boolean) => string;
   getHeroSubtitle: (isCentralAsia: boolean) => string;
+  getFounderBadge: (isCentralAsia: boolean) => string;
+  getFounderHeading: (isCentralAsia: boolean) => string;
+  getFounderRoleLabel: (isCentralAsia: boolean) => string;
+  getFounderBio: (isCentralAsia: boolean) => string[];
+  getCoFounderBadge: (isCentralAsia: boolean) => string;
+  getCoFounderHeading: (isCentralAsia: boolean) => string;
+  getCoFounderRoleLabel: (isCentralAsia: boolean) => string;
+  getCoFounderBio: (isCentralAsia: boolean) => string[];
+  getWhyBadge: (isCentralAsia: boolean) => string;
+  getWhyHeading: (isCentralAsia: boolean) => string;
+  getWhyIntro: (isCentralAsia: boolean) => string;
+  getWhyCards: (
+    isCentralAsia: boolean,
+  ) => Array<{ title: string; body: string }>;
+  getApproachHeading: (isCentralAsia: boolean) => string;
+  getApproachIntro: (isCentralAsia: boolean) => string;
   getValuesLocalized: (isCentralAsia: boolean) => Array<{
     title: string;
     description: string;
     icon: string;
   }>;
+  getTeamHeading: (isCentralAsia: boolean) => string;
+  getCtaHeading: (isCentralAsia: boolean) => string;
+  getCtaBody: (isCentralAsia: boolean) => string;
+  getCtaPrimaryLabel: (isCentralAsia: boolean) => string;
+  getCtaSecondaryLabel: (isCentralAsia: boolean) => string;
   getFoundingStory: (isCentralAsia: boolean) => PortableTextBlock[];
   getMissionText: (isCentralAsia: boolean) => PortableTextBlock[];
 }
 
+// ─── Hardcoded fallback values (mirror what About.tsx originally shipped) ───
+const FOUNDER_BIO_FALLBACK: BioBullet[] = [
+  {
+    text: "Born in Haiti, abandoned at birth",
+    textRu: "Родился на Гаити, брошен при рождении",
+  },
+  {
+    text: "Survived 3.5 years in an orphanage",
+    textRu: "3,5 года в приюте на выживание",
+  },
+  {
+    text: "Adopted by American family",
+    textRu: "Усыновлён американской семьёй",
+  },
+  {
+    text: "UCF Integrated Business degree",
+    textRu: "Степень по бизнесу, UCF",
+  },
+  {
+    text: "Traveled to 9 countries",
+    textRu: "Побывал в 9 странах",
+  },
+  {
+    text: "Founded BBB at age 23",
+    textRu: "Основал BBB в 23 года",
+  },
+  {
+    text: "Based in Central Asia",
+    textRu: "Живёт в Центральной Азии",
+  },
+];
+
+const CO_FOUNDER_BIO_FALLBACK: BioBullet[] = [
+  {
+    text: "Born in Kyrgyzstan",
+    textRu: "Родилась в Кыргызстане",
+  },
+  {
+    text: "8 years at DC accounting firm",
+    textRu: "8 лет в бухгалтерской фирме Вашингтона",
+  },
+  {
+    text: "5 years building microloan programs on the ground",
+    textRu: "5 лет строила программы микрокредитования на месте",
+  },
+  {
+    text: "Bridge between two worlds",
+    textRu: "Мост между двумя мирами",
+  },
+];
+
+const WHY_CARDS_FALLBACK: WhyCard[] = [
+  {
+    title: "Post-Soviet Economic Challenges",
+    titleRu: "Постсоветские экономические вызовы",
+    body: "After the collapse of the Soviet Union, Central Asian economies lost their industrial base overnight. Decades later, many communities still lack the infrastructure for small business development. Young people often see emigration as their only option.",
+    bodyRu:
+      "После распада Советского Союза экономики Центральной Азии в одночасье лишились своей промышленной базы. Спустя десятилетия многие общины по-прежнему не имеют инфраструктуры для развития малого бизнеса. Молодёжь нередко видит эмиграцию как единственный выход.",
+  },
+  {
+    title: "High Youth Unemployment",
+    titleRu: "Высокая молодёжная безработица",
+    body: "In parts of Kyrgyzstan and Uzbekistan, youth unemployment exceeds 17%. These are educated, motivated people who lack access to business training, financial literacy, and startup capital -- not ambition.",
+    bodyRu:
+      "В отдельных районах Кыргызстана и Узбекистана молодёжная безработица превышает 17%. Это образованные, мотивированные люди, которым не хватает доступа к бизнес-подготовке, финансовой грамотности и стартовому капиталу — но не амбиций.",
+  },
+  {
+    title: "Entrepreneurial Spirit Exists",
+    titleRu: "Предпринимательский дух существует",
+    body: "Central Asia has a deep tradition of trade and commerce stretching back to the Silk Road. The entrepreneurial instinct is there -- what's missing is the modern training and support system to channel it into sustainable businesses.",
+    bodyRu:
+      "Центральная Азия имеет глубокую традицию торговли и коммерции, уходящую корнями в эпоху Шёлкового пути. Предпринимательский инстинкт здесь есть — не хватает современного обучения и системы поддержки, чтобы направить его на создание устойчивого бизнеса.",
+  },
+  {
+    title: "BBB Bridges the Gap",
+    titleRu: "BBB заполняет этот пробел",
+    body: "We provide what's missing: evidence-based financial literacy training, hands-on business creation workshops, leadership mentorship, and micro-lending. Our programs are designed for the local context by people who understand it firsthand.",
+    bodyRu:
+      "Мы предоставляем то, чего не хватает: обучение финансовой грамотности на основе доказательств, практические мастер-классы по созданию бизнеса, менторство в области лидерства и микрокредитование. Наши программы разработаны для местного контекста людьми, которые знают его изнутри.",
+  },
+];
+
 const ABOUT_FALLBACK = {
-  heroTitle: "About Us",
-  heroTitleRu: "О нас",
+  heroTitle: "Who We Are",
+  heroTitleRu: "Кто мы",
   heroSubtitle:
-    "Founded by Jacken Holland — abandoned at birth in Haiti, adopted, and driven to give others the same chance. Meet the team behind Businesses Beyond Borders.",
+    "Two people who know what it's like to start with nothing -- building an organization so others don't have to stay there.",
   heroSubtitleRu:
-    "Джакен Холланд, брошенный при рождении на Гаити и усыновлённый американской семьёй, основал BBB, чтобы дать другим шанс.",
+    "Два человека, знающих, каково начинать с нуля, — строящих организацию, чтобы другим не пришлось оставаться там.",
+
+  founderBadge: "Founder's Story",
+  founderBadgeRu: "История основателя",
+  founderHeading: "From a Haitian Orphanage to Founding a Nonprofit",
+  founderHeadingRu:
+    "Из гаитянского детского дома — к основанию некоммерческой организации",
+  founderRoleLabel: "Founder & CEO",
+  founderRoleLabelRu: "Основатель и CEO",
+
+  coFounderBadge: "Co-Founder's Story",
+  coFounderBadgeRu: "История сооснователя",
+  coFounderHeading: "Bridging Two Worlds",
+  coFounderHeadingRu: "Мост между двумя мирами",
+  coFounderRoleLabel: "Co-Founder & COO",
+  coFounderRoleLabelRu: "Сооснователь и COO",
+
+  whyBadge: "Regional Focus",
+  whyBadgeRu: "Региональный фокус",
+  whyHeading: "Why Central Asia?",
+  whyHeadingRu: "Почему Центральная Азия?",
+  whyIntro:
+    "Kazakhstan, Kyrgyzstan, and Uzbekistan are home to millions of people with entrepreneurial spirit but limited access to training, capital, and infrastructure.",
+  whyIntroRu:
+    "Казахстан, Кыргызстан и Узбекистан — дом для миллионов людей с предпринимательским духом, но с ограниченным доступом к обучению, капиталу и инфраструктуре.",
+
+  approachHeading: "Our Approach",
+  approachHeadingRu: "Наш подход",
+  approachIntro: "Everything we do is grounded in these principles.",
+  approachIntroRu: "Всё, что мы делаем, основано на этих принципах.",
+
+  teamHeading: "Our Team",
+  teamHeadingRu: "Наша команда",
+
+  ctaHeading: "Join the Mission",
+  ctaHeadingRu: "Присоединяйтесь к миссии",
+  ctaBody:
+    "Whether you volunteer your time, donate to fund a future entrepreneur, or simply share our story -- you become part of something that lasts.",
+  ctaBodyRu:
+    "Посвятите своё время волонтёрству, пожертвуйте на поддержку будущего предпринимателя или просто поделитесь нашей историей — и вы станете частью чего-то долговечного.",
+  ctaPrimaryLabel: "Get Involved",
+  ctaPrimaryLabelRu: "Принять участие",
+  ctaPrimaryUrl: "/get-involved",
+  ctaSecondaryLabel: "See Our Programs",
+  ctaSecondaryLabelRu: "Наши программы",
+  ctaSecondaryUrl: "/programs-and-impact",
 };
 
 const ABOUT_QUERY = /* groq */ `
@@ -397,11 +609,48 @@ const ABOUT_QUERY = /* groq */ `
     heroTitleRu,
     heroSubtitle,
     heroSubtitleRu,
-    values,
+    founderBadge,
+    founderBadgeRu,
+    founderHeading,
+    founderHeadingRu,
+    founderRoleLabel,
+    founderRoleLabelRu,
+    founderBio,
     foundingStory,
     foundingStoryRu,
+    coFounderBadge,
+    coFounderBadgeRu,
+    coFounderHeading,
+    coFounderHeadingRu,
+    coFounderRoleLabel,
+    coFounderRoleLabelRu,
+    coFounderBio,
     missionText,
-    missionTextRu
+    missionTextRu,
+    whyBadge,
+    whyBadgeRu,
+    whyHeading,
+    whyHeadingRu,
+    whyIntro,
+    whyIntroRu,
+    whyCards,
+    approachHeading,
+    approachHeadingRu,
+    approachIntro,
+    approachIntroRu,
+    values,
+    teamHeading,
+    teamHeadingRu,
+    ctaHeading,
+    ctaHeadingRu,
+    ctaBody,
+    ctaBodyRu,
+    ctaPrimaryLabel,
+    ctaPrimaryLabelRu,
+    ctaPrimaryUrl,
+    ctaSecondaryLabel,
+    ctaSecondaryLabelRu,
+    ctaSecondaryUrl
   }
 `;
 
@@ -410,20 +659,181 @@ interface RawAboutPage {
   heroTitleRu?: string;
   heroSubtitle?: string;
   heroSubtitleRu?: string;
-  values?: ValueItem[];
+
+  founderBadge?: string;
+  founderBadgeRu?: string;
+  founderHeading?: string;
+  founderHeadingRu?: string;
+  founderRoleLabel?: string;
+  founderRoleLabelRu?: string;
+  founderBio?: BioBullet[];
   foundingStory?: PortableTextBlock[];
   foundingStoryRu?: PortableTextBlock[];
+
+  coFounderBadge?: string;
+  coFounderBadgeRu?: string;
+  coFounderHeading?: string;
+  coFounderHeadingRu?: string;
+  coFounderRoleLabel?: string;
+  coFounderRoleLabelRu?: string;
+  coFounderBio?: BioBullet[];
   missionText?: PortableTextBlock[];
   missionTextRu?: PortableTextBlock[];
+
+  whyBadge?: string;
+  whyBadgeRu?: string;
+  whyHeading?: string;
+  whyHeadingRu?: string;
+  whyIntro?: string;
+  whyIntroRu?: string;
+  whyCards?: WhyCard[];
+
+  approachHeading?: string;
+  approachHeadingRu?: string;
+  approachIntro?: string;
+  approachIntroRu?: string;
+  values?: ValueItem[];
+
+  teamHeading?: string;
+  teamHeadingRu?: string;
+
+  ctaHeading?: string;
+  ctaHeadingRu?: string;
+  ctaBody?: string;
+  ctaBodyRu?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryLabelRu?: string;
+  ctaPrimaryUrl?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryLabelRu?: string;
+  ctaSecondaryUrl?: string;
+}
+
+function pickStr(value: string | undefined, fallback: string): string {
+  return value && value.trim().length > 0 ? value : fallback;
 }
 
 function mergeAbout(raw: RawAboutPage | null): AboutPage {
   const r = raw ?? {};
-  const heroTitle = r.heroTitle || ABOUT_FALLBACK.heroTitle;
-  const heroTitleRu = r.heroTitleRu || ABOUT_FALLBACK.heroTitleRu;
-  const heroSubtitle = r.heroSubtitle || ABOUT_FALLBACK.heroSubtitle;
-  const heroSubtitleRu = r.heroSubtitleRu || ABOUT_FALLBACK.heroSubtitleRu;
+
+  const heroTitle = pickStr(r.heroTitle, ABOUT_FALLBACK.heroTitle);
+  const heroTitleRu = pickStr(r.heroTitleRu, ABOUT_FALLBACK.heroTitleRu);
+  const heroSubtitle = pickStr(r.heroSubtitle, ABOUT_FALLBACK.heroSubtitle);
+  const heroSubtitleRu = pickStr(
+    r.heroSubtitleRu,
+    ABOUT_FALLBACK.heroSubtitleRu,
+  );
+
+  const founderBadge = pickStr(r.founderBadge, ABOUT_FALLBACK.founderBadge);
+  const founderBadgeRu = pickStr(
+    r.founderBadgeRu,
+    ABOUT_FALLBACK.founderBadgeRu,
+  );
+  const founderHeading = pickStr(
+    r.founderHeading,
+    ABOUT_FALLBACK.founderHeading,
+  );
+  const founderHeadingRu = pickStr(
+    r.founderHeadingRu,
+    ABOUT_FALLBACK.founderHeadingRu,
+  );
+  const founderRoleLabel = pickStr(
+    r.founderRoleLabel,
+    ABOUT_FALLBACK.founderRoleLabel,
+  );
+  const founderRoleLabelRu = pickStr(
+    r.founderRoleLabelRu,
+    ABOUT_FALLBACK.founderRoleLabelRu,
+  );
+  const founderBio =
+    r.founderBio && r.founderBio.length > 0
+      ? r.founderBio
+      : FOUNDER_BIO_FALLBACK;
+
+  const coFounderBadge = pickStr(
+    r.coFounderBadge,
+    ABOUT_FALLBACK.coFounderBadge,
+  );
+  const coFounderBadgeRu = pickStr(
+    r.coFounderBadgeRu,
+    ABOUT_FALLBACK.coFounderBadgeRu,
+  );
+  const coFounderHeading = pickStr(
+    r.coFounderHeading,
+    ABOUT_FALLBACK.coFounderHeading,
+  );
+  const coFounderHeadingRu = pickStr(
+    r.coFounderHeadingRu,
+    ABOUT_FALLBACK.coFounderHeadingRu,
+  );
+  const coFounderRoleLabel = pickStr(
+    r.coFounderRoleLabel,
+    ABOUT_FALLBACK.coFounderRoleLabel,
+  );
+  const coFounderRoleLabelRu = pickStr(
+    r.coFounderRoleLabelRu,
+    ABOUT_FALLBACK.coFounderRoleLabelRu,
+  );
+  const coFounderBio =
+    r.coFounderBio && r.coFounderBio.length > 0
+      ? r.coFounderBio
+      : CO_FOUNDER_BIO_FALLBACK;
+
+  const whyBadge = pickStr(r.whyBadge, ABOUT_FALLBACK.whyBadge);
+  const whyBadgeRu = pickStr(r.whyBadgeRu, ABOUT_FALLBACK.whyBadgeRu);
+  const whyHeading = pickStr(r.whyHeading, ABOUT_FALLBACK.whyHeading);
+  const whyHeadingRu = pickStr(r.whyHeadingRu, ABOUT_FALLBACK.whyHeadingRu);
+  const whyIntro = pickStr(r.whyIntro, ABOUT_FALLBACK.whyIntro);
+  const whyIntroRu = pickStr(r.whyIntroRu, ABOUT_FALLBACK.whyIntroRu);
+  const whyCards =
+    r.whyCards && r.whyCards.length > 0 ? r.whyCards : WHY_CARDS_FALLBACK;
+
+  const approachHeading = pickStr(
+    r.approachHeading,
+    ABOUT_FALLBACK.approachHeading,
+  );
+  const approachHeadingRu = pickStr(
+    r.approachHeadingRu,
+    ABOUT_FALLBACK.approachHeadingRu,
+  );
+  const approachIntro = pickStr(r.approachIntro, ABOUT_FALLBACK.approachIntro);
+  const approachIntroRu = pickStr(
+    r.approachIntroRu,
+    ABOUT_FALLBACK.approachIntroRu,
+  );
   const values = r.values && r.values.length > 0 ? r.values : VALUES_FALLBACK;
+
+  const teamHeading = pickStr(r.teamHeading, ABOUT_FALLBACK.teamHeading);
+  const teamHeadingRu = pickStr(r.teamHeadingRu, ABOUT_FALLBACK.teamHeadingRu);
+
+  const ctaHeading = pickStr(r.ctaHeading, ABOUT_FALLBACK.ctaHeading);
+  const ctaHeadingRu = pickStr(r.ctaHeadingRu, ABOUT_FALLBACK.ctaHeadingRu);
+  const ctaBody = pickStr(r.ctaBody, ABOUT_FALLBACK.ctaBody);
+  const ctaBodyRu = pickStr(r.ctaBodyRu, ABOUT_FALLBACK.ctaBodyRu);
+  const ctaPrimaryLabel = pickStr(
+    r.ctaPrimaryLabel,
+    ABOUT_FALLBACK.ctaPrimaryLabel,
+  );
+  const ctaPrimaryLabelRu = pickStr(
+    r.ctaPrimaryLabelRu,
+    ABOUT_FALLBACK.ctaPrimaryLabelRu,
+  );
+  const ctaPrimaryUrl = pickStr(
+    r.ctaPrimaryUrl,
+    ABOUT_FALLBACK.ctaPrimaryUrl,
+  );
+  const ctaSecondaryLabel = pickStr(
+    r.ctaSecondaryLabel,
+    ABOUT_FALLBACK.ctaSecondaryLabel,
+  );
+  const ctaSecondaryLabelRu = pickStr(
+    r.ctaSecondaryLabelRu,
+    ABOUT_FALLBACK.ctaSecondaryLabelRu,
+  );
+  const ctaSecondaryUrl = pickStr(
+    r.ctaSecondaryUrl,
+    ABOUT_FALLBACK.ctaSecondaryUrl,
+  );
 
   const foundingStory =
     r.foundingStory && r.foundingStory.length > 0
@@ -447,19 +857,91 @@ function mergeAbout(raw: RawAboutPage | null): AboutPage {
     heroTitleRu,
     heroSubtitle,
     heroSubtitleRu,
-    values,
+    founderBadge,
+    founderBadgeRu,
+    founderHeading,
+    founderHeadingRu,
+    founderRoleLabel,
+    founderRoleLabelRu,
+    founderBio,
     foundingStory,
     foundingStoryRu,
+    coFounderBadge,
+    coFounderBadgeRu,
+    coFounderHeading,
+    coFounderHeadingRu,
+    coFounderRoleLabel,
+    coFounderRoleLabelRu,
+    coFounderBio,
     missionText,
     missionTextRu,
+    whyBadge,
+    whyBadgeRu,
+    whyHeading,
+    whyHeadingRu,
+    whyIntro,
+    whyIntroRu,
+    whyCards,
+    approachHeading,
+    approachHeadingRu,
+    approachIntro,
+    approachIntroRu,
+    values,
+    teamHeading,
+    teamHeadingRu,
+    ctaHeading,
+    ctaHeadingRu,
+    ctaBody,
+    ctaBodyRu,
+    ctaPrimaryLabel,
+    ctaPrimaryLabelRu,
+    ctaPrimaryUrl,
+    ctaSecondaryLabel,
+    ctaSecondaryLabelRu,
+    ctaSecondaryUrl,
+
     getHeroTitle: (isCA) => getLocalized(heroTitle, heroTitleRu, isCA),
     getHeroSubtitle: (isCA) => getLocalized(heroSubtitle, heroSubtitleRu, isCA),
+    getFounderBadge: (isCA) => getLocalized(founderBadge, founderBadgeRu, isCA),
+    getFounderHeading: (isCA) =>
+      getLocalized(founderHeading, founderHeadingRu, isCA),
+    getFounderRoleLabel: (isCA) =>
+      getLocalized(founderRoleLabel, founderRoleLabelRu, isCA),
+    getFounderBio: (isCA) =>
+      founderBio.map((b) => getLocalized(b.text, b.textRu, isCA)),
+    getCoFounderBadge: (isCA) =>
+      getLocalized(coFounderBadge, coFounderBadgeRu, isCA),
+    getCoFounderHeading: (isCA) =>
+      getLocalized(coFounderHeading, coFounderHeadingRu, isCA),
+    getCoFounderRoleLabel: (isCA) =>
+      getLocalized(coFounderRoleLabel, coFounderRoleLabelRu, isCA),
+    getCoFounderBio: (isCA) =>
+      coFounderBio.map((b) => getLocalized(b.text, b.textRu, isCA)),
+    getWhyBadge: (isCA) => getLocalized(whyBadge, whyBadgeRu, isCA),
+    getWhyHeading: (isCA) => getLocalized(whyHeading, whyHeadingRu, isCA),
+    getWhyIntro: (isCA) => getLocalized(whyIntro, whyIntroRu, isCA),
+    getWhyCards: (isCA) =>
+      whyCards.map((c) => ({
+        title: getLocalized(c.title, c.titleRu, isCA),
+        body: getLocalized(c.body, c.bodyRu, isCA),
+      })),
+    getApproachHeading: (isCA) =>
+      getLocalized(approachHeading, approachHeadingRu, isCA),
+    getApproachIntro: (isCA) =>
+      getLocalized(approachIntro, approachIntroRu, isCA),
     getValuesLocalized: (isCA) =>
       values.map((v) => ({
         title: getLocalized(v.title, v.titleRu, isCA),
         description: getLocalized(v.description, v.descriptionRu, isCA),
         icon: v.icon,
       })),
+    getTeamHeading: (isCA) => getLocalized(teamHeading, teamHeadingRu, isCA),
+    getCtaHeading: (isCA) => getLocalized(ctaHeading, ctaHeadingRu, isCA),
+    getCtaBody: (isCA) => getLocalized(ctaBody, ctaBodyRu, isCA),
+    getCtaPrimaryLabel: (isCA) =>
+      getLocalized(ctaPrimaryLabel, ctaPrimaryLabelRu, isCA),
+    getCtaSecondaryLabel: (isCA) =>
+      getLocalized(ctaSecondaryLabel, ctaSecondaryLabelRu, isCA),
     getFoundingStory: (isCA) =>
       isCA && foundingStoryRu.length > 0 ? foundingStoryRu : foundingStory,
     getMissionText: (isCA) =>
