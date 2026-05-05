@@ -10,6 +10,45 @@ import { useQuery } from "@tanstack/react-query";
 import { sanity, imageUrl } from "@/lib/sanity";
 import { getLocalized, getLocalizedArray } from "@/lib/localized";
 
+// ---------------------------------------------------------------------------
+// Inline-object types — mirror the Sanity schema array members.
+// ---------------------------------------------------------------------------
+
+export interface ResponsibilityItem {
+  label: string;
+  labelRu?: string;
+  description?: string;
+  descriptionRu?: string;
+}
+
+export interface CommitmentDetail {
+  label: string;
+  labelRu?: string;
+  value: string;
+  valueRu?: string;
+  icon?: string;
+}
+
+export interface RequirementItem {
+  label: string;
+  labelRu?: string;
+}
+
+export interface ProcessStep {
+  stepNumber: number;
+  label: string;
+  labelRu?: string;
+  description: string;
+  descriptionRu?: string;
+}
+
+export interface BenefitItem {
+  label: string;
+  labelRu?: string;
+  description?: string;
+  descriptionRu?: string;
+}
+
 export interface VolunteerOpportunityDoc {
   _id: string;
   slug: string;
@@ -21,30 +60,89 @@ export interface VolunteerOpportunityDoc {
   summaryRu?: string;
   commitment?: string;
   commitmentRu?: string;
-  requirements?: string[];
-  requirementsRu?: string[];
+
+  // Detail-page sections
+  responsibilitiesHeading?: string;
+  responsibilitiesHeadingRu?: string;
+  responsibilities: ResponsibilityItem[];
+
+  commitmentHeading?: string;
+  commitmentHeadingRu?: string;
+  commitmentDetails: CommitmentDetail[];
+
+  requirementsHeading?: string;
+  requirementsHeadingRu?: string;
+  requirements: RequirementItem[];
+
+  processHeading?: string;
+  processHeadingRu?: string;
+  processSteps: ProcessStep[];
+
+  benefitsHeading?: string;
+  benefitsHeadingRu?: string;
+  benefits: BenefitItem[];
+
+  closingCtaHeading?: string;
+  closingCtaHeadingRu?: string;
+  closingCtaSubheading?: string;
+  closingCtaSubheadingRu?: string;
+  closingCtaButtonLabel?: string;
+  closingCtaButtonLabelRu?: string;
+  closingCtaUrl?: string;
+
   applyUrl?: string;
   heroImageUrl?: string;
   icon?: string;
   active?: boolean;
   order: number;
+
   /** Localized helpers — call with isCentralAsia from RegionContext. */
   getTitle: (isCentralAsia: boolean) => string;
   getTagline: (isCentralAsia: boolean) => string;
   getSummary: (isCentralAsia: boolean) => string;
   getCommitment: (isCentralAsia: boolean) => string;
-  getRequirements: (isCentralAsia: boolean) => string[];
+  getRequirementsAsStrings: (isCentralAsia: boolean) => string[];
+  getResponsibilitiesHeading: (isCentralAsia: boolean) => string;
+  getCommitmentHeading: (isCentralAsia: boolean) => string;
+  getRequirementsHeading: (isCentralAsia: boolean) => string;
+  getProcessHeading: (isCentralAsia: boolean) => string;
+  getBenefitsHeading: (isCentralAsia: boolean) => string;
+  getClosingCtaHeading: (isCentralAsia: boolean) => string;
+  getClosingCtaSubheading: (isCentralAsia: boolean) => string;
+  getClosingCtaButtonLabel: (isCentralAsia: boolean) => string;
 }
 
 // ---------------------------------------------------------------------------
 // Hardcoded fallbacks — one per slug.
 // Values harvested from each .tsx page's Helmet title, hero subtitle, and
 // stats/requirements sections. These render if Sanity is down or not seeded.
+// Detail-section arrays default to empty so each page can fall back to its
+// own bespoke hardcoded UI.
 // ---------------------------------------------------------------------------
 type FallbackData = Omit<
   VolunteerOpportunityDoc,
-  "getTitle" | "getTagline" | "getSummary" | "getCommitment" | "getRequirements"
+  | "getTitle"
+  | "getTagline"
+  | "getSummary"
+  | "getCommitment"
+  | "getRequirementsAsStrings"
+  | "getResponsibilitiesHeading"
+  | "getCommitmentHeading"
+  | "getRequirementsHeading"
+  | "getProcessHeading"
+  | "getBenefitsHeading"
+  | "getClosingCtaHeading"
+  | "getClosingCtaSubheading"
+  | "getClosingCtaButtonLabel"
 >;
+
+const EMPTY_DETAIL_SECTIONS = {
+  responsibilities: [] as ResponsibilityItem[],
+  commitmentDetails: [] as CommitmentDetail[],
+  requirements: [] as RequirementItem[],
+  processSteps: [] as ProcessStep[],
+  benefits: [] as BenefitItem[],
+};
 
 const FALLBACKS: Record<string, FallbackData> = {
   "administrative-support": {
@@ -60,18 +158,7 @@ const FALLBACKS: Record<string, FallbackData> = {
       "Станьте волонтёром административной поддержки в Businesses Beyond Borders. Помогайте с коммуникациями, мероприятиями и координацией программ. Гибкая удалённая работа из любой точки мира.",
     commitment: "3–5 hours / week",
     commitmentRu: "3–5 ч. в неделю",
-    requirements: [
-      "Strong written communication skills",
-      "Attention to detail and accuracy",
-      "Time management and organization",
-      "Basic computer and internet skills",
-    ],
-    requirementsRu: [
-      "Сильные навыки письменной коммуникации",
-      "Внимательность к деталям и точность",
-      "Управление временем и организованность",
-      "Базовые навыки работы с компьютером и интернетом",
-    ],
+    ...EMPTY_DETAIL_SECTIONS,
     applyUrl: "/volunteer-application",
     icon: "Network",
     active: true,
@@ -90,18 +177,7 @@ const FALLBACKS: Record<string, FallbackData> = {
       "Станьте волонтёром по адвокации и охвату в Businesses Beyond Borders. Помогите усилить нашу миссию по поддержке предпринимателей Центральной Азии через коммуникации и адвокацию.",
     commitment: "Flexible",
     commitmentRu: "Гибко",
-    requirements: [
-      "Passion for international development",
-      "Strong communication skills",
-      "Strategic thinking",
-      "Community building experience",
-    ],
-    requirementsRu: [
-      "Интерес к международному развитию",
-      "Сильные коммуникативные навыки",
-      "Стратегическое мышление",
-      "Опыт построения сообщества",
-    ],
+    ...EMPTY_DETAIL_SECTIONS,
     applyUrl: "/volunteer-application",
     icon: "Megaphone",
     active: true,
@@ -122,18 +198,7 @@ const FALLBACKS: Record<string, FallbackData> = {
       "Поддержите наши проверенные программы финансовой грамотности и создания бизнеса как волонтёр бизнес-обучения. Помогайте предпринимателям Центральной Азии развивать ключевые навыки. Гибкий удалённый график.",
     commitment: "Flexible remote scheduling",
     commitmentRu: "Гибкий удалённый график",
-    requirements: [
-      "Business or finance background",
-      "Teaching or coaching experience",
-      "Patience and cross-cultural sensitivity",
-      "Reliable internet connection",
-    ],
-    requirementsRu: [
-      "Опыт в бизнесе или финансах",
-      "Опыт преподавания или коучинга",
-      "Терпение и межкультурная чуткость",
-      "Стабильное интернет-соединение",
-    ],
+    ...EMPTY_DETAIL_SECTIONS,
     applyUrl: "/volunteer-application",
     icon: "BookOpen",
     active: true,
@@ -154,18 +219,7 @@ const FALLBACKS: Record<string, FallbackData> = {
       "Вступайте в команду-основателей как организатор сообщества в Businesses Beyond Borders. Создавайте сети взаимодействия для предпринимателей. 2 часа в неделю. Глобальное влияние из любой точки мира.",
     commitment: "2 hours / week",
     commitmentRu: "2 ч. в неделю",
-    requirements: [
-      "Community organizing or coordination experience",
-      "Strong interpersonal and networking skills",
-      "Self-motivated and proactive",
-      "Reliable internet connection",
-    ],
-    requirementsRu: [
-      "Опыт организации сообществ или координации",
-      "Сильные межличностные навыки и нетворкинг",
-      "Самомотивация и инициативность",
-      "Стабильное интернет-соединение",
-    ],
+    ...EMPTY_DETAIL_SECTIONS,
     applyUrl: "/volunteer-application",
     icon: "Users",
     active: true,
@@ -185,18 +239,7 @@ const FALLBACKS: Record<string, FallbackData> = {
       "Станьте наставником по развитию лидерства в Businesses Beyond Borders. Ведите начинающих лидеров через проверенную 12-месячную программу по модели 70-20-10. 4–6 часов в месяц. Глобальное влияние из любой точки мира.",
     commitment: "4–6 hours / month",
     commitmentRu: "4–6 ч. в месяц",
-    requirements: [
-      "5+ years of leadership experience",
-      "Coaching or mentorship background",
-      "Cross-cultural communication skills",
-      "4-6 hours monthly availability",
-    ],
-    requirementsRu: [
-      "5+ лет опыта в лидерстве",
-      "Опыт коучинга или наставничества",
-      "Навыки межкультурной коммуникации",
-      "4–6 часов в месяц",
-    ],
+    ...EMPTY_DETAIL_SECTIONS,
     applyUrl: "/volunteer-application",
     icon: "Target",
     active: true,
@@ -218,8 +261,29 @@ const VOL_QUERY_FIELDS = /* groq */ `
   summaryRu,
   commitment,
   commitmentRu,
-  requirements,
+  responsibilitiesHeading,
+  responsibilitiesHeadingRu,
+  responsibilities[]{ label, labelRu, description, descriptionRu },
+  commitmentHeading,
+  commitmentHeadingRu,
+  commitmentDetails[]{ label, labelRu, value, valueRu, icon },
+  requirementsHeading,
+  requirementsHeadingRu,
+  requirements[]{ label, labelRu },
   requirementsRu,
+  processHeading,
+  processHeadingRu,
+  processSteps[]{ stepNumber, label, labelRu, description, descriptionRu },
+  benefitsHeading,
+  benefitsHeadingRu,
+  benefits[]{ label, labelRu, description, descriptionRu },
+  closingCtaHeading,
+  closingCtaHeadingRu,
+  closingCtaSubheading,
+  closingCtaSubheadingRu,
+  closingCtaButtonLabel,
+  closingCtaButtonLabelRu,
+  closingCtaUrl,
   applyUrl,
   "image": image{..., "alt": alt},
   imageUrl,
@@ -227,6 +291,14 @@ const VOL_QUERY_FIELDS = /* groq */ `
   active,
   "order": coalesce(order, 99)
 `;
+
+// Raw item shapes coming back from GROQ (without _key/_type — GROQ
+// projection above strips them).
+type RawResponsibility = Partial<ResponsibilityItem>;
+type RawCommitmentDetail = Partial<CommitmentDetail>;
+type RawRequirement = Partial<RequirementItem> | string;
+type RawProcessStep = Partial<ProcessStep>;
+type RawBenefit = Partial<BenefitItem>;
 
 interface RawVolunteerOpportunity {
   _id: string;
@@ -239,8 +311,30 @@ interface RawVolunteerOpportunity {
   summaryRu?: string;
   commitment?: string;
   commitmentRu?: string;
-  requirements?: string[];
+  responsibilitiesHeading?: string;
+  responsibilitiesHeadingRu?: string;
+  responsibilities?: RawResponsibility[];
+  commitmentHeading?: string;
+  commitmentHeadingRu?: string;
+  commitmentDetails?: RawCommitmentDetail[];
+  requirementsHeading?: string;
+  requirementsHeadingRu?: string;
+  requirements?: RawRequirement[];
+  /** Legacy field; old docs may still have a string[]. */
   requirementsRu?: string[];
+  processHeading?: string;
+  processHeadingRu?: string;
+  processSteps?: RawProcessStep[];
+  benefitsHeading?: string;
+  benefitsHeadingRu?: string;
+  benefits?: RawBenefit[];
+  closingCtaHeading?: string;
+  closingCtaHeadingRu?: string;
+  closingCtaSubheading?: string;
+  closingCtaSubheadingRu?: string;
+  closingCtaButtonLabel?: string;
+  closingCtaButtonLabelRu?: string;
+  closingCtaUrl?: string;
   applyUrl?: string;
   image?: { asset?: { _ref: string } } | null;
   imageUrl?: string;
@@ -260,9 +354,88 @@ function resolveImageUrl(raw: RawVolunteerOpportunity): string | undefined {
   return raw.imageUrl ?? undefined;
 }
 
-function attachHelpers(
-  doc: FallbackData
-): VolunteerOpportunityDoc {
+function normalizeRequirements(
+  raw: RawRequirement[] | undefined,
+  legacyRu: string[] | undefined
+): RequirementItem[] {
+  if (!raw || raw.length === 0) return [];
+  const out: RequirementItem[] = [];
+  raw.forEach((item, idx) => {
+    if (typeof item === "string") {
+      out.push({ label: item, labelRu: legacyRu?.[idx] });
+      return;
+    }
+    if (!item.label) return;
+    out.push({ label: item.label, labelRu: item.labelRu });
+  });
+  return out;
+}
+
+function normalizeResponsibilities(
+  raw: RawResponsibility[] | undefined
+): ResponsibilityItem[] {
+  if (!raw || raw.length === 0) return [];
+  return raw
+    .filter((r): r is ResponsibilityItem => Boolean(r.label))
+    .map((r) => ({
+      label: r.label as string,
+      labelRu: r.labelRu,
+      description: r.description,
+      descriptionRu: r.descriptionRu,
+    }));
+}
+
+function normalizeCommitmentDetails(
+  raw: RawCommitmentDetail[] | undefined
+): CommitmentDetail[] {
+  if (!raw || raw.length === 0) return [];
+  return raw
+    .filter(
+      (c): c is CommitmentDetail =>
+        Boolean(c.label) && Boolean(c.value)
+    )
+    .map((c) => ({
+      label: c.label as string,
+      labelRu: c.labelRu,
+      value: c.value as string,
+      valueRu: c.valueRu,
+      icon: c.icon,
+    }));
+}
+
+function normalizeProcessSteps(
+  raw: RawProcessStep[] | undefined
+): ProcessStep[] {
+  if (!raw || raw.length === 0) return [];
+  return raw
+    .filter(
+      (p): p is ProcessStep =>
+        typeof p.stepNumber === "number" &&
+        Boolean(p.label) &&
+        Boolean(p.description)
+    )
+    .map((p) => ({
+      stepNumber: p.stepNumber as number,
+      label: p.label as string,
+      labelRu: p.labelRu,
+      description: p.description as string,
+      descriptionRu: p.descriptionRu,
+    }));
+}
+
+function normalizeBenefits(raw: RawBenefit[] | undefined): BenefitItem[] {
+  if (!raw || raw.length === 0) return [];
+  return raw
+    .filter((b): b is BenefitItem => Boolean(b.label))
+    .map((b) => ({
+      label: b.label as string,
+      labelRu: b.labelRu,
+      description: b.description,
+      descriptionRu: b.descriptionRu,
+    }));
+}
+
+function attachHelpers(doc: FallbackData): VolunteerOpportunityDoc {
   return {
     ...doc,
     getTitle: (isCA) => getLocalized(doc.title, doc.titleRu, isCA),
@@ -272,8 +445,52 @@ function attachHelpers(
       getLocalized(doc.summary ?? "", doc.summaryRu, isCA),
     getCommitment: (isCA) =>
       getLocalized(doc.commitment ?? "", doc.commitmentRu, isCA),
-    getRequirements: (isCA) =>
-      getLocalizedArray(doc.requirements, doc.requirementsRu, isCA),
+    getRequirementsAsStrings: (isCA) =>
+      getLocalizedArray(
+        doc.requirements.map((r) => r.label),
+        doc.requirements.map((r) => r.labelRu ?? ""),
+        isCA
+      ),
+    getResponsibilitiesHeading: (isCA) =>
+      getLocalized(
+        doc.responsibilitiesHeading ?? "",
+        doc.responsibilitiesHeadingRu,
+        isCA
+      ),
+    getCommitmentHeading: (isCA) =>
+      getLocalized(
+        doc.commitmentHeading ?? "",
+        doc.commitmentHeadingRu,
+        isCA
+      ),
+    getRequirementsHeading: (isCA) =>
+      getLocalized(
+        doc.requirementsHeading ?? "",
+        doc.requirementsHeadingRu,
+        isCA
+      ),
+    getProcessHeading: (isCA) =>
+      getLocalized(doc.processHeading ?? "", doc.processHeadingRu, isCA),
+    getBenefitsHeading: (isCA) =>
+      getLocalized(doc.benefitsHeading ?? "", doc.benefitsHeadingRu, isCA),
+    getClosingCtaHeading: (isCA) =>
+      getLocalized(
+        doc.closingCtaHeading ?? "",
+        doc.closingCtaHeadingRu,
+        isCA
+      ),
+    getClosingCtaSubheading: (isCA) =>
+      getLocalized(
+        doc.closingCtaSubheading ?? "",
+        doc.closingCtaSubheadingRu,
+        isCA
+      ),
+    getClosingCtaButtonLabel: (isCA) =>
+      getLocalized(
+        doc.closingCtaButtonLabel ?? "",
+        doc.closingCtaButtonLabelRu,
+        isCA
+      ),
   };
 }
 
@@ -283,6 +500,12 @@ function mergeOpportunity(
 ): VolunteerOpportunityDoc {
   const fallback = FALLBACKS[slug] ?? FALLBACKS["administrative-support"];
   if (!raw) return attachHelpers(fallback);
+
+  const responsibilities = normalizeResponsibilities(raw.responsibilities);
+  const commitmentDetails = normalizeCommitmentDetails(raw.commitmentDetails);
+  const requirements = normalizeRequirements(raw.requirements, raw.requirementsRu);
+  const processSteps = normalizeProcessSteps(raw.processSteps);
+  const benefits = normalizeBenefits(raw.benefits);
 
   const merged: FallbackData = {
     _id: raw._id || fallback._id,
@@ -295,10 +518,42 @@ function mergeOpportunity(
     summaryRu: raw.summaryRu || fallback.summaryRu,
     commitment: raw.commitment || fallback.commitment,
     commitmentRu: raw.commitmentRu || fallback.commitmentRu,
-    requirements: raw.requirements?.length ? raw.requirements : fallback.requirements,
-    requirementsRu: raw.requirementsRu?.length
-      ? raw.requirementsRu
-      : fallback.requirementsRu,
+    responsibilitiesHeading:
+      raw.responsibilitiesHeading || fallback.responsibilitiesHeading,
+    responsibilitiesHeadingRu:
+      raw.responsibilitiesHeadingRu || fallback.responsibilitiesHeadingRu,
+    responsibilities:
+      responsibilities.length > 0 ? responsibilities : fallback.responsibilities,
+    commitmentHeading: raw.commitmentHeading || fallback.commitmentHeading,
+    commitmentHeadingRu:
+      raw.commitmentHeadingRu || fallback.commitmentHeadingRu,
+    commitmentDetails:
+      commitmentDetails.length > 0
+        ? commitmentDetails
+        : fallback.commitmentDetails,
+    requirementsHeading:
+      raw.requirementsHeading || fallback.requirementsHeading,
+    requirementsHeadingRu:
+      raw.requirementsHeadingRu || fallback.requirementsHeadingRu,
+    requirements: requirements.length > 0 ? requirements : fallback.requirements,
+    processHeading: raw.processHeading || fallback.processHeading,
+    processHeadingRu: raw.processHeadingRu || fallback.processHeadingRu,
+    processSteps: processSteps.length > 0 ? processSteps : fallback.processSteps,
+    benefitsHeading: raw.benefitsHeading || fallback.benefitsHeading,
+    benefitsHeadingRu: raw.benefitsHeadingRu || fallback.benefitsHeadingRu,
+    benefits: benefits.length > 0 ? benefits : fallback.benefits,
+    closingCtaHeading: raw.closingCtaHeading || fallback.closingCtaHeading,
+    closingCtaHeadingRu:
+      raw.closingCtaHeadingRu || fallback.closingCtaHeadingRu,
+    closingCtaSubheading:
+      raw.closingCtaSubheading || fallback.closingCtaSubheading,
+    closingCtaSubheadingRu:
+      raw.closingCtaSubheadingRu || fallback.closingCtaSubheadingRu,
+    closingCtaButtonLabel:
+      raw.closingCtaButtonLabel || fallback.closingCtaButtonLabel,
+    closingCtaButtonLabelRu:
+      raw.closingCtaButtonLabelRu || fallback.closingCtaButtonLabelRu,
+    closingCtaUrl: raw.closingCtaUrl || fallback.closingCtaUrl,
     applyUrl: raw.applyUrl || fallback.applyUrl,
     heroImageUrl: resolveImageUrl(raw) ?? fallback.heroImageUrl,
     icon: raw.icon || fallback.icon,

@@ -32,6 +32,7 @@
     "migrate:footer": "tsx scripts/migrate-footer.mts",
     "migrate:about-narrative": "tsx scripts/migrate-about-narrative.mts",
     "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts",
+    "migrate:volunteer-details": "tsx scripts/migrate-volunteer-opportunity-details.mts",
     "migrate:resource-bodies": "tsx scripts/migrate-resource-bodies.mts",
     "migrate:forms": "tsx scripts/migrate-form-settings.mts",
     "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts",
