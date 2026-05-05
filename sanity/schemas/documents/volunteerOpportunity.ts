@@ -1,5 +1,16 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
+/**
+ * Volunteer Opportunity — one document per role (administrative-support,
+ * advocacy-outreach, business-training, community-organizer,
+ * leadership-mentor). Drives the /volunteer-opportunities/<slug> detail
+ * pages.
+ *
+ * Detail-page sections (responsibilities, commitment stats, requirements,
+ * process timeline, benefits, closing CTA) are arrays of inline objects so
+ * editors can reorder/add/remove rows without touching code. Each visible
+ * string has an English + Russian variant.
+ */
 export default defineType({
   name: "volunteerOpportunity",
   title: "Volunteer Opportunity",
@@ -90,20 +101,369 @@ export default defineType({
       type: "string",
       group: "russian",
     }),
+    // ─── Detail-page sections ─────────────────────────────────────────────
+    // Responsibilities — "What You'll Do" cards
+    defineField({
+      name: "responsibilitiesHeading",
+      title: "Responsibilities Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Heading shown above the responsibilities/role-card grid (e.g. 'What You'll Do as a Leadership Mentor').",
+    }),
+    defineField({
+      name: "responsibilitiesHeadingRu",
+      title: "Responsibilities Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "responsibilities",
+      title: "Responsibilities",
+      type: "array",
+      group: "details",
+      description:
+        "Cards describing role responsibilities. Each card has a label, optional description, and is rendered with a checkmark or icon.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "responsibilityItem",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Label (English)",
+              type: "string",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "labelRu",
+              title: "Label (Русский)",
+              type: "string",
+            }),
+            defineField({
+              name: "description",
+              title: "Description (English)",
+              type: "text",
+              rows: 3,
+            }),
+            defineField({
+              name: "descriptionRu",
+              title: "Description (Русский)",
+              type: "text",
+              rows: 3,
+            }),
+          ],
+          preview: {
+            select: { title: "label", subtitle: "description" },
+          },
+        }),
+      ],
+    }),
+    // Commitment stats — hero stats grid
+    defineField({
+      name: "commitmentHeading",
+      title: "Commitment Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Optional heading above the small stats grid (defaults: 'Time Commitment'). Often left blank — the stats grid sits under the hero with no heading.",
+    }),
+    defineField({
+      name: "commitmentHeadingRu",
+      title: "Commitment Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "commitmentDetails",
+      title: "Commitment Stats",
+      type: "array",
+      group: "details",
+      description:
+        "Small stat tiles shown under the hero (hours/week, location, schedule, etc.). Order matters — first 4 are typically used.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "commitmentDetail",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Label (English)",
+              type: "string",
+              description: "e.g. 'Per Week', 'Schedule'",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "labelRu",
+              title: "Label (Русский)",
+              type: "string",
+            }),
+            defineField({
+              name: "value",
+              title: "Value (English)",
+              type: "string",
+              description: "e.g. '3-5 hrs', 'Remote', 'Flexible'",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "valueRu",
+              title: "Value (Русский)",
+              type: "string",
+            }),
+            defineField({
+              name: "icon",
+              title: "Icon (lucide name)",
+              type: "string",
+              description:
+                "Lucide icon name (e.g. Clock, MapPin, Calendar, Sparkles). Optional.",
+            }),
+          ],
+          preview: {
+            select: { title: "value", subtitle: "label" },
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: "requirementsHeading",
+      title: "Requirements Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Heading above the requirements/skills bullet list (e.g. 'Requirements', 'Essential Skills').",
+    }),
+    defineField({
+      name: "requirementsHeadingRu",
+      title: "Requirements Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
     defineField({
       name: "requirements",
-      title: "Requirements (English)",
+      title: "Requirements",
       type: "array",
-      group: "english",
-      of: [{ type: "string" }],
+      group: "details",
+      description:
+        "Bullet list of qualifications, skills, or qualities needed for this role.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "requirementItem",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Requirement (English)",
+              type: "string",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "labelRu",
+              title: "Requirement (Русский)",
+              type: "string",
+            }),
+          ],
+          preview: { select: { title: "label" } },
+        }),
+      ],
     }),
+    // Legacy field — the original schema had `requirementsRu` as `string[]`.
+    // Kept for backwards compatibility with any seeded docs that still use
+    // it; new editing should use the structured `requirements` array above.
     defineField({
       name: "requirementsRu",
-      title: "Requirements (Русский)",
+      title: "Requirements (Русский) — legacy",
       type: "array",
       group: "russian",
+      hidden: true,
       of: [{ type: "string" }],
+      description:
+        "Legacy field. Use the new bilingual 'Requirements' array above.",
     }),
+    // Process steps — application/program phases
+    defineField({
+      name: "processHeading",
+      title: "Process Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Heading above the process timeline (e.g. 'Application Process', '12-Month Mentorship Program Structure').",
+    }),
+    defineField({
+      name: "processHeadingRu",
+      title: "Process Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "processSteps",
+      title: "Process Steps",
+      type: "array",
+      group: "details",
+      description:
+        "Numbered phases shown as a timeline (e.g. 'Phase 1: Foundation', 'Months 1-3', 'Step 1: Apply').",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "processStep",
+          fields: [
+            defineField({
+              name: "stepNumber",
+              title: "Step Number",
+              type: "number",
+              validation: (R) => R.required().min(1).max(20),
+            }),
+            defineField({
+              name: "label",
+              title: "Step Label (English)",
+              type: "string",
+              description:
+                "Short label / phase name (e.g. 'Phase 1: Foundation Building').",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "labelRu",
+              title: "Step Label (Русский)",
+              type: "string",
+            }),
+            defineField({
+              name: "description",
+              title: "Description (English)",
+              type: "text",
+              rows: 3,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "descriptionRu",
+              title: "Description (Русский)",
+              type: "text",
+              rows: 3,
+            }),
+          ],
+          preview: {
+            select: {
+              stepNumber: "stepNumber",
+              title: "label",
+              subtitle: "description",
+            },
+            prepare({ stepNumber, title, subtitle }) {
+              return {
+                title: `${stepNumber ?? "?"}. ${title ?? "(untitled)"}`,
+                subtitle,
+              };
+            },
+          },
+        }),
+      ],
+    }),
+    // Benefits — what volunteers get out of it
+    defineField({
+      name: "benefitsHeading",
+      title: "Benefits Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Heading above the benefits list (e.g. \"What You'll Gain\", 'Why Our Mentors Love What They Do').",
+    }),
+    defineField({
+      name: "benefitsHeadingRu",
+      title: "Benefits Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "benefits",
+      title: "Benefits",
+      type: "array",
+      group: "details",
+      description:
+        "List of professional/personal benefits volunteers get from the role.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "benefitItem",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Label (English)",
+              type: "string",
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: "labelRu",
+              title: "Label (Русский)",
+              type: "string",
+            }),
+            defineField({
+              name: "description",
+              title: "Description (English)",
+              type: "text",
+              rows: 3,
+            }),
+            defineField({
+              name: "descriptionRu",
+              title: "Description (Русский)",
+              type: "text",
+              rows: 3,
+            }),
+          ],
+          preview: {
+            select: { title: "label", subtitle: "description" },
+          },
+        }),
+      ],
+    }),
+    // Closing CTA — final "Ready to ___?" block above the form
+    defineField({
+      name: "closingCtaHeading",
+      title: "Closing CTA Heading (English)",
+      type: "string",
+      group: "details",
+      description:
+        "Heading on the final CTA card / form intro (e.g. 'Ready to Become a Leadership Mentor?').",
+    }),
+    defineField({
+      name: "closingCtaHeadingRu",
+      title: "Closing CTA Heading (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "closingCtaSubheading",
+      title: "Closing CTA Subheading (English)",
+      type: "text",
+      group: "details",
+      rows: 3,
+      description: "Paragraph under the closing CTA heading.",
+    }),
+    defineField({
+      name: "closingCtaSubheadingRu",
+      title: "Closing CTA Subheading (Русский)",
+      type: "text",
+      group: "russian",
+      rows: 3,
+    }),
+    defineField({
+      name: "closingCtaButtonLabel",
+      title: "Closing CTA Button Label (English)",
+      type: "string",
+      group: "details",
+      description: "Text on the closing button (e.g. 'Apply Now').",
+    }),
+    defineField({
+      name: "closingCtaButtonLabelRu",
+      title: "Closing CTA Button Label (Русский)",
+      type: "string",
+      group: "russian",
+    }),
+    defineField({
+      name: "closingCtaUrl",
+      title: "Closing CTA URL",
+      type: "string",
+      group: "details",
+      description:
+        "Where the closing button links to. Defaults to '#apply-now' (jumps to the form).",
+    }),
+    // ─── End detail-page sections ─────────────────────────────────────────
     defineField({
       name: "applyUrl",
       title: "Apply URL",

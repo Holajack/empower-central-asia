@@ -1,16 +1,235 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { ArrowRight, Users, Network, Clock, Calendar, CheckCircle2, Heart, Star, UserPlus, Settings, Megaphone, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Heart,
+  UserPlus,
+  Sparkles,
+} from "lucide-react";
+import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import GoHighLevelForm from "@/components/forms/GoHighLevelForm";
 import { useRegion } from "@/contexts/RegionContext";
 import { useVolunteerOpportunity } from "@/hooks/useVolunteerOpportunity";
+import type {
+  CommitmentDetail,
+  ResponsibilityItem,
+  RequirementItem,
+  ProcessStep,
+  BenefitItem,
+} from "@/hooks/useVolunteerOpportunity";
+
+// ─── Hardcoded fallbacks ────────────────────────────────────────────────────
+const FALLBACK_RESPONSIBILITIES_HEADING = "Community Organizer Roles Available";
+const FALLBACK_RESPONSIBILITIES_HEADING_RU =
+  "Доступные роли организаторов сообщества";
+
+const FALLBACK_RESPONSIBILITIES: ResponsibilityItem[] = [
+  {
+    label: "Program Coordinators",
+    labelRu: "Координаторы программы",
+    description:
+      "Lead program development and oversee day-to-day operations of community collaboration initiatives.",
+    descriptionRu:
+      "Руководите разработкой программы и координируйте повседневную работу инициатив по взаимодействию сообщества.",
+  },
+  {
+    label: "Event Organizers",
+    labelRu: "Организаторы мероприятий",
+    description:
+      "Plan and execute networking events, workshops, and community gatherings both virtual and in-person.",
+    descriptionRu:
+      "Планируйте и проводите сетевые мероприятия, семинары и встречи сообщества — как онлайн, так и офлайн.",
+  },
+  {
+    label: "Outreach Specialists",
+    labelRu: "Специалисты по охвату",
+    description:
+      "Build relationships with local businesses, organizations, and potential partners to expand our network.",
+    descriptionRu:
+      "Выстраивайте отношения с местными предприятиями, организациями и потенциальными партнёрами для расширения нашей сети.",
+  },
+  {
+    label: "Administrative Support",
+    labelRu: "Административная поддержка",
+    description:
+      "Provide essential operational support including communications, data management, and process documentation.",
+    descriptionRu:
+      "Обеспечивайте операционную поддержку: коммуникации, управление данными и документирование процессов.",
+  },
+];
+
+const FALLBACK_COMMITMENT_DETAILS: CommitmentDetail[] = [
+  {
+    label: "Per Week",
+    labelRu: "В неделю",
+    value: "2 hrs",
+    valueRu: "2 ч.",
+    icon: "Clock",
+  },
+  {
+    label: "Start Date",
+    labelRu: "Дата начала",
+    value: "Apr 2026",
+    valueRu: "Апр. 2026",
+    icon: "Calendar",
+  },
+  {
+    label: "Work Location",
+    labelRu: "Место работы",
+    value: "Remote",
+    valueRu: "Удалённо",
+    icon: "MapPin",
+  },
+  {
+    label: "Program Launch",
+    labelRu: "Запуск программы",
+    value: "New",
+    valueRu: "Новый",
+    icon: "Sparkles",
+  },
+];
+
+const FALLBACK_REQUIREMENTS: RequirementItem[] = [
+  {
+    label: "Event planning or project coordination experience",
+    labelRu: "Опыт планирования мероприятий или координации проектов",
+  },
+  {
+    label: "Community organizing or volunteer management",
+    labelRu: "Организация сообщества или управление волонтёрами",
+  },
+  {
+    label: "Business networking or partnership development",
+    labelRu: "Деловой нетворкинг или развитие партнёрств",
+  },
+  {
+    label: "Social media and communications experience",
+    labelRu: "Опыт работы в социальных сетях и коммуникациях",
+  },
+];
+
+const FALLBACK_PROCESS_HEADING =
+  "Community Collaboration Development Timeline";
+const FALLBACK_PROCESS_HEADING_RU =
+  "График развития взаимодействия сообщества";
+
+const FALLBACK_PROCESS_STEPS: ProcessStep[] = [
+  {
+    stepNumber: 1,
+    label: "Phase 1: Foundation Building (Months 1-3) - Q2 2026",
+    labelRu: "Этап 1: Закладка фундамента (месяцы 1–3) — Q2 2026",
+    description:
+      "Establish program structure, recruit founding team, and build core systems.",
+    descriptionRu:
+      "Выстроить структуру программы, набрать команду-основателей и создать базовые системы.",
+  },
+  {
+    stepNumber: 2,
+    label: "Phase 2: Program Launch (Months 4-6) - Q3 2026",
+    labelRu: "Этап 2: Запуск программы (месяцы 4–6) — Q3 2026",
+    description:
+      "Launch community collaboration initiatives and begin serving entrepreneurs.",
+    descriptionRu:
+      "Запустить инициативы по взаимодействию сообщества и начать работу с предпринимателями.",
+  },
+  {
+    stepNumber: 3,
+    label: "Phase 3: Growth & Impact (Months 7-12) - Q4 2026 & Beyond",
+    labelRu: "Этап 3: Рост и влияние (месяцы 7–12) — Q4 2026 и далее",
+    description:
+      "Scale program impact and establish sustainable community collaboration model.",
+    descriptionRu:
+      "Масштабировать влияние программы и создать устойчивую модель взаимодействия сообщества.",
+  },
+];
+
+const FALLBACK_BENEFITS: BenefitItem[] = [
+  {
+    label: "Build program management and coordination skills",
+    labelRu: "Развивайте навыки управления программами и координации",
+  },
+  {
+    label: "Develop extensive professional network",
+    labelRu: "Расширяйте обширную профессиональную сеть",
+  },
+  {
+    label: "Gain experience in startup and nonprofit sectors",
+    labelRu: "Получайте опыт в стартапах и некоммерческом секторе",
+  },
+  {
+    label: "Leadership development opportunities",
+    labelRu: "Возможности для развития лидерских качеств",
+  },
+];
+
+const FALLBACK_CLOSING_HEADING = "Ready to Join Our Founding Team?";
+const FALLBACK_CLOSING_HEADING_RU = "Готовы вступить в нашу команду-основателей?";
+const FALLBACK_CLOSING_SUBHEADING =
+  "Be part of building something new! Apply to become a Community Organizer and help us create lasting impact.";
+const FALLBACK_CLOSING_SUBHEADING_RU =
+  "Станьте частью чего-то нового! Подайте заявку на роль организатора сообщества и помогите нам создать долгосрочное влияние.";
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+const lucideIconMap = LucideIcons as unknown as Record<string, LucideIcon>;
+function resolveIcon(name: string | undefined, fallback: LucideIcon): LucideIcon {
+  if (!name) return fallback;
+  return lucideIconMap[name] ?? fallback;
+}
 
 const CommunityOrganizer = () => {
   const { isCentralAsia } = useRegion();
   const { opportunity } = useVolunteerOpportunity("community-organizer");
+
+  const responsibilities =
+    opportunity.responsibilities.length > 0
+      ? opportunity.responsibilities
+      : FALLBACK_RESPONSIBILITIES;
+  const responsibilitiesHeading =
+    opportunity.getResponsibilitiesHeading(isCentralAsia) ||
+    (isCentralAsia
+      ? FALLBACK_RESPONSIBILITIES_HEADING_RU
+      : FALLBACK_RESPONSIBILITIES_HEADING);
+
+  const commitmentDetails =
+    opportunity.commitmentDetails.length > 0
+      ? opportunity.commitmentDetails
+      : FALLBACK_COMMITMENT_DETAILS;
+
+  const requirements =
+    opportunity.requirements.length > 0
+      ? opportunity.requirements
+      : FALLBACK_REQUIREMENTS;
+  const requirementsHeading =
+    opportunity.getRequirementsHeading(isCentralAsia) ||
+    (isCentralAsia ? "Опыт, который мы ценим" : "Experience We Value");
+
+  const processSteps =
+    opportunity.processSteps.length > 0
+      ? opportunity.processSteps
+      : FALLBACK_PROCESS_STEPS;
+  const processHeading =
+    opportunity.getProcessHeading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK_PROCESS_HEADING_RU : FALLBACK_PROCESS_HEADING);
+
+  const benefits =
+    opportunity.benefits.length > 0 ? opportunity.benefits : FALLBACK_BENEFITS;
+  const benefitsHeading =
+    opportunity.getBenefitsHeading(isCentralAsia) ||
+    (isCentralAsia ? "Профессиональный рост" : "Professional Growth");
+
+  const closingHeading =
+    opportunity.getClosingCtaHeading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK_CLOSING_HEADING_RU : FALLBACK_CLOSING_HEADING);
+  const closingSubheading =
+    opportunity.getClosingCtaSubheading(isCentralAsia) ||
+    (isCentralAsia
+      ? FALLBACK_CLOSING_SUBHEADING_RU
+      : FALLBACK_CLOSING_SUBHEADING);
 
   return (
     <>
@@ -61,482 +280,189 @@ const CommunityOrganizer = () => {
           </div>
         </div>
 
-        {/* Key Stats */}
+        {/* Key Stats — Sanity-driven */}
         <div className="bg-white py-12 border-b">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
-              <div className="bg-green-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-green-600 mb-2">{isCentralAsia ? "2 ч." : "2 hrs"}</div>
-                <div className="text-sm text-gray-600">{isCentralAsia ? "В неделю" : "Per Week"}</div>
-              </div>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600 mb-2">{isCentralAsia ? "Апр. 2026" : "Apr 2026"}</div>
-                <div className="text-sm text-gray-600">{isCentralAsia ? "Дата начала" : "Start Date"}</div>
-              </div>
-              <div className="bg-[#C9922A]/5 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-[#C9922A] mb-2">{isCentralAsia ? "Удалённо" : "Remote"}</div>
-                <div className="text-sm text-gray-600">{isCentralAsia ? "Место работы" : "Work Location"}</div>
-              </div>
-              <div className="bg-[#C9922A]/5 p-6 rounded-lg">
-                <div className="text-2xl font-bold text-[#C9922A] mb-2">{isCentralAsia ? "Новый" : "New"}</div>
-                <div className="text-sm text-gray-600">{isCentralAsia ? "Запуск программы" : "Program Launch"}</div>
-              </div>
+              {commitmentDetails.slice(0, 4).map((c, idx) => {
+                const Icon = resolveIcon(c.icon, Sparkles);
+                const tones = [
+                  { bg: "bg-green-50", text: "text-green-600" },
+                  { bg: "bg-blue-50", text: "text-blue-600" },
+                  { bg: "bg-[#C9922A]/5", text: "text-[#C9922A]" },
+                  { bg: "bg-[#C9922A]/5", text: "text-[#C9922A]" },
+                ];
+                const tone = tones[idx] ?? tones[0];
+                return (
+                  <div key={`${c.label}-${idx}`} className={`${tone.bg} p-6 rounded-lg`}>
+                    <div className={`flex items-center justify-center mb-2 ${tone.text}`}>
+                      <Icon className="w-5 h-5 mr-1" />
+                      <div className="text-2xl font-bold">
+                        {isCentralAsia ? c.valueRu || c.value : c.value}
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {isCentralAsia ? c.labelRu || c.label : c.label}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
         <div className="container mx-auto px-4 py-16">
-          {/* Available Roles Section */}
-          <section className="mb-16">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-                {isCentralAsia ? "Доступные роли" : "Community Organizer"}
-                <span className="text-green-600"> {isCentralAsia ? "организаторов сообщества" : "Roles Available"}</span>
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card className="border-l-4 border-blue-500 shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-blue-600">
-                      <Settings className="w-6 h-6" />
-                      {isCentralAsia ? "Координаторы программы" : "Program Coordinators"}
-                      <span className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full ml-2">
-                        {isCentralAsia ? "2 места" : "2 needed"}
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Руководите разработкой программы и координируйте повседневную работу инициатив по взаимодействию сообщества."
-                        : "Lead program development and oversee day-to-day operations of community collaboration initiatives."}
-                    </p>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Разрабатывать структуру программы и процессы" : "Develop program structure and processes"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Координировать волонтёрские команды и мероприятия" : "Coordinate volunteer teams and activities"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Отслеживать показатели и результаты программы" : "Track program metrics and outcomes"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Управлять партнёрствами и сотрудничеством" : "Manage partnerships and collaborations"}
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-l-4 border-[#C9922A] shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-[#C9922A]">
-                      <Calendar className="w-6 h-6" />
-                      {isCentralAsia ? "Организаторы мероприятий" : "Event Organizers"}
-                      <span className="bg-[#C9922A]/10 text-[#1B2A4A] text-xs px-2 py-1 rounded-full ml-2">
-                        {isCentralAsia ? "4 места" : "4 needed"}
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Планируйте и проводите сетевые мероприятия, семинары и встречи сообщества — как онлайн, так и офлайн."
-                        : "Plan and execute networking events, workshops, and community gatherings both virtual and in-person."}
-                    </p>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Разрабатывать увлекательный формат мероприятий" : "Design engaging event experiences"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Управлять логистикой и координацией мероприятий" : "Manage event logistics and coordination"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Содействовать нетворкингу и установлению связей" : "Facilitate networking and connections"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Анализировать итоги мероприятий" : "Follow up on event outcomes"}
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-l-4 border-[#C9922A] shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-[#C9922A]">
-                      <Megaphone className="w-6 h-6" />
-                      {isCentralAsia ? "Специалисты по охвату" : "Outreach Specialists"}
-                      <span className="bg-[#C9922A]/10 text-[#C9922A] text-xs px-2 py-1 rounded-full ml-2">
-                        {isCentralAsia ? "6 мест" : "6 needed"}
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Выстраивайте отношения с местными предприятиями, организациями и потенциальными партнёрами для расширения нашей сети."
-                        : "Build relationships with local businesses, organizations, and potential partners to expand our network."}
-                    </p>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Исследовать и выявлять потенциальных партнёров" : "Research and identify potential partners"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Создавать убедительные материалы для охвата" : "Create compelling outreach materials"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Проводить первичные встречи с партнёрами" : "Conduct initial partnership meetings"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Вести базу данных контактов" : "Maintain relationship database"}
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-l-4 border-teal-500 shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-teal-600">
-                      <Network className="w-6 h-6" />
-                      {isCentralAsia ? "Административная поддержка" : "Administrative Support"}
-                      <span className="bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded-full ml-2">
-                        {isCentralAsia ? "4 места" : "4 needed"}
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Обеспечивайте операционную поддержку: коммуникации, управление данными и документирование процессов."
-                        : "Provide essential operational support including communications, data management, and process documentation."}
-                    </p>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Управлять коммуникациями сообщества" : "Manage community communications"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Вести базы данных волонтёров и партнёров" : "Maintain volunteer and partner databases"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Создавать документацию по процессам" : "Create process documentation"}
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        {isCentralAsia ? "Поддерживать отчётность по программе" : "Support program reporting"}
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* Program Development Timeline */}
-          <section className="mb-16">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                {isCentralAsia ? "График развития" : "Community Collaboration"}
-                <span className="text-green-600"> {isCentralAsia ? "взаимодействия сообщества" : "Development Timeline"}</span>
-              </h2>
-              <div className="space-y-6">
-                <Card className="border-l-4 border-blue-500">
-                  <CardHeader>
-                    <CardTitle className="text-blue-600">
-                      {isCentralAsia ? "Этап 1: Закладка фундамента (месяцы 1–3) — Q2 2026" : "Phase 1: Foundation Building (Months 1-3) - Q2 2026"}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Выстроить структуру программы, набрать команду-основателей и создать базовые системы."
-                        : "Establish program structure, recruit founding team, and build core systems."}
-                    </p>
-                    <div className="grid md:grid-cols-4 gap-4">
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Формирование команды" : "Team Building"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Набрать 16 волонтёров" : "Recruit 16 volunteers"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Обучение" : "Training"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Комплексный онбординг" : "Comprehensive onboarding"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Системы" : "Systems"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Создание операционных процессов" : "Build operational processes"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Партнёрства" : "Partnerships"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Первичный поиск партнёров" : "Initial partner outreach"}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-l-4 border-green-500">
-                  <CardHeader>
-                    <CardTitle className="text-green-600">
-                      {isCentralAsia ? "Этап 2: Запуск программы (месяцы 4–6) — Q3 2026" : "Phase 2: Program Launch (Months 4-6) - Q3 2026"}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Запустить инициативы по взаимодействию сообщества и начать работу с предпринимателями."
-                        : "Launch community collaboration initiatives and begin serving entrepreneurs."}
-                    </p>
-                    <div className="grid md:grid-cols-4 gap-4">
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Первые события" : "First Events"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Ежемесячные сетевые встречи" : "Monthly networking events"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Партнёрства" : "Partnerships"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "10+ активных партнёров" : "10+ active partners"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Предприниматели" : "Entrepreneurs"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Помочь первым 25 предпринимателям" : "Serve first 25 entrepreneurs"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Обратная связь" : "Feedback"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Постоянное улучшение" : "Continuous improvement"}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-l-4 border-[#C9922A]">
-                  <CardHeader>
-                    <CardTitle className="text-[#C9922A]">
-                      {isCentralAsia ? "Этап 3: Рост и влияние (месяцы 7–12) — Q4 2026 и далее" : "Phase 3: Growth & Impact (Months 7-12) - Q4 2026 & Beyond"}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      {isCentralAsia
-                        ? "Масштабировать влияние программы и создать устойчивую модель взаимодействия сообщества."
-                        : "Scale program impact and establish sustainable community collaboration model."}
-                    </p>
-                    <div className="grid md:grid-cols-4 gap-4">
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Масштаб" : "Scale"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Помочь 100+ предпринимателям" : "100+ entrepreneurs served"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Сеть" : "Network"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "25+ партнёрских организаций" : "25+ partner organizations"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Истории успеха" : "Success Stories"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Документировать результаты" : "Document impact"}</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-gray-800">{isCentralAsia ? "Расширение" : "Expansion"}</div>
-                        <p className="text-sm text-gray-600">{isCentralAsia ? "Планировать рост программы" : "Plan program growth"}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* Ideal Candidate Section */}
-          <section className="mb-16 bg-gray-50 p-8 rounded-2xl">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                {isCentralAsia ? "Вы — наш следующий" : "Are You Our Next"}
-                <span className="text-green-600"> {isCentralAsia ? "организатор сообщества?" : "Community Organizer?"}</span>
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Users className="w-6 h-6 text-green-600" />
-                    {isCentralAsia ? "Опыт, который мы ценим" : "Experience We Value"}
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Опыт планирования мероприятий или координации проектов" : "Event planning or project coordination experience"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Организация сообщества или управление волонтёрами" : "Community organizing or volunteer management"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Деловой нетворкинг или развитие партнёрств" : "Business networking or partnership development"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Опыт работы в социальных сетях и коммуникациях" : "Social media and communications experience"}
-                    </li>
-                  </ul>
+          {/* Available Roles — Sanity-driven responsibilities */}
+          {responsibilities.length > 0 && (
+            <section className="mb-16">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+                  {responsibilitiesHeading}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {responsibilities.map((r, idx) => {
+                    const tones = [
+                      { border: "border-blue-500", text: "text-blue-600" },
+                      { border: "border-[#C9922A]", text: "text-[#C9922A]" },
+                      { border: "border-[#C9922A]", text: "text-[#C9922A]" },
+                      { border: "border-teal-500", text: "text-teal-600" },
+                    ];
+                    const tone = tones[idx % tones.length];
+                    return (
+                      <Card
+                        key={`${r.label}-${idx}`}
+                        className={`border-l-4 ${tone.border} shadow-lg`}
+                      >
+                        <CardHeader>
+                          <CardTitle
+                            className={`flex items-center gap-2 ${tone.text}`}
+                          >
+                            <Sparkles className="w-6 h-6" />
+                            {isCentralAsia ? r.labelRu || r.label : r.label}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {(r.description || r.descriptionRu) && (
+                            <p className="text-gray-600 mb-4">
+                              {isCentralAsia
+                                ? r.descriptionRu || r.description
+                                : r.description}
+                            </p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Heart className="w-6 h-6 text-red-500" />
-                    {isCentralAsia ? "Необходимые качества" : "Essential Qualities"}
-                  </h3>
+              </div>
+            </section>
+          )}
+
+          {/* Process Steps — timeline phases */}
+          {processSteps.length > 0 && (
+            <section className="mb-16">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                  {processHeading}
+                </h2>
+                <div className="space-y-6">
+                  {processSteps.map((step, idx) => {
+                    const tones = [
+                      { border: "border-blue-500", text: "text-blue-600" },
+                      { border: "border-green-500", text: "text-green-600" },
+                      { border: "border-[#C9922A]", text: "text-[#C9922A]" },
+                    ];
+                    const tone = tones[idx % tones.length];
+                    return (
+                      <Card
+                        key={`${step.stepNumber}-${idx}`}
+                        className={`border-l-4 ${tone.border}`}
+                      >
+                        <CardHeader>
+                          <CardTitle className={tone.text}>
+                            {isCentralAsia ? step.labelRu || step.label : step.label}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-600">
+                            {isCentralAsia
+                              ? step.descriptionRu || step.description
+                              : step.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Requirements — Sanity-driven */}
+          {requirements.length > 0 && (
+            <section className="mb-16 bg-gray-50 p-8 rounded-2xl">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                  {requirementsHeading}
+                </h2>
+                <div className="grid md:grid-cols-1 gap-8">
                   <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Сильные коммуникативные и межличностные навыки" : "Strong communication and interpersonal skills"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Самомотивация и умение работать самостоятельно" : "Self-motivated and able to work independently"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Искренний интерес к развитию сообщества" : "Passionate about community building"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Нацеленность на создание ценных связей и сетей" : "Committed to building valuable networks"}
-                    </li>
+                    {requirements.map((req, idx) => (
+                      <li
+                        key={`${req.label}-${idx}`}
+                        className="flex items-start gap-2"
+                      >
+                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        {isCentralAsia ? req.labelRu || req.label : req.label}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
-          {/* Benefits Section */}
-          <section className="mb-16 bg-gradient-to-br from-blue-50 to-green-50 p-8 rounded-2xl">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                {isCentralAsia ? "Почему наши организаторы сообщества" : "Why Our Community Organizers"}
-                <span className="text-green-600"> {isCentralAsia ? "любят свою роль" : "Love Their Role"}</span>
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Star className="w-6 h-6 text-yellow-500" />
-                    {isCentralAsia ? "Профессиональный рост" : "Professional Growth"}
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Развивайте навыки управления программами и координации" : "Build program management and coordination skills"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Расширяйте обширную профессиональную сеть" : "Develop extensive professional network"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Получайте опыт в стартапах и некоммерческом секторе" : "Gain experience in startup and nonprofit sectors"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Возможности для развития лидерских качеств" : "Leadership development opportunities"}
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Heart className="w-6 h-6 text-red-500" />
-                    {isCentralAsia ? "Влияние на сообщество" : "Community Impact"}
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-start gap-2">
+          {/* Benefits — Sanity-driven */}
+          {benefits.length > 0 && (
+            <section className="mb-16 bg-gradient-to-br from-blue-50 to-green-50 p-8 rounded-2xl">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                  {benefitsHeading}
+                </h2>
+                <ul className="space-y-3 text-gray-600">
+                  {benefits.map((b, idx) => (
+                    <li
+                      key={`${b.label}-${idx}`}
+                      className="flex items-start gap-2"
+                    >
                       <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Создавайте долгосрочные связи между предпринимателями" : "Create lasting connections between entrepreneurs"}
+                      <div>
+                        <span>
+                          {isCentralAsia ? b.labelRu || b.label : b.label}
+                        </span>
+                        {(b.description || b.descriptionRu) && (
+                          <p className="text-sm text-gray-500 mt-1">
+                            {isCentralAsia
+                              ? b.descriptionRu || b.description
+                              : b.description}
+                          </p>
+                        )}
+                      </div>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Выстраивайте устойчивые ресурсы для сообщества" : "Build sustainable community resources"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Войдите в историю команды-основателей" : "Be part of founding team legacy"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Heart className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      {isCentralAsia ? "Создавайте измеримое влияние на сообщество" : "Make measurable community impact"}
-                    </li>
-                  </ul>
-                </div>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </section>
-
-          {/* Support Section */}
-          <section className="mb-16">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-                {isCentralAsia ? "Полная поддержка для" : "Complete Support for"}
-                <span className="text-green-600"> {isCentralAsia ? "команды-основателей" : "Founding Team"}</span>
-              </h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="text-center p-6">
-                  <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Settings className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">
-                    {isCentralAsia ? "Комплексное обучение" : "Comprehensive Training"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Полный онбординг, охватывающий организацию сообщества, развитие партнёрств и управление программой"
-                      : "Complete onboarding covering community organizing, partnership development, and program management"}
-                  </p>
-                </Card>
-                <Card className="text-center p-6">
-                  <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Network className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">
-                    {isCentralAsia ? "Командная работа" : "Team Collaboration"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Тесное взаимодействие с другими организаторами на еженедельных встречах и совместном планировании проектов"
-                      : "Work closely with other organizers in weekly team meetings and collaborative project planning"}
-                  </p>
-                </Card>
-                <Card className="text-center p-6">
-                  <div className="bg-[#C9922A]/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-8 h-8 text-[#C9922A]" />
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">
-                    {isCentralAsia ? "Гибкая удалённая работа" : "Flexible Remote Work"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Работайте из любой точки мира с гибким графиком в зависимости от вашей доступности и часового пояса"
-                      : "Work from anywhere with flexible scheduling to accommodate your availability and time zone"}
-                  </p>
-                </Card>
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* Application Form Section */}
           <section id="apply-now" className="mb-16">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                {isCentralAsia ? "Готовы вступить в нашу" : "Ready to Join Our"}
-                <span className="text-green-600"> {isCentralAsia ? "команду-основателей?" : "Founding Team?"}</span>
+                {closingHeading}
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                {isCentralAsia
-                  ? "Станьте частью чего-то нового! Подайте заявку на роль организатора сообщества и помогите нам создать долгосрочное влияние."
-                  : "Be part of building something new! Apply to become a Community Organizer and help us create lasting impact."}
+                {closingSubheading}
               </p>
             </div>
             <GoHighLevelForm
