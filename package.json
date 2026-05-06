@@ -34,6 +34,7 @@
     "migrate:volunteer": "tsx scripts/migrate-volunteer-opportunities.mts",
     "migrate:resource-bodies": "tsx scripts/migrate-resource-bodies.mts",
     "migrate:forms": "tsx scripts/migrate-form-settings.mts",
+    "migrate:lessons-bc": "tsx scripts/migrate-course-lessons-business.mts",
     "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts",
     "migrate:program-faqs": "tsx scripts/migrate-program-faqs.mts",
     "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts"
