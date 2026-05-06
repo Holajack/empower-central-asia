@@ -12,7 +12,7 @@ import CohortCTA from "@/components/course/CohortCTA";
 import ReviewModal from "@/components/course/ReviewModal";
 import { getLeadershipWeekContent, leadershipWeekContents } from "@/data/leadership-course";
 import { useRegion } from "@/contexts/RegionContext";
-import { useCourseWeek } from "@/hooks/useCourse";
+import { useCourseWeek, useCourseWeekLessons } from "@/hooks/useCourse";
 
 // Lazy-load worksheet components
 const LeadershipWeek1Worksheet = lazy(() => import("@/components/course/worksheets/LeadershipWeek1Worksheet"));
@@ -97,6 +97,10 @@ const LeadershipCourseWeek = () => {
 
   // Sanity overlay — falls back to hardcoded weekData when null.
   const { week: sanityWeek } = useCourseWeek("leadership-development", weekNum);
+  const { lessons: sanityLessons } = useCourseWeekLessons({
+    course: "leadership-development",
+    weekNumber: weekNum,
+  });
   const weekTitle = sanityWeek ? sanityWeek.getTitle(isCentralAsia) : (weekData?.title ?? "");
   const weekSubtitle = sanityWeek ? sanityWeek.getSubtitle(isCentralAsia) : (weekData?.subtitle ?? "");
   const weekKeyQuote = sanityWeek ? sanityWeek.getKeyQuote(isCentralAsia) : (weekData?.keyQuote ?? "");
@@ -105,6 +109,28 @@ const LeadershipCourseWeek = () => {
   const weekObjectives = sanityWeek ? sanityWeek.getObjectives(isCentralAsia) : (weekData?.objectives ?? []);
   const weekActionItems = sanityWeek ? sanityWeek.getActionItems(isCentralAsia) : (weekData?.actionItems ?? []);
   const weekModuleTitle = sanityWeek ? sanityWeek.getModuleTitle(isCentralAsia) : "";
+
+  // When Sanity has per-day lesson docs, reconstruct the full story.paragraphs
+  // arrays in day order so DayContent's existing per-day slicer produces the
+  // edited paragraphs. Otherwise (empty) fall back to the hardcoded story.
+  const storyOverride = sanityLessons.length > 0
+    ? {
+        title: weekData?.story.title ?? "",
+        paragraphs: sanityLessons
+          .slice()
+          .sort((a, b) => a.dayNumber - b.dayNumber)
+          .flatMap((l) => l.storyParagraphs?.map((p) => p.text) ?? []),
+      }
+    : null;
+  const storyCentralAsiaOverride = sanityLessons.length > 0
+    ? {
+        title: weekData?.storyCentralAsia?.title ?? weekData?.story.title ?? "",
+        paragraphs: sanityLessons
+          .slice()
+          .sort((a, b) => a.dayNumber - b.dayNumber)
+          .flatMap((l) => l.storyParagraphsRu?.map((p) => p.text) ?? []),
+      }
+    : null;
 
   const [progress, setProgress] = useState<LeadershipProgress>(loadProgress);
   const [showReview, setShowReview] = useState(false);
@@ -322,8 +348,16 @@ const LeadershipCourseWeek = () => {
           totalDays={DAYS_PER_WEEK}
           weekTitle={weekTitle}
           lessonSections={weekData.lessonSections}
-          story={weekData.story}
-          storyCentralAsia={weekData.storyCentralAsia}
+          story={
+            storyOverride && storyOverride.paragraphs.length > 0
+              ? storyOverride
+              : weekData.story
+          }
+          storyCentralAsia={
+            storyCentralAsiaOverride && storyCentralAsiaOverride.paragraphs.length > 0
+              ? storyCentralAsiaOverride
+              : weekData.storyCentralAsia
+          }
           reflectionQuestions={weekData.reflectionQuestions}
           actionItems={weekActionItems.length > 0 ? weekActionItems : weekData.actionItems}
           objectives={weekObjectives.length > 0 ? weekObjectives : weekData.objectives}
