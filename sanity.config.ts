@@ -72,6 +72,14 @@ export default defineConfig({
                   .schemaType("getInvolvedPage")
                   .documentId("getInvolvedPage")
               ),
+            S.listItem()
+              .title("Debt Calculator Page")
+              .id("debtCalculatorPage")
+              .child(
+                S.document()
+                  .schemaType("debtCalculatorPage")
+                  .documentId("debtCalculatorPage")
+              ),
             S.divider(),
 
             // ── Homepage ──
@@ -230,6 +238,13 @@ export default defineConfig({
               ],
             }),
           },
+          debtCalculatorPage: {
+            resolve: () => ({
+              locations: [
+                { title: "Debt Calculator", href: "/tools/debt-calculator" },
+              ],
+            }),
+          },
           homepageHowToHelp: {
             resolve: () => ({
               locations: [{ title: "Homepage HowToHelp section", href: "/" }],
@@ -337,7 +352,7 @@ export default defineConfig({
     types: schemaTypes,
     // Block creation of additional singleton docs.
     templates: (prev) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage", "contactPage", "homepageHowToHelp", "getInvolvedPage"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage", "contactPage", "homepageHowToHelp", "getInvolvedPage", "debtCalculatorPage"];
       return prev.filter(({ schemaType }) => !singletons.includes(schemaType));
     },
   },
@@ -345,7 +360,7 @@ export default defineConfig({
   document: {
     // Hide 'Duplicate' and 'Delete' on singletons.
     actions: (prev, { schemaType }) => {
-      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage", "contactPage", "homepageHowToHelp", "getInvolvedPage"];
+      const singletons = ["siteSettings", "homepageHero", "homepageMission", "aboutPage", "footerSettings", "formSettings", "programsAndImpactPage", "contactPage", "homepageHowToHelp", "getInvolvedPage", "debtCalculatorPage"];
       return singletons.includes(schemaType)
         ? prev.filter(
             ({ action }) => !["duplicate", "delete"].includes(action || "")
