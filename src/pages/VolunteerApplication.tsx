@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -21,6 +22,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import {
   Users,
@@ -33,10 +40,31 @@ import {
   User,
   Mail,
   Phone,
+  Handshake,
+  Globe,
+  Briefcase,
+  BookOpen,
+  Target,
 } from "lucide-react";
 import { useRegion } from "@/contexts/RegionContext";
 import { trackConversion } from "@/lib/analytics";
 import { useFormSettings } from "@/hooks/useFormSettings";
+import { getLocalized } from "@/lib/localized";
+import {
+  useVolunteerApplicationPage,
+  getVolunteerCopy,
+  getVolunteerHeroIntroParagraphs,
+  getVolunteerWhatWeLookForIntro,
+  getVolunteerRoleLabel,
+  getVolunteerRoleDescription,
+  getVolunteerRoleTimeCommitment,
+  getVolunteerBenefitLabel,
+  getVolunteerBenefitDescription,
+  getVolunteerStepTitle,
+  getVolunteerStepDescription,
+  getVolunteerFaqQuestion,
+  getVolunteerFaqAnswer,
+} from "@/hooks/useVolunteerApplicationPage";
 
 const GOOGLE_SHEET_URL =
   "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS46eygrXMNATbNLGTjQ5UofInsBuSrrBJ6_J8PlSr_WdCoIgfW6bEFNBw/exec";
@@ -54,10 +82,88 @@ const volunteerSchema = z.object({
 
 type VolunteerFormData = z.infer<typeof volunteerSchema>;
 
+/**
+ * Static dropdown option labels that map 1:1 to enum values in
+ * `volunteerSchema`. Bilingual but not Studio-editable (changing them
+ * would silently break the form-submission contract with Google Sheets).
+ */
+const VOLUNTEER_TYPE_OPTIONS: Array<{
+  value: string;
+  en: string;
+  ru: string;
+}> = [
+  {
+    value: "business-mentor",
+    en: "Business Training Mentor",
+    ru: "Наставник по бизнес-обучению",
+  },
+  {
+    value: "financial-facilitator",
+    en: "Financial Literacy Facilitator",
+    ru: "Фасилитатор финансовой грамотности",
+  },
+  {
+    value: "skills-volunteer",
+    en: "Remote Skills Volunteer",
+    ru: "Удалённый волонтёр по навыкам",
+  },
+  {
+    value: "outreach",
+    en: "Outreach & Community Building",
+    ru: "Работа с аудиторией и сообществом",
+  },
+  { value: "open", en: "Open to Anything", ru: "Открыт к любой роли" },
+];
+
+const AVAILABILITY_OPTIONS: Array<{ value: string; en: string; ru: string }> = [
+  { value: "2-4-hours", en: "2-4 hours per week", ru: "2–4 часа в неделю" },
+  { value: "5-8-hours", en: "5-8 hours per week", ru: "5–8 часов в неделю" },
+  {
+    value: "8-plus-hours",
+    en: "8+ hours per week",
+    ru: "8+ часов в неделю",
+  },
+  {
+    value: "project-based",
+    en: "Project-based / flexible",
+    ru: "Проектная основа / гибко",
+  },
+];
+
+/** Lucide icon names → component lookup. Keep this in sync with the
+ * available icon options in `volunteerApplicationPage` schema. Falls back
+ * to GraduationCap if a Studio editor types an unknown icon name. */
+const iconMap: Record<string, React.ElementType> = {
+  Users,
+  CheckCircle2,
+  Clock,
+  Wifi,
+  GraduationCap,
+  Heart,
+  Handshake,
+  Globe,
+  Briefcase,
+  BookOpen,
+  Target,
+  Mail,
+  Phone,
+  User,
+};
+
+const renderIcon = (
+  name: string | undefined,
+  fallback: React.ElementType,
+  className?: string,
+) => {
+  const Icon = (name && iconMap[name]) || fallback;
+  return <Icon className={className} />;
+};
+
 const VolunteerApplication = () => {
   const { toast } = useToast();
   const { isCentralAsia } = useRegion();
   const { forms } = useFormSettings();
+  const { data: page } = useVolunteerApplicationPage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -88,21 +194,36 @@ const VolunteerApplication = () => {
           ...data,
         }),
       });
-      trackConversion("volunteer_apply", { method: "volunteer_application", form_type: "volunteer" });
+      trackConversion("volunteer_apply", {
+        method: "volunteer_application",
+        form_type: "volunteer",
+      });
       setIsSubmitted(true);
       toast({
-        title: isCentralAsia ? "Заявка получена" : "Application Received",
-        description: isCentralAsia
-          ? "Спасибо за желание стать волонтёром. Мы свяжемся с вами в течение нескольких рабочих дней."
-          : "Thank you for wanting to volunteer. We'll be in touch within a few business days.",
+        title: getLocalized(
+          "Application Received",
+          "Заявка получена",
+          isCentralAsia,
+        ),
+        description: getLocalized(
+          "Thank you for wanting to volunteer. We'll be in touch within a few business days.",
+          "Спасибо за желание стать волонтёром. Мы свяжемся с вами в течение нескольких рабочих дней.",
+          isCentralAsia,
+        ),
       });
       form.reset();
     } catch {
       toast({
-        title: isCentralAsia ? "Ошибка отправки" : "Submission Error",
-        description: isCentralAsia
-          ? "Что-то пошло не так. Повторите попытку или напишите нам напрямую."
-          : "Something went wrong. Please try again or email us directly.",
+        title: getLocalized(
+          "Submission Error",
+          "Ошибка отправки",
+          isCentralAsia,
+        ),
+        description: getLocalized(
+          "Something went wrong. Please try again or email us directly.",
+          "Что-то пошло не так. Повторите попытку или напишите нам напрямую.",
+          isCentralAsia,
+        ),
         variant: "destructive",
       });
     } finally {
@@ -110,40 +231,80 @@ const VolunteerApplication = () => {
     }
   };
 
-  const roles = [
-    {
-      icon: GraduationCap,
-      title: isCentralAsia ? "Наставник по бизнес-обучению" : "Business Training Mentor",
-      time: isCentralAsia ? "2–4 ч/нед." : "2-4 hrs/week",
-      description: isCentralAsia
-        ? "Помогайте предпринимателям с бизнес-планированием, финансовыми прогнозами и рыночной стратегией. Вас свяжут с человеком, который строит реальный бизнес в Центральной Азии."
-        : "Guide entrepreneurs through business planning, financial projections, and market strategy. You'll be matched with someone building a real business in Central Asia.",
-    },
-    {
-      icon: Users,
-      title: isCentralAsia ? "Фасилитатор финансовой грамотности" : "Financial Literacy Facilitator",
-      time: isCentralAsia ? "3–5 ч/нед. во время курса" : "3-5 hrs/week during cohort",
-      description: isCentralAsia
-        ? "Совместно проводите наш 6- или 10-недельный курс финансовой грамотности. Вы поможете участникам освоить бюджетирование, накопления, управление долгом и долгосрочное планирование."
-        : "Co-facilitate our 6-week or 10-week financial literacy course. You'll help participants learn budgeting, saving, debt management, and long-term planning.",
-    },
-    {
-      icon: Wifi,
-      title: isCentralAsia ? "Удалённый волонтёр по навыкам" : "Remote Skills Volunteer",
-      time: isCentralAsia ? "Гибко, проектная основа" : "Flexible, project-based",
-      description: isCentralAsia
-        ? "Применяйте свои профессиональные навыки из любой точки мира — маркетинговая стратегия, бухгалтерский учёт, веб-дизайн, перевод или административная поддержка."
-        : "Contribute your professional skills from anywhere -- marketing strategy, accounting, web design, translation, or administrative support.",
-    },
-    {
-      icon: Heart,
-      title: isCentralAsia ? "Работа с аудиторией и сообществом" : "Outreach & Community Building",
-      time: isCentralAsia ? "2–4 ч/нед." : "2-4 hrs/week",
-      description: isCentralAsia
-        ? "Помогайте продвигать BBB через социальные сети, мероприятия, презентации и сетевые встречи. Формируйте сеть поддержки, на которую опираются наши предприниматели."
-        : "Help spread the word about BBB through social media, events, church presentations, and community networking. Build the support network our entrepreneurs rely on.",
-    },
-  ];
+  // ── Localized copy from CMS singleton ──
+  const heroBadge = getVolunteerCopy(page, "heroBadge", isCentralAsia);
+  const heroHeadingOverride = getVolunteerCopy(
+    page,
+    "heroHeading",
+    isCentralAsia,
+  );
+  const heroSubheadingOverride = getVolunteerCopy(
+    page,
+    "heroSubheading",
+    isCentralAsia,
+  );
+  const heroIntroParagraphs = getVolunteerHeroIntroParagraphs(
+    page,
+    isCentralAsia,
+  );
+  const whatWeLookForBadge = getVolunteerCopy(
+    page,
+    "whatWeLookForBadge",
+    isCentralAsia,
+  );
+  const whatWeLookForHeading = getVolunteerCopy(
+    page,
+    "whatWeLookForHeading",
+    isCentralAsia,
+  );
+  const whatWeLookForIntro = getVolunteerWhatWeLookForIntro(
+    page,
+    isCentralAsia,
+  );
+  const benefitsHeading = getVolunteerCopy(
+    page,
+    "benefitsHeading",
+    isCentralAsia,
+  );
+  const howItWorksHeading = getVolunteerCopy(
+    page,
+    "howItWorksHeading",
+    isCentralAsia,
+  );
+  const howItWorksIntro = getVolunteerCopy(
+    page,
+    "howItWorksIntro",
+    isCentralAsia,
+  );
+  const faqsHeading = getVolunteerCopy(page, "faqsHeading", isCentralAsia);
+  const bottomCtaHeading = getVolunteerCopy(
+    page,
+    "bottomCtaHeading",
+    isCentralAsia,
+  );
+  const bottomCtaSubheading = getVolunteerCopy(
+    page,
+    "bottomCtaSubheading",
+    isCentralAsia,
+  );
+  const bottomCtaPrimaryLabel = getVolunteerCopy(
+    page,
+    "bottomCtaPrimaryLabel",
+    isCentralAsia,
+  );
+  const bottomCtaSecondaryLabel = getVolunteerCopy(
+    page,
+    "bottomCtaSecondaryLabel",
+    isCentralAsia,
+  );
+
+  // Hero heading/subheading override CMS form heading/subheading if set,
+  // otherwise we fall back to the form-level heading/subheading from
+  // formSettings (Agent V's wiring).
+  const heroHeading =
+    heroHeadingOverride || forms.volunteer.getHeading(isCentralAsia);
+  const heroSubheading =
+    heroSubheadingOverride || forms.volunteer.getSubheading(isCentralAsia);
 
   return (
     <>
@@ -161,7 +322,10 @@ const VolunteerApplication = () => {
               : "Volunteer with Businesses Beyond Borders. Mentor entrepreneurs, facilitate financial literacy courses, or contribute your skills remotely."
           }
         />
-        <link rel="canonical" href="https://businessesbeyondborders.com/volunteer-application" />
+        <link
+          rel="canonical"
+          href="https://businessesbeyondborders.com/volunteer-application"
+        />
         <meta
           property="og:title"
           content={
@@ -179,7 +343,10 @@ const VolunteerApplication = () => {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://businessesbeyondborders.com/volunteer-application" />
+        <meta
+          property="og:url"
+          content="https://businessesbeyondborders.com/volunteer-application"
+        />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -197,13 +364,13 @@ const VolunteerApplication = () => {
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-up [--animation-delay:100ms]">
               <Users className="w-4 h-4" />
-              {isCentralAsia ? "Возможности для волонтёров" : "Volunteer Opportunities"}
+              {heroBadge}
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up [--animation-delay:200ms] leading-tight">
-              {forms.volunteer.getHeading(isCentralAsia)}
+              {heroHeading}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto animate-fade-up [--animation-delay:400ms] leading-relaxed">
-              {forms.volunteer.getSubheading(isCentralAsia)}
+              {heroSubheading}
             </p>
           </div>
         </div>
@@ -211,127 +378,171 @@ const VolunteerApplication = () => {
         <div className="container mx-auto px-4 py-12 md:py-16 space-y-16">
           {/* What Volunteering Looks Like */}
           <section className="max-w-4xl mx-auto">
-            <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
-              {isCentralAsia ? "ЧЕГО ОЖИДАТЬ" : "WHAT TO EXPECT"}
-            </div>
+            {whatWeLookForBadge && (
+              <div className="text-sm font-bold tracking-widest text-[#C9922A] mb-4">
+                {whatWeLookForBadge}
+              </div>
+            )}
             <h2 className="text-3xl md:text-4xl font-bold text-[#1B2A4A] mb-6">
-              {isCentralAsia
-                ? "Как выглядит волонтёрство на практике"
-                : "What Volunteering Actually Looks Like"}
+              {whatWeLookForHeading}
             </h2>
-            <div className="text-gray-600 space-y-4 leading-relaxed text-lg mb-12">
-              {isCentralAsia ? (
-                <>
-                  <p>
-                    Волонтёры BBB не раскладывают конверты. Они наставляют реальных людей,
-                    строящих реальный бизнес. Каждый волонтёр получает роль, соответствующую
-                    его настоящему профессиональному опыту, — а не просто желанию помочь.
-                  </p>
-                  <p>
-                    Большинство волонтёрских задач выполняется удалённо. Вам не нужно
-                    находиться в Центральной Азии. Вам нужна последовательность, надёжность
-                    и готовность вложить свой опыт в чьё-то будущее.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                    BBB volunteers don't stuff envelopes. They mentor real people
-                    building real businesses. Every volunteer is matched with a role
-                    that uses their actual professional experience -- not just their
-                    willingness to help.
-                  </p>
-                  <p>
-                    Most of our volunteering happens remotely. You don't need to be in
-                    Central Asia. You need to be consistent, reliable, and willing to
-                    invest your expertise in someone else's future.
-                  </p>
-                </>
-              )}
-            </div>
+            {(heroIntroParagraphs.length > 0 ||
+              whatWeLookForIntro.length > 0) && (
+              <div className="text-gray-600 space-y-4 leading-relaxed text-lg mb-12">
+                {heroIntroParagraphs.map((p, i) => (
+                  <p key={`hero-intro-${i}`}>{p}</p>
+                ))}
+                {whatWeLookForIntro.map((p, i) => (
+                  <p key={`wwlf-intro-${i}`}>{p}</p>
+                ))}
+              </div>
+            )}
 
             {/* Key expectations */}
-            <div className="grid sm:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-                <Clock className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                <h3 className="font-bold text-[#1B2A4A] mb-2">
-                  {isCentralAsia ? "Временные затраты" : "Time Commitment"}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {isCentralAsia
-                    ? "2–5 часов в неделю в зависимости от роли. Гибкий график с учётом вашей занятости."
-                    : "2-5 hours per week, depending on role. Flexible scheduling around your availability."}
-                </p>
-              </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-                <Wifi className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                <h3 className="font-bold text-[#1B2A4A] mb-2">
-                  {isCentralAsia ? "Полностью удалённо" : "Fully Remote"}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {isCentralAsia
-                    ? "Работайте из любого места с интернетом. Видеозвонки, общие документы и постоянная коммуникация."
-                    : "Work from anywhere with an internet connection. Video calls, shared documents, and ongoing communication."}
-                </p>
-              </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-                <GraduationCap className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                <h3 className="font-bold text-[#1B2A4A] mb-2">
-                  {isCentralAsia ? "Обучение предоставляется" : "Training Provided"}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {isCentralAsia
-                    ? "Мы проводим ориентацию для каждого волонтёра, предоставляем материалы и постоянную поддержку."
-                    : "We onboard every volunteer with orientation, materials, and ongoing support from our team."}
-                </p>
-              </div>
-            </div>
+            {page.benefits.length > 0 && (
+              <>
+                {benefitsHeading && (
+                  <h3 className="sr-only">{benefitsHeading}</h3>
+                )}
+                <div className="grid sm:grid-cols-3 gap-6 mb-12">
+                  {page.benefits.map((benefit) => (
+                    <div
+                      key={benefit._key}
+                      className="bg-white rounded-xl border border-gray-200 p-6 text-center"
+                    >
+                      {renderIcon(
+                        benefit.icon,
+                        Clock,
+                        "w-8 h-8 text-[#C9922A] mx-auto mb-3",
+                      )}
+                      <h3 className="font-bold text-[#1B2A4A] mb-2">
+                        {getVolunteerBenefitLabel(benefit, isCentralAsia)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {getVolunteerBenefitDescription(
+                          benefit,
+                          isCentralAsia,
+                        )}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </section>
 
           {/* Volunteer Roles */}
-          <section className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-8">
-              {isCentralAsia ? "Доступные роли волонтёров" : "Available Volunteer Roles"}
-            </h2>
-            <div className="space-y-4">
-              {roles.map((role, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl border border-gray-200 p-6 md:p-8"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-[#C9922A]/10 p-3 rounded-lg flex-shrink-0">
-                      <role.icon className="w-6 h-6 text-[#C9922A]" />
+          {page.whatWeLookFor.length > 0 && (
+            <section className="max-w-4xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-8">
+                {howItWorksHeading}
+              </h2>
+              {howItWorksIntro && (
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {howItWorksIntro}
+                </p>
+              )}
+              <div className="space-y-4">
+                {page.whatWeLookFor.map((role) => (
+                  <div
+                    key={role._key}
+                    className="bg-white rounded-xl border border-gray-200 p-6 md:p-8"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="bg-[#C9922A]/10 p-3 rounded-lg flex-shrink-0">
+                        {renderIcon(
+                          role.icon,
+                          GraduationCap,
+                          "w-6 h-6 text-[#C9922A]",
+                        )}
+                      </div>
+                      <div>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
+                          <h3 className="text-lg font-bold text-[#1B2A4A]">
+                            {getVolunteerRoleLabel(role, isCentralAsia)}
+                          </h3>
+                          <span className="text-sm text-[#C9922A] font-medium">
+                            {getVolunteerRoleTimeCommitment(role, isCentralAsia)}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed">
+                          {getVolunteerRoleDescription(role, isCentralAsia)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* How-it-works steps (optional, only if Studio editors add steps) */}
+          {page.howItWorksSteps.length > 0 && (
+            <section className="max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-6">
+                {page.howItWorksSteps.map((step) => (
+                  <div
+                    key={step._key}
+                    className="bg-white rounded-xl border border-gray-200 p-6 flex gap-4"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#1B2A4A] text-white flex items-center justify-center font-bold">
+                      {step.stepNumber ?? ""}
                     </div>
                     <div>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
-                        <h3 className="text-lg font-bold text-[#1B2A4A]">
-                          {role.title}
-                        </h3>
-                        <span className="text-sm text-[#C9922A] font-medium">
-                          {role.time}
-                        </span>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed">
-                        {role.description}
+                      <h3 className="font-bold text-[#1B2A4A] mb-1">
+                        {getVolunteerStepTitle(step, isCentralAsia)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {getVolunteerStepDescription(step, isCentralAsia)}
                       </p>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* FAQs (optional, only renders if Studio editors add items) */}
+          {page.faqs.length > 0 && (
+            <section className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6 text-center">
+                {faqsHeading}
+              </h2>
+              <Accordion type="single" collapsible className="w-full">
+                {page.faqs.map((faq) => (
+                  <AccordionItem
+                    key={faq._key}
+                    value={faq._key ?? ""}
+                    className="bg-white rounded-xl border border-gray-200 mb-3 px-5"
+                  >
+                    <AccordionTrigger className="text-left font-bold text-[#1B2A4A] hover:no-underline">
+                      {getVolunteerFaqQuestion(faq, isCentralAsia)}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-gray-600 leading-relaxed">
+                      {getVolunteerFaqAnswer(faq, isCentralAsia)}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+          )}
 
           {/* Application Form */}
           <section className="max-w-3xl mx-auto" id="volunteer-form">
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-3">
-                {isCentralAsia ? "Подать заявку на волонтёрство" : "Apply to Volunteer"}
+                {getLocalized(
+                  "Apply to Volunteer",
+                  "Подать заявку на волонтёрство",
+                  isCentralAsia,
+                )}
               </h2>
               <p className="text-gray-600">
-                {isCentralAsia
-                  ? "Расскажите о себе и о том, какая роль вас интересует. Мы свяжемся, чтобы обсудить следующие шаги."
-                  : "Tell us about yourself and what role interests you. We'll reach out to discuss next steps."}
+                {getLocalized(
+                  "Tell us about yourself and what role interests you. We'll reach out to discuss next steps.",
+                  "Расскажите о себе и о том, какая роль вас интересует. Мы свяжемся, чтобы обсудить следующие шаги.",
+                  isCentralAsia,
+                )}
               </p>
             </div>
 
@@ -339,7 +550,11 @@ const VolunteerApplication = () => {
               <div className="bg-white rounded-xl shadow-sm p-8 text-center">
                 <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-[#1B2A4A] mb-2">
-                  {isCentralAsia ? "Заявка получена" : "Application Received"}
+                  {getLocalized(
+                    "Application Received",
+                    "Заявка получена",
+                    isCentralAsia,
+                  )}
                 </h3>
                 <p className="text-gray-600 mb-6">
                   {forms.volunteer.getSuccessMessage(isCentralAsia)}
@@ -349,13 +564,20 @@ const VolunteerApplication = () => {
                   variant="outline"
                   className="border-gray-300"
                 >
-                  {isCentralAsia ? "Подать другую заявку" : "Submit Another Application"}
+                  {getLocalized(
+                    "Submit Another Application",
+                    "Подать другую заявку",
+                    isCentralAsia,
+                  )}
                 </Button>
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
                     <div className="grid md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
@@ -500,29 +722,15 @@ const VolunteerApplication = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="business-mentor">
-                                  {isCentralAsia
-                                    ? "Наставник по бизнес-обучению"
-                                    : "Business Training Mentor"}
-                                </SelectItem>
-                                <SelectItem value="financial-facilitator">
-                                  {isCentralAsia
-                                    ? "Фасилитатор финансовой грамотности"
-                                    : "Financial Literacy Facilitator"}
-                                </SelectItem>
-                                <SelectItem value="skills-volunteer">
-                                  {isCentralAsia
-                                    ? "Удалённый волонтёр по навыкам"
-                                    : "Remote Skills Volunteer"}
-                                </SelectItem>
-                                <SelectItem value="outreach">
-                                  {isCentralAsia
-                                    ? "Работа с аудиторией и сообществом"
-                                    : "Outreach & Community Building"}
-                                </SelectItem>
-                                <SelectItem value="open">
-                                  {isCentralAsia ? "Открыт к любой роли" : "Open to Anything"}
-                                </SelectItem>
+                                {VOLUNTEER_TYPE_OPTIONS.map((opt) => (
+                                  <SelectItem key={opt.value} value={opt.value}>
+                                    {getLocalized(
+                                      opt.en,
+                                      opt.ru,
+                                      isCentralAsia,
+                                    )}
+                                  </SelectItem>
+                                ))}
                               </SelectContent>
                             </Select>
                             <FormMessage />
@@ -557,26 +765,15 @@ const VolunteerApplication = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="2-4-hours">
-                                  {isCentralAsia
-                                    ? "2–4 часа в неделю"
-                                    : "2-4 hours per week"}
-                                </SelectItem>
-                                <SelectItem value="5-8-hours">
-                                  {isCentralAsia
-                                    ? "5–8 часов в неделю"
-                                    : "5-8 hours per week"}
-                                </SelectItem>
-                                <SelectItem value="8-plus-hours">
-                                  {isCentralAsia
-                                    ? "8+ часов в неделю"
-                                    : "8+ hours per week"}
-                                </SelectItem>
-                                <SelectItem value="project-based">
-                                  {isCentralAsia
-                                    ? "Проектная основа / гибко"
-                                    : "Project-based / flexible"}
-                                </SelectItem>
+                                {AVAILABILITY_OPTIONS.map((opt) => (
+                                  <SelectItem key={opt.value} value={opt.value}>
+                                    {getLocalized(
+                                      opt.en,
+                                      opt.ru,
+                                      isCentralAsia,
+                                    )}
+                                  </SelectItem>
+                                ))}
                               </SelectContent>
                             </Select>
                             <FormMessage />
@@ -647,23 +844,66 @@ const VolunteerApplication = () => {
                       className="w-full h-12 text-lg font-semibold bg-[#C9922A] hover:bg-[#C9922A]/90 text-white"
                     >
                       {isSubmitting
-                        ? isCentralAsia
-                          ? "Отправка..."
-                          : "Submitting..."
+                        ? getLocalized(
+                            "Submitting...",
+                            "Отправка...",
+                            isCentralAsia,
+                          )
                         : forms.volunteer.getButtonLabel(isCentralAsia)}
                       {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
                     </Button>
 
                     <p className="text-xs text-gray-500 text-center">
-                      {isCentralAsia
-                        ? "Ваши данные конфиденциальны. Мы свяжемся с вами в течение нескольких рабочих дней для обсуждения следующих шагов и оформления."
-                        : "Your information is kept confidential. We'll reach out within a few business days to discuss next steps and onboarding."}
+                      {getLocalized(
+                        "Your information is kept confidential. We'll reach out within a few business days to discuss next steps and onboarding.",
+                        "Ваши данные конфиденциальны. Мы свяжемся с вами в течение нескольких рабочих дней для обсуждения следующих шагов и оформления.",
+                        isCentralAsia,
+                      )}
                     </p>
                   </form>
                 </Form>
               </div>
             )}
           </section>
+
+          {/* Bottom CTA (only renders if Studio editors set a heading) */}
+          {bottomCtaHeading && (
+            <section className="max-w-3xl mx-auto">
+              <div className="bg-[#1B2A4A] rounded-2xl p-8 md:p-10 text-center text-white">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">
+                  {bottomCtaHeading}
+                </h2>
+                {bottomCtaSubheading && (
+                  <p className="text-white/85 mb-6 max-w-xl mx-auto">
+                    {bottomCtaSubheading}
+                  </p>
+                )}
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  {bottomCtaPrimaryLabel && page.bottomCtaPrimaryUrl && (
+                    <Button
+                      asChild
+                      className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white"
+                    >
+                      <Link to={page.bottomCtaPrimaryUrl}>
+                        {bottomCtaPrimaryLabel}
+                      </Link>
+                    </Button>
+                  )}
+                  {bottomCtaSecondaryLabel && page.bottomCtaSecondaryUrl && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-white text-white hover:bg-white hover:text-[#1B2A4A]"
+                    >
+                      <Link to={page.bottomCtaSecondaryUrl}>
+                        {bottomCtaSecondaryLabel}
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </>

@@ -37,7 +37,9 @@
     "migrate:form-fields": "tsx scripts/migrate-form-field-labels.mts",
     "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts",
     "migrate:program-faqs": "tsx scripts/migrate-program-faqs.mts",
-    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts"
+    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts",
+    "migrate:volunteer-app-page": "tsx scripts/migrate-volunteer-application-page.mts",
+    "migrate:partner-app-page": "tsx scripts/migrate-partner-application-page.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",

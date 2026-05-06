@@ -23,6 +23,8 @@ import formSettings from "./singletons/formSettings";
 import programsAndImpactPage from "./singletons/programsAndImpactPage";
 import contactPage from "./singletons/contactPage";
 import homepageHowToHelp from "./singletons/homepageHowToHelp";
+import volunteerApplicationPage from "./singletons/volunteerApplicationPage";
+import partnerApplicationPage from "./singletons/partnerApplicationPage";
 import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
@@ -59,6 +61,8 @@ export const schemaTypes = [
   programsAndImpactPage,
   contactPage,
   homepageHowToHelp,
+  volunteerApplicationPage,
+  partnerApplicationPage,
   // Objects (reusable)
   seoFields,
   cta,
