@@ -25,6 +25,7 @@ import { Progress } from "@/components/ui/progress";
 import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-course";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { useCourse } from "@/hooks/useCourse";
 
 interface LeadershipProgress {
   currentWeek: number;
@@ -37,6 +38,103 @@ interface LeadershipProgress {
 
 const PROGRESS_KEY = "bbb-leadership-progress";
 const BC_PROGRESS_KEY = "bbb-business-progress";
+
+// ─── Hardcoded fallback copy (mirrors original ternaries) ──────────────────
+const FALLBACK = {
+  heroBadgeEn: "Free Online Course",
+  heroBadgeRu: "Бесплатный онлайн-курс",
+  heroTitleEn: "12-Week Leadership Development Course",
+  heroTitleRu: "12-недельный курс развития лидерства",
+  heroDescEn:
+    "Develop leadership skills from self-management to organizational leadership. Learn emotional intelligence, team building, strategic thinking, and change management.",
+  heroDescRu:
+    "Развивайте навыки лидерства от самоуправления до руководства организациями. Изучите эмоциональный интеллект, построение команд, стратегическое мышление и управление изменениями.",
+  curriculumHeadingEn: "Course Curriculum",
+  curriculumHeadingRu: "Учебная программа курса",
+  curriculumIntroEn:
+    "Four modules, twelve weeks of practical leadership education. Complete each week to unlock the next.",
+  curriculumIntroRu:
+    "Четыре модуля, двенадцать недель практического обучения лидерству. Завершите каждую неделю, чтобы открыть следующую.",
+  outcomesHeadingEn: "What You'll Develop",
+  outcomesHeadingRu: "Что вы получите",
+  outcomesEn: [
+    {
+      title: "Self-Leadership",
+      desc: "Emotional intelligence, values-based decision making, and personal accountability.",
+      icon: "Compass",
+    },
+    {
+      title: "People Skills",
+      desc: "Effective communication, influence, coaching, and mentorship capabilities.",
+      icon: "HeartHandshake",
+    },
+    {
+      title: "Team Management",
+      desc: "Building high-performance teams, conflict resolution, and delegation mastery.",
+      icon: "Users",
+    },
+    {
+      title: "Strategic Leadership",
+      desc: "Strategic thinking, change management, and creating lasting organizational impact.",
+      icon: "Crown",
+    },
+  ],
+  outcomesRu: [
+    {
+      title: "Самоуправление",
+      desc: "Эмоциональный интеллект, принятие решений на основе ценностей и личная ответственность.",
+      icon: "Compass",
+    },
+    {
+      title: "Навыки общения",
+      desc: "Эффективная коммуникация, влияние, коучинг и менторство.",
+      icon: "HeartHandshake",
+    },
+    {
+      title: "Управление командами",
+      desc: "Построение высокоэффективных команд, разрешение конфликтов и делегирование.",
+      icon: "Users",
+    },
+    {
+      title: "Стратегическое лидерство",
+      desc: "Стратегическое мышление, управление изменениями и создание наследия.",
+      icon: "Crown",
+    },
+  ],
+  bottomHeadingEn: "Ready to Lead?",
+  bottomHeadingRu: "Готовы стать лидером?",
+  bottomSubheadingEn:
+    "12 weeks of hands-on leadership development. From self-leadership to organizational impact.",
+  bottomSubheadingRu:
+    "12 недель практического обучения лидерству. От самоуправления до руководства организациями.",
+  bottomPrimaryStartEn: "Start Week 1 Now",
+  bottomPrimaryStartRu: "Начать неделю 1",
+  bottomPrimaryContinueEn: "Continue the Course",
+  bottomPrimaryContinueRu: "Продолжить курс",
+  bottomPrimaryGatedEn: "Start Business Creation First",
+  bottomPrimaryGatedRu: "Сначала — создание бизнеса",
+  bottomSecondaryLabelEn: "Become a Facilitator",
+  bottomSecondaryLabelRu: "Стать фасилитатором",
+  bottomSecondaryUrl: "/get-involved",
+};
+
+const ICONS: Record<string, typeof Compass> = {
+  Compass,
+  HeartHandshake,
+  Users,
+  Crown,
+  Target,
+  Lightbulb,
+  Shield,
+  Rocket,
+  TrendingUp,
+};
+
+interface OutcomeRender {
+  title: string;
+  desc: string;
+  icon: typeof Compass;
+}
 
 function loadProgress(): LeadershipProgress {
   try {
@@ -84,6 +182,7 @@ const moduleIconsRu = [
 
 const LeadershipCourse = () => {
   const { isCentralAsia } = useRegion();
+  const { course } = useCourse("leadership-development");
   const [progress, setProgress] = useState<LeadershipProgress>(loadProgress);
   const hasEmail = true;
   const user: { firstName?: string } | null = null;
@@ -113,6 +212,71 @@ const LeadershipCourse = () => {
     if (isWeekUnlocked(weekNum)) return "available";
     return "locked";
   }
+
+  // ─── Localised strings (Sanity-first) ─────────────────────────────────────
+  const heroBadge =
+    course?.getHeroBadge(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroBadgeRu : FALLBACK.heroBadgeEn);
+  const heroTitle =
+    course?.getTitle(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroTitleRu : FALLBACK.heroTitleEn);
+  const heroDescription =
+    course?.getHeroDescription(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroDescRu : FALLBACK.heroDescEn);
+  const curriculumHeading = isCentralAsia
+    ? FALLBACK.curriculumHeadingRu
+    : FALLBACK.curriculumHeadingEn;
+  const curriculumIntro = isCentralAsia
+    ? FALLBACK.curriculumIntroRu
+    : FALLBACK.curriculumIntroEn;
+  const outcomesHeading =
+    course?.getOutcomesHeading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.outcomesHeadingRu : FALLBACK.outcomesHeadingEn);
+  const bottomHeading =
+    course?.getBottomCtaHeading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.bottomHeadingRu : FALLBACK.bottomHeadingEn);
+  const bottomSubheading =
+    course?.getBottomCtaSubheading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.bottomSubheadingRu : FALLBACK.bottomSubheadingEn);
+  const bottomPrimaryStartLabel =
+    course?.getBottomCtaPrimaryLabel(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.bottomPrimaryStartRu : FALLBACK.bottomPrimaryStartEn);
+  const bottomPrimaryContinueLabel = isCentralAsia
+    ? FALLBACK.bottomPrimaryContinueRu
+    : FALLBACK.bottomPrimaryContinueEn;
+  const bottomPrimaryGatedLabel = isCentralAsia
+    ? FALLBACK.bottomPrimaryGatedRu
+    : FALLBACK.bottomPrimaryGatedEn;
+  const bottomSecondaryLabel =
+    course?.getBottomCtaSecondaryLabel(isCentralAsia) ||
+    (isCentralAsia
+      ? FALLBACK.bottomSecondaryLabelRu
+      : FALLBACK.bottomSecondaryLabelEn);
+  const bottomSecondaryUrl =
+    course?.bottomCtaSecondaryUrl || FALLBACK.bottomSecondaryUrl;
+
+  const outcomesRaw =
+    course?.outcomes && course.outcomes.length > 0 ? course.outcomes : null;
+  const outcomes: OutcomeRender[] = outcomesRaw
+    ? outcomesRaw.map((o) => {
+        const title =
+          (isCentralAsia ? o.titleRu : o.title) ||
+          o.title ||
+          (isCentralAsia ? o.textRu : o.text) ||
+          o.text ||
+          "";
+        const desc = (isCentralAsia ? o.textRu : o.text) || o.text || "";
+        return {
+          title,
+          desc,
+          icon: ICONS[o.icon ?? "Compass"] ?? Compass,
+        };
+      })
+    : (isCentralAsia ? FALLBACK.outcomesRu : FALLBACK.outcomesEn).map((o) => ({
+        title: o.title,
+        desc: o.desc,
+        icon: ICONS[o.icon] ?? Compass,
+      }));
 
   const quickStats = [
     { icon: Clock, label: isCentralAsia ? "12 недель" : "12 Weeks" },
@@ -212,17 +376,11 @@ const LeadershipCourse = () => {
           <div className="container mx-auto px-4 text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Crown className="w-4 h-4 text-[#C9922A]" />
-              {isCentralAsia ? "Бесплатный онлайн-курс" : "Free Online Course"}
+              {heroBadge}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              {isCentralAsia
-                ? "12-недельный курс развития лидерства"
-                : "12-Week Leadership Development Course"}
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">{heroTitle}</h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              {isCentralAsia
-                ? "Развивайте навыки лидерства от самоуправления до руководства организациями. Изучите эмоциональный интеллект, построение команд, стратегическое мышление и управление изменениями."
-                : "Develop leadership skills from self-management to organizational leadership. Learn emotional intelligence, team building, strategic thinking, and change management."}
+              {heroDescription}
             </p>
 
             {/* Quick Stats */}
@@ -323,12 +481,10 @@ const LeadershipCourse = () => {
         {/* Module Overview + Week Cards */}
         <div className="container mx-auto px-4 py-12 md:py-16">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] text-center mb-4">
-            {isCentralAsia ? "Учебная программа курса" : "Course Curriculum"}
+            {curriculumHeading}
           </h2>
           <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
-            {isCentralAsia
-              ? "Четыре модуля, двенадцать недель практического обучения лидерству. Завершите каждую неделю, чтобы открыть следующую."
-              : "Four modules, twelve weeks of practical leadership education. Complete each week to unlock the next."}
+            {curriculumIntro}
           </p>
 
           <div className="max-w-5xl mx-auto space-y-12">
@@ -487,27 +643,14 @@ const LeadershipCourse = () => {
           </div>
         </div>
 
-        {/* Benefits */}
+        {/* Benefits / Outcomes */}
         <div className="bg-white py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] text-center mb-10">
-              {isCentralAsia ? "Что вы получите" : "What You'll Develop"}
+              {outcomesHeading}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {(isCentralAsia
-                ? [
-                    { icon: Compass, title: "Самоуправление", desc: "Эмоциональный интеллект, принятие решений на основе ценностей и личная ответственность." },
-                    { icon: HeartHandshake, title: "Навыки общения", desc: "Эффективная коммуникация, влияние, коучинг и менторство." },
-                    { icon: Users, title: "Управление командами", desc: "Построение высокоэффективных команд, разрешение конфликтов и делегирование." },
-                    { icon: Crown, title: "Стратегическое лидерство", desc: "Стратегическое мышление, управление изменениями и создание наследия." },
-                  ]
-                : [
-                    { icon: Compass, title: "Self-Leadership", desc: "Emotional intelligence, values-based decision making, and personal accountability." },
-                    { icon: HeartHandshake, title: "People Skills", desc: "Effective communication, influence, coaching, and mentorship capabilities." },
-                    { icon: Users, title: "Team Management", desc: "Building high-performance teams, conflict resolution, and delegation mastery." },
-                    { icon: Crown, title: "Strategic Leadership", desc: "Strategic thinking, change management, and creating lasting organizational impact." },
-                  ]
-              ).map((benefit) => (
+              {outcomes.map((benefit) => (
                 <Card key={benefit.title} className="border-[#C9922A]/20">
                   <CardContent className="pt-5">
                     <div className="flex items-start gap-3">
@@ -530,26 +673,23 @@ const LeadershipCourse = () => {
         <div className="bg-[#1B2A4A] py-12">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {isCentralAsia
-                ? "Готовы стать лидером?"
-                : "Ready to Lead?"}
+              {bottomHeading}
             </h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              {isCentralAsia
-                ? "12 недель практического обучения лидерству. От самоуправления до руководства организациями."
-                : "12 weeks of hands-on leadership development. From self-leadership to organizational impact."}
+              {bottomSubheading}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to={
-                  bcComplete
+                  course?.bottomCtaPrimaryUrl ||
+                  (bcComplete
                     ? progress.completedWeeks.length > 0
                       ? `/course/leadership-development/${Math.min(
                           progress.completedWeeks.length + 1,
                           12
                         )}`
                       : "/course/leadership-development/1"
-                    : "/course/business-creation"
+                    : "/course/business-creation")
                 }
               >
                 <Button
@@ -558,24 +698,18 @@ const LeadershipCourse = () => {
                 >
                   {bcComplete
                     ? progress.completedWeeks.length > 0
-                      ? isCentralAsia
-                        ? "Продолжить курс"
-                        : "Continue the Course"
-                      : isCentralAsia
-                      ? "Начать неделю 1"
-                      : "Start Week 1 Now"
-                    : isCentralAsia
-                    ? "Сначала — создание бизнеса"
-                    : "Start Business Creation First"}
+                      ? bottomPrimaryContinueLabel
+                      : bottomPrimaryStartLabel
+                    : bottomPrimaryGatedLabel}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link to="/get-involved">
+              <Link to={bottomSecondaryUrl}>
                 <Button
                   size="lg"
                   className="bg-transparent border border-white/40 text-white hover:bg-white/10"
                 >
-                  {isCentralAsia ? "Стать фасилитатором" : "Become a Facilitator"}
+                  {bottomSecondaryLabel}
                 </Button>
               </Link>
             </div>
