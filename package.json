@@ -36,7 +36,9 @@
     "migrate:forms": "tsx scripts/migrate-form-settings.mts",
     "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts",
     "migrate:program-faqs": "tsx scripts/migrate-program-faqs.mts",
-    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts"
+    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts",
+    "migrate:cohort-page": "tsx scripts/migrate-cohort-page.mts",
+    "migrate:newsletter-page": "tsx scripts/migrate-newsletter-page.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",

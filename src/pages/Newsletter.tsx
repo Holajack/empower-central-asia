@@ -9,6 +9,10 @@ import { Helmet } from "react-helmet";
 import { useRegion } from "@/contexts/RegionContext";
 import { trackConversion } from "@/lib/analytics";
 import { useFormSettings } from "@/hooks/useFormSettings";
+import {
+  useNewsletterPage,
+  getNewsletterCopy,
+} from "@/hooks/useNewsletterPage";
 
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS46eygrXMNATbNLGTjQ5UofInsBuSrrBJ6_J8PlSr_WdCoIgfW6bEFNBw/exec";
 
@@ -22,16 +26,15 @@ const Newsletter = () => {
   const { toast } = useToast();
   const { isCentralAsia } = useRegion();
   const { forms } = useFormSettings();
+  const { data: page } = useNewsletterPage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
       toast({
-        title: isCentralAsia ? "Некорректный адрес" : "Invalid Email",
-        description: isCentralAsia
-          ? "Пожалуйста, введите действующий адрес электронной почты."
-          : "Please enter a valid email address.",
+        title: getNewsletterCopy(page, "errorInvalidEmailTitle", isCentralAsia),
+        description: getNewsletterCopy(page, "errorInvalidEmailBody", isCentralAsia),
         variant: "destructive",
       });
       return;
@@ -39,10 +42,8 @@ const Newsletter = () => {
 
     if (!firstName.trim()) {
       toast({
-        title: isCentralAsia ? "Укажите имя" : "First Name Required",
-        description: isCentralAsia
-          ? "Пожалуйста, введите ваше имя."
-          : "Please enter your first name.",
+        title: getNewsletterCopy(page, "errorMissingNameTitle", isCentralAsia),
+        description: getNewsletterCopy(page, "errorMissingNameBody", isCentralAsia),
         variant: "destructive",
       });
       return;
@@ -71,16 +72,33 @@ const Newsletter = () => {
       setPhone("");
     } catch (error) {
       toast({
-        title: isCentralAsia ? "Что-то пошло не так" : "Something went wrong",
-        description: isCentralAsia
-          ? "Попробуйте ещё раз."
-          : "Please try again.",
+        title: getNewsletterCopy(page, "errorGenericTitle", isCentralAsia),
+        description: getNewsletterCopy(page, "errorGenericBody", isCentralAsia),
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // Pre-resolve copy for clarity / single source of truth.
+  const firstNameLabel = getNewsletterCopy(page, "firstNameLabel", isCentralAsia);
+  const firstNamePlaceholder = getNewsletterCopy(page, "firstNamePlaceholder", isCentralAsia);
+  const lastNameLabel = getNewsletterCopy(page, "lastNameLabel", isCentralAsia);
+  const lastNamePlaceholder = getNewsletterCopy(page, "lastNamePlaceholder", isCentralAsia);
+  const emailLabel = getNewsletterCopy(page, "emailLabel", isCentralAsia);
+  const phoneLabel = getNewsletterCopy(page, "phoneLabel", isCentralAsia);
+  const phonePlaceholder = getNewsletterCopy(page, "phonePlaceholder", isCentralAsia);
+  const submittingLabel = getNewsletterCopy(page, "submittingLabel", isCentralAsia);
+  const confirmationHeading = getNewsletterCopy(page, "confirmationHeading", isCentralAsia);
+  const primaryLabel = getNewsletterCopy(page, "primaryLabel", isCentralAsia);
+  const bottomCtaSubheading = getNewsletterCopy(page, "bottomCtaSubheading", isCentralAsia);
+
+  // Confirmation body falls back to the centrally-managed Form Copy success
+  // message when the Newsletter Page singleton leaves it blank.
+  const cmsConfirmationBody = getNewsletterCopy(page, "confirmationBody", isCentralAsia);
+  const confirmationBody =
+    cmsConfirmationBody || forms.newsletter.getSuccessMessage(isCentralAsia);
 
   return (
     <>
@@ -141,16 +159,16 @@ const Newsletter = () => {
                 <CheckCircle className="h-16 w-16 text-green-500" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900 mb-3">
-                {isCentralAsia ? "Вы подписались!" : "You're Subscribed!"}
+                {confirmationHeading}
               </h1>
               <p className="text-gray-600 mb-6">
-                {forms.newsletter.getSuccessMessage(isCentralAsia)}
+                {confirmationBody}
               </p>
               <Link
-                to="/"
+                to={page.primaryUrl}
                 className="text-[#C9922A] hover:text-[#C9922A]/80 font-medium"
               >
-                {isCentralAsia ? "Перейти на сайт" : "Visit our website"}
+                {primaryLabel}
               </Link>
             </div>
           </div>
@@ -173,7 +191,7 @@ const Newsletter = () => {
                     htmlFor="firstName"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Имя" : "First name"}{" "}
+                    {firstNameLabel}{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -181,7 +199,7 @@ const Newsletter = () => {
                     <Input
                       id="firstName"
                       type="text"
-                      placeholder={isCentralAsia ? "Имя" : "First name"}
+                      placeholder={firstNamePlaceholder}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -196,14 +214,14 @@ const Newsletter = () => {
                     htmlFor="lastName"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Фамилия" : "Last name"}
+                    {lastNameLabel}
                   </label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       id="lastName"
                       type="text"
-                      placeholder={isCentralAsia ? "Фамилия" : "Last name"}
+                      placeholder={lastNamePlaceholder}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -217,7 +235,7 @@ const Newsletter = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Электронная почта" : "Email"}{" "}
+                    {emailLabel}{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -240,16 +258,14 @@ const Newsletter = () => {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Номер телефона" : "Phone number"}
+                    {phoneLabel}
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder={
-                        isCentralAsia ? "+7 (700) 000-0000" : "(386) 555-0123"
-                      }
+                      placeholder={phonePlaceholder}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -264,16 +280,12 @@ const Newsletter = () => {
                   className="w-full h-12 text-base bg-[#C9922A] hover:bg-[#C9922A]/90 text-white rounded-lg"
                 >
                   {isSubmitting
-                    ? isCentralAsia
-                      ? "Подписываемся..."
-                      : "Subscribing..."
+                    ? submittingLabel
                     : forms.newsletter.getButtonLabel(isCentralAsia)}
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  {isCentralAsia
-                    ? "Мы уважаем вашу конфиденциальность. Отписаться можно в любой момент."
-                    : "We respect your privacy. Unsubscribe at any time."}
+                  {bottomCtaSubheading}
                 </p>
               </form>
             </div>
