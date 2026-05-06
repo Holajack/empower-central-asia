@@ -15,6 +15,7 @@ import { financialLiteracyRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
 import { useCourseWeek } from "@/hooks/useCourse";
+import { useCourseWeekLessons } from "@/hooks/useCourseLesson";
 
 // Lazy-load worksheet components
 const FinancialSnapshot = lazy(() => import("@/components/course/worksheets/FinancialSnapshot"));
@@ -105,6 +106,10 @@ const CourseWeek = () => {
 
   // Sanity overlay — falls back to hardcoded weekData when null.
   const { week: sanityWeek } = useCourseWeek("financial-literacy", weekNum);
+  const { lessons: sanityLessons } = useCourseWeekLessons({
+    course: "financial-literacy",
+    weekNumber: weekNum,
+  });
   const weekTitle = sanityWeek ? sanityWeek.getTitle(isCentralAsia) : (weekData?.title ?? "");
   const weekSubtitle = sanityWeek ? sanityWeek.getSubtitle(isCentralAsia) : (weekData?.subtitle ?? "");
   const weekKeyQuote = sanityWeek ? sanityWeek.getKeyQuote(isCentralAsia) : (weekData?.keyQuote ?? "");
@@ -281,6 +286,16 @@ const CourseWeek = () => {
     weekNum: w.week,
     title: w.title,
   }));
+
+  // Look up the Sanity lesson for the current day, if any. Lessons may
+  // override per-day metadata (related blog posts, worksheet, video).
+  const currentLesson = sanityLessons.find((l) => l.dayNumber === currentDay);
+
+  // Per-day related blog post slugs come from the Sanity lesson when present,
+  // otherwise fall back to the hardcoded week-level mapping.
+  const relatedSlugsForDay = currentLesson?.relatedBlogPostSlugs
+    ?? financialLiteracyRelatedPosts[weekNum]
+    ?? [];
 
   // Worksheet component for day 4
   const WorksheetComp = worksheetComponents[weekNum];
@@ -464,14 +479,18 @@ const CourseWeek = () => {
           reflectionQuestions={weekData.reflectionQuestions}
           actionItems={weekActionItems.length > 0 ? weekActionItems : weekData.actionItems}
           objectives={weekObjectives.length > 0 ? weekObjectives : weekData.objectives}
-          keyQuote={weekKeyQuote || weekData.keyQuote}
+          keyQuote={
+            currentLesson?.getKeyQuote(isCentralAsia) ||
+            weekKeyQuote ||
+            weekData.keyQuote
+          }
           quoteAuthor={weekQuoteAuthor || weekData.quoteAuthor}
           overview={weekOverview || weekData.overview}
           worksheetComponent={worksheetNode}
           toolLink={weekData.toolLink}
           toolLabel={weekData.toolLabel}
-          relatedBlogPosts={(financialLiteracyRelatedPosts[weekNum] || []).map(slug => {
-            const post = blogPosts.find(p => p.slug === slug);
+          relatedBlogPosts={relatedSlugsForDay.map((slug) => {
+            const post = blogPosts.find((p) => p.slug === slug);
             return { slug, title: post?.title || slug };
           })}
           storyCharacter={isCentralAsia && weekData.storyCentralAsia ? "Бакыт и Айнура" : isCentralAsia ? "Генри и Грейс" : "Henry & Grace"}

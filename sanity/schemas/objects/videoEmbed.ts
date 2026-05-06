@@ -31,7 +31,12 @@ export default defineType({
     }),
     defineField({
       name: "caption",
-      title: "Caption",
+      title: "Caption (English)",
+      type: "string",
+    }),
+    defineField({
+      name: "captionRu",
+      title: "Caption (Русский)",
       type: "string",
     }),
   ],
