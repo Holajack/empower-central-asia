@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/accordion";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import { useCourse } from "@/hooks/useCourse";
 
 interface CourseProgress {
   currentWeek: number;
@@ -33,6 +34,41 @@ interface CourseProgress {
 }
 
 const PROGRESS_KEY = "bbb-course-progress";
+
+// ─── Hardcoded fallback copy ────────────────────────────────────────────────
+// Mirrors the original ternaries so the page renders the existing strings
+// when Sanity is empty / hasn't been migrated yet. The migration script
+// `scripts/migrate-course-landings.mts` writes these same values into the
+// course doc on first run.
+const FALLBACK = {
+  heroBadgeEn: "Free Online Course",
+  heroBadgeRu: "Бесплатный онлайн-курс",
+  heroTitleEn: "6-Week Financial Literacy Course",
+  heroTitleRu: "6-недельный курс финансовой грамотности",
+  heroDescEn:
+    "Practical financial education that actually works. Learn budgeting, destroy debt, build savings, and create a plan for lasting financial freedom.",
+  heroDescRu:
+    "Практическое финансовое образование, которое действительно работает. Научитесь составлять бюджет, избавляться от долгов, создавать накопления и строить планы для достижения финансовой свободы.",
+  curriculumHeadingEn: "Course Curriculum",
+  curriculumHeadingRu: "Учебная программа курса",
+  curriculumIntroEn:
+    "Six weeks of practical, actionable financial education. Complete each week to unlock the next.",
+  curriculumIntroRu:
+    "Шесть недель практического финансового образования. Завершите каждую неделю, чтобы открыть следующую.",
+  bottomHeadingEn: "Ready to Take Control of Your Finances?",
+  bottomHeadingRu: "Готовы взять финансы под контроль?",
+  bottomSubheadingEn:
+    "No cost, no login, no catch. Just practical financial education you can start right now.",
+  bottomSubheadingRu:
+    "Никаких затрат, никакой регистрации, никаких скрытых условий. Просто практическое финансовое образование, которое можно начать прямо сейчас.",
+  bottomPrimaryLabelEn: "Start Week 1 Now",
+  bottomPrimaryLabelRu: "Начать неделю 1",
+  bottomPrimaryContinueEn: "Continue the Course",
+  bottomPrimaryContinueRu: "Продолжить курс",
+  bottomSecondaryLabelEn: "Become a Facilitator",
+  bottomSecondaryLabelRu: "Стать куратором",
+  bottomSecondaryUrl: "/get-involved",
+};
 
 function loadProgress(): CourseProgress {
   try {
@@ -50,6 +86,7 @@ function loadProgress(): CourseProgress {
 
 const FinancialLiteracyCourse = () => {
   const { isCentralAsia } = useRegion();
+  const { course } = useCourse("financial-literacy");
   const [progress, setProgress] = useState<CourseProgress>(loadProgress);
   const hasEmail = true;
   const user: { firstName?: string } | null = null;
@@ -79,6 +116,44 @@ const FinancialLiteracyCourse = () => {
     if (isWeekUnlocked(weekNum)) return "available";
     return "locked";
   }
+
+  // ─── Localised strings (Sanity-first, hardcoded fallback) ───────────────
+  const heroBadge =
+    course?.getHeroBadge(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroBadgeRu : FALLBACK.heroBadgeEn);
+  const heroTitle =
+    course?.getTitle(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroTitleRu : FALLBACK.heroTitleEn);
+  const heroDescription =
+    course?.getHeroDescription(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.heroDescRu : FALLBACK.heroDescEn);
+  const curriculumHeading = isCentralAsia
+    ? FALLBACK.curriculumHeadingRu
+    : FALLBACK.curriculumHeadingEn;
+  const curriculumIntro = isCentralAsia
+    ? FALLBACK.curriculumIntroRu
+    : FALLBACK.curriculumIntroEn;
+  const bottomHeading =
+    course?.getBottomCtaHeading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.bottomHeadingRu : FALLBACK.bottomHeadingEn);
+  const bottomSubheading =
+    course?.getBottomCtaSubheading(isCentralAsia) ||
+    (isCentralAsia ? FALLBACK.bottomSubheadingRu : FALLBACK.bottomSubheadingEn);
+  const bottomPrimaryStartLabel =
+    course?.getBottomCtaPrimaryLabel(isCentralAsia) ||
+    (isCentralAsia
+      ? FALLBACK.bottomPrimaryLabelRu
+      : FALLBACK.bottomPrimaryLabelEn);
+  const bottomPrimaryContinueLabel = isCentralAsia
+    ? FALLBACK.bottomPrimaryContinueRu
+    : FALLBACK.bottomPrimaryContinueEn;
+  const bottomSecondaryLabel =
+    course?.getBottomCtaSecondaryLabel(isCentralAsia) ||
+    (isCentralAsia
+      ? FALLBACK.bottomSecondaryLabelRu
+      : FALLBACK.bottomSecondaryLabelEn);
+  const bottomSecondaryUrl =
+    course?.bottomCtaSecondaryUrl || FALLBACK.bottomSecondaryUrl;
 
   const quickStats = [
     { icon: Clock, label: isCentralAsia ? "6 недель" : "6 Weeks" },
@@ -181,17 +256,11 @@ const FinancialLiteracyCourse = () => {
           <div className="container mx-auto px-4 text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm font-medium mb-6">
               <BookOpen className="w-4 h-4 text-[#C9922A]" />
-              {isCentralAsia ? "Бесплатный онлайн-курс" : "Free Online Course"}
+              {heroBadge}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              {isCentralAsia
-                ? "6-недельный курс финансовой грамотности"
-                : "6-Week Financial Literacy Course"}
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">{heroTitle}</h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              {isCentralAsia
-                ? "Практическое финансовое образование, которое действительно работает. Научитесь составлять бюджет, избавляться от долгов, создавать накопления и строить планы для достижения финансовой свободы."
-                : "Practical financial education that actually works. Learn budgeting, destroy debt, build savings, and create a plan for lasting financial freedom."}
+              {heroDescription}
             </p>
 
             {/* Quick Stats */}
@@ -264,12 +333,10 @@ const FinancialLiteracyCourse = () => {
         {/* Course Weeks Grid */}
         <div className="container mx-auto px-4 py-12 md:py-16">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] text-center mb-4">
-            {isCentralAsia ? "Учебная программа курса" : "Course Curriculum"}
+            {curriculumHeading}
           </h2>
           <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
-            {isCentralAsia
-              ? "Шесть недель практического финансового образования. Завершите каждую неделю, чтобы открыть следующую."
-              : "Six weeks of practical, actionable financial education. Complete each week to unlock the next."}
+            {curriculumIntro}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -453,24 +520,21 @@ const FinancialLiteracyCourse = () => {
         <div className="bg-[#1B2A4A] py-12">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {isCentralAsia
-                ? "Готовы взять финансы под контроль?"
-                : "Ready to Take Control of Your Finances?"}
+              {bottomHeading}
             </h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              {isCentralAsia
-                ? "Никаких затрат, никакой регистрации, никаких скрытых условий. Просто практическое финансовое образование, которое можно начать прямо сейчас."
-                : "No cost, no login, no catch. Just practical financial education you can start right now."}
+              {bottomSubheading}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to={
-                  progress.completedWeeks.length > 0
+                  course?.bottomCtaPrimaryUrl ||
+                  (progress.completedWeeks.length > 0
                     ? `/course/financial-literacy/${Math.min(
                         progress.completedWeeks.length + 1,
                         6
                       )}`
-                    : "/course/financial-literacy/1"
+                    : "/course/financial-literacy/1")
                 }
               >
                 <Button
@@ -478,21 +542,17 @@ const FinancialLiteracyCourse = () => {
                   className="bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold px-8"
                 >
                   {progress.completedWeeks.length > 0
-                    ? isCentralAsia
-                      ? "Продолжить курс"
-                      : "Continue the Course"
-                    : isCentralAsia
-                    ? "Начать неделю 1"
-                    : "Start Week 1 Now"}
+                    ? bottomPrimaryContinueLabel
+                    : bottomPrimaryStartLabel}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link to="/get-involved">
+              <Link to={bottomSecondaryUrl}>
                 <Button
                   size="lg"
                   className="bg-transparent border border-white/40 text-white hover:bg-white/10"
                 >
-                  {isCentralAsia ? "Стать куратором" : "Become a Facilitator"}
+                  {bottomSecondaryLabel}
                 </Button>
               </Link>
             </div>
