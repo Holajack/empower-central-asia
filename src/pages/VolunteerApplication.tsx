@@ -364,11 +364,19 @@ const VolunteerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <User className="w-4 h-4" />
-                              {isCentralAsia ? "Имя" : "First Name"}
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "firstName",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder={isCentralAsia ? "Имя" : "First name"}
+                                placeholder={forms.getFieldPlaceholder(
+                                  "volunteer",
+                                  "firstName",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -381,10 +389,20 @@ const VolunteerApplication = () => {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{isCentralAsia ? "Фамилия" : "Last Name"}</FormLabel>
+                            <FormLabel>
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "lastName",
+                                isCentralAsia,
+                              )}
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder={isCentralAsia ? "Фамилия" : "Last name"}
+                                placeholder={forms.getFieldPlaceholder(
+                                  "volunteer",
+                                  "lastName",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -402,12 +420,20 @@ const VolunteerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <Mail className="w-4 h-4" />
-                              {isCentralAsia ? "Электронная почта" : "Email"}
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "email",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="you@email.com"
+                                placeholder={forms.getFieldPlaceholder(
+                                  "volunteer",
+                                  "email",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -422,14 +448,20 @@ const VolunteerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <Phone className="w-4 h-4" />
-                              {isCentralAsia ? "WhatsApp / Телефон" : "Phone"}
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "phone",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="tel"
-                                placeholder={
-                                  isCentralAsia ? "+7 (999) 123-45-67" : "(386) 555-0123"
-                                }
+                                placeholder={forms.getFieldPlaceholder(
+                                  "volunteer",
+                                  "phone",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -446,9 +478,11 @@ const VolunteerApplication = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              {isCentralAsia
-                                ? "Интересующая роль"
-                                : "Role You're Interested In"}
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "volunteerType",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <Select
                               onValueChange={field.onChange}
@@ -457,9 +491,11 @@ const VolunteerApplication = () => {
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue
-                                    placeholder={
-                                      isCentralAsia ? "Выберите роль" : "Select a role"
-                                    }
+                                    placeholder={forms.getFieldPlaceholder(
+                                      "volunteer",
+                                      "volunteerType",
+                                      isCentralAsia,
+                                    )}
                                   />
                                 </SelectTrigger>
                               </FormControl>
@@ -499,7 +535,11 @@ const VolunteerApplication = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              {isCentralAsia ? "Доступность" : "Availability"}
+                              {forms.getFieldLabel(
+                                "volunteer",
+                                "availability",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <Select
                               onValueChange={field.onChange}
@@ -508,11 +548,11 @@ const VolunteerApplication = () => {
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue
-                                    placeholder={
-                                      isCentralAsia
-                                        ? "Ваша доступность"
-                                        : "Your availability"
-                                    }
+                                    placeholder={forms.getFieldPlaceholder(
+                                      "volunteer",
+                                      "availability",
+                                      isCentralAsia,
+                                    )}
                                   />
                                 </SelectTrigger>
                               </FormControl>
@@ -551,15 +591,19 @@ const VolunteerApplication = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {isCentralAsia ? "Соответствующий опыт" : "Relevant Experience"}
+                            {forms.getFieldLabel(
+                              "volunteer",
+                              "experience",
+                              isCentralAsia,
+                            )}
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder={
-                                isCentralAsia
-                                  ? "Какой профессиональный или волонтёрский опыт вы привносите? Какие навыки могли бы применить?"
-                                  : "What professional or volunteer experience do you bring? What skills could you contribute?"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                "volunteer",
+                                "experience",
+                                isCentralAsia,
+                              )}
                               className="min-h-[100px]"
                               {...field}
                             />
@@ -575,17 +619,19 @@ const VolunteerApplication = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {isCentralAsia
-                              ? "Почему вы хотите стать волонтёром?"
-                              : "Why Do You Want to Volunteer?"}
+                            {forms.getFieldLabel(
+                              "volunteer",
+                              "motivation",
+                              isCentralAsia,
+                            )}
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder={
-                                isCentralAsia
-                                  ? "Что привлекает вас в миссии BBB? Почему это важно для вас?"
-                                  : "What draws you to BBB's mission? Why is this meaningful to you?"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                "volunteer",
+                                "motivation",
+                                isCentralAsia,
+                              )}
                               className="min-h-[100px]"
                               {...field}
                             />

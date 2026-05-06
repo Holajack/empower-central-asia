@@ -459,13 +459,19 @@ const PartnerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <Building2 className="w-4 h-4" />
-                              {isCentralAsia ? "Название организации" : "Organization Name"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "orgName",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder={
-                                  isCentralAsia ? "Ваша организация" : "Your organization"
-                                }
+                                placeholder={forms.getFieldPlaceholder(
+                                  "partner",
+                                  "orgName",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -480,11 +486,19 @@ const PartnerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <User className="w-4 h-4" />
-                              {isCentralAsia ? "Ваше имя" : "Your Name"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "contactName",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder={isCentralAsia ? "Имя и фамилия" : "Full name"}
+                                placeholder={forms.getFieldPlaceholder(
+                                  "partner",
+                                  "contactName",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -502,10 +516,22 @@ const PartnerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <Mail className="w-4 h-4" />
-                              {isCentralAsia ? "Электронная почта" : "Email"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "email",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="you@org.com" {...field} />
+                              <Input
+                                type="email"
+                                placeholder={forms.getFieldPlaceholder(
+                                  "partner",
+                                  "email",
+                                  isCentralAsia,
+                                )}
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -518,14 +544,20 @@ const PartnerApplication = () => {
                           <FormItem>
                             <FormLabel className="flex items-center gap-2">
                               <Phone className="w-4 h-4" />
-                              {isCentralAsia ? "Телефон" : "Phone"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "phone",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="tel"
-                                placeholder={
-                                  isCentralAsia ? "+7 (700) 000-0000" : "(386) 555-0123"
-                                }
+                                placeholder={forms.getFieldPlaceholder(
+                                  "partner",
+                                  "phone",
+                                  isCentralAsia,
+                                )}
                                 {...field}
                               />
                             </FormControl>
@@ -542,13 +574,21 @@ const PartnerApplication = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              {isCentralAsia ? "Тип организации" : "Organization Type"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "orgType",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue
-                                    placeholder={isCentralAsia ? "Выберите тип" : "Select type"}
+                                    placeholder={forms.getFieldPlaceholder(
+                                      "partner",
+                                      "orgType",
+                                      isCentralAsia,
+                                    )}
                                   />
                                 </SelectTrigger>
                               </FormControl>
@@ -591,17 +631,21 @@ const PartnerApplication = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              {isCentralAsia ? "Формат партнёрства" : "Partnership Interest"}
+                              {forms.getFieldLabel(
+                                "partner",
+                                "partnershipInterest",
+                                isCentralAsia,
+                              )}
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue
-                                    placeholder={
-                                      isCentralAsia
-                                        ? "Как вы хотите участвовать"
-                                        : "How you'd like to partner"
-                                    }
+                                    placeholder={forms.getFieldPlaceholder(
+                                      "partner",
+                                      "partnershipInterest",
+                                      isCentralAsia,
+                                    )}
                                   />
                                 </SelectTrigger>
                               </FormControl>
@@ -661,17 +705,19 @@ const PartnerApplication = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {isCentralAsia
-                              ? "Расскажите о своём интересе"
-                              : "Tell Us About Your Interest"}
+                            {forms.getFieldLabel(
+                              "partner",
+                              "message",
+                              isCentralAsia,
+                            )}
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder={
-                                isCentralAsia
-                                  ? "Что привлекло вас в BBB? Чего ваша организация хочет достичь через это партнёрство? Есть ли конкретные идеи или вопросы?"
-                                  : "What drew you to BBB? What does your organization hope to accomplish through this partnership? Any specific ideas or questions?"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                "partner",
+                                "message",
+                                isCentralAsia,
+                              )}
                               className="min-h-[120px]"
                               {...field}
                             />

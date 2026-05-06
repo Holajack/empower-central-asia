@@ -2,14 +2,18 @@
  * Fetches the singleton `formSettings` document from Sanity.
  *
  * Returns `{forms}` with a helper object per form section. Each section
- * exposes four localized helpers:
+ * exposes localized helpers:
  *
  *   forms.newsletter.getHeading(isCentralAsia)
  *   forms.newsletter.getSubheading(isCentralAsia)
  *   forms.newsletter.getButtonLabel(isCentralAsia)
  *   forms.newsletter.getSuccessMessage(isCentralAsia)
  *
- * and the same pattern for `contact`, `volunteer`, and `partner`.
+ * Plus per-field helpers (label / placeholder / helper text):
+ *
+ *   forms.getFieldLabel("contact", "firstName", isCentralAsia)
+ *   forms.getFieldPlaceholder("contact", "email", isCentralAsia)
+ *   forms.getFieldHelper("volunteer", "skills", isCentralAsia)
  *
  * Hardcoded fallbacks mirror the `initialValue` in the Sanity schema and the
  * copy that the four pages used before CMS wiring. The site never breaks if
@@ -37,11 +41,52 @@ export interface FormSection {
   getSuccessMessage: (isCA: boolean) => string;
 }
 
+export type FormName = "newsletter" | "contact" | "volunteer" | "partner";
+
+export interface FormFieldLabel {
+  fieldName: string;
+  label: string;
+  labelRu?: string;
+  placeholder?: string;
+  placeholderRu?: string;
+  helperText?: string;
+  helperTextRu?: string;
+}
+
 export interface FormSettings {
   newsletter: FormSection;
   contact: FormSection;
   volunteer: FormSection;
   partner: FormSection;
+  /** Per-form, per-field bilingual labels (raw, indexed by fieldName). */
+  fieldLabels: Record<FormName, Record<string, FormFieldLabel>>;
+  /**
+   * Get the localized label for a given form's field. Falls back to the
+   * hardcoded English label if the entry isn't in Sanity yet.
+   */
+  getFieldLabel: (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ) => string;
+  /**
+   * Get the localized placeholder for a given form's field. Returns "" if
+   * the field has no placeholder defined.
+   */
+  getFieldPlaceholder: (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ) => string;
+  /**
+   * Get the localized helper text for a given form's field. Returns "" if
+   * the field has no helper text defined.
+   */
+  getFieldHelper: (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ) => string;
 }
 
 // ── Fallbacks (mirror Sanity initialValues + current page copy) ───────────────
@@ -104,6 +149,219 @@ const FALLBACK_RAW = {
     "Спасибо за интерес к партнёрству с BBB. Мы рассмотрим вашу заявку и свяжемся с вами в ближайшие рабочие дни, чтобы назначить встречу.",
 };
 
+// ── Field-label fallbacks (mirror current hardcoded copy in form components) ──
+// These mirror exactly what each form renders today before CMS wiring.
+
+const FALLBACK_FIELD_LABELS: Record<FormName, FormFieldLabel[]> = {
+  // /newsletter standalone signup page
+  newsletter: [
+    {
+      fieldName: "firstName",
+      label: "First name",
+      labelRu: "Имя",
+      placeholder: "First name",
+      placeholderRu: "Имя",
+    },
+    {
+      fieldName: "lastName",
+      label: "Last name",
+      labelRu: "Фамилия",
+      placeholder: "Last name",
+      placeholderRu: "Фамилия",
+    },
+    {
+      fieldName: "email",
+      label: "Email",
+      labelRu: "Электронная почта",
+      placeholder: "you@example.com",
+      placeholderRu: "you@example.com",
+    },
+    {
+      fieldName: "phone",
+      label: "Phone number",
+      labelRu: "Номер телефона",
+      placeholder: "(386) 555-0123",
+      placeholderRu: "+7 (700) 000-0000",
+    },
+  ],
+
+  // /contact page (rendered via GoHighLevelForm)
+  contact: [
+    {
+      fieldName: "firstName",
+      label: "First Name",
+      labelRu: "Имя",
+      placeholder: "Enter your first name",
+      placeholderRu: "Введите ваше имя",
+    },
+    {
+      fieldName: "lastName",
+      label: "Last Name",
+      labelRu: "Фамилия",
+      placeholder: "Enter your last name",
+      placeholderRu: "Введите вашу фамилию",
+    },
+    {
+      fieldName: "email",
+      label: "Email Address",
+      labelRu: "Электронная почта",
+      placeholder: "your@email.com",
+      placeholderRu: "ваш@email.com",
+    },
+    {
+      fieldName: "phone",
+      label: "Phone Number",
+      labelRu: "Номер телефона",
+      placeholder: "(386) 555-0123",
+      placeholderRu: "+7 (555) 000-0000",
+    },
+    {
+      fieldName: "inquiryType",
+      label: "How can we help you?",
+      labelRu: "Как мы можем помочь вам?",
+      placeholder: "Select inquiry type",
+      placeholderRu: "Выберите тип запроса",
+    },
+    {
+      fieldName: "message",
+      label: "Your Message",
+      labelRu: "Ваше сообщение",
+      placeholder:
+        "Tell us more about your inquiry. The more details you provide, the better we can assist you.",
+      placeholderRu:
+        "Расскажите подробнее о вашем запросе. Чем больше деталей вы предоставите, тем лучше мы сможем помочь.",
+    },
+  ],
+
+  // /volunteer-application page
+  volunteer: [
+    {
+      fieldName: "firstName",
+      label: "First Name",
+      labelRu: "Имя",
+      placeholder: "First name",
+      placeholderRu: "Имя",
+    },
+    {
+      fieldName: "lastName",
+      label: "Last Name",
+      labelRu: "Фамилия",
+      placeholder: "Last name",
+      placeholderRu: "Фамилия",
+    },
+    {
+      fieldName: "email",
+      label: "Email",
+      labelRu: "Электронная почта",
+      placeholder: "you@email.com",
+      placeholderRu: "you@email.com",
+    },
+    {
+      fieldName: "phone",
+      label: "Phone",
+      labelRu: "WhatsApp / Телефон",
+      placeholder: "(386) 555-0123",
+      placeholderRu: "+7 (999) 123-45-67",
+    },
+    {
+      fieldName: "volunteerType",
+      label: "Role You're Interested In",
+      labelRu: "Интересующая роль",
+      placeholder: "Select a role",
+      placeholderRu: "Выберите роль",
+    },
+    {
+      fieldName: "availability",
+      label: "Availability",
+      labelRu: "Доступность",
+      placeholder: "Your availability",
+      placeholderRu: "Ваша доступность",
+    },
+    {
+      fieldName: "experience",
+      label: "Relevant Experience",
+      labelRu: "Соответствующий опыт",
+      placeholder:
+        "What professional or volunteer experience do you bring? What skills could you contribute?",
+      placeholderRu:
+        "Какой профессиональный или волонтёрский опыт вы привносите? Какие навыки могли бы применить?",
+    },
+    {
+      fieldName: "motivation",
+      label: "Why Do You Want to Volunteer?",
+      labelRu: "Почему вы хотите стать волонтёром?",
+      placeholder:
+        "What draws you to BBB's mission? Why is this meaningful to you?",
+      placeholderRu:
+        "Что привлекает вас в миссии BBB? Почему это важно для вас?",
+    },
+    {
+      fieldName: "skills",
+      label: "Skills & Expertise",
+      labelRu: "Навыки и экспертиза",
+      placeholder:
+        "e.g., Business mentorship, marketing, financial planning, event coordination...",
+      placeholderRu:
+        "Например: наставничество в бизнесе, маркетинг, финансовое планирование, организация мероприятий...",
+    },
+  ],
+
+  // /partner-application page
+  partner: [
+    {
+      fieldName: "orgName",
+      label: "Organization Name",
+      labelRu: "Название организации",
+      placeholder: "Your organization",
+      placeholderRu: "Ваша организация",
+    },
+    {
+      fieldName: "contactName",
+      label: "Your Name",
+      labelRu: "Ваше имя",
+      placeholder: "Full name",
+      placeholderRu: "Имя и фамилия",
+    },
+    {
+      fieldName: "email",
+      label: "Email",
+      labelRu: "Электронная почта",
+      placeholder: "you@org.com",
+      placeholderRu: "you@org.com",
+    },
+    {
+      fieldName: "phone",
+      label: "Phone",
+      labelRu: "Телефон",
+      placeholder: "(386) 555-0123",
+      placeholderRu: "+7 (700) 000-0000",
+    },
+    {
+      fieldName: "orgType",
+      label: "Organization Type",
+      labelRu: "Тип организации",
+      placeholder: "Select type",
+      placeholderRu: "Выберите тип",
+    },
+    {
+      fieldName: "partnershipInterest",
+      label: "Partnership Interest",
+      labelRu: "Формат партнёрства",
+      placeholder: "How you'd like to partner",
+      placeholderRu: "Как вы хотите участвовать",
+    },
+    {
+      fieldName: "message",
+      label: "Tell Us About Your Interest",
+      labelRu: "Расскажите о своём интересе",
+      placeholder:
+        "What drew you to BBB? What does your organization hope to accomplish through this partnership? Any specific ideas or questions?",
+      placeholderRu:
+        "Что привлекло вас в BBB? Чего ваша организация хочет достичь через это партнёрство? Есть ли конкретные идеи или вопросы?",
+    },
+  ],
+};
+
 // ── GROQ query ────────────────────────────────────────────────────────────────
 
 const FORM_SETTINGS_QUERY = /* groq */ `
@@ -139,9 +397,55 @@ const FORM_SETTINGS_QUERY = /* groq */ `
     partnerButtonLabel,
     partnerButtonLabelRu,
     partnerSuccessMessage,
-    partnerSuccessMessageRu
+    partnerSuccessMessageRu,
+    newsletterFieldLabels[]{
+      fieldName,
+      label,
+      labelRu,
+      placeholder,
+      placeholderRu,
+      helperText,
+      helperTextRu
+    },
+    contactFieldLabels[]{
+      fieldName,
+      label,
+      labelRu,
+      placeholder,
+      placeholderRu,
+      helperText,
+      helperTextRu
+    },
+    volunteerFieldLabels[]{
+      fieldName,
+      label,
+      labelRu,
+      placeholder,
+      placeholderRu,
+      helperText,
+      helperTextRu
+    },
+    partnerFieldLabels[]{
+      fieldName,
+      label,
+      labelRu,
+      placeholder,
+      placeholderRu,
+      helperText,
+      helperTextRu
+    }
   }
 `;
+
+interface RawFieldLabel {
+  fieldName?: string;
+  label?: string;
+  labelRu?: string;
+  placeholder?: string;
+  placeholderRu?: string;
+  helperText?: string;
+  helperTextRu?: string;
+}
 
 interface RawFormSettings {
   newsletterHeading?: string;
@@ -176,6 +480,10 @@ interface RawFormSettings {
   partnerButtonLabelRu?: string;
   partnerSuccessMessage?: string;
   partnerSuccessMessageRu?: string;
+  newsletterFieldLabels?: RawFieldLabel[];
+  contactFieldLabels?: RawFieldLabel[];
+  volunteerFieldLabels?: RawFieldLabel[];
+  partnerFieldLabels?: RawFieldLabel[];
 }
 
 // ── Builder ───────────────────────────────────────────────────────────────────
@@ -188,7 +496,7 @@ function makeSection(
   buttonLabel: string,
   buttonLabelRu: string | undefined,
   successMessage: string,
-  successMessageRu: string | undefined
+  successMessageRu: string | undefined,
 ): FormSection {
   return {
     heading,
@@ -202,12 +510,96 @@ function makeSection(
     getHeading: (isCA) => getLocalized(heading, headingRu, isCA),
     getSubheading: (isCA) => getLocalized(subheading, subheadingRu, isCA),
     getButtonLabel: (isCA) => getLocalized(buttonLabel, buttonLabelRu, isCA),
-    getSuccessMessage: (isCA) => getLocalized(successMessage, successMessageRu, isCA),
+    getSuccessMessage: (isCA) =>
+      getLocalized(successMessage, successMessageRu, isCA),
   };
+}
+
+/**
+ * Merge a Sanity field-label array on top of the hardcoded fallbacks. Sanity
+ * entries win when they have a non-empty `label`. Anything missing falls back
+ * to the bundled defaults so the UI never goes blank.
+ */
+function mergeFieldLabels(
+  fallback: FormFieldLabel[],
+  remote: RawFieldLabel[] | undefined,
+): Record<string, FormFieldLabel> {
+  const map: Record<string, FormFieldLabel> = {};
+
+  for (const f of fallback) {
+    map[f.fieldName] = { ...f };
+  }
+
+  if (remote && remote.length > 0) {
+    for (const r of remote) {
+      if (!r.fieldName) continue;
+      const base = map[r.fieldName] ?? { fieldName: r.fieldName, label: "" };
+      map[r.fieldName] = {
+        fieldName: r.fieldName,
+        label: r.label || base.label,
+        labelRu: r.labelRu ?? base.labelRu,
+        placeholder: r.placeholder ?? base.placeholder,
+        placeholderRu: r.placeholderRu ?? base.placeholderRu,
+        helperText: r.helperText ?? base.helperText,
+        helperTextRu: r.helperTextRu ?? base.helperTextRu,
+      };
+    }
+  }
+
+  return map;
 }
 
 function shape(raw: RawFormSettings | null): FormSettings {
   const r = raw ?? {};
+
+  const fieldLabels: Record<FormName, Record<string, FormFieldLabel>> = {
+    newsletter: mergeFieldLabels(
+      FALLBACK_FIELD_LABELS.newsletter,
+      r.newsletterFieldLabels,
+    ),
+    contact: mergeFieldLabels(
+      FALLBACK_FIELD_LABELS.contact,
+      r.contactFieldLabels,
+    ),
+    volunteer: mergeFieldLabels(
+      FALLBACK_FIELD_LABELS.volunteer,
+      r.volunteerFieldLabels,
+    ),
+    partner: mergeFieldLabels(
+      FALLBACK_FIELD_LABELS.partner,
+      r.partnerFieldLabels,
+    ),
+  };
+
+  const getFieldLabel = (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ): string => {
+    const entry = fieldLabels[formName]?.[fieldName];
+    if (!entry) return "";
+    return getLocalized(entry.label, entry.labelRu, isCentralAsia);
+  };
+
+  const getFieldPlaceholder = (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ): string => {
+    const entry = fieldLabels[formName]?.[fieldName];
+    if (!entry) return "";
+    return getLocalized(entry.placeholder, entry.placeholderRu, isCentralAsia);
+  };
+
+  const getFieldHelper = (
+    formName: FormName,
+    fieldName: string,
+    isCentralAsia: boolean,
+  ): string => {
+    const entry = fieldLabels[formName]?.[fieldName];
+    if (!entry) return "";
+    return getLocalized(entry.helperText, entry.helperTextRu, isCentralAsia);
+  };
 
   return {
     newsletter: makeSection(
@@ -218,7 +610,7 @@ function shape(raw: RawFormSettings | null): FormSettings {
       r.newsletterButtonLabel || FALLBACK_RAW.newsletterButtonLabel,
       r.newsletterButtonLabelRu || FALLBACK_RAW.newsletterButtonLabelRu,
       r.newsletterSuccessMessage || FALLBACK_RAW.newsletterSuccessMessage,
-      r.newsletterSuccessMessageRu || FALLBACK_RAW.newsletterSuccessMessageRu
+      r.newsletterSuccessMessageRu || FALLBACK_RAW.newsletterSuccessMessageRu,
     ),
     contact: makeSection(
       r.contactHeading || FALLBACK_RAW.contactHeading,
@@ -228,7 +620,7 @@ function shape(raw: RawFormSettings | null): FormSettings {
       r.contactButtonLabel || FALLBACK_RAW.contactButtonLabel,
       r.contactButtonLabelRu || FALLBACK_RAW.contactButtonLabelRu,
       r.contactSuccessMessage || FALLBACK_RAW.contactSuccessMessage,
-      r.contactSuccessMessageRu || FALLBACK_RAW.contactSuccessMessageRu
+      r.contactSuccessMessageRu || FALLBACK_RAW.contactSuccessMessageRu,
     ),
     volunteer: makeSection(
       r.volunteerHeading || FALLBACK_RAW.volunteerHeading,
@@ -238,7 +630,7 @@ function shape(raw: RawFormSettings | null): FormSettings {
       r.volunteerButtonLabel || FALLBACK_RAW.volunteerButtonLabel,
       r.volunteerButtonLabelRu || FALLBACK_RAW.volunteerButtonLabelRu,
       r.volunteerSuccessMessage || FALLBACK_RAW.volunteerSuccessMessage,
-      r.volunteerSuccessMessageRu || FALLBACK_RAW.volunteerSuccessMessageRu
+      r.volunteerSuccessMessageRu || FALLBACK_RAW.volunteerSuccessMessageRu,
     ),
     partner: makeSection(
       r.partnerHeading || FALLBACK_RAW.partnerHeading,
@@ -248,13 +640,21 @@ function shape(raw: RawFormSettings | null): FormSettings {
       r.partnerButtonLabel || FALLBACK_RAW.partnerButtonLabel,
       r.partnerButtonLabelRu || FALLBACK_RAW.partnerButtonLabelRu,
       r.partnerSuccessMessage || FALLBACK_RAW.partnerSuccessMessage,
-      r.partnerSuccessMessageRu || FALLBACK_RAW.partnerSuccessMessageRu
+      r.partnerSuccessMessageRu || FALLBACK_RAW.partnerSuccessMessageRu,
     ),
+    fieldLabels,
+    getFieldLabel,
+    getFieldPlaceholder,
+    getFieldHelper,
   };
 }
 
 // Re-export the fallback shape for callers that want it (e.g. tests).
 export const FALLBACK_FORM_SETTINGS: FormSettings = shape(null);
+
+// Re-export the fallback field labels (mirrors current hardcoded values per
+// form). Useful for tests + the migration script.
+export { FALLBACK_FIELD_LABELS };
 
 // ── Hook ──────────────────────────────────────────────────────────────────────
 

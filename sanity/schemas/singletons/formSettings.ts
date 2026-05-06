@@ -1,9 +1,14 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 /**
  * Editable copy for the four form-driven pages: Newsletter, Contact,
  * Volunteer Application, Partner Application. Headings, subheadings,
- * field labels, button text, and success/error messages are all here.
+ * field labels, placeholders, helper text, button text, and
+ * success/error messages are all here.
+ *
+ * Per-form field labels live in <form>FieldLabels arrays — each item ties to
+ * an actual form input `name` attribute (e.g. "firstName", "email") so admins
+ * can rename labels/placeholders/helper text without touching code.
  *
  * Singleton — only one of these exists.
  */
@@ -12,12 +17,13 @@ export default defineType({
   title: "Form Copy",
   type: "document",
   description:
-    "Editable copy for Newsletter, Contact, Volunteer Application, and Partner Application pages — headings, subheadings, button labels, success messages.",
+    "Editable copy for Newsletter, Contact, Volunteer Application, and Partner Application pages — headings, subheadings, field labels, placeholders, helper text, button labels, success messages.",
   groups: [
     { name: "newsletter", title: "Newsletter", default: true },
     { name: "contact", title: "Contact" },
     { name: "volunteer", title: "Volunteer Application" },
     { name: "partner", title: "Partner Application" },
+    { name: "fieldLabels", title: "Field Labels" },
   ],
   fields: [
     // ── Newsletter ──────────────────────────────────────────────────
@@ -248,6 +254,46 @@ export default defineType({
       type: "text",
       rows: 2,
       group: "partner",
+    }),
+
+    // ── Field Labels (per-form arrays) ─────────────────────────────
+    // Each item maps to an actual form input `name`. Admins edit
+    // label/placeholder/helperText without touching code.
+    defineField({
+      name: "newsletterFieldLabels",
+      title: "Newsletter — Field Labels",
+      type: "array",
+      group: "fieldLabels",
+      description:
+        "Labels, placeholders, and helper text for each input on the /newsletter signup page.",
+      of: [defineArrayMember({ type: "formFieldLabel" })],
+    }),
+    defineField({
+      name: "contactFieldLabels",
+      title: "Contact — Field Labels",
+      type: "array",
+      group: "fieldLabels",
+      description:
+        "Labels, placeholders, and helper text for each input on the /contact form.",
+      of: [defineArrayMember({ type: "formFieldLabel" })],
+    }),
+    defineField({
+      name: "volunteerFieldLabels",
+      title: "Volunteer Application — Field Labels",
+      type: "array",
+      group: "fieldLabels",
+      description:
+        "Labels, placeholders, and helper text for each input on the /volunteer-application form.",
+      of: [defineArrayMember({ type: "formFieldLabel" })],
+    }),
+    defineField({
+      name: "partnerFieldLabels",
+      title: "Partner Application — Field Labels",
+      type: "array",
+      group: "fieldLabels",
+      description:
+        "Labels, placeholders, and helper text for each input on the /partner-application form.",
+      of: [defineArrayMember({ type: "formFieldLabel" })],
     }),
   ],
   preview: {

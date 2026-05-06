@@ -32,6 +32,7 @@ import helpCard from "./objects/helpCard";
 import weekOverview from "./objects/weekOverview";
 import programStat from "./objects/programStat";
 import trustBadge from "./objects/trustBadge";
+import formFieldLabel from "./objects/formFieldLabel";
 
 export const schemaTypes = [
   // Documents
@@ -68,4 +69,5 @@ export const schemaTypes = [
   weekOverview,
   programStat,
   trustBadge,
+  formFieldLabel,
 ];
