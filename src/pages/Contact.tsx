@@ -42,9 +42,11 @@ const Contact = () => {
         <title>{isCentralAsia ? "Свяжитесь с нами | BBB" : "Contact Us | Businesses Beyond Borders"}</title>
         <meta
           name="description"
-          content={isCentralAsia
-            ? "Свяжитесь с BBB: волонтёрство, партнёрства, программы или пожертвования. Звоните (386) 517-1527 или пишите на email."
-            : "Contact BBB for volunteer opportunities, partnerships, or donations. Call (386) 517-1527 or email donations@businessesbeyondborders.com."}
+          content={
+            isCentralAsia
+              ? `Свяжитесь с BBB: волонтёрство, партнёрства, программы или пожертвования. Звоните ${settings.contactPhone} или пишите на ${settings.contactEmail}.`
+              : `Contact BBB for volunteer opportunities, partnerships, or donations. Call ${settings.contactPhone} or email ${settings.contactEmail}.`
+          }
         />
         <meta
           property="og:title"
@@ -72,36 +74,37 @@ const Contact = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "NonprofitOrganization",
-            name: "Businesses Beyond Borders",
+            name: settings.siteName,
             description:
               "International nonprofit empowering entrepreneurs in Central Asia through business training, leadership development, and community collaboration programs",
             url: "https://businessesbeyondborders.com",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Port Orange",
-              addressRegion: "FL",
-              postalCode: "32128",
-              addressCountry: "US",
+              streetAddress: settings.address.split("\n")[0],
+              addressLocality: settings.addressLocality,
+              addressRegion: settings.addressRegion,
+              postalCode: settings.addressZip,
+              addressCountry: settings.addressCountry,
             },
             contactPoint: [
               {
                 "@type": "ContactPoint",
-                telephone: "+1-386-517-1527",
+                telephone: settings.contactPhoneTel,
                 contactType: "customer support",
                 areaServed: ["US", "KZ", "KG", "UZ"],
                 availableLanguage: ["English", "Russian"],
               },
               {
                 "@type": "ContactPoint",
-                email: "donations@businessesbeyondborders.com",
+                email: settings.contactEmail,
                 contactType: "donations",
               },
             ],
             sameAs: [
-              "https://www.facebook.com/Businesses.BB",
-              "https://www.linkedin.com/company/businesses-beyond-borders",
-              "https://www.instagram.com/businessesbeyondborders",
-            ],
+              settings.social.facebook,
+              settings.social.linkedin,
+              settings.social.instagram,
+            ].filter(Boolean),
             foundingDate: "2022",
           })}
         </script>

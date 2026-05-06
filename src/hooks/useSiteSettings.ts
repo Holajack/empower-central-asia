@@ -48,6 +48,11 @@ export interface SiteSettings {
   contactPhoneTel: string; // E.164-ish, strip formatting
   address: string;
   addressRu?: string;
+  addressLocality: string;
+  addressRegion: string;
+  addressZip: string;
+  addressCountry: string;
+  mapEmbedUrl: string;
   social: SanitySocialLinks;
   primaryCTA?: SanityCTA;
   defaultSeo?: SanityDefaultSeo;
@@ -71,6 +76,12 @@ const FALLBACK_RAW = {
   contactPhoneTel: "+13865171527",
   address: "2570 Jasmine Rd.\nPort Orange, FL 32128\nUnited States",
   addressRu: "2570 Jasmine Rd.\nПорт Оранж, Флорида 32128\nСША",
+  addressLocality: "Port Orange",
+  addressRegion: "FL",
+  addressZip: "32128",
+  addressCountry: "US",
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.8234567890123!2d-81.02345678901234!3d29.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e6c8b123456789%3A0x123456789abcdef0!2s2570%20Jasmine%20Rd%2C%20Port%20Orange%2C%20FL%2032128%2C%20USA!5e0!3m2!1sen!2sus!4v1647894687693!5m2!1sen!2sus",
   social: {
     facebook: "https://www.facebook.com/Businesses.BB",
     instagram: "https://www.instagram.com/businessesbeyondborders/",
@@ -106,6 +117,11 @@ const SITE_SETTINGS_QUERY = /* groq */ `
     contactPhone,
     address,
     addressRu,
+    addressLocality,
+    addressRegion,
+    addressZip,
+    addressCountry,
+    mapEmbedUrl,
     social,
     primaryCTA,
     primaryCTALabelRu,
@@ -127,6 +143,11 @@ interface RawSiteSettings {
   contactPhone?: string;
   address?: string;
   addressRu?: string;
+  addressLocality?: string;
+  addressRegion?: string;
+  addressZip?: string;
+  addressCountry?: string;
+  mapEmbedUrl?: string;
   social?: SanitySocialLinks;
   primaryCTA?: SanityCTA;
   primaryCTALabelRu?: string;
@@ -180,6 +201,11 @@ function mergeWithFallback(raw: RawSiteSettings | null): SiteSettings {
     contactPhoneTel: toTelHref(r.contactPhone),
     address,
     addressRu,
+    addressLocality: r.addressLocality || FALLBACK_RAW.addressLocality,
+    addressRegion: r.addressRegion || FALLBACK_RAW.addressRegion,
+    addressZip: r.addressZip || FALLBACK_RAW.addressZip,
+    addressCountry: r.addressCountry || FALLBACK_RAW.addressCountry,
+    mapEmbedUrl: r.mapEmbedUrl || FALLBACK_RAW.mapEmbedUrl,
     social: {
       facebook: r.social?.facebook || FALLBACK_RAW.social.facebook,
       instagram: r.social?.instagram || FALLBACK_RAW.social.instagram,

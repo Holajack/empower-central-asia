@@ -89,6 +89,48 @@ export default defineType({
       rows: 3,
       description: "Optional Russian translation of the mailing address.",
     }),
+    // ── Structured address pieces (used by JSON-LD schema markup for SEO) ──
+    defineField({
+      name: "addressLocality",
+      title: "City",
+      type: "string",
+      group: "contact",
+      initialValue: "Port Orange",
+      description: "City name only — used in structured data (SEO).",
+    }),
+    defineField({
+      name: "addressRegion",
+      title: "State / Region",
+      type: "string",
+      group: "contact",
+      initialValue: "FL",
+      description: "Two-letter state code or full region name — used in structured data.",
+    }),
+    defineField({
+      name: "addressZip",
+      title: "ZIP / Postal Code",
+      type: "string",
+      group: "contact",
+      initialValue: "32128",
+    }),
+    defineField({
+      name: "addressCountry",
+      title: "Country Code",
+      type: "string",
+      group: "contact",
+      initialValue: "US",
+      description: "Two-letter ISO country code (e.g. US, KZ, KG, UZ).",
+    }),
+    defineField({
+      name: "mapEmbedUrl",
+      title: "Google Maps Embed URL",
+      type: "url",
+      group: "contact",
+      description:
+        "Full Google Maps iframe `src` URL for the contact page map. To get one: maps.google.com → search address → Share → Embed a map → copy the long src=\"...\" value (NOT the short link). Leave blank to fall back to the default office map.",
+      validation: (Rule) =>
+        Rule.uri({ scheme: ["http", "https"], allowRelative: false }),
+    }),
     defineField({
       name: "social",
       title: "Social Media Links",
