@@ -26,6 +26,8 @@ import contactPage from "./singletons/contactPage";
 import homepageHowToHelp from "./singletons/homepageHowToHelp";
 import getInvolvedPage from "./singletons/getInvolvedPage";
 import debtCalculatorPage from "./singletons/debtCalculatorPage";
+import cohortPage from "./singletons/cohortPage";
+import newsletterPage from "./singletons/newsletterPage";
 import seoFields from "./objects/seoFields";
 import cta from "./objects/cta";
 import blockContent from "./objects/blockContent";
@@ -65,6 +67,8 @@ export const schemaTypes = [
   homepageHowToHelp,
   getInvolvedPage,
   debtCalculatorPage,
+  cohortPage,
+  newsletterPage,
   // Objects (reusable)
   seoFields,
   cta,

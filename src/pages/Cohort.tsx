@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import * as LucideIcons from "lucide-react";
 import {
   Users,
   Calendar,
@@ -11,6 +12,7 @@ import {
   Mail,
   BookOpen,
   Trophy,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,11 +20,43 @@ import { Input } from "@/components/ui/input";
 import { useRegion } from "@/contexts/RegionContext";
 import { siteConfig } from "@/lib/seo";
 import { trackConversion } from "@/lib/analytics";
+import {
+  useCohortPage,
+  getCohortCopy,
+  getCohortDateLabel,
+  getCohortDateDurationLine,
+  getCohortDateGroupSizeLine,
+  getCohortDateTopicsLine,
+  getCohortItemLabel,
+  getCohortItemDescription,
+  getCohortStepTitle,
+  getCohortStepDescription,
+  getCohortFaqQuestion,
+  getCohortFaqAnswer,
+} from "@/hooks/useCohortPage";
 
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwNjCpqnF62FS46eygrXMNATbNLGTjQ5UofInsBuSrrBJ6_J8PlSr_WdCoIgfW6bEFNBw/exec";
 
+// Map icon-name string -> Lucide component, with sane fallback.
+function resolveIcon(name: string | undefined, fallback: LucideIcons.LucideIcon): LucideIcons.LucideIcon {
+  if (!name) return fallback;
+  const Icon = (LucideIcons as unknown as Record<string, LucideIcons.LucideIcon>)[name];
+  return Icon ?? fallback;
+}
+
+// Convert a kebab/snake-case lucide name to its PascalCase export
+// (e.g. "book-open" -> "BookOpen", "message_circle" -> "MessageCircle").
+function pascal(name: string | undefined): string | undefined {
+  if (!name) return undefined;
+  return name
+    .split(/[-_]/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
 export default function Cohort() {
   const { isCentralAsia } = useRegion();
+  const { data: cohort } = useCohortPage();
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,11 +68,11 @@ export default function Cohort() {
     setError("");
 
     if (!firstName.trim() || !email.trim()) {
-      setError(isCentralAsia ? "Введите имя и email." : "Please enter your name and email.");
+      setError(getCohortCopy(cohort, "interestFormErrorMissing", isCentralAsia));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError(isCentralAsia ? "Введите корректный email." : "Please enter a valid email address.");
+      setError(getCohortCopy(cohort, "interestFormErrorInvalidEmail", isCentralAsia));
       return;
     }
 
@@ -59,12 +93,13 @@ export default function Cohort() {
       trackConversion("cohort_interest", { method: "cohort_page", form_type: "cohort-interest" });
       setIsSubmitted(true);
     } catch {
-      setError(isCentralAsia ? "Ошибка. Попробуйте снова." : "Something went wrong. Please try again.");
+      setError(getCohortCopy(cohort, "interestFormErrorGeneric", isCentralAsia));
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  // ── Helmet copy (kept as ternaries per task scope) ──
   const pageTitle = isCentralAsia
     ? "Бесплатные когорты — обучение | BBB"
     : "Free Cohort Programs - Now Enrolling | BBB";
@@ -95,6 +130,32 @@ export default function Cohort() {
       availability: "https://schema.org/InStock",
     },
   };
+
+  // ── Pre-resolve copy ──
+  const heroBadge = getCohortCopy(cohort, "heroBadge", isCentralAsia);
+  const heroHeading = getCohortCopy(cohort, "heroHeading", isCentralAsia);
+  const heroSubheading = getCohortCopy(cohort, "heroSubheading", isCentralAsia);
+  const whatIsHeading = getCohortCopy(cohort, "whatIsHeading", isCentralAsia);
+  const whatIsBody = getCohortCopy(cohort, "whatIsBody", isCentralAsia);
+  // whatIsBody supports paragraphs separated by blank lines.
+  const whatIsParagraphs = whatIsBody.split(/\n\s*\n/).filter(Boolean);
+  const scheduleHeading = getCohortCopy(cohort, "scheduleHeading", isCentralAsia);
+  const whatYouGetHeading = getCohortCopy(cohort, "whatYouGetHeading", isCentralAsia);
+  const interestFormHeading = getCohortCopy(cohort, "interestFormHeading", isCentralAsia);
+  const interestFormSubheading = getCohortCopy(cohort, "interestFormSubheading", isCentralAsia);
+  const interestFormSubmitLabel = getCohortCopy(cohort, "interestFormSubmitLabel", isCentralAsia);
+  const interestFormSubmittingLabel = getCohortCopy(cohort, "interestFormSubmittingLabel", isCentralAsia);
+  const interestFormDisclaimer = getCohortCopy(cohort, "interestFormDisclaimer", isCentralAsia);
+  const interestFormSuccessHeading = getCohortCopy(cohort, "interestFormSuccessHeading", isCentralAsia);
+  const interestFormSuccessBody = getCohortCopy(cohort, "interestFormSuccessBody", isCentralAsia);
+  const bottomCtaHeading = getCohortCopy(cohort, "bottomCtaHeading", isCentralAsia);
+  const bottomCtaSubheading = getCohortCopy(cohort, "bottomCtaSubheading", isCentralAsia);
+  const primaryLabel = getCohortCopy(cohort, "primaryLabel", isCentralAsia);
+  const secondaryLabel = getCohortCopy(cohort, "secondaryLabel", isCentralAsia);
+  const ctaCardArrowLabel = getCohortCopy(cohort, "ctaCardArrowLabel", isCentralAsia);
+  const crosslinkInvolvedLabel = getCohortCopy(cohort, "crosslinkInvolvedLabel", isCentralAsia);
+  const crosslinkStoriesLabel = getCohortCopy(cohort, "crosslinkStoriesLabel", isCentralAsia);
+  const faqsHeading = getCohortCopy(cohort, "faqsHeading", isCentralAsia);
 
   return (
     <>
@@ -130,154 +191,133 @@ export default function Cohort() {
           <div className="container mx-auto px-4 text-center max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
               <Users className="w-4 h-4 text-[#C9922A]" />
-              <span className="text-sm font-medium text-[#C9922A]">
-                {isCentralAsia ? "Групповое обучение" : "Group Learning"}
-              </span>
+              <span className="text-sm font-medium text-[#C9922A]">{heroBadge}</span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-              {isCentralAsia ? "Когорты открыты — начните сейчас" : "Cohorts Are Open -- Start Now"}
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-              {isCentralAsia
-                ? "Пройдите обучение вместе с другими участниками под руководством опытного фасилитатора. Группы формируются прямо сейчас."
-                : "Learn alongside other participants with an experienced facilitator. Groups are forming now -- grab your free spot."}
-            </p>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">{heroHeading}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">{heroSubheading}</p>
           </div>
         </section>
 
         <div className="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
           {/* What is a Cohort */}
           <section className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-4">
-              {isCentralAsia ? "Что такое когорта?" : "What is a Cohort?"}
-            </h2>
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              {isCentralAsia
-                ? "Когорта — это группа из 8–15 участников, которые проходят курс одновременно под руководством обученного фасилитатора. Каждую неделю вы встречаетесь (онлайн или очно) для обсуждений, практических упражнений и взаимной поддержки. Это не лекция — это живое сообщество, где каждый может задать вопрос, поделиться опытом и получить обратную связь."
-                : "A cohort is a group of 8–15 participants who go through the course together with a trained facilitator. Each week you meet (online or in-person) for discussions, hands-on exercises, and mutual support. It's not a lecture — it's a living community where everyone can ask questions, share experiences, and get real feedback."}
-            </p>
-            <p className="text-gray-700 text-lg leading-relaxed">
-              {isCentralAsia
-                ? "Фасилитатор — это не учитель. Это человек, который создаёт безопасное пространство для обучения, направляет разговор и помогает каждому участнику применять знания к собственной жизни и бизнесу."
-                : "The facilitator isn't a teacher — they're someone who creates a safe space for learning, guides conversations, and helps each participant apply what they learn to their own life and business."}
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-4">{whatIsHeading}</h2>
+            {whatIsParagraphs.map((para, i) => (
+              <p
+                key={i}
+                className={`text-gray-700 text-lg leading-relaxed ${
+                  i < whatIsParagraphs.length - 1 ? "mb-4" : ""
+                }`}
+              >
+                {para}
+              </p>
+            ))}
           </section>
 
           {/* Schedule/Format */}
           <section className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">
-              {isCentralAsia ? "Расписание и формат" : "Schedule & Format"}
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">{scheduleHeading}</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="border-[#C9922A]/20">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-[#C9922A]/10 w-10 h-10 rounded-full flex items-center justify-center">
-                      <BookOpen className="w-5 h-5 text-[#C9922A]" />
-                    </div>
-                    <h3 className="font-bold text-[#1B2A4A]">
-                      {isCentralAsia ? "Финансовая грамотность" : "Financial Literacy"}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <Calendar className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia ? "10 недель, 1 встреча в неделю" : "10 weeks, 1 session per week"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia ? "Группа 8–15 участников" : "Group of 8–15 participants"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Target className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia
-                        ? "Бюджетирование, управление долгами, накопления и планирование"
-                        : "Budgeting, debt management, savings, and financial planning"}
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-[#C9922A]/20">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-[#C9922A]/10 w-10 h-10 rounded-full flex items-center justify-center">
-                      <Trophy className="w-5 h-5 text-[#C9922A]" />
-                    </div>
-                    <h3 className="font-bold text-[#1B2A4A]">
-                      {isCentralAsia ? "Создание бизнеса" : "Business Creation"}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <Calendar className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia ? "12 недель, 1 встреча в неделю" : "12 weeks, 1 session per week"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia ? "Группа 8–12 участников" : "Group of 8–12 participants"}
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Target className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
-                      {isCentralAsia
-                        ? "Идея → бизнес-модель → подтверждение → запуск"
-                        : "Idea → business model → validation → launch"}
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              {cohort.cohortDates.map((track) => {
+                // Each track gets a header icon (book-open / trophy by default), and three
+                // bullet rows with fixed icons (calendar / users / target) to mirror the
+                // original visual hierarchy.
+                const HeaderIcon = resolveIcon(pascal(track.icon), BookOpen);
+                const duration = getCohortDateDurationLine(track, isCentralAsia);
+                const groupSize = getCohortDateGroupSizeLine(track, isCentralAsia);
+                const topics = getCohortDateTopicsLine(track, isCentralAsia);
+                return (
+                  <Card key={track._key ?? track.label} className="border-[#C9922A]/20">
+                    <CardContent className="pt-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="bg-[#C9922A]/10 w-10 h-10 rounded-full flex items-center justify-center">
+                          <HeaderIcon className="w-5 h-5 text-[#C9922A]" />
+                        </div>
+                        <h3 className="font-bold text-[#1B2A4A]">
+                          {getCohortDateLabel(track, isCentralAsia)}
+                        </h3>
+                      </div>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        {duration && (
+                          <li className="flex items-start gap-2">
+                            <Calendar className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
+                            {duration}
+                          </li>
+                        )}
+                        {groupSize && (
+                          <li className="flex items-start gap-2">
+                            <Users className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
+                            {groupSize}
+                          </li>
+                        )}
+                        {topics && (
+                          <li className="flex items-start gap-2">
+                            <Target className="w-4 h-4 text-[#C9922A] flex-shrink-0 mt-0.5" />
+                            {topics}
+                          </li>
+                        )}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </section>
 
           {/* What to Expect */}
           <section className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">
-              {isCentralAsia ? "Чего ожидать" : "What to Expect"}
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">{whatYouGetHeading}</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="text-center border-[#1B2A4A]/10">
-                <CardContent className="pt-6">
-                  <Target className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                  <h3 className="font-bold text-[#1B2A4A] mb-2">
-                    {isCentralAsia ? "Подотчётность" : "Accountability"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Еженедельные задания, проверка выполнения и поддержка группы помогают вам оставаться на пути."
-                      : "Weekly assignments, check-ins, and group support keep you on track and moving forward."}
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-[#1B2A4A]/10">
-                <CardContent className="pt-6">
-                  <MessageCircle className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                  <h3 className="font-bold text-[#1B2A4A] mb-2">
-                    {isCentralAsia ? "Живые обсуждения" : "Live Discussions"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Задавайте вопросы, обсуждайте трудности и делитесь победами с людьми, которые понимают ваш путь."
-                      : "Ask questions, discuss challenges, and celebrate wins with people who understand your journey."}
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-[#1B2A4A]/10">
-                <CardContent className="pt-6">
-                  <Users className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
-                  <h3 className="font-bold text-[#1B2A4A] mb-2">
-                    {isCentralAsia ? "Сообщество" : "Community"}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {isCentralAsia
-                      ? "Постройте сеть единомышленников, которая продолжит поддерживать вас и после окончания курса."
-                      : "Build a network of like-minded peers that continues to support you long after the course ends."}
-                  </p>
-                </CardContent>
-              </Card>
+              {cohort.whatYouGet.map((item, idx) => {
+                // Default icon rotation matches the original page (target/message-circle/users)
+                // when no icon is provided.
+                const fallbackIcons = [Target, MessageCircle, Users];
+                const Icon = resolveIcon(pascal(item.icon), fallbackIcons[idx % fallbackIcons.length]);
+                return (
+                  <Card key={item._key ?? item.label} className="text-center border-[#1B2A4A]/10">
+                    <CardContent className="pt-6">
+                      <Icon className="w-8 h-8 text-[#C9922A] mx-auto mb-3" />
+                      <h3 className="font-bold text-[#1B2A4A] mb-2">
+                        {getCohortItemLabel(item, isCentralAsia)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {getCohortItemDescription(item, isCentralAsia)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </section>
+
+          {/* Application Steps */}
+          {cohort.applicationSteps && cohort.applicationSteps.length > 0 && (
+            <section className="mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">
+                {getCohortCopy(cohort, "applicationStepsHeading", isCentralAsia)}
+              </h2>
+              <ol className="space-y-4">
+                {cohort.applicationSteps.map((step) => (
+                  <li
+                    key={step._key ?? step.stepNumber}
+                    className="flex gap-4 items-start bg-white border border-[#C9922A]/20 rounded-lg p-5"
+                  >
+                    <div className="bg-[#C9922A] text-white font-bold w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0">
+                      {step.stepNumber ?? "•"}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[#1B2A4A] mb-1">
+                        {getCohortStepTitle(step, isCentralAsia)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {getCohortStepDescription(step, isCentralAsia)}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
 
           {/* Interest Form */}
           <section className="mb-12 md:mb-16">
@@ -292,47 +332,39 @@ export default function Cohort() {
                     <>
                       <CheckCircle2 className="w-10 h-10 text-green-600 mx-auto mb-3" />
                       <h3 className="text-xl font-bold text-green-800 mb-2">
-                        {isCentralAsia ? "Вы зарегистрированы!" : "You're In!"}
+                        {interestFormSuccessHeading}
                       </h3>
-                      <p className="text-gray-600 text-sm">
-                        {isCentralAsia
-                          ? "Мы свяжемся с вами с деталями о вашей когорте. А пока начните самостоятельный курс!"
-                          : "We'll reach out with your cohort details. In the meantime, start the self-paced course below!"}
-                      </p>
+                      <p className="text-gray-600 text-sm">{interestFormSuccessBody}</p>
                     </>
                   ) : (
                     <>
                       <h3 className="text-xl font-bold text-[#1B2A4A] mb-2">
-                        {isCentralAsia ? "Запишитесь в когорту" : "Reserve Your Free Spot"}
+                        {interestFormHeading}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-6">
-                        {isCentralAsia
-                          ? "Оставьте имя и email — мы подберём для вас подходящую группу."
-                          : "Drop your name and email and we'll match you with the right group."}
-                      </p>
+                      <p className="text-sm text-gray-600 mb-6">{interestFormSubheading}</p>
                       <form onSubmit={handleSubmit} className="space-y-3 text-left">
                         <div>
                           <label htmlFor="cohort-name" className="text-xs font-medium text-gray-600 mb-1 block">
-                            {isCentralAsia ? "Имя *" : "First Name *"}
+                            {getCohortCopy(cohort, "interestFormFirstNameLabel", isCentralAsia)}
                           </label>
                           <Input
                             id="cohort-name"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            placeholder={isCentralAsia ? "Имя" : "Jane"}
+                            placeholder={getCohortCopy(cohort, "interestFormFirstNamePlaceholder", isCentralAsia)}
                             required
                           />
                         </div>
                         <div>
                           <label htmlFor="cohort-email" className="text-xs font-medium text-gray-600 mb-1 block">
-                            Email *
+                            {getCohortCopy(cohort, "interestFormEmailLabel", isCentralAsia)}
                           </label>
                           <Input
                             id="cohort-email"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder={isCentralAsia ? "email@example.com" : "jane@example.com"}
+                            placeholder={getCohortCopy(cohort, "interestFormEmailPlaceholder", isCentralAsia)}
                             required
                           />
                         </div>
@@ -343,16 +375,10 @@ export default function Cohort() {
                           className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold"
                           size="lg"
                         >
-                          {isSubmitting
-                            ? isCentralAsia ? "Отправка..." : "Reserving..."
-                            : isCentralAsia ? "Записаться" : "Reserve My Spot"}
+                          {isSubmitting ? interestFormSubmittingLabel : interestFormSubmitLabel}
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
-                        <p className="text-xs text-gray-400 text-center mt-2">
-                          {isCentralAsia
-                            ? "Бесплатно. Без обязательств. Без спама."
-                            : "100% free. No obligations. No spam."}
-                        </p>
+                        <p className="text-xs text-gray-400 text-center mt-2">{interestFormDisclaimer}</p>
                       </form>
                     </>
                   )}
@@ -361,45 +387,52 @@ export default function Cohort() {
             </Card>
           </section>
 
+          {/* FAQs */}
+          {cohort.faqs && cohort.faqs.length > 0 && (
+            <section className="mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-6">{faqsHeading}</h2>
+              <div className="space-y-3">
+                {cohort.faqs.map((faq) => (
+                  <details
+                    key={faq._key ?? faq.question}
+                    className="bg-white border border-[#C9922A]/20 rounded-lg p-5 group"
+                  >
+                    <summary className="cursor-pointer font-bold text-[#1B2A4A] flex items-center justify-between">
+                      <span>{getCohortFaqQuestion(faq, isCentralAsia)}</span>
+                      <Sparkles className="w-4 h-4 text-[#C9922A] flex-shrink-0 ml-3 group-open:rotate-90 transition-transform" />
+                    </summary>
+                    <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                      {getCohortFaqAnswer(faq, isCentralAsia)}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* CTAs — self-paced courses + cross-links */}
           <section className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-4">
-              {isCentralAsia ? "Начните прямо сейчас — бесплатно" : "Start Right Now -- 100% Free"}
-            </h2>
-            <p className="text-gray-600 mb-6">
-              {isCentralAsia
-                ? "Наши курсы доступны для самостоятельного прохождения уже сегодня. Присоединяйтесь к когорте в любой момент."
-                : "Our courses are live and available for self-paced learning today. Join a cohort anytime for group support."}
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1B2A4A] mb-4">{bottomCtaHeading}</h2>
+            <p className="text-gray-600 mb-6">{bottomCtaSubheading}</p>
             <div className="grid md:grid-cols-2 gap-4">
-              <Link to="/course/financial-literacy">
+              <Link to={cohort.primaryUrl}>
                 <Card className="hover:shadow-md transition-shadow cursor-pointer border-[#C9922A]/20 h-full">
                   <CardContent className="pt-6">
                     <BookOpen className="w-6 h-6 text-[#C9922A] mb-2" />
-                    <h3 className="font-bold text-[#1B2A4A] mb-1">
-                      {isCentralAsia ? "Курс финансовой грамотности" : "Financial Literacy Course"}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3">
-                      {isCentralAsia ? "6 недель • бесплатно" : "6 weeks • completely free"}
-                    </p>
+                    <h3 className="font-bold text-[#1B2A4A] mb-1">{primaryLabel}</h3>
                     <span className="text-sm text-[#C9922A] font-medium inline-flex items-center gap-1">
-                      {isCentralAsia ? "Начать" : "Start Now"} <ArrowRight className="w-3 h-3" />
+                      {ctaCardArrowLabel} <ArrowRight className="w-3 h-3" />
                     </span>
                   </CardContent>
                 </Card>
               </Link>
-              <Link to="/course/business-creation">
+              <Link to={cohort.secondaryUrl}>
                 <Card className="hover:shadow-md transition-shadow cursor-pointer border-[#C9922A]/20 h-full">
                   <CardContent className="pt-6">
                     <Trophy className="w-6 h-6 text-[#C9922A] mb-2" />
-                    <h3 className="font-bold text-[#1B2A4A] mb-1">
-                      {isCentralAsia ? "Курс создания бизнеса" : "Business Creation Course"}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3">
-                      {isCentralAsia ? "12 недель • бесплатно" : "12 weeks • completely free"}
-                    </p>
+                    <h3 className="font-bold text-[#1B2A4A] mb-1">{secondaryLabel}</h3>
                     <span className="text-sm text-[#C9922A] font-medium inline-flex items-center gap-1">
-                      {isCentralAsia ? "Начать" : "Start Now"} <ArrowRight className="w-3 h-3" />
+                      {ctaCardArrowLabel} <ArrowRight className="w-3 h-3" />
                     </span>
                   </CardContent>
                 </Card>
@@ -410,12 +443,12 @@ export default function Cohort() {
           {/* Additional Cross-Links */}
           <section>
             <div className="flex flex-wrap gap-3 justify-center text-sm">
-              <Link to="/get-involved" className="text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors">
-                {isCentralAsia ? "Другие способы участия →" : "Other Ways to Get Involved →"}
+              <Link to={cohort.crosslinkInvolvedUrl} className="text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors">
+                {crosslinkInvolvedLabel}
               </Link>
               <span className="text-gray-300">|</span>
-              <Link to="/success-stories" className="text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors">
-                {isCentralAsia ? "Истории выпускников →" : "Graduate Success Stories →"}
+              <Link to={cohort.crosslinkStoriesUrl} className="text-[#C9922A] hover:text-[#1B2A4A] font-medium transition-colors">
+                {crosslinkStoriesLabel}
               </Link>
             </div>
           </section>
