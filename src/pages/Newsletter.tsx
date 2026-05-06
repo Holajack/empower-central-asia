@@ -173,7 +173,7 @@ const Newsletter = () => {
                     htmlFor="firstName"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Имя" : "First name"}{" "}
+                    {forms.getFieldLabel("newsletter", "firstName", isCentralAsia)}{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -181,7 +181,11 @@ const Newsletter = () => {
                     <Input
                       id="firstName"
                       type="text"
-                      placeholder={isCentralAsia ? "Имя" : "First name"}
+                      placeholder={forms.getFieldPlaceholder(
+                        "newsletter",
+                        "firstName",
+                        isCentralAsia,
+                      )}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -196,14 +200,18 @@ const Newsletter = () => {
                     htmlFor="lastName"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Фамилия" : "Last name"}
+                    {forms.getFieldLabel("newsletter", "lastName", isCentralAsia)}
                   </label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       id="lastName"
                       type="text"
-                      placeholder={isCentralAsia ? "Фамилия" : "Last name"}
+                      placeholder={forms.getFieldPlaceholder(
+                        "newsletter",
+                        "lastName",
+                        isCentralAsia,
+                      )}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -217,7 +225,7 @@ const Newsletter = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Электронная почта" : "Email"}{" "}
+                    {forms.getFieldLabel("newsletter", "email", isCentralAsia)}{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -225,7 +233,11 @@ const Newsletter = () => {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder={forms.getFieldPlaceholder(
+                        "newsletter",
+                        "email",
+                        isCentralAsia,
+                      )}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-10 h-12 text-base"
@@ -240,16 +252,18 @@ const Newsletter = () => {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    {isCentralAsia ? "Номер телефона" : "Phone number"}
+                    {forms.getFieldLabel("newsletter", "phone", isCentralAsia)}
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder={
-                        isCentralAsia ? "+7 (700) 000-0000" : "(386) 555-0123"
-                      }
+                      placeholder={forms.getFieldPlaceholder(
+                        "newsletter",
+                        "phone",
+                        isCentralAsia,
+                      )}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       className="pl-10 h-12 text-base"

@@ -25,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2, User, Mail, Phone, MessageSquare } from "lucide-react";
 import { useRegion } from "@/contexts/RegionContext";
 import { trackConversion } from "@/lib/analytics";
+import { useFormSettings } from "@/hooks/useFormSettings";
 
 // Validation schemas — messages are set dynamically after region detection
 const makeContactSchema = (ru: boolean) =>
@@ -73,6 +74,7 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
 }) => {
   const { isCentralAsia } = useRegion();
   const { toast } = useToast();
+  const { forms } = useFormSettings();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -249,11 +251,15 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
                       <User className="w-4 h-4" />
-                      {isCentralAsia ? "Имя" : "First Name"}
+                      {forms.getFieldLabel(formType, "firstName", isCentralAsia)}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={isCentralAsia ? "Введите ваше имя" : "Enter your first name"}
+                        placeholder={forms.getFieldPlaceholder(
+                          formType,
+                          "firstName",
+                          isCentralAsia,
+                        )}
                         {...field}
                         className="h-12 text-lg"
                       />
@@ -267,10 +273,16 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{isCentralAsia ? "Фамилия" : "Last Name"}</FormLabel>
+                    <FormLabel>
+                      {forms.getFieldLabel(formType, "lastName", isCentralAsia)}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={isCentralAsia ? "Введите вашу фамилию" : "Enter your last name"}
+                        placeholder={forms.getFieldPlaceholder(
+                          formType,
+                          "lastName",
+                          isCentralAsia,
+                        )}
                         {...field}
                         className="h-12 text-lg"
                       />
@@ -290,12 +302,16 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      {isCentralAsia ? "Электронная почта" : "Email Address"}
+                      {forms.getFieldLabel(formType, "email", isCentralAsia)}
                     </FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder={isCentralAsia ? "ваш@email.com" : "your@email.com"}
+                        placeholder={forms.getFieldPlaceholder(
+                          formType,
+                          "email",
+                          isCentralAsia,
+                        )}
                         {...field}
                         className="h-12 text-lg"
                       />
@@ -311,12 +327,16 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      {isCentralAsia ? "Номер телефона" : "Phone Number"}
+                      {forms.getFieldLabel(formType, "phone", isCentralAsia)}
                     </FormLabel>
                     <FormControl>
                       <Input
                         type="tel"
-                        placeholder={isCentralAsia ? "+7 (555) 000-0000" : "(386) 555-0123"}
+                        placeholder={forms.getFieldPlaceholder(
+                          formType,
+                          "phone",
+                          isCentralAsia,
+                        )}
                         {...field}
                         className="h-12 text-lg"
                       />
@@ -336,15 +356,21 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia ? "Как мы можем помочь вам?" : "How can we help you?"}
+                        {forms.getFieldLabel(
+                          formType,
+                          "inquiryType",
+                          isCentralAsia,
+                        )}
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value as string}>
                         <FormControl>
                           <SelectTrigger className="h-12 text-lg">
                             <SelectValue
-                              placeholder={
-                                isCentralAsia ? "Выберите тип запроса" : "Select inquiry type"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                formType,
+                                "inquiryType",
+                                isCentralAsia,
+                              )}
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -380,15 +406,15 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                     <FormItem>
                       <FormLabel className="flex items-center gap-2">
                         <MessageSquare className="w-4 h-4" />
-                        {isCentralAsia ? "Ваше сообщение" : "Your Message"}
+                        {forms.getFieldLabel(formType, "message", isCentralAsia)}
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder={
-                            isCentralAsia
-                              ? "Расскажите подробнее о вашем запросе. Чем больше деталей вы предоставите, тем лучше мы сможем помочь."
-                              : "Tell us more about your inquiry. The more details you provide, the better we can assist you."
-                          }
+                          placeholder={forms.getFieldPlaceholder(
+                            formType,
+                            "message",
+                            isCentralAsia,
+                          )}
                           className="min-h-[120px] text-lg"
                           {...field}
                         />
@@ -406,17 +432,21 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia ? "Направление волонтёрства" : "Volunteer Opportunity"}
+                        {forms.getFieldLabel(
+                          formType,
+                          "volunteerType",
+                          isCentralAsia,
+                        )}
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value as string}>
                         <FormControl>
                           <SelectTrigger className="h-12 text-lg">
                             <SelectValue
-                              placeholder={
-                                isCentralAsia
-                                  ? "Выберите направление волонтёрства"
-                                  : "Select volunteer opportunity"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                formType,
+                                "volunteerType",
+                                isCentralAsia,
+                              )}
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -451,15 +481,19 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia ? "Соответствующий опыт" : "Relevant Experience"}
+                        {forms.getFieldLabel(
+                          formType,
+                          "experience",
+                          isCentralAsia,
+                        )}
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder={
-                            isCentralAsia
-                              ? "Опишите ваш профессиональный опыт, волонтёрскую деятельность или навыки, которые пригодятся в этой роли."
-                              : "Describe your relevant work experience, volunteer experience, or skills that would help in this role."
-                          }
+                          placeholder={forms.getFieldPlaceholder(
+                            formType,
+                            "experience",
+                            isCentralAsia,
+                          )}
                           className="min-h-[100px] text-lg"
                           {...field}
                         />
@@ -474,17 +508,21 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia ? "Доступность" : "Availability"}
+                        {forms.getFieldLabel(
+                          formType,
+                          "availability",
+                          isCentralAsia,
+                        )}
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value as string}>
                         <FormControl>
                           <SelectTrigger className="h-12 text-lg">
                             <SelectValue
-                              placeholder={
-                                isCentralAsia
-                                  ? "Укажите вашу доступность"
-                                  : "Select your availability"
-                              }
+                              placeholder={forms.getFieldPlaceholder(
+                                formType,
+                                "availability",
+                                isCentralAsia,
+                              )}
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -516,17 +554,19 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia
-                          ? "Почему вы хотите стать волонтёром?"
-                          : "Why do you want to volunteer with us?"}
+                        {forms.getFieldLabel(
+                          formType,
+                          "motivation",
+                          isCentralAsia,
+                        )}
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder={
-                            isCentralAsia
-                              ? "Расскажите, что вас мотивирует и почему вас интересует наша миссия."
-                              : "Tell us what motivates you to volunteer and why you're interested in our mission."
-                          }
+                          placeholder={forms.getFieldPlaceholder(
+                            formType,
+                            "motivation",
+                            isCentralAsia,
+                          )}
                           className="min-h-[100px] text-lg"
                           {...field}
                         />
@@ -541,15 +581,15 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {isCentralAsia ? "Навыки и экспертиза" : "Skills & Expertise"}
+                        {forms.getFieldLabel(formType, "skills", isCentralAsia)}
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder={
-                            isCentralAsia
-                              ? "Например: наставничество в бизнесе, маркетинг, финансовое планирование, организация мероприятий..."
-                              : "e.g., Business mentorship, marketing, financial planning, event coordination..."
-                          }
+                          placeholder={forms.getFieldPlaceholder(
+                            formType,
+                            "skills",
+                            isCentralAsia,
+                          )}
                           {...field}
                           className="h-12 text-lg"
                         />
