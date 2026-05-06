@@ -13,6 +13,7 @@ import resource from "./documents/resource";
 import testimonial from "./documents/testimonial";
 import course from "./documents/course";
 import courseWeek from "./documents/courseWeek";
+import courseLesson from "./documents/courseLesson";
 import volunteerOpportunity from "./documents/volunteerOpportunity";
 import siteSettings from "./singletons/siteSettings";
 import homepageHero from "./singletons/homepageHero";
@@ -47,6 +48,7 @@ export const schemaTypes = [
   testimonial,
   course,
   courseWeek,
+  courseLesson,
   volunteerOpportunity,
   // Singletons
   siteSettings,

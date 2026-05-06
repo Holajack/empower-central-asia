@@ -5,7 +5,7 @@ export default defineType({
   title: "Course Week",
   type: "document",
   description:
-    "One week of a course. Title, key quote, overview, objectives, action items are all editable. Deep lesson sections / story content are still hardcoded in src/data — that's a future phase.",
+    "One week of a course. Top-level fields (title, quote, overview, objectives, action items) are editable. The `lessons` field lists per-day lesson docs; if populated the site renders those instead of the hardcoded fallback. Story content / worksheets stay hardcoded for now.",
   groups: [
     { name: "english", title: "English", default: true },
     { name: "russian", title: "Русский (Russian)" },
@@ -139,6 +139,15 @@ export default defineType({
       group: "structure",
       description:
         "YouTube or Vimeo video for this week. Optional — leave blank if not yet recorded.",
+    }),
+    defineField({
+      name: "lessons",
+      title: "Lessons (per day)",
+      type: "array",
+      group: "structure",
+      description:
+        "Per-day lesson docs that make up this week. Order is the rendered order. Leave empty to fall back to the hardcoded data.",
+      of: [{ type: "reference", to: [{ type: "courseLesson" }] }],
     }),
     defineField({
       name: "active",
