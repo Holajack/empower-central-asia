@@ -49,7 +49,9 @@
     "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts",
     "migrate:debt-calculator": "tsx scripts/migrate-debt-calculator-page.mts",
     "migrate:cohort-page": "tsx scripts/migrate-cohort-page.mts",
-    "migrate:newsletter-page": "tsx scripts/migrate-newsletter-page.mts"
+    "migrate:newsletter-page": "tsx scripts/migrate-newsletter-page.mts",
+    "migrate:volunteer-app-page": "tsx scripts/migrate-volunteer-application-page.mts",
+    "migrate:partner-app-page": "tsx scripts/migrate-partner-application-page.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
