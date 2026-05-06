@@ -27,8 +27,21 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { useRegion } from "@/contexts/RegionContext";
 import { Breadcrumbs } from "@/components/SEO";
+import {
+  useDebtCalculatorPage,
+  getDebtCalcCopy,
+  getStepTitle,
+  getStepDescription,
+  getNextStepLabel,
+  getNextStepDescription,
+  getNextStepCtaLabel,
+  getRelatedResourceTitle,
+  getRelatedResourceSummary,
+  getLocalizedBody,
+} from "@/hooks/useDebtCalculatorPage";
 
 interface Debt {
   id: string;
@@ -55,6 +68,90 @@ interface PayoffResult {
 }
 
 const STORAGE_KEY = "bbb-debt-calculator";
+
+// Bilingual UI labels that live inline with the calculator widget. These are
+// either form-field labels rendered hundreds of times (so they stay in code),
+// or terms tied to the React state shape (snowball/avalanche enum values),
+// or chart helpers used inside formatter callbacks. Everything else flows
+// through the Sanity hook.
+const UI = {
+  yourDebts: { en: "Your Debts", ru: "Ваши долги" },
+  debtN: { en: "Debt", ru: "Долг" },
+  fieldName: { en: "Name", ru: "Название" },
+  fieldNamePlaceholder: { en: "e.g. Visa Card", ru: "напр. Кредитная карта" },
+  fieldBalance: { en: "Balance ($)", ru: "Остаток ($)" },
+  fieldRate: { en: "Interest Rate (%)", ru: "Процентная ставка (%)" },
+  fieldMinPayment: { en: "Minimum Payment ($)", ru: "Минимальный платёж ($)" },
+  addDebt: { en: "Add Another Debt", ru: "Добавить ещё один долг" },
+  payoffStrategy: { en: "Payoff Strategy", ru: "Стратегия погашения" },
+  snowball: { en: "Snowball", ru: "Снежный ком" },
+  avalanche: { en: "Avalanche", ru: "Лавина" },
+  debtSnowball: { en: "Debt Snowball", ru: "Снежный ком" },
+  debtAvalanche: { en: "Debt Avalanche", ru: "Лавина" },
+  snowballExplain: {
+    en: "Pay off the smallest balance first while making minimums on everything else. Quick wins build momentum and motivation. Best for people who need psychological victories to stay on track.",
+    ru: "Сначала погасите наименьший долг, выплачивая минимум по остальным. Быстрые победы создают импульс и мотивацию. Подходит тем, кому нужны психологические победы для поддержания курса.",
+  },
+  avalancheExplain: {
+    en: "Pay off the highest interest rate first while making minimums on everything else. Saves the most money on interest over time. Best for people motivated by math and long-term savings.",
+    ru: "Сначала погасите долг с наибольшей процентной ставкой, выплачивая минимум по остальным. Экономит больше всего на процентах. Подходит тем, кого мотивирует математика и долгосрочная экономия.",
+  },
+  extraMonthlyPayment: {
+    en: "Extra Monthly Payment",
+    ru: "Дополнительный ежемесячный платёж",
+  },
+  extraExplain: {
+    en: "How much extra can you put toward debt each month, above your minimum payments?",
+    ru: "Сколько дополнительно вы можете вносить на погашение долга каждый месяц сверх минимальных платежей?",
+  },
+  perMonth: { en: "/month", ru: "/месяц" },
+  payoffTimeline: { en: "Payoff Timeline", ru: "График погашения" },
+  remainingBalance: { en: "Remaining Balance", ru: "Остаток долга" },
+  interestPaid: { en: "Interest Paid", ru: "Выплачено процентов" },
+  payoffMilestones: { en: "Payoff Milestones", ru: "Вехи погашения" },
+  paidOffAtMonth: {
+    en: (name: string, m: number) => `${name} paid off at month ${m}`,
+    ru: (name: string, m: number) => `${name} погашен на месяце ${m}`,
+  },
+  yourResults: { en: "Your Results", ru: "Ваши результаты" },
+  addDebtsHint: {
+    en: "Add your debts to see results",
+    ru: "Добавьте долги, чтобы увидеть результаты",
+  },
+  debtFreeIn: { en: "Debt-Free In", ru: "Свободен от долгов через" },
+  totalInterest: { en: "Total Interest", ru: "Всего процентов" },
+  totalPaid: { en: "Total Paid", ru: "Всего выплачено" },
+  vsMinimum: {
+    en: "vs. minimum payments only:",
+    ru: "по сравнению с минимальными платежами:",
+  },
+  save: { en: "Save ", ru: "Экономия " },
+  sooner: {
+    en: (s: string) => `and ${s} sooner`,
+    ru: (s: string) => `и на ${s} быстрее`,
+  },
+  quickComparison: { en: "Quick Comparison", ru: "Быстрое сравнение" },
+  snowballRow: { en: "Snowball:", ru: "Снежный ком:" },
+  avalancheRow: { en: "Avalanche:", ru: "Лавина:" },
+  intAbbr: { en: "int.", ru: "проц." },
+  avalancheSaves: {
+    en: (s: string) => `Avalanche saves ${s} in interest`,
+    ru: (s: string) => `Лавина экономит ${s} на процентах`,
+  },
+  snowballSaves: {
+    en: (s: string) => `Snowball saves ${s} in interest`,
+    ru: (s: string) => `Снежный ком экономит ${s} на процентах`,
+  },
+};
+
+function pickUI<K extends keyof typeof UI>(
+  key: K,
+  isCA: boolean
+): (typeof UI)[K] extends { en: infer T; ru: T } ? T : never {
+  // Type tells us en and ru are the same shape on each entry. Runtime is just
+  // a property pick.
+  return (isCA ? (UI[key] as { ru: unknown }).ru : (UI[key] as { en: unknown }).en) as never;
+}
 
 function generateId() {
   return Math.random().toString(36).substring(2, 9);
@@ -193,8 +290,38 @@ function formatMonths(m: number, isCentralAsia: boolean): string {
   return `${years}y ${months}m`;
 }
 
+// ── Portable Text styling for instructions + methodology bodies ──────────────
+
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="leading-relaxed text-gray-700 mb-3">{children}</p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-[#1B2A4A]/20 pl-4 italic text-gray-600 my-4">
+        {children}
+      </blockquote>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-xl font-bold text-[#1B2A4A] mt-6 mb-2">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-lg font-semibold text-[#1B2A4A] mt-4 mb-1">
+        {children}
+      </h3>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-medium text-[#1B2A4A]">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
+};
+
 const DebtCalculator = () => {
   const { isCentralAsia } = useRegion();
+  const { data: pageCopy } = useDebtCalculatorPage();
 
   const [debts, setDebts] = useState<Debt[]>(() => {
     try {
@@ -256,6 +383,68 @@ const DebtCalculator = () => {
       )
     );
   }
+
+  // ── Sanity-driven copy (with English fallback when Russian missing) ───────
+  const heroBadge = getDebtCalcCopy(pageCopy, "heroBadge", isCentralAsia);
+  const heroHeading = getDebtCalcCopy(pageCopy, "heroHeading", isCentralAsia);
+  const heroSubheading = getDebtCalcCopy(
+    pageCopy,
+    "heroSubheading",
+    isCentralAsia
+  );
+  const instructionsHeading = getDebtCalcCopy(
+    pageCopy,
+    "instructionsHeading",
+    isCentralAsia
+  );
+  const methodologyHeading = getDebtCalcCopy(
+    pageCopy,
+    "methodologyHeading",
+    isCentralAsia
+  );
+  const footnote = getDebtCalcCopy(pageCopy, "footnote", isCentralAsia);
+  const nextStepsHeading = getDebtCalcCopy(
+    pageCopy,
+    "nextStepsHeading",
+    isCentralAsia
+  );
+  const nextStepsIntro = getDebtCalcCopy(
+    pageCopy,
+    "nextStepsIntro",
+    isCentralAsia
+  );
+  const relatedResourcesHeading = getDebtCalcCopy(
+    pageCopy,
+    "relatedResourcesHeading",
+    isCentralAsia
+  );
+  const bottomCtaHeading = getDebtCalcCopy(
+    pageCopy,
+    "bottomCtaHeading",
+    isCentralAsia
+  );
+  const bottomCtaSubheading = getDebtCalcCopy(
+    pageCopy,
+    "bottomCtaSubheading",
+    isCentralAsia
+  );
+  const primaryLabel = getDebtCalcCopy(pageCopy, "primaryLabel", isCentralAsia);
+  const secondaryLabel = getDebtCalcCopy(
+    pageCopy,
+    "secondaryLabel",
+    isCentralAsia
+  );
+
+  const instructionsBody = getLocalizedBody(
+    pageCopy.instructionsBody,
+    pageCopy.instructionsBodyRu,
+    isCentralAsia
+  );
+  const methodologyBody = getLocalizedBody(
+    pageCopy.methodologyBody,
+    pageCopy.methodologyBodyRu,
+    isCentralAsia
+  );
 
   return (
     <>
@@ -332,18 +521,60 @@ const DebtCalculator = () => {
           <div className="container mx-auto px-4 text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Calculator className="w-4 h-4 text-[#C9922A]" />
-              {isCentralAsia ? "Бесплатный интерактивный инструмент" : "Free Interactive Tool"}
+              {heroBadge}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              {isCentralAsia ? "Калькулятор погашения долгов" : "Debt Payoff Calculator"}
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">{heroHeading}</h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-              {isCentralAsia
-                ? "Сравните стратегии снежного кома и лавины и узнайте, когда именно вы избавитесь от долгов."
-                : "Compare snowball vs. avalanche strategies and see exactly when you'll be debt-free."}
+              {heroSubheading}
             </p>
           </div>
         </div>
+
+        {/* Instructions / How it works */}
+        {(instructionsBody.length > 0 ||
+          pageCopy.howItWorksSteps.length > 0) && (
+          <div className="container mx-auto px-4 pt-8 md:pt-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl text-[#1B2A4A]">
+                  {instructionsHeading}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {instructionsBody.length > 0 && (
+                  <div className="prose prose-sm max-w-none">
+                    <PortableText
+                      value={instructionsBody}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                )}
+                {pageCopy.howItWorksSteps.length > 0 && (
+                  <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                    {pageCopy.howItWorksSteps.map((step) => (
+                      <li
+                        key={step._key ?? step.stepNumber ?? step.title}
+                        className="flex gap-3 border border-gray-200 rounded-lg p-4"
+                      >
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#C9922A]/10 text-[#C9922A] font-bold flex items-center justify-center">
+                          {step.stepNumber ?? ""}
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-semibold text-[#1B2A4A]">
+                            {getStepTitle(step, isCentralAsia)}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            {getStepDescription(step, isCentralAsia)}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         <div className="container mx-auto px-4 py-8 md:py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -354,7 +585,7 @@ const DebtCalculator = () => {
                 <CardHeader>
                   <CardTitle className="text-xl text-[#1B2A4A] flex items-center gap-2">
                     <DollarSign className="w-5 h-5 text-[#C9922A]" />
-                    {isCentralAsia ? "Ваши долги" : "Your Debts"}
+                    {pickUI("yourDebts", isCentralAsia)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -365,7 +596,7 @@ const DebtCalculator = () => {
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-500">
-                          {isCentralAsia ? `Долг ${index + 1}` : `Debt ${index + 1}`}
+                          {pickUI("debtN", isCentralAsia)} {index + 1}
                         </span>
                         {debts.length > 1 && (
                           <Button
@@ -384,11 +615,14 @@ const DebtCalculator = () => {
                             htmlFor={`name-${debt.id}`}
                             className="text-xs text-gray-500"
                           >
-                            {isCentralAsia ? "Название" : "Name"}
+                            {pickUI("fieldName", isCentralAsia)}
                           </Label>
                           <Input
                             id={`name-${debt.id}`}
-                            placeholder={isCentralAsia ? "напр. Кредитная карта" : "e.g. Visa Card"}
+                            placeholder={pickUI(
+                              "fieldNamePlaceholder",
+                              isCentralAsia
+                            )}
                             value={debt.name}
                             onChange={(e) =>
                               updateDebt(debt.id, "name", e.target.value)
@@ -400,7 +634,7 @@ const DebtCalculator = () => {
                             htmlFor={`balance-${debt.id}`}
                             className="text-xs text-gray-500"
                           >
-                            {isCentralAsia ? "Остаток ($)" : "Balance ($)"}
+                            {pickUI("fieldBalance", isCentralAsia)}
                           </Label>
                           <Input
                             id={`balance-${debt.id}`}
@@ -418,7 +652,7 @@ const DebtCalculator = () => {
                             htmlFor={`rate-${debt.id}`}
                             className="text-xs text-gray-500"
                           >
-                            {isCentralAsia ? "Процентная ставка (%)" : "Interest Rate (%)"}
+                            {pickUI("fieldRate", isCentralAsia)}
                           </Label>
                           <Input
                             id={`rate-${debt.id}`}
@@ -437,7 +671,7 @@ const DebtCalculator = () => {
                             htmlFor={`min-${debt.id}`}
                             className="text-xs text-gray-500"
                           >
-                            {isCentralAsia ? "Минимальный платёж ($)" : "Minimum Payment ($)"}
+                            {pickUI("fieldMinPayment", isCentralAsia)}
                           </Label>
                           <Input
                             id={`min-${debt.id}`}
@@ -460,7 +694,7 @@ const DebtCalculator = () => {
                     className="w-full border-dashed border-[#C9922A] text-[#C9922A] hover:bg-[#C9922A]/5"
                   >
                     <Plus className="w-4 h-4 mr-2" />
-                    {isCentralAsia ? "Добавить ещё один долг" : "Add Another Debt"}
+                    {pickUI("addDebt", isCentralAsia)}
                   </Button>
                 </CardContent>
               </Card>
@@ -470,7 +704,7 @@ const DebtCalculator = () => {
                 <CardHeader>
                   <CardTitle className="text-xl text-[#1B2A4A] flex items-center gap-2">
                     <TrendingDown className="w-5 h-5 text-[#C9922A]" />
-                    {isCentralAsia ? "Стратегия погашения" : "Payoff Strategy"}
+                    {pickUI("payoffStrategy", isCentralAsia)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -482,10 +716,10 @@ const DebtCalculator = () => {
                   >
                     <TabsList className="grid w-full grid-cols-2">
                       <TabsTrigger value="snowball">
-                        {isCentralAsia ? "Снежный ком" : "Snowball"}
+                        {pickUI("snowball", isCentralAsia)}
                       </TabsTrigger>
                       <TabsTrigger value="avalanche">
-                        {isCentralAsia ? "Лавина" : "Avalanche"}
+                        {pickUI("avalanche", isCentralAsia)}
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent value="snowball" className="mt-4">
@@ -494,12 +728,10 @@ const DebtCalculator = () => {
                           <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                           <div>
                             <p className="font-medium text-blue-900 mb-1">
-                              {isCentralAsia ? "Снежный ком" : "Debt Snowball"}
+                              {pickUI("debtSnowball", isCentralAsia)}
                             </p>
                             <p className="text-sm text-blue-700">
-                              {isCentralAsia
-                                ? "Сначала погасите наименьший долг, выплачивая минимум по остальным. Быстрые победы создают импульс и мотивацию. Подходит тем, кому нужны психологические победы для поддержания курса."
-                                : "Pay off the smallest balance first while making minimums on everything else. Quick wins build momentum and motivation. Best for people who need psychological victories to stay on track."}
+                              {pickUI("snowballExplain", isCentralAsia)}
                             </p>
                           </div>
                         </div>
@@ -511,12 +743,10 @@ const DebtCalculator = () => {
                           <Info className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                           <div>
                             <p className="font-medium text-green-900 mb-1">
-                              {isCentralAsia ? "Лавина" : "Debt Avalanche"}
+                              {pickUI("debtAvalanche", isCentralAsia)}
                             </p>
                             <p className="text-sm text-green-700">
-                              {isCentralAsia
-                                ? "Сначала погасите долг с наибольшей процентной ставкой, выплачивая минимум по остальным. Экономит больше всего на процентах. Подходит тем, кого мотивирует математика и долгосрочная экономия."
-                                : "Pay off the highest interest rate first while making minimums on everything else. Saves the most money on interest over time. Best for people motivated by math and long-term savings."}
+                              {pickUI("avalancheExplain", isCentralAsia)}
                             </p>
                           </div>
                         </div>
@@ -529,12 +759,10 @@ const DebtCalculator = () => {
                       htmlFor="extra"
                       className="text-sm font-medium text-gray-700"
                     >
-                      {isCentralAsia ? "Дополнительный ежемесячный платёж" : "Extra Monthly Payment"}
+                      {pickUI("extraMonthlyPayment", isCentralAsia)}
                     </Label>
                     <p className="text-xs text-gray-500 mb-2">
-                      {isCentralAsia
-                        ? "Сколько дополнительно вы можете вносить на погашение долга каждый месяц сверх минимальных платежей?"
-                        : "How much extra can you put toward debt each month, above your minimum payments?"}
+                      {pickUI("extraExplain", isCentralAsia)}
                     </p>
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500 font-medium">$</span>
@@ -549,7 +777,7 @@ const DebtCalculator = () => {
                         className="max-w-[200px]"
                       />
                       <span className="text-sm text-gray-500">
-                        {isCentralAsia ? "/месяц" : "/month"}
+                        {pickUI("perMonth", isCentralAsia)}
                       </span>
                     </div>
                   </div>
@@ -561,7 +789,7 @@ const DebtCalculator = () => {
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-xl text-[#1B2A4A]">
-                      {isCentralAsia ? "График погашения" : "Payoff Timeline"}
+                      {pickUI("payoffTimeline", isCentralAsia)}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -584,9 +812,9 @@ const DebtCalculator = () => {
                             formatter={(value: number, name: string) => [
                               formatCurrency(value),
                               name === "totalBalance"
-                                ? isCentralAsia ? "Остаток долга" : "Remaining Balance"
+                                ? pickUI("remainingBalance", isCentralAsia)
                                 : name === "interestPaid"
-                                ? isCentralAsia ? "Выплачено процентов" : "Interest Paid"
+                                ? pickUI("interestPaid", isCentralAsia)
                                 : name,
                             ]}
                             labelFormatter={(label) => label}
@@ -594,9 +822,9 @@ const DebtCalculator = () => {
                           <Legend
                             formatter={(value) =>
                               value === "totalBalance"
-                                ? isCentralAsia ? "Остаток долга" : "Remaining Balance"
+                                ? pickUI("remainingBalance", isCentralAsia)
                                 : value === "interestPaid"
-                                ? isCentralAsia ? "Выплачено процентов" : "Interest Paid"
+                                ? pickUI("interestPaid", isCentralAsia)
                                 : value
                             }
                           />
@@ -622,7 +850,7 @@ const DebtCalculator = () => {
                     {result.milestones.length > 0 && (
                       <div className="mt-6 border-t pt-4">
                         <h4 className="text-sm font-medium text-gray-700 mb-3">
-                          {isCentralAsia ? "Вехи погашения" : "Payoff Milestones"}
+                          {pickUI("payoffMilestones", isCentralAsia)}
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {result.milestones.map((m, i) => (
@@ -630,9 +858,10 @@ const DebtCalculator = () => {
                               key={i}
                               className="bg-green-50 border border-green-200 rounded-full px-3 py-1 text-sm text-green-700"
                             >
-                              {isCentralAsia
-                                ? `${m.debtName} погашен на месяце ${m.month}`
-                                : `${m.debtName} paid off at month ${m.month}`}
+                              {pickUI("paidOffAtMonth", isCentralAsia)(
+                                m.debtName,
+                                m.month
+                              )}
                             </div>
                           ))}
                         </div>
@@ -641,6 +870,104 @@ const DebtCalculator = () => {
                   </CardContent>
                 </Card>
               )}
+
+              {/* Methodology / formula explanation */}
+              {(methodologyBody.length > 0 || footnote) && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl text-[#1B2A4A]">
+                      {methodologyHeading}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {methodologyBody.length > 0 && (
+                      <div className="prose prose-sm max-w-none">
+                        <PortableText
+                          value={methodologyBody}
+                          components={portableTextComponents}
+                        />
+                      </div>
+                    )}
+                    {footnote && (
+                      <p className="text-xs text-gray-500 border-t pt-3 mt-3 leading-relaxed">
+                        {footnote}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Next steps */}
+              {(nextStepsHeading && pageCopy.nextSteps.length > 0) ||
+              nextStepsIntro ? (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl text-[#1B2A4A]">
+                      {nextStepsHeading}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {nextStepsIntro && (
+                      <p className="text-gray-700 leading-relaxed">
+                        {nextStepsIntro}
+                      </p>
+                    )}
+                    {pageCopy.nextSteps.length > 0 && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {pageCopy.nextSteps.map((item) => {
+                          const label = getNextStepLabel(item, isCentralAsia);
+                          const desc = getNextStepDescription(
+                            item,
+                            isCentralAsia
+                          );
+                          const ctaLabel = getNextStepCtaLabel(
+                            item,
+                            isCentralAsia
+                          );
+                          const url = item.ctaUrl || "#";
+                          const isExternal = /^https?:\/\//i.test(url);
+                          return (
+                            <div
+                              key={item._key ?? label}
+                              className="border border-gray-200 rounded-lg p-4 space-y-2"
+                            >
+                              {label && (
+                                <p className="font-semibold text-[#1B2A4A]">
+                                  {label}
+                                </p>
+                              )}
+                              {desc && (
+                                <p className="text-sm text-gray-600">{desc}</p>
+                              )}
+                              {ctaLabel && (
+                                isExternal ? (
+                                  <a
+                                    href={url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center gap-1 text-sm text-[#C9922A] hover:underline"
+                                  >
+                                    {ctaLabel}
+                                    <ArrowRight className="w-3 h-3" />
+                                  </a>
+                                ) : (
+                                  <Link
+                                    to={url}
+                                    className="inline-flex items-center gap-1 text-sm text-[#C9922A] hover:underline"
+                                  >
+                                    {ctaLabel}
+                                    <ArrowRight className="w-3 h-3" />
+                                  </Link>
+                                )
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ) : null}
             </div>
 
             {/* Right Column: Results */}
@@ -649,15 +976,13 @@ const DebtCalculator = () => {
               <Card className="border-2 border-[#C9922A]/30 bg-gradient-to-br from-[#1B2A4A]/5 to-[#C9922A]/5">
                 <CardHeader>
                   <CardTitle className="text-xl text-[#1B2A4A] text-center">
-                    {isCentralAsia ? "Ваши результаты" : "Your Results"}
+                    {pickUI("yourResults", isCentralAsia)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {validDebts.length === 0 ? (
                     <p className="text-center text-gray-500 py-4">
-                      {isCentralAsia
-                        ? "Добавьте долги, чтобы увидеть результаты"
-                        : "Add your debts to see results"}
+                      {pickUI("addDebtsHint", isCentralAsia)}
                     </p>
                   ) : (
                     <>
@@ -665,7 +990,7 @@ const DebtCalculator = () => {
                         <div className="flex items-center justify-center gap-2 mb-1">
                           <Calendar className="w-4 h-4 text-[#C9922A]" />
                           <span className="text-sm text-gray-600">
-                            {isCentralAsia ? "Свободен от долгов через" : "Debt-Free In"}
+                            {pickUI("debtFreeIn", isCentralAsia)}
                           </span>
                         </div>
                         <div className="text-3xl font-bold text-[#1B2A4A]">
@@ -676,7 +1001,7 @@ const DebtCalculator = () => {
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-center">
                           <div className="text-xs text-gray-500 mb-1">
-                            {isCentralAsia ? "Всего процентов" : "Total Interest"}
+                            {pickUI("totalInterest", isCentralAsia)}
                           </div>
                           <div className="text-lg font-bold text-red-600">
                             {formatCurrency(result.totalInterest)}
@@ -684,7 +1009,7 @@ const DebtCalculator = () => {
                         </div>
                         <div className="text-center">
                           <div className="text-xs text-gray-500 mb-1">
-                            {isCentralAsia ? "Всего выплачено" : "Total Paid"}
+                            {pickUI("totalPaid", isCentralAsia)}
                           </div>
                           <div className="text-lg font-bold text-[#1B2A4A]">
                             {formatCurrency(result.totalPaid)}
@@ -695,18 +1020,16 @@ const DebtCalculator = () => {
                       {interestSaved > 0 && (
                         <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
                           <p className="text-sm text-green-700 mb-1">
-                            {isCentralAsia
-                              ? "по сравнению с минимальными платежами:"
-                              : "vs. minimum payments only:"}
+                            {pickUI("vsMinimum", isCentralAsia)}
                           </p>
                           <p className="text-xl font-bold text-green-700">
-                            {isCentralAsia ? "Экономия " : "Save "}
+                            {pickUI("save", isCentralAsia)}
                             {formatCurrency(interestSaved)}
                           </p>
                           <p className="text-sm text-green-600">
-                            {isCentralAsia
-                              ? `и на ${formatMonths(monthsSaved, isCentralAsia)} быстрее`
-                              : `and ${formatMonths(monthsSaved, isCentralAsia)} sooner`}
+                            {pickUI("sooner", isCentralAsia)(
+                              formatMonths(monthsSaved, isCentralAsia)
+                            )}
                           </p>
                         </div>
                       )}
@@ -721,7 +1044,7 @@ const DebtCalculator = () => {
                   <CardHeader>
                     <CardTitle className="text-lg text-[#1B2A4A] flex items-center gap-2">
                       <Percent className="w-4 h-4 text-[#C9922A]" />
-                      {isCentralAsia ? "Быстрое сравнение" : "Quick Comparison"}
+                      {pickUI("quickComparison", isCentralAsia)}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -740,33 +1063,39 @@ const DebtCalculator = () => {
                         <div className="space-y-3">
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">
-                              {isCentralAsia ? "Снежный ком:" : "Snowball:"}
+                              {pickUI("snowballRow", isCentralAsia)}
                             </span>
                             <span className="font-medium">
                               {formatMonths(snowball.months, isCentralAsia)} /{" "}
                               {formatCurrency(snowball.totalInterest)}{" "}
-                              {isCentralAsia ? "проц." : "int."}
+                              {pickUI("intAbbr", isCentralAsia)}
                             </span>
                           </div>
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">
-                              {isCentralAsia ? "Лавина:" : "Avalanche:"}
+                              {pickUI("avalancheRow", isCentralAsia)}
                             </span>
                             <span className="font-medium">
                               {formatMonths(avalanche.months, isCentralAsia)} /{" "}
                               {formatCurrency(avalanche.totalInterest)}{" "}
-                              {isCentralAsia ? "проц." : "int."}
+                              {pickUI("intAbbr", isCentralAsia)}
                             </span>
                           </div>
                           {snowball.totalInterest !== avalanche.totalInterest && (
                             <p className="text-xs text-gray-500 mt-2 pt-2 border-t">
                               {avalanche.totalInterest < snowball.totalInterest
-                                ? isCentralAsia
-                                  ? `Лавина экономит ${formatCurrency(snowball.totalInterest - avalanche.totalInterest)} на процентах`
-                                  : `Avalanche saves ${formatCurrency(snowball.totalInterest - avalanche.totalInterest)} in interest`
-                                : isCentralAsia
-                                ? `Снежный ком экономит ${formatCurrency(avalanche.totalInterest - snowball.totalInterest)} на процентах`
-                                : `Snowball saves ${formatCurrency(avalanche.totalInterest - snowball.totalInterest)} in interest`}
+                                ? pickUI("avalancheSaves", isCentralAsia)(
+                                    formatCurrency(
+                                      snowball.totalInterest -
+                                        avalanche.totalInterest
+                                    )
+                                  )
+                                : pickUI("snowballSaves", isCentralAsia)(
+                                    formatCurrency(
+                                      avalanche.totalInterest -
+                                        snowball.totalInterest
+                                    )
+                                  )}
                             </p>
                           )}
                         </div>
@@ -780,45 +1109,116 @@ const DebtCalculator = () => {
               <Card className="border border-gray-200">
                 <CardHeader>
                   <CardTitle className="text-lg text-[#1B2A4A]">
-                    {isCentralAsia ? "Узнать больше" : "Learn More"}
+                    {relatedResourcesHeading}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Link
-                    to="/blog/debt-snowball-vs-avalanche-which-actually-works"
-                    className="block text-sm text-[#1B2A4A] hover:text-[#C9922A] transition-colors"
-                  >
-                    <span className="flex items-center gap-2">
-                      <ArrowRight className="w-3 h-3" />
-                      {isCentralAsia
-                        ? "Снежный ком против лавины: что реально работает?"
-                        : "Debt Snowball vs. Avalanche: Which Actually Works?"}
-                    </span>
-                  </Link>
-                  <Link
-                    to="/blog/5-financial-habits-first-generation-entrepreneurs"
-                    className="block text-sm text-[#1B2A4A] hover:text-[#C9922A] transition-colors"
-                  >
-                    <span className="flex items-center gap-2">
-                      <ArrowRight className="w-3 h-3" />
-                      {isCentralAsia
-                        ? "5 финансовых привычек для предпринимателей в первом поколении"
-                        : "5 Financial Habits for First-Generation Entrepreneurs"}
-                    </span>
-                  </Link>
-                  <div className="border-t pt-3 mt-3">
-                    <Link to="/course/financial-literacy">
-                      <Button className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white">
-                        {isCentralAsia ? "Начать бесплатный курс" : "Start the Free Course"}
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
+                  {pageCopy.relatedResources.map((card) => {
+                    const title = getRelatedResourceTitle(card, isCentralAsia);
+                    const summary = getRelatedResourceSummary(
+                      card,
+                      isCentralAsia
+                    );
+                    const url = card.slug || "#";
+                    const isExternal = /^https?:\/\//i.test(url);
+                    return (
+                      <div
+                        key={card._key ?? title}
+                        className="block text-sm text-[#1B2A4A] hover:text-[#C9922A] transition-colors"
+                      >
+                        {isExternal ? (
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-start gap-2"
+                          >
+                            <ArrowRight className="w-3 h-3 mt-1 flex-shrink-0" />
+                            <span>
+                              <span className="block">{title}</span>
+                              {summary && (
+                                <span className="block text-xs text-gray-500 mt-0.5">
+                                  {summary}
+                                </span>
+                              )}
+                            </span>
+                          </a>
+                        ) : (
+                          <Link to={url} className="flex items-start gap-2">
+                            <ArrowRight className="w-3 h-3 mt-1 flex-shrink-0" />
+                            <span>
+                              <span className="block">{title}</span>
+                              {summary && (
+                                <span className="block text-xs text-gray-500 mt-0.5">
+                                  {summary}
+                                </span>
+                              )}
+                            </span>
+                          </Link>
+                        )}
+                      </div>
+                    );
+                  })}
+                  <div className="border-t pt-3 mt-3 space-y-2">
+                    {primaryLabel && pageCopy.primaryUrl && (
+                      <Link to={pageCopy.primaryUrl}>
+                        <Button className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white">
+                          {primaryLabel}
+                          <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                      </Link>
+                    )}
+                    {secondaryLabel && pageCopy.secondaryUrl && (
+                      <Link to={pageCopy.secondaryUrl}>
+                        <Button variant="outline" className="w-full">
+                          {secondaryLabel}
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </CardContent>
               </Card>
             </div>
           </div>
         </div>
+
+        {/* Bottom CTA */}
+        {(bottomCtaHeading || bottomCtaSubheading) && (
+          <div className="bg-[#1B2A4A] text-white py-12 md:py-16">
+            <div className="container mx-auto px-4 text-center max-w-3xl">
+              {bottomCtaHeading && (
+                <h2 className="text-2xl md:text-4xl font-bold mb-4">
+                  {bottomCtaHeading}
+                </h2>
+              )}
+              {bottomCtaSubheading && (
+                <p className="text-lg text-white/80 mb-6">
+                  {bottomCtaSubheading}
+                </p>
+              )}
+              <div className="flex flex-col sm:flex-row justify-center gap-3">
+                {primaryLabel && pageCopy.primaryUrl && (
+                  <Link to={pageCopy.primaryUrl}>
+                    <Button className="w-full sm:w-auto bg-[#C9922A] hover:bg-[#C9922A]/90 text-white">
+                      {primaryLabel}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
+                )}
+                {secondaryLabel && pageCopy.secondaryUrl && (
+                  <Link to={pageCopy.secondaryUrl}>
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-auto bg-transparent text-white border-white/30 hover:bg-white/10"
+                    >
+                      {secondaryLabel}
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

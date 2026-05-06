@@ -36,7 +36,8 @@
     "migrate:forms": "tsx scripts/migrate-form-settings.mts",
     "migrate:programs-and-impact": "tsx scripts/migrate-programs-and-impact.mts",
     "migrate:program-faqs": "tsx scripts/migrate-program-faqs.mts",
-    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts"
+    "migrate:program-deep-sections": "tsx scripts/migrate-program-deep-sections.mts",
+    "migrate:debt-calculator": "tsx scripts/migrate-debt-calculator-page.mts"
   },
   "dependencies": {
     "@clerk/react": "^6.1.0",
