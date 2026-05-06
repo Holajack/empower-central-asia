@@ -16,6 +16,12 @@ import { businessCreationRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
 import { useCourseWeek } from "@/hooks/useCourse";
+// TODO(agent-q follow-up): once Agent P's `useCourseWeekLessons` hook lands on
+// main, wire it in here so per-day lesson content is sourced from the
+// `courseLesson` Sanity docs created by `scripts/migrate-course-lessons-business.mts`.
+// Expected signature: useCourseWeekLessons({ course: "business-creation", weekNumber })
+// → { lessons: CourseLessonDoc[] | null, isLoading: boolean }
+// Fallback path: when `lessons` is null/empty, keep current `weekData` rendering.
 
 // Lazy-load worksheet components
 const AssumptionMapper = lazy(() => import("@/components/business-course/worksheets/AssumptionMapper"));
