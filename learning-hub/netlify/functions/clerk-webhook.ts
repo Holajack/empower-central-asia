@@ -42,12 +42,13 @@ export const handler: Handler = async (event) => {
 
   let evt: ClerkUserEvent;
   try {
-    const wh = new Webhook(secret);
-    evt = wh.verify(event.body || "", {
+    // svix v2: verify() throws on a bad signature/timestamp and returns nothing.
+    new Webhook(secret).verify(event.body || "", {
       "svix-id": svixId,
       "svix-timestamp": svixTimestamp,
       "svix-signature": svixSignature,
-    }) as unknown as ClerkUserEvent;
+    });
+    evt = JSON.parse(event.body || "{}") as ClerkUserEvent;
   } catch (err) {
     console.error("[clerk-webhook] signature verification failed", (err as Error).message);
     return { statusCode: 400, body: "Invalid signature" };
