@@ -13,7 +13,8 @@ import SectionNav from "@/components/course/SectionNav";
 import CohortCTA from "@/components/course/CohortCTA";
 import FourHatsCheckpoint from "@/components/business-course/FourHatsCheckpoint";
 import ReviewModal from "@/components/course/ReviewModal";
-import { getBusinessWeekContent, businessWeekContents } from "@/data/business-course";
+import type { BusinessWeekContent } from "@/data/business-course";
+import { getLocalizedWeek, getLocalizedWeeks } from "@/data/ru";
 import { businessCreationRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
@@ -134,8 +135,8 @@ const BusinessCourseWeek = () => {
   const { week: weekParam } = useParams<{ week: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const weekNum = parseInt((weekParam || "1").replace(/^week-/, ""), 10);
-  const weekData = getBusinessWeekContent(weekNum);
-  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+  const { isCentralAsia, isRegionCentralAsia, language } = useRegion();
+  const weekData = getLocalizedWeek<BusinessWeekContent>("business-creation", weekNum, language);
 
   // Sanity overlay — falls back to hardcoded weekData when null.
   const { week: sanityWeek } = useCourseWeek("business-creation", weekNum);
@@ -335,7 +336,7 @@ const BusinessCourseWeek = () => {
   }
 
   // Build week info for sidebar
-  const weeks = businessWeekContents.map((w) => ({
+  const weeks = getLocalizedWeeks<BusinessWeekContent>("business-creation", language).map((w) => ({
     weekNum: w.week,
     title: w.title,
   }));

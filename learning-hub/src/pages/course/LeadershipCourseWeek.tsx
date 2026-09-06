@@ -12,7 +12,8 @@ import DayContent from "@/components/course/DayContent";
 import SectionNav from "@/components/course/SectionNav";
 import CohortCTA from "@/components/course/CohortCTA";
 import ReviewModal from "@/components/course/ReviewModal";
-import { getLeadershipWeekContent, leadershipWeekContents } from "@/data/leadership-course";
+import type { LeadershipWeekContent } from "@/data/leadership-course";
+import { getLocalizedWeek, getLocalizedWeeks } from "@/data/ru";
 import { useRegion } from "@/contexts/RegionContext";
 import { useCourseWeek } from "@/hooks/useCourse";
 import { siteConfig } from "@/lib/seo";
@@ -95,8 +96,8 @@ const LeadershipCourseWeek = () => {
   const { week: weekParam } = useParams<{ week: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const weekNum = parseInt((weekParam || "1").replace(/^week-/, ""), 10);
-  const weekData = getLeadershipWeekContent(weekNum);
-  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+  const { isCentralAsia, isRegionCentralAsia, language } = useRegion();
+  const weekData = getLocalizedWeek<LeadershipWeekContent>("leadership-development", weekNum, language);
 
   // Sanity overlay — falls back to hardcoded weekData when null.
   const { week: sanityWeek } = useCourseWeek("leadership-development", weekNum);
@@ -279,7 +280,7 @@ const LeadershipCourseWeek = () => {
     navigateDay(day);
   }
 
-  const weeks = leadershipWeekContents.map((w) => ({
+  const weeks = getLocalizedWeeks<LeadershipWeekContent>("leadership-development", language).map((w) => ({
     weekNum: w.week,
     title: w.title,
   }));

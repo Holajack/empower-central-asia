@@ -7,9 +7,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Breadcrumbs } from "@/components/SEO";
 import { useRegion } from "@/contexts/RegionContext";
 import { siteConfig, absoluteUrl, generateFAQSchema } from "@/lib/seo";
-import { courseWeeks } from "@/data/course";
-import { businessCourseWeeks, businessModules } from "@/data/business-course";
-import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-course";
+import { businessModules } from "@/data/business-course";
+import { leadershipModules } from "@/data/leadership-course";
+import { getLocalizedWeeks } from "@/data/ru";
 
 /**
  * /programs — the learning path overview. Four stages:
@@ -17,6 +17,9 @@ import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-cour
  */
 export default function Programs() {
   const { isCentralAsia, language } = useRegion();
+  const courseWeeks = getLocalizedWeeks("financial-literacy", language);
+  const businessCourseWeeks = getLocalizedWeeks("business-creation", language);
+  const leadershipCourseWeeks = getLocalizedWeeks("leadership-development", language);
 
   const stages = [
     {

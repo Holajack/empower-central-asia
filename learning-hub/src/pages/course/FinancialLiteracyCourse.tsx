@@ -14,7 +14,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { courseWeeks, tenWeekOverview } from "@/data/course";
+import { tenWeekOverview } from "@/data/course";
+import type { WeekFullContent } from "@/data/course/types";
+import { getLocalizedWeeks } from "@/data/ru";
 import {
   Accordion,
   AccordionContent,
@@ -88,6 +90,7 @@ function loadProgress(): CourseProgress {
 
 const FinancialLiteracyCourse = () => {
   const { isCentralAsia, language } = useRegion();
+  const courseWeeks = getLocalizedWeeks<WeekFullContent>("financial-literacy", language);
   const { course } = useCourse("financial-literacy");
   const [progress, setProgress] = useState<CourseProgress>(loadProgress);
   useProgressSync("financial-literacy", progress, (merged) => {

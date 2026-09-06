@@ -12,7 +12,8 @@ import DayContent from "@/components/course/DayContent";
 import SectionNav from "@/components/course/SectionNav";
 import CohortCTA from "@/components/course/CohortCTA";
 import ReviewModal from "@/components/course/ReviewModal";
-import { getWeekFullContent, weekFullContents } from "@/data/course";
+import type { WeekFullContent } from "@/data/course";
+import { getLocalizedWeek, getLocalizedWeeks } from "@/data/ru";
 import { financialLiteracyRelatedPosts } from "@/data/course/relatedBlogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { useRegion } from "@/contexts/RegionContext";
@@ -104,8 +105,8 @@ const CourseWeek = () => {
   const { week: weekParam } = useParams<{ week: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const weekNum = parseInt((weekParam || "1").replace(/^week-/, ""), 10);
-  const weekData = getWeekFullContent(weekNum);
-  const { isCentralAsia, isRegionCentralAsia } = useRegion();
+  const { isCentralAsia, isRegionCentralAsia, language } = useRegion();
+  const weekData = getLocalizedWeek<WeekFullContent>("financial-literacy", weekNum, language);
 
   // Sanity overlay — falls back to hardcoded weekData when null.
   const { week: sanityWeek } = useCourseWeek("financial-literacy", weekNum);
@@ -306,7 +307,7 @@ const CourseWeek = () => {
   }
 
   // Build week info for sidebar
-  const weeks = weekFullContents.map((w) => ({
+  const weeks = getLocalizedWeeks<WeekFullContent>("financial-literacy", language).map((w) => ({
     weekNum: w.week,
     title: w.title,
   }));

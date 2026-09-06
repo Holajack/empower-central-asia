@@ -22,7 +22,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { leadershipCourseWeeks, leadershipModules } from "@/data/leadership-course";
+import { leadershipModules } from "@/data/leadership-course";
+import type { LeadershipWeekContent } from "@/data/leadership-course/types";
+import { getLocalizedWeeks } from "@/data/ru";
 import { useRegion } from "@/contexts/RegionContext";
 import { useProgressSync } from "@/hooks/useProgressSync";
 import { Breadcrumbs } from "@/components/SEO";
@@ -184,6 +186,7 @@ const moduleIconsRu = [
 
 const LeadershipCourse = () => {
   const { isCentralAsia, language } = useRegion();
+  const leadershipCourseWeeks = getLocalizedWeeks<LeadershipWeekContent>("leadership-development", language);
   const { course } = useCourse("leadership-development");
   const [progress, setProgress] = useState<LeadershipProgress>(loadProgress);
   useProgressSync("leadership-development", progress, (merged) => {
@@ -576,7 +579,7 @@ const LeadershipCourse = () => {
                             </h4>
                             <p className="text-sm text-gray-600 mb-3">{week.subtitle}</p>
 
-                            {week.hasCaseStudy && (
+                            {!!week.caseStudyCheckpoint && (
                               <div className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full inline-block mb-3">
                                 {isCentralAsia ? "Кейс-стади" : "Case Study Checkpoint"}
                               </div>

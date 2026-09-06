@@ -20,7 +20,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { businessCourseWeeks, businessModules } from "@/data/business-course";
+import { businessModules } from "@/data/business-course";
+import type { BusinessWeekContent } from "@/data/business-course/types";
+import { getLocalizedWeeks } from "@/data/ru";
 import { useRegion } from "@/contexts/RegionContext";
 import { useProgressSync } from "@/hooks/useProgressSync";
 import { Breadcrumbs } from "@/components/SEO";
@@ -179,6 +181,7 @@ const moduleIconsRu = [
 
 const BusinessCreationCourse = () => {
   const { isCentralAsia, language } = useRegion();
+  const businessCourseWeeks = getLocalizedWeeks<BusinessWeekContent>("business-creation", language);
   const { course } = useCourse("business-creation");
   const [progress, setProgress] = useState<BusinessProgress>(loadProgress);
   useProgressSync("business-creation", progress, (merged) => {
@@ -573,7 +576,7 @@ const BusinessCreationCourse = () => {
                             </h4>
                             <p className="text-sm text-gray-600 mb-3">{week.subtitle}</p>
 
-                            {week.hasFourHats && (
+                            {!!week.fourHatsCheckpoint && (
                               <div className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full inline-block mb-3">
                                 {isCentralAsia ? "Контрольная точка «4 шляпы»" : "Four Hats Checkpoint"}
                               </div>
