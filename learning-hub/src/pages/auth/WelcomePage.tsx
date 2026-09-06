@@ -42,6 +42,7 @@ export default function WelcomePage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const next = params.get("next");
+  const editing = params.get("edit") === "1";
 
   const [lang, setLang] = useState<SupportedLanguage>(language);
   const [country, setCountry] = useState<string>("");
@@ -58,8 +59,19 @@ export default function WelcomePage() {
       return;
     }
     if (isLoaded && !isSignedIn) navigate("/sign-up", { replace: true });
-    if (isLoaded && user?.profile.onboarded) navigate(next ? stripLangPrefix(next) : "/dashboard", { replace: true });
-  }, [isLoaded, isSignedIn, user?.profile.onboarded, mode, navigate, next]);
+    if (isLoaded && user?.profile.onboarded && !editing) navigate(next ? stripLangPrefix(next) : "/dashboard", { replace: true });
+  }, [isLoaded, isSignedIn, user?.profile.onboarded, mode, navigate, next, editing]);
+
+  // Pre-fill from the saved profile when editing preferences.
+  useEffect(() => {
+    if (!user?.profile) return;
+    const p = user.profile;
+    if (p.language) setLang(p.language);
+    if (p.country) setCountry(p.country);
+    if (p.city) setCity(p.city);
+    if (p.whatsapp) setWhatsapp(p.whatsapp);
+    if (p.goals?.length) setGoals(p.goals);
+  }, [user?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function toggleGoal(id: LearningGoal) {
     setGoals((g) => (g.includes(id) ? g.filter((x) => x !== id) : [...g, id]));
@@ -78,7 +90,7 @@ export default function WelcomePage() {
         whatsapp: whatsapp.trim(),
         goals,
         onboarded: true,
-        onboardedAt: new Date().toISOString(),
+        onboardedAt: user.profile.onboardedAt ?? new Date().toISOString(),
         source: "learning-hub",
       });
       await subscribe({
@@ -121,7 +133,9 @@ export default function WelcomePage() {
       <div className="min-h-screen bg-gray-50 pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-2xl">
           <h1 className="text-3xl font-bold text-[#1B2A4A] mb-2">
-            {isCentralAsia ? `Добро пожаловать, ${user.firstName || "друг"}!` : `Welcome, ${user.firstName || "friend"}!`}
+            {editing
+              ? isCentralAsia ? "Ваши настройки обучения" : "Your learning preferences"
+              : isCentralAsia ? `Добро пожаловать, ${user.firstName || "друг"}!` : `Welcome, ${user.firstName || "friend"}!`}
           </h1>
           <p className="text-gray-600 mb-8">
             {isCentralAsia
@@ -211,7 +225,7 @@ export default function WelcomePage() {
             {error && <p className="text-sm text-red-600">{error}</p>}
 
             <Button type="submit" size="lg" disabled={saving} className="w-full bg-[#C9922A] hover:bg-[#C9922A]/90 text-white font-bold">
-              {saving ? (isCentralAsia ? "Сохранение..." : "Saving...") : isCentralAsia ? "Начать обучение" : "Start learning"}
+              {saving ? (isCentralAsia ? "Сохранение..." : "Saving...") : editing ? (isCentralAsia ? "Сохранить" : "Save") : isCentralAsia ? "Начать обучение" : "Start learning"}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <p className="text-xs text-gray-400 text-center">

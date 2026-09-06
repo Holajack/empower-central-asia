@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRegion } from "@/contexts/RegionContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackConversion } from "@/lib/analytics";
+import { useAuthUser } from "@/lib/auth";
 import { subscribe } from "@/lib/subscribe";
 import { siteConfig } from "@/lib/seo";
 
@@ -29,6 +30,7 @@ const NewsletterPopup = () => {
   const { isCentralAsia } = useRegion();
   const { t } = useTranslation();
   const { toast } = useToast();
+  const { isSignedIn, mode } = useAuthUser();
   const [isOpen, setIsOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const [step, setStep] = useState<1 | 2>(1);
@@ -43,6 +45,8 @@ const NewsletterPopup = () => {
   useEffect(() => {
     // Skip during prerendering to avoid dialog markup in static HTML
     if ((window as any).__PRERENDERING) return;
+    // Members already gave us their email at sign-up — never nag them.
+    if (mode === "clerk" && isSignedIn) return;
 
     const checkAndShowPopup = () => {
       // Don't show popup on course pages — users are trying to learn
@@ -59,6 +63,7 @@ const NewsletterPopup = () => {
 
       if (!hasSeenPopup) {
         const timer = setTimeout(() => {
+          if (mode === "clerk" && isSignedIn) return;
           setHasMounted(true);
           setIsOpen(true);
           localStorage.setItem("newsletter-popup-seen", "true");
@@ -68,8 +73,8 @@ const NewsletterPopup = () => {
       }
     };
 
-    checkAndShowPopup();
-  }, []);
+    return checkAndShowPopup();
+  }, [isSignedIn, mode]);
 
   const handleDontShowAgain = () => {
     localStorage.setItem("newsletter-popup-dismissed", "true");
