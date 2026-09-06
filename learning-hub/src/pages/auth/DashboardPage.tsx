@@ -97,7 +97,7 @@ export default function DashboardPage() {
                         <span>{isCentralAsia ? `${done} из ${c.weeks} недель` : `${done} of ${c.weeks} weeks`}</span>
                         <span>{pct}%</span>
                       </div>
-                      <Progress value={pct} className="h-2" />
+                      <Progress value={pct} className="h-2 bg-gray-200 [&>div]:bg-[#C9922A]" />
                     </div>
                     <div className="mt-auto">
                       <Link to={started ? `/course/${c.slug}/week-${Math.min(current, c.weeks)}` : `/course/${c.slug}`}>

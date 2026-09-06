@@ -349,6 +349,7 @@ const LeadershipCourseWeek = () => {
         isCentralAsia={isCentralAsia}
       >
         <DayContent
+          courseSlug="leadership-development"
           weekNum={weekNum}
           dayNum={currentDay}
           totalDays={DAYS_PER_WEEK}

@@ -46,6 +46,9 @@ interface DayContentProps {
   storyCentralAsia?: StorySection;
   // Business course extras
   moduleBadge?: string;
+  // Video lookup (src/data/videos.ts) / CMS-provided embed
+  courseSlug?: string;
+  video?: { provider?: string; videoId?: string } | null;
   // Internal linking
   relatedBlogPosts?: { slug: string; title: string }[];
   // State
@@ -204,6 +207,8 @@ export default function DayContent({
   storyIntro,
   storyCentralAsia,
   moduleBadge,
+  courseSlug,
+  video,
   relatedBlogPosts,
   checkedObjectives,
   checkedActions,
@@ -225,7 +230,7 @@ export default function DayContent({
   return (
     <div className="space-y-8 md:space-y-10">
       {/* Video Placeholder */}
-      <LessonVideoHero weekNum={weekNum} dayNum={dayNum} dayTitle={dayTitle} />
+      <LessonVideoHero weekNum={weekNum} dayNum={dayNum} dayTitle={dayTitle} courseSlug={courseSlug} video={video} />
 
       {/* ======= DAY 1: Overview + Objectives + Lesson 1 + Reflections ======= */}
       {dayNum === 1 && (

@@ -411,6 +411,7 @@ const BusinessCourseWeek = () => {
         isCentralAsia={isCentralAsia}
       >
         <DayContent
+          courseSlug="business-creation"
           weekNum={weekNum}
           dayNum={currentDay}
           totalDays={DAYS_PER_WEEK}

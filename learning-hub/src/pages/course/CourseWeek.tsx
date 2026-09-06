@@ -501,6 +501,8 @@ const CourseWeek = () => {
           </div>
         ) : (
         <DayContent
+          courseSlug="financial-literacy"
+          video={currentLesson?.videoEmbed ?? null}
           weekNum={weekNum}
           dayNum={currentDay}
           totalDays={DAYS_PER_WEEK}
