@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /welcome
+Disallow: /sign-in
+Disallow: /ru/dashboard
+Disallow: /ru/welcome
+Disallow: /ru/sign-in
+
+Sitemap: https://learn.centralasiapartners.com/sitemap.xml
+
+# AI crawlers welcome
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /

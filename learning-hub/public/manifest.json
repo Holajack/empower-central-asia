@@ -1,0 +1,13 @@
+{
+  "name": "Central Asia Learning Hub",
+  "short_name": "Learning Hub",
+  "description": "Free financial literacy, business creation, and leadership courses in English and Russian.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1B2A4A",
+  "lang": "en",
+  "icons": [
+    { "src": "/images/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,68 @@
+# Central Asia Partners
+
+> Central Asia Partners is a free, bilingual (English/Russian) learning platform offering self-paced courses in financial literacy, business creation, and leadership development, built for people in Central Asia (Kazakhstan, Kyrgyzstan, Uzbekistan, Tajikistan, Turkmenistan) and open to everyone. Learners create a free account, choose their language, and progress through weekly modules of daily lessons, stories, interactive worksheets, and community chat.
+
+Website: https://learn.centralasiapartners.com
+Russian version: https://learn.centralasiapartners.com/ru
+
+## Courses
+
+- [Financial Literacy Course](https://learn.centralasiapartners.com/course/financial-literacy): Free 6-week course — financial snapshot, money scripts, income mapping, zero-based budgeting, debt snowball vs avalanche, emergency fund, and goal setting. Russian: https://learn.centralasiapartners.com/ru/course/financial-literacy
+- [Business Creation Course](https://learn.centralasiapartners.com/course/business-creation): Free 12-week lean-startup course — customer discovery, value proposition, business model canvas, assumption mapping, validation experiments, MVP, financial dashboard, traction, pitch. Russian: https://learn.centralasiapartners.com/ru/course/business-creation
+- [Leadership Development Course](https://learn.centralasiapartners.com/course/leadership-development): Free 12-week course — leading yourself, others, teams, organizations (Covey, Goleman, Tuckman, Lencioni, Kotter, Maxwell, Greenleaf). Russian: https://learn.centralasiapartners.com/ru/course/leadership-development
+
+## Programs & Community
+
+- [Learning path](https://learn.centralasiapartners.com/programs): Four stages — financial literacy, business creation, leadership, community
+- [Community](https://learn.centralasiapartners.com/community): Course chat, live cohorts, local groups, facilitator pathway
+- [Live cohorts](https://learn.centralasiapartners.com/cohort): Facilitator-led groups
+- [Free resources](https://learn.centralasiapartners.com/resources): Toolkits and worksheets
+- [Debt payoff calculator](https://learn.centralasiapartners.com/tools/debt-calculator): Snowball vs avalanche comparison tool
+
+## Blog
+
+- [Blog](https://learn.centralasiapartners.com/blog): Articles on budgeting, debt, saving, entrepreneurship, and Central Asia
+- https://learn.centralasiapartners.com/blog/why-entrepreneurship-is-the-most-sustainable-form-of-foreign-aid
+- https://learn.centralasiapartners.com/blog/what-central-asia-taught-us-about-resilience-and-business
+- https://learn.centralasiapartners.com/blog/how-one-nonprofit-is-rethinking-poverty-without-handouts
+- https://learn.centralasiapartners.com/blog/debt-snowball-vs-avalanche-which-actually-works
+- https://learn.centralasiapartners.com/blog/5-financial-habits-first-generation-entrepreneurs
+- https://learn.centralasiapartners.com/blog/why-financial-literacy-should-be-a-human-right
+- https://learn.centralasiapartners.com/blog/from-a-haitian-orphanage-to-founding-a-nonprofit-jackens-story
+- https://learn.centralasiapartners.com/blog/bridging-two-worlds-how-yeva-brings-central-asian-insight-to-american-nonprofits
+- https://learn.centralasiapartners.com/blog/understanding-the-post-soviet-economy-why-central-asia-needs-entrepreneurs
+- https://learn.centralasiapartners.com/blog/the-untapped-potential-of-women-entrepreneurs-in-kyrgyzstan
+- https://learn.centralasiapartners.com/blog/how-to-start-a-business-with-less-than-500
+- https://learn.centralasiapartners.com/blog/building-business-networks-in-isolated-communities
+- https://learn.centralasiapartners.com/blog/the-complete-guide-to-microfinance-small-loans-big-impact
+- https://learn.centralasiapartners.com/blog/7-ways-to-support-global-entrepreneurs-from-your-living-room
+- https://learn.centralasiapartners.com/blog/what-happens-when-you-sponsor-an-entrepreneur-a-real-impact-breakdown
+- https://learn.centralasiapartners.com/blog/community-cooperatives-the-future-of-sustainable-development
+- https://learn.centralasiapartners.com/blog/nonprofit-organizations-near-me-how-to-find-and-support
+- https://learn.centralasiapartners.com/blog/debt-snowball-method-complete-guide
+- https://learn.centralasiapartners.com/blog/how-to-build-credit-with-no-history
+- https://learn.centralasiapartners.com/blog/frugal-living-tips-that-actually-work
+- https://learn.centralasiapartners.com/blog/how-to-create-a-budget-step-by-step-guide
+- https://learn.centralasiapartners.com/blog/how-to-stop-living-paycheck-to-paycheck
+- https://learn.centralasiapartners.com/blog/how-to-start-a-business-with-no-money
+- https://learn.centralasiapartners.com/blog/emergency-fund-how-much-do-you-need
+- https://learn.centralasiapartners.com/blog/best-side-hustles-to-start-with-no-experience
+- https://learn.centralasiapartners.com/blog/how-to-save-money-on-a-low-income
+- https://learn.centralasiapartners.com/blog/what-is-financial-literacy-and-why-does-it-matter
+- https://learn.centralasiapartners.com/blog/how-to-teach-financial-literacy-to-adults
+- https://learn.centralasiapartners.com/blog/micro-business-ideas-for-developing-countries
+- https://learn.centralasiapartners.com/blog/how-to-set-financial-goals-that-stick
+- https://learn.centralasiapartners.com/blog/what-is-compound-interest-and-why-it-matters
+- https://learn.centralasiapartners.com/blog/how-to-track-your-spending-in-30-days
+- https://learn.centralasiapartners.com/blog/understanding-credit-scores-a-beginner-guide
+- https://learn.centralasiapartners.com/blog/how-to-negotiate-bills-and-save-hundreds
+- https://learn.centralasiapartners.com/blog/zero-based-budgeting-for-beginners
+- https://learn.centralasiapartners.com/blog/how-to-start-a-small-business-with-no-money
+- https://learn.centralasiapartners.com/blog/skills-based-volunteering-how-to-make-an-impact-in-volusia-county
+- https://learn.centralasiapartners.com/blog/how-to-build-business-credit-from-scratch
+- https://learn.centralasiapartners.com/blog/microfinance-small-business-development-kyrgyzstan
+
+## Optional
+
+- [Privacy Policy](https://learn.centralasiapartners.com/privacy)
+- [RSS](https://learn.centralasiapartners.com/rss.xml)
