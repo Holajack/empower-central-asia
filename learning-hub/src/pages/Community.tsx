@@ -101,8 +101,8 @@ export default function Community() {
 
       <div className="bg-[#1B2A4A] text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
-          <div className="text-white/70">
-            <Breadcrumbs items={[{ name: isCentralAsia ? "Главная" : "Home", url: absoluteUrl("/", language) }, { name: isCentralAsia ? "Сообщество" : "Community", url: absoluteUrl("/community", language) }]} />
+          <div>
+            <Breadcrumbs tone="dark" items={[{ name: isCentralAsia ? "Главная" : "Home", url: absoluteUrl("/", language) }, { name: isCentralAsia ? "Сообщество" : "Community", url: absoluteUrl("/community", language) }]} />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{isCentralAsia ? "Никто не должен учиться в одиночку" : "No one should learn alone"}</h1>
           <p className="text-lg text-white/85 max-w-2xl">

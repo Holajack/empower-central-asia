@@ -46,8 +46,11 @@ export const siteConfig = {
   },
   founder: env.VITE_FOUNDER_NAME || "Jacken Holland",
   foundingDate: env.VITE_FOUNDING_DATE || "2024",
-  /** External giving page (Pure Charity / E3 Partners). Empty hides donate buttons. */
-  donateUrl: env.VITE_DONATE_URL || "",
+  /** External giving page (Pure Charity / E3 Partners). Set VITE_DONATE_URL="" to hide donate buttons. */
+  donateUrl:
+    env.VITE_DONATE_URL !== undefined
+      ? env.VITE_DONATE_URL
+      : "https://www.purecharity.com/checkout/576519?amount=150&frequency=monthly&cover_fees=true&utm_source=learning-hub&utm_campaign=give",
   /** Google Business review link. Empty hides the "leave a review" prompt. */
   reviewUrl: env.VITE_REVIEW_URL || "",
   logo: "/images/logo.png",

@@ -118,19 +118,20 @@ export function BlogPostSEO(props: BlogPostSchemaProps & {
 /**
  * Breadcrumb Schema Component
  */
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({ items, tone = "light" }: { items: BreadcrumbItem[]; tone?: "light" | "dark" }) {
   const schema = generateBreadcrumbSchema(items);
+  const dark = tone === "dark";
 
   return (
     <>
       {/* Visual Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="py-4">
-        <ol className="flex items-center space-x-2 text-sm text-gray-600">
+        <ol className={`flex items-center flex-wrap space-x-2 text-sm ${dark ? "text-white/70" : "text-gray-600"}`}>
           {items.map((item, index) => (
             <li key={index} className="flex items-center">
               {index > 0 && <span className="mx-2">/</span>}
               {index === items.length - 1 ? (
-                <span className="text-gray-900 font-medium">{item.name}</span>
+                <span className={dark ? "text-white font-medium" : "text-gray-900 font-medium"}>{item.name}</span>
               ) : (
                 <a
                   href={item.url}
