@@ -4,7 +4,7 @@ import { ArrowLeft, Printer, Map, Users, BarChart3, BookOpen, DollarSign, Calcul
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { Button } from "@/components/ui/button";
 import { useRegion } from "@/contexts/RegionContext";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig, absoluteUrl } from "@/lib/seo";
 import { resources } from "@/data/resources";
 import type { ResourceSection } from "@/data/resources";
 import ResourceGate from "@/components/resources/ResourceGate";
@@ -111,7 +111,7 @@ function SectionRenderer({ section }: { section: ResourceSection }) {
 
 export default function ResourceDetail() {
   const { slug } = useParams();
-  const { isCentralAsia } = useRegion();
+  const { isCentralAsia, language } = useRegion();
 
   const { resource: sanityResource, isLoading } = useResource(slug || "");
 
@@ -187,8 +187,8 @@ export default function ResourceDetail() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      { "@type": "ListItem", position: 2, name: "Resources", item: `${siteConfig.url}/resources` },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/", language) },
+      { "@type": "ListItem", position: 2, name: "Resources", item: absoluteUrl(`/resources`, language) },
       { "@type": "ListItem", position: 3, name: resource.title, item: canonicalUrl },
     ],
   };

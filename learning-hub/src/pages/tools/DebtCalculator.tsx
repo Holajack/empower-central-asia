@@ -42,7 +42,7 @@ import {
   getRelatedResourceSummary,
   getLocalizedBody,
 } from "@/hooks/useDebtCalculatorPage";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig, absoluteUrl } from "@/lib/seo";
 
 interface Debt {
   id: string;
@@ -317,7 +317,7 @@ const portableTextComponents: PortableTextComponents = {
 };
 
 const DebtCalculator = () => {
-  const { isCentralAsia } = useRegion();
+  const { isCentralAsia, language } = useRegion();
   const { data: pageCopy } = useDebtCalculatorPage();
 
   const [debts, setDebts] = useState<Debt[]>(() => {
@@ -491,7 +491,7 @@ const DebtCalculator = () => {
             provider: {
               "@type": "NonprofitOrganization",
               name: `${siteConfig.name}`,
-              url: `${siteConfig.url}`,
+              url: absoluteUrl("/", language),
             },
             description:
               "Compare debt snowball vs avalanche payoff strategies. See your debt-free date and total interest saved.",
@@ -503,9 +503,9 @@ const DebtCalculator = () => {
         <div className="container mx-auto px-4 pt-24">
           <Breadcrumbs
             items={[
-              { name: "Home", url: `${siteConfig.url}` },
-              { name: "Tools", url: `${siteConfig.url}/resources` },
-              { name: "Debt Calculator", url: `${siteConfig.url}/tools/debt-calculator` },
+              { name: "Home", url: absoluteUrl("/", language) },
+              { name: "Tools", url: absoluteUrl(`/resources`, language) },
+              { name: "Debt Calculator", url: absoluteUrl(`/tools/debt-calculator`, language) },
             ]}
           />
         </div>

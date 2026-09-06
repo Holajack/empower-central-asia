@@ -251,9 +251,9 @@ const FinancialLiteracyCourse = () => {
         <div className="container mx-auto px-4 pt-24">
           <Breadcrumbs
             items={[
-              { name: "Home", url: `${siteConfig.url}` },
-              { name: "Courses", url: `${siteConfig.url}/programs` },
-              { name: "Financial Literacy", url: `${siteConfig.url}/course/financial-literacy` },
+              { name: "Home", url: absoluteUrl("/", language) },
+              { name: "Courses", url: absoluteUrl(`/programs`, language) },
+              { name: "Financial Literacy", url: absoluteUrl(`/course/financial-literacy`, language) },
             ]}
           />
         </div>

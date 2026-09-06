@@ -368,9 +368,9 @@ const BusinessCreationCourse = () => {
         <div className="container mx-auto px-4 pt-24">
           <Breadcrumbs
             items={[
-              { name: "Home", url: `${siteConfig.url}` },
-              { name: "Courses", url: `${siteConfig.url}/programs` },
-              { name: "Business Creation", url: `${siteConfig.url}/course/business-creation` },
+              { name: "Home", url: absoluteUrl("/", language) },
+              { name: "Courses", url: absoluteUrl(`/programs`, language) },
+              { name: "Business Creation", url: absoluteUrl(`/course/business-creation`, language) },
             ]}
           />
         </div>

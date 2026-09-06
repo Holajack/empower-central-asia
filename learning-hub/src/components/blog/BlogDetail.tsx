@@ -6,14 +6,14 @@ import { useBlogPost } from "@/hooks/useBlogPosts";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import TableOfContents from "./TableOfContents";
-import { generateBlogPostSchema, generateBreadcrumbSchema, siteConfig } from "@/lib/seo";
+import { generateBlogPostSchema, generateBreadcrumbSchema, siteConfig, absoluteUrl } from "@/lib/seo";
 import { useRegion } from "@/contexts/RegionContext";
 import { getResourcesForBlog } from "@/data/resources";
 import AudioPlayer from "./AudioPlayer";
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const { isCentralAsia } = useRegion();
+  const { isCentralAsia, language } = useRegion();
 
   // Fetch post from Sanity; falls back to hardcoded data if Sanity is
   // unreachable or the slug isn't in the CMS yet.
@@ -57,8 +57,8 @@ const BlogDetail = () => {
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: `${siteConfig.url}` },
-    { name: "Blog", url: `${siteConfig.url}/blog` },
+    { name: "Home", url: absoluteUrl("/", language) },
+    { name: "Blog", url: absoluteUrl(`/blog`, language) },
     { name: post.title, url: canonicalUrl },
   ]);
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Map, Users, BarChart3, BookOpen, ArrowRight, Download, DollarSign, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRegion } from "@/contexts/RegionContext";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig, absoluteUrl } from "@/lib/seo";
 import { useResources } from "@/hooks/useResources";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -16,7 +16,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function Resources() {
-  const { isCentralAsia } = useRegion();
+  const { isCentralAsia, language } = useRegion();
   const { resources } = useResources();
 
   const pageTitle = isCentralAsia
@@ -42,7 +42,7 @@ export default function Resources() {
       "@type": "CreativeWork",
       name: r.title,
       description: r.description,
-      url: `${siteConfig.url}/resources/${r.slug}`,
+      url: absoluteUrl(`/resources/${r.slug}`, language),
       isAccessibleForFree: true,
     })),
   };

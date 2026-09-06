@@ -2,266 +2,120 @@ import { Helmet } from "react-helmet";
 import { useRegion } from "@/contexts/RegionContext";
 import { siteConfig } from "@/lib/seo";
 
+/**
+ * Privacy policy covering everything the Learning Hub actually collects:
+ * account data (Clerk), learning progress (browser + optional Convex),
+ * email marketing (ActiveCampaign / Google Sheet), analytics, and cookies.
+ */
 const PrivacyPolicy = () => {
   const { isCentralAsia } = useRegion();
+  const t = (en: string, ru: string) => (isCentralAsia ? ru : en);
+  const org = siteConfig.orgName;
+  const email = siteConfig.email;
+  const updated = "2026-09-06";
+
+  const sections: { h: string; p?: string[]; list?: string[] }[] = [
+    {
+      h: t("1. Who we are", "1. Кто мы"),
+      p: [
+        t(
+          `${org} ("we", "us") operates ${siteConfig.host}, a free learning platform offering financial literacy, business creation, and leadership courses in English and Russian. This policy explains what personal information we collect, why, and the choices you have.`,
+          `${org} («мы») управляет сайтом ${siteConfig.host} — бесплатной обучающей платформой с курсами по финансовой грамотности, созданию бизнеса и лидерству на русском и английском языках. Эта политика объясняет, какие персональные данные мы собираем, зачем и какой у вас есть выбор.`
+        ),
+      ],
+    },
+    {
+      h: t("2. Information we collect", "2. Какую информацию мы собираем"),
+      p: [t("We collect information you give us directly:", "Мы собираем информацию, которую вы предоставляете напрямую:")],
+      list: [
+        t("Account details when you sign up: name, email address, and (optionally) a profile photo or Google account.", "Данные аккаунта при регистрации: имя, адрес электронной почты и (по желанию) фото профиля или аккаунт Google."),
+        t("Onboarding answers: preferred language, country, city, learning goals, and an optional WhatsApp/Telegram number.", "Ответы при регистрации: предпочитаемый язык, страна, город, цели обучения и (по желанию) номер WhatsApp/Telegram."),
+        t("Form submissions: newsletter, cohort interest, community messages, and resource downloads.", "Отправленные формы: подписка на рассылку, интерес к когортам, сообщения сообществу и загрузка материалов."),
+        t("Learning activity: which lessons you complete, worksheet answers you type, and course chat messages you post.", "Учебная активность: какие уроки вы завершили, ответы в рабочих листах и сообщения в чате курса."),
+        t("Technical data collected automatically: approximate location from your IP address (to suggest Russian for visitors in Central Asia), device and browser type, pages visited, and usage analytics.", "Технические данные, собираемые автоматически: приблизительное местоположение по IP-адресу (чтобы предложить русский язык посетителям из Центральной Азии), тип устройства и браузера, посещённые страницы и аналитика использования."),
+      ],
+    },
+    {
+      h: t("3. How we use it", "3. Как мы используем данные"),
+      list: [
+        t("To run the courses: save your progress, unlock weeks, and show worksheets in your language.", "Для работы курсов: сохранять прогресс, открывать недели и показывать рабочие листы на вашем языке."),
+        t("To email you: lesson reminders, new content, cohort invitations, and community updates in the language you chose. Every email has an unsubscribe link.", "Для писем: напоминания об уроках, новые материалы, приглашения в когорты и новости сообщества на выбранном вами языке. В каждом письме есть ссылка для отписки."),
+        t("To build community: your first name and initial may be shown to other learners in course chat and the \"who is online\" list.", "Для сообщества: ваше имя и инициал могут отображаться другим ученикам в чате курса и в списке «кто онлайн»."),
+        t("To improve the platform: aggregated, anonymized analytics about which lessons and tools people use.", "Для улучшения платформы: обобщённая, анонимная аналитика о том, какие уроки и инструменты используются."),
+        t("To respond when you contact us.", "Чтобы отвечать на ваши обращения."),
+      ],
+    },
+    {
+      h: t("4. Services we rely on", "4. Сервисы, которые мы используем"),
+      p: [t("We share data only with the service providers needed to run the site. Each processes data under its own privacy policy and security commitments:", "Мы передаём данные только сервисам, необходимым для работы сайта. Каждый обрабатывает данные согласно своей политике конфиденциальности:")],
+      list: [
+        t("Clerk — account creation, sign-in, and password/security management.", "Clerk — создание аккаунта, вход и управление паролями/безопасностью."),
+        t("ActiveCampaign (and, where enabled, a Google Sheet) — email list and campaigns, tagged with your preferred language.", "ActiveCampaign (и, где включено, Google Таблица) — список рассылки и кампании с пометкой вашего языка."),
+        t("Convex — cloud storage of course progress, chat messages, and presence when community features are enabled.", "Convex — облачное хранение прогресса, сообщений чата и статуса онлайн, когда включены функции сообщества."),
+        t("Netlify — hosting and serverless functions.", "Netlify — хостинг и серверные функции."),
+        t("Google Analytics, Microsoft Clarity, and Meta Pixel — usage analytics and ad measurement, where configured.", "Google Analytics, Microsoft Clarity и Meta Pixel — аналитика и измерение рекламы, где настроено."),
+        t("ipapi.co — one-time country lookup from your IP address to suggest a language.", "ipapi.co — однократное определение страны по IP-адресу для выбора языка."),
+      ],
+    },
+    {
+      h: t("5. Data stored in your browser", "5. Данные в вашем браузере"),
+      p: [
+        t("Course progress, worksheet answers, your language choice, and whether you dismissed pop-ups are stored in your browser's local storage so the site works even without an account. Clearing site data removes them. When you are signed in and community features are enabled, progress is also synced to your account.", "Прогресс, ответы в рабочих листах, выбранный язык и закрытые всплывающие окна хранятся в локальном хранилище браузера, чтобы сайт работал даже без аккаунта. Очистка данных сайта удаляет их. Если вы вошли в аккаунт и включены функции сообщества, прогресс также синхронизируется с аккаунтом."),
+      ],
+    },
+    {
+      h: t("6. Your choices and rights", "6. Ваш выбор и права"),
+      list: [
+        t("Unsubscribe from emails at any time using the link in any message, or by writing to us.", "Отписаться от писем в любой момент по ссылке в письме или написав нам."),
+        t("Update your name, language, or country in your account, or delete your account entirely from the account menu.", "Изменить имя, язык или страну в аккаунте либо полностью удалить аккаунт в меню аккаунта."),
+        t("Ask us for a copy of your data, a correction, or deletion by emailing us. We respond within 30 days.", "Запросить копию данных, исправление или удаление, написав нам. Мы отвечаем в течение 30 дней."),
+        t("Refuse analytics cookies with your browser or a blocker; the courses still work.", "Отключить аналитические cookie в браузере или блокировщиком; курсы продолжат работать."),
+      ],
+    },
+    {
+      h: t("7. Children", "7. Дети"),
+      p: [t("The platform is intended for people 16 and older. We do not knowingly collect data from children under 16; if you believe a child has created an account, contact us and we will delete it.", "Платформа предназначена для лиц от 16 лет. Мы сознательно не собираем данные детей младше 16 лет; если вы считаете, что ребёнок создал аккаунт, напишите нам, и мы удалим его.")],
+    },
+    {
+      h: t("8. Security and retention", "8. Безопасность и сроки хранения"),
+      p: [t("Data is transmitted over HTTPS and stored with providers that use industry-standard encryption. We keep account and progress data while your account exists, email list data until you unsubscribe, and analytics for up to 26 months.", "Данные передаются по HTTPS и хранятся у провайдеров, использующих стандартное шифрование. Мы храним данные аккаунта и прогресса, пока существует аккаунт, данные рассылки — до отписки, аналитику — до 26 месяцев.")],
+    },
+    {
+      h: t("9. Changes and contact", "9. Изменения и контакты"),
+      p: [
+        t(`We may update this policy; the date at the top shows the latest version. Questions or requests: ${email}.`, `Мы можем обновлять эту политику; дата вверху показывает актуальную версию. Вопросы и запросы: ${email}.`),
+      ],
+    },
+  ];
 
   return (
     <>
-    <Helmet>
-      <title>
-        {isCentralAsia
-          ? `Политика конфиденциальности | ${siteConfig.name}`
-          : `Privacy Policy | ${siteConfig.name}`}
-      </title>
-      <meta
-        name="description"
-        content={
-          isCentralAsia
-            ? `Политика конфиденциальности ${siteConfig.name}. Узнайте, как мы собираем, используем и защищаем вашу личную информацию.`
-            : `Privacy policy for ${siteConfig.name}. Learn how we collect, use, and protect your personal information.`
-        }
-      />
-      <meta name="robots" content="index, follow" />
-    </Helmet>
-    <div className="min-h-screen bg-white py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {isCentralAsia ? "Политика конфиденциальности" : "Privacy Policy"}
-          </h1>
-          <p className="text-gray-600">
-            {isCentralAsia ? "Последнее обновление: " : "Last updated: "}
-            {new Date().toLocaleDateString()}
-          </p>
-        </div>
-
-        <div className="prose max-w-none">
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia
-                ? "1. Информация, которую мы собираем"
-                : "1. Information We Collect"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? `В ${siteConfig.name} мы собираем информацию, которую вы предоставляете нам напрямую, в частности когда вы:`
-                : `At ${siteConfig.name}, we collect information you provide directly to us, such as when you:`}
-            </p>
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              {isCentralAsia ? (
-                <>
-                  <li>Подписываетесь на наши SMS-уведомления</li>
-                  <li>Регистрируетесь на нашу рассылку</li>
-                  <li>Связываетесь с нами через наш сайт или формы</li>
-                  <li>Посещаете наши мероприятия или участвуете в наших программах</li>
-                  <li>Подаёте заявку на волонтёрство</li>
-                  <li>Делаете пожертвования или участвуете в сборе средств</li>
-                </>
-              ) : (
-                <>
-                  <li>Subscribe to our SMS notifications</li>
-                  <li>Sign up for our newsletter</li>
-                  <li>Contact us through our website or forms</li>
-                  <li>Attend our events or participate in our programs</li>
-                  <li>Apply for volunteer opportunities</li>
-                  <li>Make donations or participate in fundraising activities</li>
-                </>
+      <Helmet>
+        <title>{t(`Privacy Policy | ${siteConfig.name}`, `Политика конфиденциальности | ${siteConfig.name}`)}</title>
+        <meta name="description" content={t(`How ${org} collects, uses, and protects your information on the learning platform.`, `Как ${org} собирает, использует и защищает вашу информацию на обучающей платформе.`)} />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      <div className="min-h-screen bg-white pt-28 pb-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h1 className="text-4xl font-bold text-[#1B2A4A] mb-2">{t("Privacy Policy", "Политика конфиденциальности")}</h1>
+          <p className="text-gray-500 mb-10">{t("Last updated: ", "Последнее обновление: ")}{updated}</p>
+          {sections.map((s) => (
+            <section key={s.h} className="mb-8">
+              <h2 className="text-2xl font-semibold text-[#1B2A4A] mb-3">{s.h}</h2>
+              {s.p?.map((para, i) => (
+                <p key={i} className="text-gray-700 mb-3 leading-relaxed">{para}</p>
+              ))}
+              {s.list && (
+                <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                  {s.list.map((li, i) => (
+                    <li key={i}>{li}</li>
+                  ))}
+                </ul>
               )}
-            </ul>
-            <p className="text-gray-700 mt-4">
-              {isCentralAsia
-                ? "Эта информация может включать ваше имя, адрес электронной почты, номер телефона, почтовый адрес и другие контактные данные."
-                : "This information may include your name, email address, phone number, postal address, and other contact information."}
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia
-                ? "2. Как мы используем вашу информацию"
-                : "2. How We Use Your Information"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Мы используем собранную информацию для того, чтобы:"
-                : "We use the information we collect to:"}
-            </p>
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              {isCentralAsia ? (
-                <>
-                  <li>Отправлять вам обновления для доноров и истории успеха</li>
-                  <li>Информировать вас о предстоящих мероприятиях и возможностях для волонтёрства</li>
-                  <li>Отвечать на ваши запросы и оказывать поддержку</li>
-                  <li>Обрабатывать пожертвования и вести учёт доноров</li>
-                  <li>Совершенствовать наши программы и услуги</li>
-                  <li>Соблюдать правовые и нормативные требования</li>
-                </>
-              ) : (
-                <>
-                  <li>Send you donor updates and impact stories</li>
-                  <li>Notify you about upcoming events and volunteer opportunities</li>
-                  <li>Respond to your inquiries and provide customer support</li>
-                  <li>Process donations and maintain donor records</li>
-                  <li>Improve our programs and services</li>
-                  <li>Comply with legal and regulatory requirements</li>
-                </>
-              )}
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "3. SMS-коммуникации" : "3. SMS Communications"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Когда вы соглашаетесь получать от нас SMS-сообщения:"
-                : "When you opt in to receive SMS messages from us:"}
-            </p>
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              {isCentralAsia ? (
-                <>
-                  <li>Вы соглашаетесь получать автоматические и неавтоматические текстовые сообщения об обновлениях для доноров, историях успеха, напоминаниях о мероприятиях и возможностях для волонтёрства</li>
-                  <li>Частота сообщений варьируется, но обычно составляет от 1 до 4 сообщений в месяц</li>
-                  <li>Возможна оплата сообщений и передачи данных согласно тарифному плану вашего оператора</li>
-                  <li>Ваше согласие не является условием какой-либо покупки или пожертвования</li>
-                  <li>Вы можете отписаться в любое время, отправив STOP, END, CANCEL, UNSUBSCRIBE или QUIT</li>
-                  <li>Для получения помощи отправьте HELP или свяжитесь с нами по адресу {siteConfig.email}</li>
-                </>
-              ) : (
-                <>
-                  <li>You consent to receive automated and non-automated text messages about donor updates, impact stories, event reminders, and volunteer opportunities</li>
-                  <li>Message frequency varies but typically ranges from 1-4 messages per month</li>
-                  <li>Message and data rates may apply based on your carrier plan</li>
-                  <li>Your consent is not required as a condition of any purchase or donation</li>
-                  <li>You can opt out at any time by texting STOP, END, CANCEL, UNSUBSCRIBE, or QUIT</li>
-                  <li>For help, text HELP or contact us at {siteConfig.email}</li>
-                </>
-              )}
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "4. Передача информации" : "4. Information Sharing"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Мы не продаём, не сдаём в аренду и не передаём вашу личную информацию третьим лицам в их маркетинговых целях. Мы можем передавать вашу информацию только в следующих случаях:"
-                : "We do not sell, rent, or share your personal information with third parties for their marketing purposes. We may share your information only in the following circumstances:"}
-            </p>
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              {isCentralAsia ? (
-                <>
-                  <li>Поставщикам услуг, которые помогают нам в реализации наших программ и услуг</li>
-                  <li>Когда это требуется по закону или для защиты наших прав и безопасности</li>
-                  <li>С вашего явного согласия</li>
-                  <li>В связи со слиянием, поглощением или продажей активов (с предварительным уведомлением)</li>
-                </>
-              ) : (
-                <>
-                  <li>With service providers who assist us in operating our programs and services</li>
-                  <li>When required by law or to protect our rights and safety</li>
-                  <li>With your explicit consent</li>
-                  <li>In connection with a merger, acquisition, or sale of assets (with prior notice)</li>
-                </>
-              )}
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "5. Безопасность данных" : "5. Data Security"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Мы применяем соответствующие технические и организационные меры безопасности для защиты вашей личной информации от несанкционированного доступа, изменения, раскрытия или уничтожения. Однако ни один метод передачи данных через интернет или электронного хранения не является на 100% безопасным."
-                : "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure."}
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "6. Хранение данных" : "6. Data Retention"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Мы храним вашу личную информацию столько, сколько необходимо для достижения целей, изложенных в настоящей Политике конфиденциальности, если только более длительный срок хранения не требуется или не разрешён законом. Когда вы отказываетесь от SMS-коммуникаций, мы удалим ваш номер телефона из наших списков рассылки в разумные сроки."
-                : "We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. When you opt out of SMS communications, we will remove your phone number from our messaging lists within a reasonable timeframe."}
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "7. Ваши права" : "7. Your Rights"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia ? "Вы имеете право:" : "You have the right to:"}
-            </p>
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              {isCentralAsia ? (
-                <>
-                  <li>Получать доступ к вашей личной информации и просматривать её</li>
-                  <li>Запрашивать исправление неточной информации</li>
-                  <li>Запрашивать удаление вашей личной информации (с учётом правовых требований)</li>
-                  <li>Отказаться от маркетинговых коммуникаций в любое время</li>
-                  <li>Отозвать согласие на SMS-коммуникации, отправив STOP</li>
-                </>
-              ) : (
-                <>
-                  <li>Access and review the personal information we have about you</li>
-                  <li>Request corrections to inaccurate information</li>
-                  <li>Request deletion of your personal information (subject to legal requirements)</li>
-                  <li>Opt out of marketing communications at any time</li>
-                  <li>Withdraw consent for SMS communications by texting STOP</li>
-                </>
-              )}
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibent text-gray-900 mb-4">
-              {isCentralAsia ? "8. Конфиденциальность детей" : "8. Children's Privacy"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Наши услуги не предназначены для детей до 13 лет, и мы сознательно не собираем личную информацию от детей до 13 лет. Если мы узнаем, что собрали такую информацию, мы немедленно её удалим."
-                : "Our services are not directed to children under 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected such information, we will delete it promptly."}
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "9. Изменения настоящей политики" : "9. Changes to This Policy"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Мы можем периодически обновлять настоящую Политику конфиденциальности. Мы уведомим вас о любых существенных изменениях, опубликовав обновлённую политику на нашем сайте и обновив дату «Последнего обновления». Ваше дальнейшее использование наших услуг после таких изменений означает ваше согласие с обновлённой политикой."
-                : "We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the updated policy on our website and updating the \"Last updated\" date. Your continued use of our services after such changes constitutes your acceptance of the updated policy."}
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              {isCentralAsia ? "10. Свяжитесь с нами" : "10. Contact Us"}
-            </h2>
-            <p className="text-gray-700 mb-4">
-              {isCentralAsia
-                ? "Если у вас есть вопросы о настоящей Политике конфиденциальности или наших практиках конфиденциальности, пожалуйста, свяжитесь с нами:"
-                : "If you have any questions about this Privacy Policy or our privacy practices, please contact us:"}
-            </p>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-gray-700">
-                <strong>{siteConfig.name}</strong><br />
-                Email: {siteConfig.email}<br />
-                Phone: (386) 517-1527<br />
-                Website: {siteConfig.url}
-              </p>
-            </div>
-          </section>
+            </section>
+          ))}
         </div>
       </div>
-    </div>
     </>
   );
 };
