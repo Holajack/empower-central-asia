@@ -47,4 +47,17 @@ const blogLines = routes.filter((r) => r.path.startsWith("/blog/")).slice(0, 40)
 const llms = `# ${NAME}\n\n> ${NAME} is a free, bilingual (English/Russian) learning platform offering self-paced courses in financial literacy, business creation, and leadership development, built for people in Central Asia (Kazakhstan, Kyrgyzstan, Uzbekistan, Tajikistan, Turkmenistan) and open to everyone. Learners create a free account, choose their language, and progress through weekly modules of daily lessons, stories, interactive worksheets, and community chat.\n\nWebsite: ${SITE}\nRussian version: ${SITE}/ru\n\n## Courses\n\n${courseLines.join("\n")}\n\n## Programs & Community\n\n- [Learning path](${SITE}/programs): Four stages — financial literacy, business creation, leadership, community\n- [Community](${SITE}/community): Course chat, live cohorts, local groups, facilitator pathway\n- [Live cohorts](${SITE}/cohort): Facilitator-led groups\n- [Free resources](${SITE}/resources): Toolkits and worksheets\n- [Debt payoff calculator](${SITE}/tools/debt-calculator): Snowball vs avalanche comparison tool\n\n## Blog\n\n- [Blog](${SITE}/blog): Articles on budgeting, debt, saving, entrepreneurship, and Central Asia\n${blogLines.join("\n")}\n\n## Optional\n\n- [Privacy Policy](${SITE}/privacy)\n- [RSS](${SITE}/rss.xml)\n`;
 fs.writeFileSync(path.join(PUBLIC, "llms.txt"), llms);
 
-console.log(`sitemap.xml: ${routes.length * 2} URLs · robots.txt · llms.txt → public/`);
+const manifest = {
+  name: NAME,
+  short_name: NAME.length > 12 ? "Learning Hub" : NAME,
+  description: "Free financial literacy, business creation, and leadership courses in English and Russian.",
+  start_url: "/",
+  display: "standalone",
+  background_color: "#ffffff",
+  theme_color: "#1B2A4A",
+  lang: "en",
+  icons: [{ src: "/images/logo.png", sizes: "512x512", type: "image/png", purpose: "any" }],
+};
+fs.writeFileSync(path.join(PUBLIC, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
+
+console.log(`sitemap.xml: ${routes.length * 2} URLs · robots.txt · llms.txt · manifest.json → public/`);
