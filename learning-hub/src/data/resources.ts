@@ -41,7 +41,7 @@ export const resources: ResourceDef[] = [
         heading: "What Is Asset Mapping?",
         content: [
           "Asset mapping is the process of identifying and cataloging the skills, resources, networks, and institutions already present in a community. Rather than focusing on what a community lacks, asset mapping starts from a position of strength -- recognizing that every neighborhood, congregation, or civic group already possesses significant untapped capacity.",
-          "This toolkit adapts the Asset-Based Community Development (ABCD) approach, pioneered by John McKnight and Jody Kretzmann at Northwestern University, for organizations doing international development work. The core insight is simple: communities that understand what they already have are far better positioned to contribute meaningfully to global work than communities that only see what they need.",
+          "This toolkit adapts the Asset-Based Community Development (ABCD) approach, pioneered by John McKnight and John Kretzmann at Northwestern University, for organizations doing international development work. The core insight is simple: communities that understand what they already have are far better positioned to contribute meaningfully to global work than communities that only see what they need.",
         ],
       },
       {

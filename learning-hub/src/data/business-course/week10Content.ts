@@ -35,7 +35,7 @@ export const week10Content: BusinessWeekContent = {
     },
   ],
   actionItems: [
-    'Pull out your original Value Proposition Canvas from Week 4 and mark every assumption that was confirmed, refuted, or partially validated during Weeks 7–9',
+    'Pull out your original Value Proposition Canvas from Week 5 and mark every assumption that was confirmed, refuted, or partially validated during Weeks 7–9',
     'List every feature, service, or capability you have ever imagined for your business on separate slips of paper',
     'Sort each feature into one of the four MoSCoW categories, placing every item in exactly one bucket',
     'Read descriptions of all five MVP types and identify which one (or which combination) fits your situation',
@@ -52,11 +52,11 @@ export const week10Content: BusinessWeekContent = {
       id: 'week10-section1',
       heading: 'Updating Your Value Proposition Canvas',
       content: [
-        'When you created your original Value Proposition Canvas in Week 4, it was a document of hypotheses. You were writing down your best guesses about customer jobs, pains, and gains — intelligent guesses informed by observation, but guesses nonetheless. Now, after three weeks of direct customer contact, you have something far more valuable than guesses. You have evidence. The single most important thing you can do before designing your MVP is to sit down with your original VPC and update it honestly, line by line, in light of what you actually heard.',
+        'When you created your original Value Proposition Canvas in Week 5, it was a document of hypotheses. You were writing down your best guesses about customer jobs, pains, and gains — intelligent guesses informed by observation, but guesses nonetheless. Now, after three weeks of direct customer contact, you have something far more valuable than guesses. You have evidence. The single most important thing you can do before designing your MVP is to sit down with your original VPC and update it honestly, line by line, in light of what you actually heard.',
         'Customer jobs are the activities, tasks, and goals that drive your customers through their day. When you first filled in this section, you probably listed the jobs you assumed mattered most. Interviews almost always reveal a different story. Perhaps you thought your bakery customers\' primary job was "enjoy a delicious treat," but you discovered their real job is "have something beautiful to bring to a gathering that reflects well on me." These are not the same job, and they lead to completely different product decisions. Go back and rewrite the jobs section using the exact language your interviewees used.',
         'Customer pains deserve the same honest revision. The pains you assumed would matter — inconvenience, high prices, poor quality — may not have been what customers complained about most intensely. In many Central Asian markets, interviewers discover that the real pain is unreliability: a vendor who promises delivery on Wednesday but arrives Friday, or a product whose quality varies wildly from one purchase to the next. If your interviews surfaced pains you had not anticipated, these new pains should now sit at the top of your list. Rank them by intensity, not by how much you want them to be true.',
         'Customer gains require the most careful revision, because gains are what customers hope to achieve — and hope is easily colored by social desirability. Customers tell interviewers what they think they should want rather than what genuinely excites them. A gain that came up repeatedly, spontaneously, and with visible enthusiasm is a real gain. A gain that customers only mentioned when you asked them directly is a weaker signal. As you revise your gains section, note not just what customers want, but how much they want it and how they expressed it.',
-        'Now turn to the right side of the canvas — your products and services, pain relievers, and gain creators. For each item you originally listed, ask a simple but ruthless question: did your interviews provide evidence that this actually matters to real customers? Pain relievers that address pains you no longer believe are primary should be moved or removed. Gain creators that you invented but customers never mentioned should be questioned seriously. This is uncomfortable work, because you may have to acknowledge that your original ideas need significant revision. That discomfort is valuable information.',
+        'Now turn to the left side of the canvas — your products and services, pain relievers, and gain creators. For each item you originally listed, ask a simple but ruthless question: did your interviews provide evidence that this actually matters to real customers? Pain relievers that address pains you no longer believe are primary should be moved or removed. Gain creators that you invented but customers never mentioned should be questioned seriously. This is uncomfortable work, because you may have to acknowledge that your original ideas need significant revision. That discomfort is valuable information.',
         'The most useful output of this exercise is not the updated canvas itself — it is the gap analysis between your original and updated versions. Every place where you changed something represents a hypothesis you were wrong about, and that is where the real learning lives. Write down each change and the specific evidence from your interviews that drove it. This documentation becomes your validation record, showing anyone who asks — a bank, an investor, a mentor — that you built your business on evidence rather than assumption.',
         'Finally, look at the overall fit between the left and right sides of your updated canvas. A well-fitted VPC is one where every significant pain has a pain reliever, every important gain has a gain creator, and every core job is addressed by your product or service. Gaps in this fit are gaps in your offering. You do not need to fill every gap before launching your MVP — but you should know exactly where the gaps are and have a theory about which ones matter most to your first customers.',
         'One important principle: updating your VPC does not mean you were wrong before. It means you are learning, which is precisely what this course is designed to produce. Every great entrepreneur revises their value proposition multiple times before finding the version that truly resonates. The entrepreneurs who fail are those who cling to their original assumptions long after the evidence has told them to let go.',
@@ -158,7 +158,7 @@ export const week10Content: BusinessWeekContent = {
       "The evidence said something different. Two dishes — manty and the rotating soup — were generating most of the orders and most of the repeat customers. The other three dishes added preparation time and ingredient variety that complicated her Osh bazaar shopping without meaningfully increasing revenue. Her customers lived within a two-kilometer radius of her apartment: the Frunze district inquiry had not converted to a regular order when she priced in the delivery cost. The website had never come up in any customer conversation. The Telegram channel was already doing everything a website would have done, in a format every customer preferred.",
       "She went through her feature list with MoSCoW. Must Have: the Telegram channel with evening menu posts and next-morning order confirmation, manty available every day, rotating soup option, delivery within two kilometers by 12:30. That was the entire business. Everything customers had paid her for, and nothing more. Should Have: a third dish option for customers who ordered the light option. Could Have: a printed card with contact information for customers to share. Won't Have: website, delivery beyond two kilometers, more than three menu items, branded packaging, a kitchen outside her apartment for at least the first sixty days.",
       "The not-won't-have that had been hardest to write down was the rented kitchen. Uncle Kanybek had agreed to the 40,000 som loan after Thursday's meeting. She could rent commercial kitchen space. But the Math said she needed to reach 90 portions per month to justify the fixed cost of external kitchen rental. She was at 55 portions. The disciplined decision was to wait until she was consistently above 80 before adding that cost.",
-      "She wrote her MVP definition in the notebook: 'Aijan's Kitchen delivers freshly cooked manty and one rotating soup to office workers within two kilometers of my apartment in central Bishkek. Orders placed via Telegram by 9pm the night before. Delivery by 12:30. Cash on delivery. Three items maximum per day. No delivery outside the two-kilometer radius until I reach 90 daily portions consistently. I am not a restaurant. I am not a caterer. I am the cook who shows up every day with food that tastes like it was made this morning, because it was.'",
+      "She wrote her MVP definition in the notebook: 'Aijan's Kitchen delivers freshly cooked manty and one rotating soup to office workers within two kilometers of my apartment in central Bishkek. Orders placed via Telegram by 9pm the night before. Delivery by 12:30. Cash on delivery. Three items maximum per day. No delivery outside the two-kilometer radius until I reach 90 portions per month consistently. I am not a restaurant. I am not a caterer. I am the cook who shows up every day with food that tastes like it was made this morning, because it was.'",
       "She read it back. Every word of it was based on something a real customer had said, or a real number she had calculated, or a real lesson from a failed assumption. Not a single sentence was about the business she had imagined. Every sentence was about the business she had evidence for.",
       "She photographed the page and sent it to her mother in Tokmok, who replied with a voice message. Her mother said: 'This sounds like something you can actually do. Your grandmother always said you don't need a big stove to cook good food. You just need to know your recipe.'",
     ],
@@ -172,11 +172,11 @@ export const week10Content: BusinessWeekContent = {
       {
         title: 'Value Proposition Canvas: Before and After',
         description:
-          'Compare your original VPC from Week 4 with your updated understanding after customer validation.',
+          'Compare your original VPC from Week 5 with your updated understanding after customer validation.',
         fields: [
           {
             id: 'vpc-original-jobs',
-            label: 'Original Customer Jobs (Week 4)',
+            label: 'Original Customer Jobs (Week 5)',
             type: 'textarea',
             placeholder: 'What did you originally believe customers were trying to accomplish?',
             helpText: 'Write what you put in the Customer Jobs section of your original VPC.',
@@ -190,7 +190,7 @@ export const week10Content: BusinessWeekContent = {
           },
           {
             id: 'vpc-original-pains',
-            label: 'Original Customer Pains (Week 4)',
+            label: 'Original Customer Pains (Week 5)',
             type: 'textarea',
             placeholder: 'What pains did you originally assume mattered most?',
           },
@@ -203,7 +203,7 @@ export const week10Content: BusinessWeekContent = {
           },
           {
             id: 'vpc-original-gains',
-            label: 'Original Customer Gains (Week 4)',
+            label: 'Original Customer Gains (Week 5)',
             type: 'textarea',
             placeholder: 'What gains did you originally believe customers desired?',
           },
